@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    
+    <script type="text/javascript" src="/dist/html5/html5.js"></script>
+    <title>健康诊断</title>
+    
+    <style type="text/css">
+        
+
+        .accordion{
+            margin:0 auto;width:1080px
+        }
+
+        @media (min-width:800px) and (max-width:1024px) {
+        	* {
+        		font-size:11px;
+        	}
+        }
+    </style>
+</head>
+<body>
+	<!-- 头部 -->
+	<header class="row"></header>
+	
+    <article></article>
+
+    <footer></footer>
+    
+    <section style="position: fixed;top: 30%;left: 45%;text-align: center;" id="pageLoading">
+    	<img src="/dist/img/loading.png">
+    	<div style="font-size: 1.2vw;">拼命加载中..</div>
+    </section>
+</body>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js?v=20161013"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+	head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+	require([
+	        'jquery',
+	        'artTemplate',
+	        'move',
+	        'common',
+            'flexslider'
+	    ], 
+	    function($,template,move){
+	        $(document).ready(function() { 
+
+				var $body = $('body'),
+	                $header = $('header'),
+	                $article = $('article'),
+					$footer = $('footer');
+				
+	           	var insurance = {
+	                init: function(){
+	                	require(['text!component/header/header.tpl','headerData'],function(headerTpl){
+	                        $body.append(headerTpl);
+	                        common.innerHTML('header',template('headerTpl', window.headerData));
+	                        
+	                        common.innerHTML('article',template('insuranceTpl', insurance.data));
+
+                            require(['insAccordion'])
+
+                            insurance.move.initMove();
+                            insurance.renderHtml();
+                            insurance.renderComponent();
+                            insurance.watch();
+                            
+                            require(['text!component/footer/footer.tpl','footerData'],function(footerTpl){
+                                $body.append(footerTpl);
+                                common.innerHTML('footer',template('footerTpl', window.footerData));
+                            })
+                            
+                            $('#pageLoading').hide();
+	                    })
+	                },
+	                
+	                //全局属性
+	                options: {
+	                    
+	                },
+	                
+	                data: {
+	                	width: (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) + 'px',
+	                	height: (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.68 + 'px',
+                        bannerImgList: [
+                            '/dist/img/insurance/banner1.png',
+                            '/dist/img/insurance/banner2.jpg'
+                        ],
+                        banner: [{
+                        	title: '/dist/img/insurance/banner1_title.png',
+                        	subTitle: '/dist/img/insurance/banner1_sub_title.png',
+                        	img: '/dist/img/insurance/banner1.png'
+                        },{
+                        	title: '/dist/img/insurance/banner2_title.png',
+                        	img: '/dist/img/insurance/banner2.jpg'
+                        }]
+	                },
+	                
+	                //特效相关
+	                move: {
+	                	//初始化动效
+	                    initMove: function(){
+	                        setTimeout(function(){
+	                            
+	                        },0);//伪异步
+	                    },
+	                },
+	                
+	                //渲染html
+	                renderHtml: function(){
+                        common.initNav();
+	                },
+
+	                //渲染组件
+	                renderComponent: function(){
+	                	insurance.renderSwiper();
+	                },
+
+                    //渲染banner图滑动
+                    renderSwiper: function(){
+                        $(".flexslider").flexslider({
+                            slideshowSpeed: 4000, //展示时间间隔ms
+                            animationSpeed: 400 //滚动时间ms
+                        }); 
+                    },
+
+	               	//事件监听
+	                watch: function(){
+	                	
+                        //产品点击
+                        var $unfold = $('.unfold');
+                        $unfold.on('click',function(event){
+                            var proId = $(event.currentTarget).attr('data-pro');
+                            common.gotoPage('/product/list?p='+proId)
+                        })
+	                }
+	            }
+	           	insurance.init();
+	        });
+	    });
+   }
+</script>
+</html>

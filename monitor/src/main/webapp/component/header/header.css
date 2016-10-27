@@ -1,0 +1,94 @@
+/** 头部样式 **/
+header {
+    width: 100%;
+    height: 100px;
+    background-color: #D3E1FB;
+    box-sizing: border-box;
+	padding: 12px 10%;
+	overflow: hidden;
+	min-width: 1200px;
+}
+
+.nav-btn {
+	line-height: 130px;
+}
+.nav-title h1{
+	text-align: center;
+    color: #2E75B6;
+    font-family: -webkit-body;
+    font-size: 63px;
+    font-weight: 600;
+}
+/* 
+.nav-text,.login-regist {
+	height: 53px;
+    line-height: 53px;
+}
+.nav-text p {
+	padding-right: 15px;
+	padding-left: 15px;
+	font-size: 16.604px;
+	text-align: center;
+	cursor: pointer;
+}
+.nav-text .active {
+	color: #ff3232;
+	border-bottom: 2px solid #ff3232;
+}
+.login-regist .login {
+	text-align: right;
+}
+.login-regist .regist {
+	text-align: left;
+}
+.login-regist .regist a {
+	color: white;
+}
+.login-regist .regist a:HOVER {
+	text-decoration: none;
+}
+.header-mobile {
+	display: none;
+}
+
+.header-avatar {
+	text-align: center;
+}
+.header-avatar img{
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+.avatar-btn {
+	padding: 11.2px;
+	text-align: center;
+}
+
+* 登录弹框
+.login-dia-form {
+	padding: 18px 48px;
+	background: rgba(239,239,239,.4);
+	border-radius: 4px;
+}
+.go-login button{
+	width: 100%;
+	color: white;
+	background-color: #F56252;
+}
+.login-dia-form .login-btn {
+	margin-top: 40px;
+}
+
+@media (max-width:600px){
+	header {
+	    box-sizing: border-box;
+		padding: 16px;
+	}
+	.header-pc {
+		display: none;
+	}
+	.header-mobile {
+		display: block;
+		text-align: right;
+	}
+} */

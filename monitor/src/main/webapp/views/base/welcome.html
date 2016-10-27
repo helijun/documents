@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    
+    <title>监测系统</title>
+    
+    <style type="text/css">
+    	article {
+    		background: url('/dist/img/welcome_bg.jpg') no-repeat;
+            background-size: 100% 100%;  
+    	}
+    </style>
+</head>
+<body>
+    <article>
+    
+    </article>
+
+    <footer></footer>
+    
+</body>
+<script type="text/javascript" src="/plugin/requirejs/require.min.js?v=20161013"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+	head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+	require([
+	        'jquery',
+	        'common'
+	    ], 
+	    function($){
+	        $(document).ready(function() { 
+
+	           	var welcome = {
+	                init: function(){
+                        welcome.renderHtml();
+                        welcome.renderComponent();
+                        welcome.watch();
+	                },
+	                
+	                //全局属性
+	                options: {
+	                    
+	                },
+	                
+	                //渲染html
+	                renderHtml: function(){
+                        common.initNav();
+	                },
+
+	                //渲染组件
+	                renderComponent: function(){
+
+	                },
+
+	               	//事件监听
+	                watch: function(){
+	                	
+                        //产品点击
+                        var $unfold = $('.unfold');
+                        $unfold.on('click',function(event){
+                            var proId = $(event.currentTarget).attr('data-pro');
+                            common.gotoPage('/product/list?p='+proId)
+                        })
+	                }
+	            }
+	           	welcome.init();
+	        });
+	    });
+   }
+</script>
+</html>

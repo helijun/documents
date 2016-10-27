@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    
+    <script type="text/javascript" src="/dist/html5/html5.js"></script>
+    <title>实时检测</title>
+    
+    <style type="text/css">
+        
+
+        .accordion{
+            margin:0 auto;width:1080px
+        }
+
+        @media (min-width:800px) and (max-width:1024px) {
+        	* {
+        		font-size:11px;
+        	}
+        }
+    </style>
+</head>
+<body>
+	<!-- 头部 -->
+	<header class="row"></header>
+	
+    <article class="container">
+    	<div class="row">
+    		<section class="col-xs-3" id="mainLeft"></section>
+    		<section class="col-xs-9" id="mainRight"></section>
+    	</div>
+    </article>
+
+    <!-- <footer></footer> -->
+    <section style="position: fixed;top: 30%;left: 45%;text-align: center;" id="pageLoading">
+    	<img src="/dist/img/loading.png">
+    	<div style="font-size: 1.2vw;">拼命加载中..</div>
+    </section>
+</body>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js?v=20161013"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+	head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+	require([
+	        'jquery',
+	        'artTemplate',
+	        'common'
+	    ], 
+	    function($,template){
+	        $(document).ready(function() { 
+
+				var $body = $('body'),
+	                $header = $('header'),
+	                $article = $('article');
+				
+	           	var detect = {
+	                init: function(){
+	                	require(['text!component/header/header.tpl','headerData'],function(headerTpl){
+	                		$body.append(headerTpl);
+	                        $header.html(template('headerTpl', window.headerData))
+                             
+                            require([
+                            	'text!component/leftNav/leftNav.tpl',
+                            	'leftNavData',
+                            	'accordion'
+                            ],function(leftNavTpl){
+                                $body.append(leftNavTpl);
+                                $article.find('#mainLeft').html(template('leftNavTpl', window.leftNavData));
+                                
+                                detect.renderHtml();
+                                detect.renderComponent();
+                                detect.watch();
+                                
+                                $('#pageLoading').hide();
+                            })
+	                    })
+	                },
+	                
+	                //全局属性
+	                options: {
+	                    
+	                },
+	                
+	                data: {
+	                	width: window.innerWidth + 'px',
+	                	height: window.innerHeight * 0.68 + 'px',/*  || document.documentElement.clientHeight || document.body.clientHeight 不考虑IE兼容*/
+	                },
+	                
+	                //渲染html
+	                renderHtml: function(){
+                        common.initNav();
+	                },
+
+	                //渲染组件
+	                renderComponent: function(){
+	                	
+	                },
+
+	               	//事件监听
+	                watch: function(){
+	                	
+                        //产品点击
+                        var $unfold = $('.unfold');
+                        $unfold.on('click',function(event){
+                            var proId = $(event.currentTarget).attr('data-pro');
+                            common.gotoPage('/product/list?p='+proId)
+                        })
+	                }
+	            }
+	           	detect.init();
+	        });
+	    });
+   }
+</script>
+</html>

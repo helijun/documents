@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>测试pagefull插件</title>
+    
+    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/plugin/fullpage/jquery.fullpage.min.css">
+    <link rel="stylesheet" type="text/css" href="/plugin/sweetalert/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="/plugin/artDialog/ui-dialog.css">
+
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0px auto;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background-color: white;
+            box-shadow: 0 2px 2px #f1f1f1;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            width: 100%;
+            height: 180px;
+            color: #D3D3D3;
+            font-size: 14px;
+            background: url(/dist/img/nt-footer-bg.jpg) repeat-x;
+        }
+
+        .nav-first {
+            padding: 0 100px 0 100px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .nav-first>ul {
+            display: flex;
+            list-style-type: none;
+            line-height: 34px;
+            text-align: center;
+        }
+        .first-ul :nth-child(1) {
+            width: 70%;
+            text-align: left;
+        }
+        .first-ul>li:not(:nth-child(1)) {
+            width: 10%;
+            text-align: center;
+            border-left: 1px dashed #CCC;
+        }
+        .first-ul>li:nth-child(2) {
+            border-left: 0px dashed #CCC;
+        }
+        .first-ul>li:hover {
+            color:#f06e57;
+            cursor:pointer;
+        }
+
+        .nav-next {
+            line-height: 52px;
+            display: flex;
+            padding: 0 100px 0 100px;
+        }
+        
+        .logo {
+            width: 8%;
+        }
+        .logo>img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .nav {
+            justify-content: flex-end;
+            width: 80%;
+        }
+        .nav>ul {
+            display: flex;
+            display: -webkit-flex; /* Safari */
+            width: 100%;
+            margin: 1.4em auto;
+        }
+        .nav>ul li {
+            width: 20%;
+            font-family: '微软雅黑';
+            font-size: 1.3em;
+            text-align: center;
+            list-style-type: none;
+        }
+        .nav>ul li:hover {
+            color:#f06e57;
+            text-decoration: underline;
+            cursor:pointer;
+        }
+
+        .login-regist {
+            width: 12%;
+            padding-top: 1.4em;
+            color:#f06e57;
+        }
+        .login-regist>span:hover {
+            color:#ff2f0a;
+            cursor:pointer;
+        }
+        .login-regist>span:nth-child(2) {
+            border: 1px solid #ff4423;
+            padding: 0.28em;
+            border-radius: 6%;
+            color: #ff4423;
+            margin-left: 0.4em;
+        }
+
+        .section{
+            position: relative;
+            background-color: #fff;
+            overflow: hidden;
+            text-align: center;
+        }
+        .section img {
+            width: 100%;
+            height: 100%
+        }
+
+        .page1 {
+            background: url("/dist/img/page2.jpg") no-repeat center;
+            background-size: cover;
+        }
+        .page1>h1 {
+            margin-top: 200px;
+            color: white;
+            font-size: 14px;
+        }
+        .page1>h2 {
+            margin-top: 900px;
+            font-size: 18px;
+            color:#428bca;
+        }
+
+        .page2 {
+            background: url("/dist/img/page4.jpg") no-repeat center;
+            background-size: cover;
+        }
+
+        .page3 {
+            background: url("/dist/img/page3.jpg") no-repeat center;
+            background-size: cover;
+        }
+
+        .page4 {
+            background: url("/dist/img/page1.jpg") no-repeat center;
+            background-size: cover;
+        }
+
+        @font-face {font-family: 'welcome';
+            src: url('/dist/font/welcome.eot'); /* IE9*/
+            src: url('/dist/font/welcome.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('/dist/font/welcome.woff') format('woff'), /* chrome、firefox */
+            url('/dist/font/welcome.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('/dist/font/welcome.svg#welcome') format('svg'); /* iOS 4.1- */
+        }
+        
+        .tubiao,.weixin,.shouji,.dianhua{
+            font-family:"welcome" !important;
+            font-size:20px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .dialog-qr {
+            height: 150px;
+            width: 150px;
+        }
+
+        .download-qr {
+            position: absolute;
+            left:-5%;
+            bottom: 10%;
+            display: flex;
+            width: 220px;
+        }
+        .download-qr>div {
+            padding-left: 10px;
+        }
+
+        .footer-left,.footer-right {
+            width: 50%;
+        }
+
+        .about-me,.attention-me,.friends-link {
+            display: flex;
+            text-align: center;
+        }
+        .attention-me>span:not(:nth-child(1))>i {
+            font-size: 32px;
+        }
+
+        .about-me>span,.attention-me>span,.friends-link>span {
+            width: 25%;
+            font-size: 16px;
+            padding: 16px 0;
+        }
+        .footer-right>p {
+            font-size: 16px;
+            padding: 16px 0;
+        }
+        .footer-right>p:hover,.about-me>span:hover,.attention-me>span:hover,.friends-link>span:hover {
+            color:#f06e57;
+            cursor:pointer;
+        }
+       
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-first">
+            <ul class="first-ul">
+                <li><i class="dianhua">&#x3444;</i>客服热线: 0755-86671980</li>
+                <li id="weixin"><i class="weixin">&#xe636;</i>关注微信</li>
+                <li id="shouji"><i class="shouji">&#xe629;</i>APP下载</li>
+                <li><i class="tubiao">&#xe61b;</i>帮助中心</li>
+            </ul>
+        </div>
+        <div class="nav-next">
+            <div class="logo">
+                <img src="/dist/img/logo.png" alt="我的首页" class="page-img">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>首页</li>
+                    <li>产品介绍</li>
+                    <li>最新活动</li>
+                    <li>关于我们</li>
+                </ul>
+            </div>
+            <div class="login-regist">
+                <span id="loginBtn">登录</span>
+                <span>注册领红包</span>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <div class="section page1">
+            <h1>达农帮上线啦..</h1>
+            <h2>达农帮，你我的江湖</h2>
+
+            <div class="download-qr">
+                <div>
+                    <img src="/dist/img/download_app_qr.png" alt="">
+                    <p>下载APP</p>
+                </div>
+                <div>
+                    <img src="/dist/img/download_app_qr.png" alt="">
+                    <p>关注公众号</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section page2">
+        </div>
+
+        <div class="section page3">
+            <div class="slide active">
+                <img src="/dist/img/page3.jpg" alt="" class="page-img">
+            </div>
+            <div class="slide">
+                <img src="/dist/img/loveLetter/children/children6.jpg" alt="" class="page-img">
+            </div>
+            <div class="slide">
+                <img src="/dist/img/loveLetter/children/children21.jpg" alt="" class="page-img">
+            </div>
+            <div class="slide">
+                <img src="/dist/img/loveLetter/children/children22.jpg" alt="" class="page-img">
+            </div>
+        </div>
+
+        <div class="section page4">
+            <footer>
+                <div class="footer-left">
+                    <div class="about-me">
+                        <span>关于我们</span>
+                        <span>安全保障</span>
+                        <span>帮助中心</span>
+                        <span>行业动态</span>
+                    </div>
+                    <div class="attention-me">
+                        <span>关注我们</span>
+                        <span><i class="dianhua">&#x3444;</i></span>
+                        <span id="weixin2"><i class="weixin">&#xe636;</i></span>
+                        <span id="shouji2"><i class="shouji">&#xe629;</i></span>
+                    </div>
+                    <div class="friends-link">
+                        <span>友情链接</span>
+                        <span>诺普信</span>
+                        <span>农泰金融</span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>客服热线（工作时间：9:00-18:00）</p>
+                    <p><i class="dianhua">&#x3444;</i> 0755-86671980</p>
+                    <div class="copyright">All Rights Reserved | 版权所有</div>
+                </div>
+            </footer>
+        </div>
+    </article>
+    
+</body>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js" data-main="/config"></script>
+<script type="text/javascript">
+    require.config({
+        baseUrl : "/",
+        paths: {
+            jquery:'plugin/jquery/jquery-3.1.0.min',
+            fastclick: 'plugin/jquery/fastclick',
+            sweetalert: 'plugin/sweetalert/sweetalert.min',
+            fullpage: 'plugin/fullpage/jquery.fullpage.min',
+            easings: 'plugin/fullpage/jquery.easings.min',
+            artDialog: 'plugin/artDialog/dialog-min',
+            move: 'plugin/move/move.min'//css3js调用组件
+        },
+        shim: {
+            fullpage: {
+                deps: ['jquery'],
+                exports: '$'
+            },
+            easings: {
+                deps: ['jquery'],
+                exports: '$'
+            }
+        }
+    });
+
+    require(
+        [
+            'jquery',
+            'fastclick',
+            'move',
+            'fullpage',
+            'easings',
+            'artDialog',
+            'sweetalert',
+        ], 
+        function($,FastClick,move){
+            $(document).ready(function() { 
+                FastClick.attach(document.body);
+
+                $('article').fullpage({
+                    verticalCentered: false,
+                    anchors: ['page1','page2','page3','page4'],
+                    navigation: true,
+                    navigationTooltips: ['页面1','页面2','页面3','页面4'],
+                  	//滚动到某一屏后产生的动画效果
+                    afterLoad: function(link, index){
+                        switch (index){
+                            case 1:
+                                move('.page1 h1').scale(2.5).end();
+                                move('.page1 h2').set('margin-top','5%').end();
+                                move('.download-qr').set('left','5%').end();
+
+                                break;
+                            case 2:
+                                console.log('2',link)
+                                console.log('2',index)
+                                break;
+                            case 3:
+                                console.log('3',link)
+                                console.log('3',index)
+                                break;
+                            case 4:
+                                console.log('4',link)
+                                console.log('4',index)
+                                break;
+                            default :
+                                break;
+                        }
+                    },
+                    //离开某一屏后恢复到初始效果
+                    onLeave: function(link, index){
+                        switch (index){
+                            case 1:
+                                move('.page1 h1').scale(1).end();
+                                move('.page1 h2').set('margin-top','800px').end();
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            default :
+                                break;
+                        }
+                    },
+                });
+                
+               	var pagefull = {
+                    init: function(){
+                        var self = pagefull;
+                            self.toMobile();
+                            self.watch();
+                    },
+                    options: {
+                        
+                    },
+
+                    //去移动端页面
+                    toMobile: function(){
+                        if (document.body.clientWidth <= 500) {
+                        //跳转移动屏幕
+                        console.log('document.body.clientWidth',document.body.clientWidth);
+                       }
+                    },
+
+                    //登录
+                    login: function(){
+                        swal({   
+                            title: "",
+                            type: "input",   
+                            text: "",   
+                            html: true,  
+                            imageUrl: 'http://h5.sztoda.com/static/img/app/no_data_tips.png',
+                            showCancelButton: true,   
+                            closeOnConfirm: false,   
+                            animation: "slide-from-top",   
+                            confirmButtonText: '下一步',
+                            cancelButtonText: '取消',
+                            inputPlaceholder: "请输入您的手机号"
+                        }, function(inputValue){   
+                            if (inputValue === false) 
+                                return false;      
+                            if (inputValue === "") {     
+                                swal.showInputError("请输入您的手机号!");     
+                                return false   
+                            }     
+
+                            swal({   
+                                title: "",   
+                                text: "",   
+                                type: "input",   
+                                imageUrl: 'http://h5.sztoda.com/static/img/app/no_data_tips.png',
+                                showCancelButton: true,   
+                                closeOnConfirm: false,   
+                                animation: "slide-from-top",   
+                                confirmButtonText: '登录',
+                                cancelButtonText: '取消',
+                                inputPlaceholder: "请输入您的密码" 
+                            },function(inputValue){
+                                swal("登录成功!", "You wrote: " + inputValue, "success"); 
+                            }) 
+                        });
+                    },
+
+                    watch: function(){
+                        var self = pagefull;
+
+                        $('#loginBtn').on('click',self.login)
+
+                        //屏幕宽度变化监听
+                        $(window).resize(function(resize){
+                            self.toMobile();
+                        });
+
+
+                        //微信二维码
+                        $('#weixin').on('click',function(){
+                            var d = dialog({
+                                content: '<img class="dialog-qr" src="/dist/img/download_app_qr.png">',
+                                quickClose: true
+                            });
+                            d.show(document.getElementById('weixin'));
+                        })
+                        
+                        //手机二维码
+                        $('#shouji').on('click',function(){
+                            var d = dialog({
+                                content: '<img class="dialog-qr" src="/dist/img/download_app_qr.png">',
+                                quickClose: true
+                            });
+                            d.show(document.getElementById('shouji'));
+                        })
+                    }
+                }
+                pagefull.init();
+
+            });
+        });
+</script>
+</html>

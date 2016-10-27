@@ -1,0 +1,107 @@
+/** 全局样式  **/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
+    /* border: none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none; */
+}
+
+html,body,article {
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/** 通用的提示层 **/
+.ui-alert-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    background: rgba(0,0,0,.4);
+    background: transparent;
+}
+
+.ui-alert-block .ui-loading-cnt {
+    width: 35%;
+    height: 15%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    text-align: center;
+    background: rgba(0,0,0,.65);
+    border-radius: 6px;
+    color: #fff;
+}
+.ui-loading-bright {
+    width: 37px;
+    height: 37px;
+    display: block;
+    margin-top: 3.7vw;
+    background-image: url(/static/img/loading_sprite_white.png);
+    -webkit-background-size: auto 37px;
+    -webkit-animation: am-rotate2 1s steps(12) infinite;
+}
+.ui-loading-cnt>p {
+    margin-top: 1.8vw;
+}
+
+/** 通用的提示信息 **/
+.ui-tips-div {
+    background: rgba(0,0,0,.9);
+    color: white;
+    border-radius: 4px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    transition: all 0.5s;
+    transform: translateY(-70px);
+    z-index: 999;
+}
+.translateY-zero {
+    transform: translateY(0px);
+}
+
+.boxshadow-bottom{-moz-box-shadow:0 1px 5px #333333;-webkit-box-shadow:0 1px 5px #333333;box-shadow: 0 1px 10px #dad4d4;}
+.border-bottom{border-bottom: 2px solid #e5e5e3;}
+@-webkit-keyframes am-rotate2 {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -444px 0;
+    }
+}
+
+
+/** 通用的一些属性 **/
+.strong {
+  	font-weight: bold;
+}
+.center {
+	text-align: center;
+}
+.width-all {
+    width: 100%;
+}
+.space-div{
+    height: 100px;
+}
