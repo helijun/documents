@@ -18,11 +18,38 @@
 		<property name="locations">
 			<list>
 				<value>classpath:env.properties</value>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:log4j.properties</value>
 			</list>
 		</property>
 	</bean>
 	
+	<!-- 开启注解扫描 -->
+	<context:annotation-config/>
 	<!-- 扫描包 -->
 	<context:component-scan base-package="com.monitor"/>
 
+	<!-- 定义数据源 -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<!-- 数据库驱动 -->
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<!-- 相应驱动的jdbcUrl -->
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<!-- 数据库的用户名 -->
+		<property name="username" value="${jdbc.username}" />
+		<!-- 数据库的密码 -->
+		<property name="password" value="${jdbc.password}" />
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAge" value="30" />
+		<!-- 每个分区最大的连接数 -->
+		<!-- 
+			判断依据：请求并发数
+		 -->
+		<property name="maxConnectionsPerPartition" value="100" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="5" />
+	</bean>
 </beans>

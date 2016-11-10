@@ -6,7 +6,7 @@
     <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     
-    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <!-- 开发环境， 浏览器不缓存，每次都去服务器拉取 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
@@ -16,9 +16,9 @@
     
     <style type="text/css">
         
-
         .accordion{
-            margin:0 auto;width:1080px
+            margin:0 auto;
+            width:1080px;
         }
 
         @media (min-width:800px) and (max-width:1024px) {
@@ -60,7 +60,9 @@ script.onload = script.onreadystatechange = function(){
 	require([
 	        'jquery',
 	        'artTemplate',
-	        'common'
+	        'common',
+	        'accordion',
+	        'dateFormat'
 	    ], 
 	    function($,template){
 	        $(document).ready(function() { 
@@ -77,12 +79,15 @@ script.onload = script.onreadystatechange = function(){
                              
                             require([
                             	'text!component/leftNav/leftNav.tpl',
-                            	'leftNavData',
-                            	'accordion'
-                            ],function(leftNavTpl){
+                            	'text!component/pages/runState/runState.tpl',
+                            	'leftNavData'
+                            ],function(leftNavTpl,mainRightTpl){
                                 $body.append(leftNavTpl);
+                                $body.append(mainRightTpl);
+                                //渲染左边导航
                                 $article.find('#mainLeft').html(template('leftNavTpl', window.leftNavData));
-                                
+                                //默认渲染机器状态
+                                $article.find('#mainRight').html(template('runStateTpl', window.leftNavData));
                                 detect.renderHtml();
                                 detect.renderComponent();
                                 detect.watch();
@@ -104,7 +109,7 @@ script.onload = script.onreadystatechange = function(){
 	                
 	                //渲染html
 	                renderHtml: function(){
-                        common.initNav();
+                        //common.initNav();
 	                },
 
 	                //渲染组件

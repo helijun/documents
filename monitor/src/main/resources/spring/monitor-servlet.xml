@@ -22,6 +22,19 @@
 	<!-- 定义Controller的扫描包 -->
 	<context:component-scan base-package="com.monitor.controller"/>
 	
+	<mvc:annotation-driven>
+	       <mvc:message-converters register-defaults="true">
+	           <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+	           <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+	               <property name="supportedMediaTypes">
+	                   <list>
+	                       <value>application/json;charset=UTF-8</value>
+	                   </list>
+	               </property>
+	           </bean>
+	       </mvc:message-converters>
+	  </mvc:annotation-driven>
+	
 	<!-- 定义视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/views/"/>

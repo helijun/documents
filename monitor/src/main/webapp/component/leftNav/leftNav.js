@@ -2,12 +2,109 @@
 (function (win, undefined) {
 	'use strict';
 	
-	var footerData = {
-			tel: ['0755-86671980','0755-86671390'],
-        	email: 'zhengxuan@sztoda.com',
-        	wxQr: '/dist/img/qr/dnbx.jpg',
-        	appQr: '/dist/img/qr/download_app_0922.png'
+	/**
+	* 左侧导航栏数据组装
+	* @author helijun
+	*/
+	var leftNavData = {
+			listItem: [
+				{
+					title: '机组运行状态',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: 'runState',
+					subTemplate: 'machineRunState'
+				},
+				{
+					title: '振摆检测子系统',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '压力脉动监测子系统',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '工况子系统',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '机组信息子系统',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '机组信息子系统',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '报警',
+					subTitle: [{
+						name: '机组1',
+						id: '1'
+					},{
+						name: '机组2',
+						id: '2'
+					}],
+					template: ''
+				},
+				{
+					title: '状态检测系统自检',
+					subTitle: [],
+					template: '',
+					subTemplate: ''
+				},
+				{
+					title: '设置',
+					subTitle: [],
+					template: 'setting',
+					subTemplate: ''
+				}
+			]
     };
 
-	win.footerData = footerData;
+	win.leftNavData = leftNavData;
 })(window);

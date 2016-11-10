@@ -1,14 +1,13 @@
 ;
-(function (win, undefined) {
+(function (win) {
 	'use strict';
 	
-	var dateFormat = require('dateFormat'),
-		header = {
+	var machineRunState = {
 	        init: function(){
-	            var self = header;
-	            	header.renderHtml();
-	            	header.renderComponent();
-	            	header.watch();
+	            var self = machineRunState;
+	            	machineRunState.renderHtml();
+	            	machineRunState.renderComponent();
+	            	machineRunState.watch();
 	        },
 	        
 	        //全局属性
@@ -30,7 +29,7 @@
 	                  	}
 	                ],
 	            title: '机组状态监测系统',
-	            time: dateFormat(new Date(),'dateTime'),
+	            time: '2016-10-26 21:34:18',
 	            user: {
 	                name: '何立军'
 	            }
@@ -38,10 +37,7 @@
 	        
 	        //渲染html
 	        renderHtml: function(){
-	        	//时间++
-	        	setInterval(function(){
-	        		$('#currentTime h4').text(dateFormat(new Date(),'dateTime'))
-	        	}, 1000)
+	        	console.log('点击的机组id',window.curMachine)
 	        },
 	        
 	        //渲染组件
@@ -51,13 +47,13 @@
 
 	       	//事件监听
 	        watch: function(){
-	            var self = header;
+	            var self = machineRunState;
 	            
 	            var $body = $('body');
 	            $body.on();
 	        }
 	    }
-		header.init();
-		
-	win.headerData = header.data;
+		machineRunState.init();
+
+	win.machineRunState = machineRunState;
 })(window);

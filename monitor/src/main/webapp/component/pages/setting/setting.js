@@ -1,14 +1,13 @@
 ;
-(function (win, undefined) {
+(function () {
 	'use strict';
 	
-	var dateFormat = require('dateFormat'),
-		header = {
+	var setting = {
 	        init: function(){
-	            var self = header;
-	            	header.renderHtml();
-	            	header.renderComponent();
-	            	header.watch();
+	            var self = setting;
+	            	setting.renderHtml();
+	            	setting.renderComponent();
+	            	setting.watch();
 	        },
 	        
 	        //全局属性
@@ -30,7 +29,7 @@
 	                  	}
 	                ],
 	            title: '机组状态监测系统',
-	            time: dateFormat(new Date(),'dateTime'),
+	            time: '2016-10-26 21:34:18',
 	            user: {
 	                name: '何立军'
 	            }
@@ -38,10 +37,7 @@
 	        
 	        //渲染html
 	        renderHtml: function(){
-	        	//时间++
-	        	setInterval(function(){
-	        		$('#currentTime h4').text(dateFormat(new Date(),'dateTime'))
-	        	}, 1000)
+	        	
 	        },
 	        
 	        //渲染组件
@@ -51,13 +47,11 @@
 
 	       	//事件监听
 	        watch: function(){
-	            var self = header;
+	            var self = setting;
 	            
 	            var $body = $('body');
 	            $body.on();
 	        }
 	    }
-		header.init();
-		
-	win.headerData = header.data;
-})(window);
+		setting.init();
+})();

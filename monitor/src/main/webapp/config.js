@@ -10,16 +10,22 @@ require.config({
 	urlArgs: "v=" +  _VER,
     baseUrl : "/",
     paths: {
+    	//必须插件
         jquery:'plugin/jquery/jquery-1.9.0.min',
-        move: 'plugin/move/move.min',//css3js调用组件
+        common: 'dist/js/common',
+        dateFormat: 'utils/date/dateFormat',
         artTemplate: 'plugin/template/artTemplate-3.0',
         artDialog: 'plugin/artDialog/dialog-min',
         headerData: 'component/header/header',
         leftNavData: 'component/leftNav/leftNav',
-        common: 'dist/js/common',
         bootstrap: 'plugin/bootstrap-3.3.5-dist/js/bootstrap.min',
         bootstrapValidator: 'plugin/bootstrapValidator/js/bootstrapValidator.min',
-        accordion: 'component/accordion/accordion'
+        accordion: 'component/accordion/accordion',
+        
+        //页面组件
+        runState: 'component/pages/runState/runState',
+        machineRunState: 'component/pages/machineRunState/machineRunState',
+        setting: 'component/pages/setting/setting'
     },
     shim: {
     	common: ['css!dist/css/common'],
