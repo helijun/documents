@@ -1,0 +1,93 @@
+.importantDiv{margin: 20px 0;}
+.singleRow{background: #fffffe;height: 80px;border-bottom: 1px solid #eff0f1;font:24px/79px 'Microsoft YaHei';color: #69696a}
+.hostInfoDiv{font-size: 26px;}
+.hostInfoDiv span:nth-of-type(2){color: #0d0d0d}
+.hostInfoDiv p{
+    width: 46%;
+    float: left;
+    padding-left: 20px;
+}
+.singleRow p{
+    float: left;
+    padding-left: 20px;
+}
+.concreteDetailDiv{padding-left: 30px;}
+.insurSingleRow{padding: 0 40px 0 20px;height: 90px;border-bottom: 1px solid #eff0f1;font:24px/89px 'Microsoft YaHei';color: #69696a;}
+.insureDiv{background: #fffffe;margin-bottom: 20px;}
+.titileDiv p:nth-of-type(1){font:24px/45px 'Microsoft YaHei';text-align: center;}
+.titileDiv p:nth-of-type(2){font:24px/45px 'Microsoft YaHei';text-align: center; color: #a5a5a5}
+.moreImg{background: url("../img/more.png") no-repeat;width: 12px;height: 21px;margin: 39px 0;display: block;}
+.timeRight{width: 200px;font:24px/90px 'Microsoft YaHei';position: relative;}
+.timeRight i{    position: absolute;
+    right: 0px;}
+.timeInput{
+    width: 100%;
+    display: block;
+    float: left;
+    height: 89px;
+    border: none;
+    -webkit-appearance: none;
+    font: 24px/89px 'Microsoft YaHei';
+}
+.smallDiv{padding:0 20px;height: 90px;border-bottom: 1px solid #eff0f1;font:24px/89px 'Microsoft YaHei';color: #69696a}
+.firstLine{width: 40%;}
+.secondeLine{width: 30%;text-align: right;position: relative;margin-right: 40px;}
+.thirdLine{width: 30%;text-align: center}
+.lineDiv{font:24px/89px 'Microsoft YaHei'}
+.checked-img{background: url("../img/check.png") no-repeat;}
+.checkImg{border-radius: 50%;width: 41px;height: 40px;display: block;margin: 22px 10px;}
+.allChoice{display: block;width: 70px;/* text-align: center; */color: #7f7f81;font: 20px/90px 'Microsoft YaHei';}
+.priceInput{
+    display: block;
+    width: 100%;
+    height: 43px;
+    font: 24px/43px 'Microsoft YaHei';
+    border: 1px solid #ccc;
+    text-align: center;
+    margin: 18px 0;
+}
+.bigCotentDiv{
+    margin-bottom: 86px;
+}
+.left-placeholder{margin-left: 60px;}
+.border_bottom{border-bottom: 1px solid #eff0f1}
+.priceInputDiv:before{content:'';position: absolute;background: url("../img/inputAfter.png") no-repeat;width: 46px;height: 43px;top:20px;right: 0px;}
+.ensureProjectBtn{width: 185px;height: 75px;font: 24px/75px 'Microsoft YaHei';background: #d2431c;color: wheat;text-align: center;margin: 0 auto;}
+.footerDiv{position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;height: 75px;background: white;font: 24px/95px 'Microsoft YaHei';color: #2a2a2a;}
+.footerDiv p:nth-of-type(1){width: 100%; /*padding-left: 40px; */}
+.moreInsuranceBtn{color: #1e8ddb;width: 300px;height: 100%;text-align: right;}
+.fade-div1,.fade-div2{float: right;color:#1e8ddb}
+.check-border{border: 1px solid;}
+/* .mine */
+.common-select{
+    height: 60px;
+    border: none;
+    font: 24px/60px 'Microsoft YaHei';
+    padding-left: 20px;
+    width: 58%;
+    margin: 15px;
+    float: right;
+    z-index: 111;
+    border: 1px solid #CCC;
+}
+.selectInputAfter{position: relative;}
+.selectInputAfter:before{
+    background: url(../img/after.png) no-repeat;
+    content: '';
+    width: 46px;
+    height: 61px;
+    position: absolute;
+    top: 13px;
+    right: 15px;
+}
+.feeChangeImgDiv{width: 566px;height: 480px;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+.closeBtn{background: url("../img/close.png") no-repeat;width: 53px;height: 53px;display: block;}
+.closeImg{text-align: center;width: 53px;height: 53px;position: absolute;bottom: 10%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+.spaceDiv{background: white;height: 100px;width: 100%}
+.insuranceType{width: 60%!important;text-overflow: ellipsis;
+    overflow: hidden;
+    height: 89px;}
+/*.secondeInsurDiv{margin-bottom: 100px;}*/

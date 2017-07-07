@@ -1,0 +1,238 @@
+.titleDiv{text-align: center;margin: 30px;}
+
+.letterMainDiv{width: 86%;margin: 20px auto;border-radius: 8px;background: white;/* z-index: 222222222222222222222222222222; *//* position: absolute; */}
+.letterContentDiv{padding: 15px;}
+.letterContent{color: #111112;font-size: 28px;}
+.toman{color: #686869;font-size: 24px;/* line-height: 100px; */margin-top: 40px;    text-overflow: ellipsis;white-space: nowrap;
+    overflow: hidden;
+    display: block}
+.greencolor{color: #42c63f}
+.redcolor{color: #eb507e}
+.restContentDiv{width: 560px;margin: 20px auto;}
+.textP{color: #484747;display:inner-block;/* margin-top: 20px; */font-size: 22px;}
+.btn{width: 100%;height: 88px;border-radius: 8px;text-align: center;color: white;margin: 10px auto 40px;line-height: 88px;}
+.dakaBtn{}
+.hadDaka{background: #CCCCCC;}
+.notDaka{background: #4C9DE2;}
+.shareBtn{background: #ef7977;}
+.headImg{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    float: left;
+}
+.morLayerDiv{width: 100%;height: 100%;position: fixed;bottom: 0;background: rgba(0,0,0,.7);z-index: 1;}
+.shareArrow{position: absolute;right: 14px;top: 32px;-webkit-animation: bounce 1s infinite ease;animation: bounce 1s infinite ease; -webkit-animation-fill-mode: both;animation-fill-mode: both;}
+.shareText{position: absolute;left: 69px;top: 200px;}
+.bannerDiv{width: 640px;height: 92px;margin-bottom: 35px;}
+.loveletter_heart2{
+    -webkit-animation: 1s    heart  linear ;
+    animation:1s    heart  linear ;
+}
+.heart2323{opacity: 0;z-index: 0;text-align: center;position: absolute;left: 337px;top: 14px;}
+@keyframes heart {
+    0%{opacity: 0.5;}
+    /*50%{opacity: .5;}*/
+    50%{opacity: .1;}
+    100% {
+        opacity: 0;
+        transform: perspective(1400px) translate(140px, -100px) ;
+        -webkit-transform: perspective(1400px) translate(140px, -100px) ;
+    }
+}
+@-webkit-keyframes heart {
+    0%{opacity:0.5;}
+    50%{opacity: .2;}
+    100% {
+        opacity: 0;
+        transform: perspective(1400px) translate(140px, -100px) ;
+        -webkit-transform: perspective(1400px) translate(140px, -100px) ;
+    }
+}
+/*.letterBg{background: url("../../img/loveletter_letterBg.png") no-repeat;}*/
+@-webkit-keyframes bounce {
+    0%, 100%, 20%, 53%, 80% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+    40%, 43% {
+        -webkit-transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0)
+    }
+    70% {
+        -webkit-transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0)
+    }
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0)
+    }
+}
+
+@keyframes bounce {
+    0%, 100%, 20%, 53%, 80% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+    40%, 43% {
+        -webkit-transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0)
+    }
+    70% {
+        -webkit-transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        transition-timing-function: cubic-bezier(0.755, .050, .855, .060);
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0)
+    }
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0)
+    }
+}
+.sayText{
+    width: 358px;
+    height: 72px;
+    color: #686869;
+    line-height: 72px;
+    font-size: 24px;
+    display: block;
+    float: left;
+    /* border: 1px solid #686869; */
+    border-radius: 8px;
+    padding-left: 20px;
+    margin: 0 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.zanImg{margin-top: 20px}
+.teamDiv li{margin-top: 20px}
+.moreType{width: 45% !important;margin-right: 50px;float: left;}
+.getTicketBtn{width: 45%;float: right;background:  #F18220}
+.otherDiv{   }
+.dakaHeart{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.dakaHeart span{
+    position: absolute;
+    top: 22px;
+    left: 247px;
+    color: white;
+    font-size: 22px;
+}
+.nonePerpel{    font: 24px/80px 'Microsoft YaHei';
+    height: 80px;
+    text-align: center;}
+.lineDiv {
+    overflow: hidden;
+}
+.text-tips {
+    color: #CCCCCC;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+.text-tips :nth-of-type(2) {
+    float: right;
+}
+.me-too-play {
+    padding: 0.8em;
+    margin: 1.5em auto;
+    display: flex;
+    justify-content: center;
+    background-color: #4C9DE2;
+    color: white;
+    border-radius: 0.25em;
+}
+.help-share {
+    padding: 0.8em;
+    margin: 1.5em auto;
+    display: flex;
+    justify-content: center;
+    background-color: #EF9C9B;
+    color: white;
+    border-radius: 0.1em;
+}
+.get-gift-p {
+    justify-content: center;
+    display: flex;
+    text-decoration: underline;
+    color: red;
+}
+.imgDiv {
+    max-height: 500px;
+    overflow: hidden;
+    width: 100%;
+}
+.imgDiv img {
+    width: 100%;
+}
+.inner-block {
+    display: inner-block;
+}
+.left-45 {
+    float: left;
+    width: 45%
+}
+.dakaTime {
+    color: #686869;
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 10px;
+    font-size: 20px;
+}
+.text-align-right {
+    text-align: right;
+}
+.shareBg{position:absolute;background: url("../../img/loveletter_letterShareBg.png") no-repeat;width: 837px;height: 702px;/* z-index: -1; */background-position: -73px -111px;}
+#friendDaka{margin: 30px auto}
+/*音乐控制*/
+#musicCtrl{z-index:20;position: fixed;}
+.mLt{left: 20px; top: 20px; }
+.mRt{right: 20px; top: 20px; }
+.mLb{left: 20px; bottom: 20px; }
+.mRb{right: 20px; top: 20px; }
+
+.mAnim{ -webkit-animation: mAnim 2s linear infinite ;animation: mAnim 2s linear infinite ;}
+@-webkit-keyframes mAnim {
+    from{ -webkit-transform: rotate(0deg);}
+    to{ -webkit-transform: rotate(360deg);}
+}
+@keyframes mAnim {
+    from{ transform: rotate(0deg);}
+    to{ transform: rotate(360deg);}
+}
+
+
+article {
+	background-image: url("/static/img/loveletter_letterShareBg.png");
+    background-repeat: no-repeat;
+}
+em {
+    color: #0baae4;
+}
+.logo_and_slogan {
+	display: flex;
+    justify-content: center;
+    padding: 1.6em;
+}
+
+html, body, article {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    margin-top: 2.8em;
+}

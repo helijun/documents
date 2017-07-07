@@ -1,0 +1,55 @@
+.banner-image {
+	width: 100%;
+	height: 180px;
+}
+
+.flex-wrp-sub,.flex-list {
+	display: flex;
+	width: 100%;
+}
+.flex-wrp-sub .flex-item {
+	width: 50%;
+	text-align: center;
+	line-height: 50px;
+	margin-top:10px;
+}
+
+.share-btn {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.product-title {
+	text-align: left;
+	width: 100%;
+}
+.product-title-text {
+	margin-top: 1rem;
+}
+
+.flex-list {
+	border-bottom: 1px solid #CCC;
+	padding: 0.2rem;
+	margin-bottom: 1rem;
+}
+.flex-list image {
+	width: 30%;
+	height: 100px;
+	padding: 0.2em 1.2em;
+}
+.flex-list .title {
+	width: 70%;
+	padding-top: 0.6rem;
+}
+.product-sub-title {
+	color:#CCC;
+}
+.product-like-comment {
+	margin-top: 0.6em;
+	color: #18B4ED;
+}
+.comment {
+	margin-left: 0.8em;
+	color: #ff7f0d;
+}

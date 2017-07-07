@@ -1,0 +1,19 @@
+{
+  "loveletter/commom.js": "loveletter/commom.js?v=911965ed05",
+  "loveletter/content.js": "loveletter/content.js?v=9de756b057",
+  "loveletter/detail.js": "loveletter/detail.js?v=e7aa2a36bd",
+  "loveletter/exchangeList.js": "loveletter/exchangeList.js?v=fefdf56463",
+  "loveletter/touch.js": "loveletter/touch.js?v=d28296ba13",
+  "loveletter/zepto.min.js": "loveletter/zepto.min.js?v=e8dc6994b7",
+  "usercenter/centerInfo.js": "usercenter/centerInfo.js?v=ef8c38c9d5",
+  "usercenter/changePwd.js": "usercenter/changePwd.js?v=d169f0df4f",
+  "usercenter/insureDetail.js": "usercenter/insureDetail.js?v=6fc6c017c8",
+  "usercenter/luckyLottery.js": "usercenter/luckyLottery.js?v=8deb418526",
+  "usercenter/myCenter.js": "usercenter/myCenter.js?v=0ca02863d3",
+  "usercenter/myInsurancePolicy.js": "usercenter/myInsurancePolicy.js?v=52472d163c",
+  "usercenter/myWinRecord.js": "usercenter/myWinRecord.js?v=f15770dd7b",
+  "usercenter/perfectPersonalData.js": "usercenter/perfectPersonalData.js?v=a3ed671c65",
+  "usercenter/receiveAddress.js": "usercenter/receiveAddress.js?v=cd4bcf7caf",
+  "usercenter/shareTopten.js": "usercenter/shareTopten.js?v=1984a295e4",
+  "usercenter/uploadPhoto.js": "usercenter/uploadPhoto.js?v=e509b3d157"
+}

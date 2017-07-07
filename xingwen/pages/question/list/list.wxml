@@ -1,0 +1,34 @@
+<view class="container">
+	<image src="{{bannerUrl}}" class="banner-image"/>
+
+	<view class="flex-wrp-sub">
+	    <view class="flex-item bc_green" bindtap="wait">
+	    	<icon type="{{iconType[0]}}" size="25"/>已回答
+	    </view>
+	    <view class="flex-item bd-left bc_red" bindtap="wait">
+	    	<icon type="{{iconType[1]}}" size="25"/>个人中心
+	    </view>
+  	</view>
+
+  	<view class="product-title">
+  		<text class="product-title-text">最热提问</text>
+  	</view>
+
+  	<view class="flex-list" wx:for="{{productList}}" bindtap="wait">
+  		<image src="{{item.imgSmall}}"/>
+  		<view class="title">
+  			<view class="product-name">{{item.title}}</view>
+  			<view class="product-sub-title">{{item.detail}}</view>	
+  			<view class="product-like-comment">
+	  			<text class="like">赞{{item.like}}</text>
+	  			<text class="comment">回答{{item.comment}}</text>
+	  		</view>
+  		</view>
+  	</view>
+
+  	<view class="view-placeholder"></view>
+</view>
+
+<toast hidden="{{toast2Hidden}}" duration="3000">
+正在开发中....
+</toast>

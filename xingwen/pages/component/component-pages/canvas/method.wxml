@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="page__hd">
+    <text class="page__title">canvas</text>
+    <text class="page__desc">绘图方法</text>
+  </view>
+  <view class="page__bd">
+    <block wx:for-items="{{methods}}" wx:for-index="index" wx:for-item="item">
+      <view class="section section_gap">
+        <navigator url="example?method={{item}}">
+          <button>{{item}}</button>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>
