@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>测试弹框</title>
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/v1/style.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+</head>
+<body class="body">
+
+<fieldset class="layui-elem-field site-demo-button">
+    <legend>测试弹窗</legend>
+    <div>
+        <button class="layui-btn layui-btn-primary" id="button1">弹出一个页面层</button>
+        <button class="layui-btn" id="button2">弹出一个loading层</button>
+        <button class="layui-btn layui-btn-normal" id="button3">弹出一个tips层</button>
+        <button class="layui-btn layui-btn-warm" id="button4">弹出一个简单提示</button>
+        <button class="layui-btn layui-btn-primary" id="button5">iframe 页面弹框</button>
+    </div>
+</fieldset>
+
+<script src="/static/plugin/jquery/jquery-1.8.3.min.js"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/js/common.js"></script>
+<script type="text/javascript">
+"use strict";
+layui.use('layer', function(){
+  var layer = layui.layer;
+  
+  $(document)
+    .on('click','#button1', () => {
+        layer.open({
+          type: 1,
+          area: ['600px', '360px'],
+          shadeClose: true, //点击遮罩关闭
+          content: '\<\div style="padding:20px;">自定义内容\<\/div>'
+          });
+    })
+    .on('click','#button2', () => {
+        var ii = layer.load();
+          //此处用setTimeout演示ajax的回调
+          setTimeout(function(){
+            layer.close(ii);
+          }, 1000);
+    })
+    .on('click','#button4', () => layer.msg('Hello layer'))
+    .on('click','#button3', () => layer.tips('简单提示，The simple tips', '#button3'))
+    .on('click','#button5', () => {
+        layer.open({
+            type: 2,
+            title: '新建商品',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['893px', '600px'],
+            content: '/demo/form'
+          });
+    })
+
+    
+});  
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>数据表格</title>
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/v1/style.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <style type="text/css">
+        .layui-upload-button {
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="body">
+<div class="my-btn-box">
+    <span class="fl">
+        <button class="layui-btn layui-btn-small layui-btn-normal" id="addBtn">
+            <i class="layui-icon">&#xe654;</i> 新增
+        </button>
+        <button class="layui-btn layui-btn-small layui-btn-warm" id="editBtn">
+            <i class="layui-icon">&#xe642;</i> 编辑
+        </button>
+        <button class="layui-btn layui-btn-small layui-btn-danger" id="delBtn">
+            <i class="layui-icon">&#xe640;</i> 删除
+        </button>
+        <button class="layui-btn layui-btn-small" id="upBtn">
+            <i class="layui-icon">&#xe605;</i> 上架
+        </button>
+        <button class="layui-btn layui-btn-small layui-btn-danger" id="downBtn">
+            <i class="layui-icon">&#x1006;</i> 下架
+        </button>
+    </span>
+    <span class="fr">
+        <!-- <div class="layui-input-inline">
+            <input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">
+        </div>
+        <button class="layui-btn mgl-20">查询</button> -->
+        <div class="layui-box layui-upload-button layui-btn-small" id="uploadBox">
+            <input type="file" name="file" class="layui-upload-file" id="uploadExcel"/>
+            <span class="layui-upload-icon"><i class="layui-icon">&#xe62f;</i>上传</span>
+        </div>
+        <button class="layui-btn layui-btn-small layui-btn-danger" id="outBtn">
+            <i class="layui-icon">&#xe61e;</i> 导出数据
+        </button>
+    </span>
+</div>
+
+<table id="dateTable" class="layui-table li-align-center">
+    <thead>
+    <tr>
+        <th><input type="checkbox" class="my-checkbox" /></th>
+        <th>商品ID</th>
+        <th>商品标题</th>
+        <th>叶子类目</th>
+        <th>卖点</th>
+        <th>价格</th>
+        <th>库存数量</th>
+        <th>条形码</th>
+        <th>状态</th>
+        <th>创建日期</th>
+        <th>更新日期</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    
+    </tbody>
+</table>
+<div class="pageplace fr" id="pageplace"></div>
+<div class="li-place"></div>
+<script id="itemListTpl" type="text/html">
+{{#  layui.each(d.list, (i, v) => { }}
+    <tr>
+        <td><input type="checkbox" class="my-checkbox" data-id="{{v.id}}" /></td>
+        <td>{{v.id}}</td>
+        <td>{{v.title}}</td>
+        <td>{{v.cid}}</td>
+        <td>{{v.sellPoint}}</td>
+        <td>{{v.price}}</td>
+        <td>{{v.num}}</td>
+        <td>{{v.barcode || '暂无'}}</td>
+        <td>{{['异常','正常'][v.status]}}</td>
+        <td>{{dateFormat(v.created,'default')}}</td>
+        <td>{{dateFormat(v.updated,'default')}}</td>
+    </tr>
+{{#  }); }}
+</script>
+<script src="/static/plugin/jquery/jquery-1.8.3.min.js"></script>
+<script src="/static/plugin/jquery/jquery.dataTables.min.js"></script>
+<script src="/static/plugin/jquery/colResizable-1.6.js"></script>
+<script src="/static/plugin/jquery/table-tool.js"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/utils/dateFormat.js"></script>
+<script src="/static/js/common.js"></script>
+<script type="text/javascript">
+"use strict";
+CRAMIX.init(function(){
+    layui.use(['element','layer','laypage','laytpl','upload'], function(){
+        var element = layui.element,
+            laypage = layui.laypage,
+            layer = layui.layer,
+            laytpl = layui.laytpl;
+
+        let ItemListMain = {
+            init: function(){
+                this.getItemList();
+                this.renderHtml();
+                this.renderComponent();
+                this.uploadExcel();
+                this.watch();
+            },
+
+            options: {
+                renderTable: false
+            },
+
+            renderHtml: function(){
+                
+            },
+
+            renderComponent: function(){
+
+            },
+
+            getItemList: function(page, rows){
+                var self = this;
+                CRAMIX.GET({
+                    baseUrl: URL.BASE + API.demoItemList,
+                    data: {
+                        page: page || 1,
+                        rows: rows || 20
+                    },
+                    beforeSend: function(){
+                        CRAMIX.loadingShow()
+                    },
+                    success: function(data){
+                        self.renderItemList(data);
+                    },
+                    error: function(){
+                        CRAMIX.commonError()
+                    }
+                })
+            },
+            renderItemList: function(data){
+                var self = this;
+                laytpl(itemListTpl.innerHTML).render(data, (html) => {
+                    tbody.innerHTML = html;
+
+                    if(!self.options.renderTable){//保证只渲染一次
+                        self.initDataTable(data);
+                        self.options.renderTable = true;
+                    }
+                    
+                    CRAMIX.loadingHide();
+                })
+            },
+
+            // 初始化
+            initDataTable: function(data){
+                var self = this;
+                
+                $('#dateTable').DataTable({
+                    "dom": '<"top">rt<"bottom"flp><"clear">',
+                    "order": [[ 1, "desc" ]],               // 排序
+                    "stripeClasses": ["odd", "even"],       // 为奇偶行加上样式，兼容不支持CSS伪类的场合
+                    "aoColumnDefs": [{                      // 指定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0]                   // 对应表格的列数
+                    }],
+                    "searching": false,     
+                    "paging": false,//不使用这个分页，使用layui的分页
+                    "language": {                           // 国际化
+                        "url":'/static/file/json/language.json'
+                    }
+                })
+
+                $('#dateTable').colResizable();  
+
+                //分页
+                laypage({
+                    cont: 'pageplace',
+                    skip: true,
+                    pages: data.pages,
+                    first: 1,
+                    last: data.pages,
+                    prev: '<em><</em>',
+                    next: '<em>></em>',
+                    jump: function(obj, first){
+                        if(!first){
+                            layer.msg('第 '+ obj.curr +' 页');
+                            self.getItemList(obj.curr)
+                        }
+                    }
+                })
+            },
+            //上传文件
+            uploadExcel: function(){
+                layui.upload({
+                    url: '/music/import',
+                    unwrap: true,
+                    ext: 'xls|xlsx',
+                    type: 'file',
+                    elem: '#uploadExcel',
+                    method: 'POST',
+                    before: function(input){
+                        layer.msg('上传中..');
+                    },
+                    success: function(res, input){
+						
+                    }
+                });
+            },
+            //下载导出数据表格
+            downloadData: function(){
+            	CRAMIX.download({url:"/music/export"});
+            },
+
+            //事件监听
+            watch: function(){
+                var self = this;
+                
+                
+                $(document)
+                .on('click','#addBtn', function(){
+                	//CRAMIX.openPage('/demo/form')
+                    var title = '<i class="layui-icon">&#xe654;</i>新增商品';
+                    parent.indexMain.initLayUI.addTab2(parent.ELE, title, '/demo/form')
+                })
+                .on('click','#upBtn', function(){
+                    layer.msg('你确定上架吗？', {
+                        time: 0, //不自动关闭
+                        icon: 6,
+                        btn: ['必须啊', '算了'],
+                        yes: function(index){
+                            layer.close(index);
+                            //执行你的上架请求
+                        }
+                    })
+                })
+                .on('click','#downBtn', function(){
+                    layer.msg('你确定下架吗？', {
+                        time: 0, //不自动关闭
+                        icon: 2,
+                        btn: ['确定', '算了'],
+                        yes: function(index){
+                            layer.close(index);
+                            //执行你的下架请求
+                            
+                            /*layer.msg('雅蠛蝶 O.o', {
+                              icon: 6
+                              ,btn: ['嗷','嗷','嗷']
+                            });*/
+                        }
+                    })
+                })
+                .on('click','#delBtn', function(){
+                    layer.msg('真的要删除吗', {
+                        time: 0, //不自动关闭
+                        icon: 3,
+                        btn: ['真的', '假的'],
+                        yes: function(index){
+                            layer.close(index);
+                            //执行你的删除请求
+                        }
+                    })
+                })
+                .on('click','#editBtn', function(){// 获取ids
+                    // getIds(table对象,获取input为id的属性)
+                    var list = getIds($('#dateTable'),'data-id');
+                    if(list == null || list == ''){
+                        layer.msg('未选择');
+                    }else{
+                        layer.msg(list);
+                    }
+                })
+                .on('click','#outBtn', function(){
+                	self.downloadData();
+                    layer.msg('导出数据');
+                })
+
+            }
+        }
+        ItemListMain.init();
+    })
+})
+</script>
+</body>
+</html>

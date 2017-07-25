@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>公交路线规划－使用默认样式</title>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
+     <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.3&key=fdce27a4cc7a66646d6c99571828778d"></script>
+    <style type="text/css">
+        #panel {
+            position: absolute;
+            background-color: white;
+            max-height: 80%;
+            overflow-y: auto;
+            top: 10px;
+            right: 10px;
+            width: 250px;
+            border: solid 1px silver;
+        }
+    </style>
+</head>
+<body>
+<div id="mapContainer"></div>
+<div id="panel">
+</div>
+<script type="text/javascript">
+    var map = new AMap.Map("mapContainer", {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],//地图中心点
+        zoom: 13 //地图显示的缩放级别
+    });
+    /*
+     * 调用公交换乘服务
+     */
+    //加载公交换乘插件
+    AMap.service(["AMap.Transfer"], function() {
+        var transOptions = {
+            map: map,
+            city: '深圳市',
+            //cityd:'乌鲁木齐',
+            policy: AMap.TransferPolicy.LEAST_TIME //乘车策略
+        };
+        //构造公交换乘类
+        var trans = new AMap.Transfer(transOptions);
+        //根据起、终点坐标查询公交换乘路线
+        trans.search([{keyword:'大新'},{keyword:'坪洲'}], function(status, result){
+        });
+    });
+</script>
+  
+</body>
+</html>

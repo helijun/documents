@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>启腾</title>
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/plugin/layui/v1/style.css">
+    <link rel="stylesheet" href="/static/li/li-1.2.0.css">
+    <style type="text/css">
+        /** 图标字体 **/
+        @font-face {font-family: 'layui-icon';
+          src: url('/static/plugin/layui/font/iconfont.eot?v=1.0.9');
+          src: url('/static/plugin/layui/font/iconfont.eot?v=1.0.9#iefix') format('embedded-opentype'),
+          url('/static/plugin/layui/font/iconfont.svg?v=1.0.9#iconfont') format('svg'),
+          url('/static/plugin/layui/font/iconfont.woff?v=1.0.9') format('woff'),
+          url('/static/plugin/layui/font/iconfont.ttf?v=1.0.9') format('truetype');
+        }
+                          
+        .layui-icon{
+          font-family:"layui-icon" !important;
+          font-size: 16px;
+          font-style: normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+    </style>
+</head>
+<body class="my-body skin-0">
+
+<!-- admin -->
+<div class="layui-layout layui-layout-admin">
+    <!-- header -->
+    <header class="layui-header my-header">
+        <a href="/manage/main/index.html">
+            <img class="my-header-logo" src="/static/img/manage/logo-qiten.png" alt="logo">
+            <div class="my-header-logo">启腾学车后台管理系统</div>
+        </a>
+        <ul class="layui-nav my-header-user-nav" lay-filter="side-right">
+            <li class="layui-nav-item">
+                <a href="#" id="sysMsg" title="系统通知">
+                    <i class="layui-icon">&#xe645;</i>
+                    <span class="li-color-highlight">1</span>
+                    
+                </a>
+            </li>
+            <li class="layui-nav-item" title="未读消息">
+                <a href="#" id="unreadMsg">
+                    <i class="layui-icon">&#xe63a;</i>
+                    <span class="li-color-highlight">6</span>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a class="name" href="javascript:;">
+                    <img src="/static/img/manage/head.png" alt="logo">
+                    helijun
+                </a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="/manage/main/login.html">
+                            <i class="layui-icon">&#x1006;</i>
+                            安全退出
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </header>
+
+    <!-- side -->
+    <div class="layui-side my-side">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree" lay-filter="side" id="sideList">
+                
+            </ul>
+        </div>
+
+        <!-- 折叠面板 收起-->
+        <div class="nav-side side-show" id="hideNav">
+            <button class="layui-btn layui-btn-small">
+                <i class="layui-icon">&#xe603;</i>
+            </button>
+        </div>
+        
+        <!-- footer -->
+	    <footer class="layui-footer my-footer">
+	        <p>2017 © copyright start</p>
+	    </footer>
+    </div>
+
+    <!-- body -->
+    <article class="layui-body my-body">
+        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="0">
+                    <span>主页</span>
+                </li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe id="iframe" src="/manage/main/welcome.html" frameborder="0"></iframe>
+                </div>
+            </div>
+            <!-- 折叠面板 展开 -->
+            <div class="nav-side side-hide li-none" id="showNav">
+                <button class="layui-btn layui-btn-small">
+                    <i class="layui-icon">&#xe602;</i>
+                </button>
+            </div>
+        </div>
+    </article>
+</div>
+
+<!-- 右键菜单 -->
+<div class="my-dblclick-box none">
+    <table class="layui-tab dblclick-tab">
+        <tr class="card-refresh">
+            <td><i class="layui-icon">&#x1002;</i>刷新当前页面</td>
+        </tr>
+        <tr class="card-close">
+            <td><i class="layui-icon">&#x1006;</i>关闭当前页面</td>
+        </tr>
+    </table>
+</div>
+
+<script src="/static/plugin/jquery/jquery-1.9.0.min.js"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/js/common.js"></script>
+
+<script id="sideListTpl" type="text/html">
+{{#  layui.each(d, (i, v) => { }}
+    <li class="layui-nav-item layui-nav-{{v.itemed}}">
+        <a href="javascript:;"><i class="layui-icon">{{v.icon}}</i>{{v.txt}}</a>
+        {{#  layui.each(v.children, (i2, v2) => { }}
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;" href-url="{{v2.url}}"><i class="layui-icon">{{v2.icon}}</i>{{v2.txt}}</a></dd>
+            </dl>
+        {{#  }); }}
+    </li>
+{{#  }); }}
+</script>
+<script type="text/javascript">
+"use strict";
+layui.use(['layer','laytpl','util'], function(){
+    var layer = layui.layer,
+        laytpl = layui.laytpl,
+        util = layui.util,
+        side = $('.my-side'),
+        body = $('.my-body');
+        
+    let indexMain = {
+        init: function(){
+            this.renderHtml();
+            this.renderComponent();
+        },
+
+        options: {
+            cardLayId: 0,
+            cardIdx: 0
+        },
+
+        //后台根据token动态返回即可做菜单权限
+        data: [
+            {
+                txt: '训练场管理',
+                itemed: 'itemed',//展开、收起
+                icon: '&#xe63c;',
+                children: [
+                    {
+                        txt: '驾校列表',
+                        url: '/manage/map/school-list.html',
+                        icon: '&#xe654;'
+                    },
+                    {
+                        txt: '训练场列表',
+                        url: '/manage/map/map-list.html',
+                        icon: '&#xe62d;'
+                    }
+                ]
+            }
+            /*{
+                txt: '商品管理',
+                itemed: 'itemed',//展开、收起
+                icon: '&#xe63c;',
+                children: [
+                    {
+                        txt: '新增商品',
+                        url: '/manage/demo/form.html',
+                        icon: '&#xe654;'
+                    },
+                    {
+                        txt: '查看商品',
+                        url: '/manage/demo/data-list.html',
+                        icon: '&#xe62d;'
+                    }
+                ]
+            },
+            {
+                txt: '网站内容管理',
+                itemed: 'item',
+                icon: '&#xe630;',
+                children: [
+                    {
+                        txt: '内容分类管理',
+                        url: '/manage/demo/tree-edit.html',
+                        icon: '&#xe630;'
+                    },
+                    {
+                        txt: '内容管理',
+                        url: '/manage/demo/tree-table.html',
+                        icon: '&#xe62a;'
+                    }
+                ]
+            },
+            {
+                txt: '报表',
+                itemed: 'item',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '图 + 选项卡（示例）',
+                        url: '/manage/demo/high-charts.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: 'test',
+                itemed: 'item',
+                icon: '&#xe620;',
+                children: [
+                    {
+                        txt: '测试表单（全部）',
+                        url: '/manage/demo/test-form.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '测试弹框',
+                        url: '/manage/demo/test-dialog.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            }*/
+            /*{
+                txt: '用户管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '注册用户列表',
+                        url: '/user/user-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: 'APP内容管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: 'banner图配置',
+                        url: '/app/banner.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '基础信息配置',
+                        url: '/user/user-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '黄历管理',
+                        url: '/app/huangli-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '祈福广场配置',
+                        url: '/app/wish-place.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '功德箱配置',
+                        url: '/app/merits-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '分享配置',
+                        url: '/app/share-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '商品管理',
+                itemed: 'itemed',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '商品分类列表',
+                        url: '/tribute/tribute-type.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '贡品列表',
+                        url: '/tribute/tribute-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '祈福灯列表',
+                        url: '/tribute/light-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '佛像列表',
+                        url: '/app/foxiang-list.html',
+                        icon: '&#xe621;'
+                    },
+                ]
+            },
+            {
+                txt: '音乐管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '音乐管理',
+                        url: '/music/music-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '音乐分类管理',
+                        url: '/music/category-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '文本管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '文本管理',
+                        url: '/text/text-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '文本分类管理',
+                        url: '/text/category-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '消息管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '消息推送',
+                        url: '/msg/jpush-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '用户反馈',
+                        url: '/msg/user-feedback.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '订单管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '充值记录',
+                        url: '/order/charge-list.html',
+                        icon: '&#xe621;'
+                    },
+                    {
+                        txt: '消费记录',
+                        url: '/order/consume-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '权限管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '员工权限',
+                        url: '/order/charge-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            },
+            {
+                txt: '渠道管理',
+                itemed: 'iteme',
+                icon: '&#xe62c;',
+                children: [
+                    {
+                        txt: '渠道账号管理',
+                        url: '/team/team-list.html',
+                        icon: '&#xe621;'
+                    }
+                ]
+            }*/
+        ],
+
+        renderHtml: function(){
+            var self = this;
+
+            laytpl(sideListTpl.innerHTML).render(self.data, (html) => {
+                $('#sideList').html(html);
+                layui.use(['element'], function(){
+                    var element = layui.element();
+                    window.ELE = element;
+                    self.initLayUI.init(element);
+                    self.watch(element);
+                })
+            })
+        },
+
+        renderComponent: function(){
+            const device = layui.device();
+            console.log('当前device',device);
+
+            if (device.ie && device.ie < 8) {
+                layer.alert('如果您非得使用ie浏览vip-admin 后台模板，那么请使用ie10+');
+            }
+
+            //START.checkLogin();//验证登录
+        },
+
+        initLayUI: {
+            addTab: function(element,elem){
+                var self = this,
+                    card = 'card',                                   // 选项卡对象
+                    title   = elem.children('a').html(),               // 导航栏text
+                    src     = elem.children('a').attr('href-url'),      // 导航栏跳转URL
+                    id      = new Date().getTime(),                     // ID
+                    flag    = self.getTitleId(card, title);                  // 是否有该选项卡存在
+                // 大于0就是有该选项卡了
+                if(flag > 0){
+                    id = flag;
+                }else{
+                    if(src){
+                        //新增
+                        element.tabAdd(card, {
+                            title: '<span>'+title+'</span>'
+                            ,content: '<iframe src="' + (src + '?v=' + id) + '" frameborder="0"></iframe>'
+                            ,id: id
+                        });
+                        // 关闭弹窗
+                        layer.closeAll();
+                    }
+                }
+                // 切换相应的ID tab
+                element.tabChange(card, id);
+            },
+            addTab2: function(element,title,src){
+                var self = this,
+                    card = 'card',                                   // 选项卡对象
+                    title   = title,               // 导航栏text
+                    src     = src,      // 导航栏跳转URL
+                    id      = new Date().getTime(),                     // ID
+                    flag    = self.getTitleId(card, title);                  // 是否有该选项卡存在
+                // 大于0就是有该选项卡了
+                if(flag > 0){
+                    id = flag;
+                }else{
+                    if(src){
+                        //新增
+                        element.tabAdd(card, {
+                            title: '<span>'+title+'</span>'
+                            ,content: '<iframe src="' + (src + '?v=' + id) + '" frameborder="0"></iframe>'
+                            ,id: id
+                        });
+                        // 关闭弹窗
+                        layer.closeAll();
+                    }
+                }
+                // 切换相应的ID tab
+                element.tabChange(card, id);
+            },
+            getTitleId: function(card,title){
+                var id = -1;
+                $(document).find(".layui-tab[lay-filter=" + card + "] ul li").each(function(){
+                    if(title === $(this).find('span').html()){
+                        id = $(this).attr('lay-id');
+                    }
+                });
+                return id;
+            },
+            // 导航栏收缩
+            navHide: function(t,st){
+                var time = t ? t : 50;
+                st ? localStorage.log = 1 : localStorage.log = 0;
+                side.animate({'left':-200},time);
+                body.animate({'left':0},time);
+            },
+            // 导航栏展开
+            navShow: function(t,st){
+                var time = t ? t : 50;
+                st ? localStorage.log = 0 : localStorage.log = 1;
+                side.animate({'left':0},time);
+                body.animate({'left':200},time);
+            },
+            //更换皮肤
+            skin: function(){
+                var skin    = localStorage.skin ? localStorage.skin : 0;
+                var layout  = $('.layui-layout-admin');
+                    layout.removeClass('skin-0');
+                    layout.removeClass('skin-1');
+                    layout.removeClass('skin-2');
+                    layout.addClass('skin-'+skin);
+            },
+            init: function(){// 监听控制content高度
+                var self = indexMain.initLayUI;
+                // 起始判断-收缩/展开
+                if(!localStorage.log){
+                    if($(window).width() > 1024){
+                        if(localStorage.log == 0){
+                            self.navHide(1);
+                        }else{
+                            self.navShow(1);
+                        }
+                    }else{
+                        self.navHide(1);
+                    }
+                }else{
+                    if(localStorage.log == 0){
+                        self.navHide(1);
+                    }else{
+                        self.navShow(1);
+                    }
+                }
+                // 工具
+                self._util();
+                
+                // 选项卡高度
+                var cardTitleHeight = $(document).find(".layui-tab[lay-filter='card'] ul.layui-tab-title").height();
+                // 需要减去的高度
+                var height = $(window).height() - $('.layui-header').height() - cardTitleHeight - $('.layui-footer').height();
+                // 设置高度
+                $(document).find(".layui-tab[lay-filter='card'] div.layui-tab-content").height( height + 20 );
+            },
+            _util: function(element){
+                var bar = $('.layui-fixbar');
+                // 分辨率小于1024  使用内部工具组件
+                if ($(window).width() < 1024) {
+                    util.fixbar({
+                        bar1: '&#xe602;'
+                        , css: {left: 10, bottom: 54}
+                        , click: function (type) {
+                            if (type === 'bar1') {
+                                //iframe层
+                                layer.open({
+                                    type: 1,                        // 类型
+                                    title: false,                   // 标题
+                                    offset: 'l',                    // 定位 左边
+                                    closeBtn: 0,                    // 关闭按钮
+                                    anim: 0,                        // 动画
+                                    shadeClose: true,               // 点击遮罩关闭
+                                    shade: 0.8,                     // 半透明
+                                    area: ['150px', '100%'],        // 区域
+                                    skin: 'my-mobile',              // 样式
+                                    content: $('body .my-side').html() // 内容
+                                });
+                            }
+                            element.init();
+                        }
+                    });
+                    bar.removeClass('layui-hide');
+                    bar.addClass('layui-show');
+                }else{
+                    bar.removeClass('layui-show');
+                    bar.addClass('layui-hide');
+                }
+            }
+        },
+
+        //事件监听
+        watch: function(element){
+            var self = this;
+            
+            $(document).on('click', '#hideNav,#showNav', function(event){//监听导航栏收缩
+                var $showNav = $('#showNav'),
+                    $hideNav = $('#hideNav');
+                if(localStorage.log == 0){
+                    self.initLayUI.navShow(50);
+                    $showNav.addClass('li-none');
+                    $hideNav.removeClass('li-none');
+                }else{
+                    self.initLayUI.navHide(50);
+                    $showNav.removeClass('li-none');
+                    $hideNav.addClass('li-none');
+                }
+            }).on('click','#unreadMsg',function(){
+                layer.msg('1条未读通知')
+            }).on('click','#sysMsg',function(){
+                layer.msg('6条系统通知')
+            }).on('dblclick', '.my-body .layui-tab-card > .layui-tab-title li', function () {
+                // 欢迎页面以外，删除选项卡
+                if ($(this).index() > 0) {
+                    element.tabDelete('card', $(this).attr('lay-id'));
+                } else {
+                    layer.msg('主页不能关闭')
+                }
+            }).on("contextmenu", '.my-body .layui-tab-card > .layui-tab-title li', function () {
+                return false;
+            }).on("mousedown", '.my-body .layui-tab-card > .layui-tab-title li', function (e) {
+                // 判断是右键点击事件并且不是欢迎页面选项卡
+                if (3 == e.which && $(this).index() > 0) {
+                    // 赋值
+                    self.options.cardIdx = $(this).index();
+                    self.options.cardLayId = $(this).attr('lay-id');
+
+                    layer.tips($('.my-dblclick-box').html(), $(this), {
+                        skin: 'dblclick-tips-box',
+                        tips: 3,
+                        time: false
+                    });
+
+                    //解决上边导航、左边导航bug
+                    var $tipsMain = $('.layui-layer-tips'),
+                        thisLeft = $tipsMain.css('left'),
+                        thisTop = $tipsMain.css('top');
+
+                    $tipsMain.css({
+                        left: parseInt(thisLeft) - 200,
+                        top: parseInt(thisTop) - 60
+                    });
+                }
+            }).on('click', '.card-refresh', function () {
+                // 右键提示框菜单操作-刷新页面
+                // 窗体对象
+                var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(self.options.cardIdx);
+                // 刷新当前页
+                ifr.attr('src', ifr.attr('src'));
+                // 切换到当前选项卡
+                element.tabChange('card', self.options.cardLayId);
+                $('.dblclick-tips-box').remove()
+            }).on('click', '.card-close', function () {
+                // 右键提示框菜单操作-关闭页面
+                // 删除
+                 element.tabDelete('card', self.options.cardLayId);
+                 $('.dblclick-tips-box').remove()
+            }).on('click', 'html', function () {
+                layer.closeAll('tips');// 点击body关闭tips
+            });
+
+            element.on('nav(side)', function (elem) {// 监听导航(side)点击切换页面
+                self.initLayUI.addTab(element,elem);
+            })
+            
+            element.on('nav(side-left)', function (elem) {// 监听顶部左侧导航
+                self.initLayUI.addTab(element,elem);
+            })
+            
+            element.on('nav(side-right)', function (elem) {// 监听顶部右侧导航
+                // 修改skin
+                if($(this).attr('data-skin')){
+                    localStorage.skin = $(this).attr('data-skin');
+                    self.initLayUI.skin();
+                }else{
+                    self.initLayUI.addTab(element,elem);
+                }
+            })
+
+            // 自适应
+            $(window).on('resize', function() {
+                if($(window).width() > 1024){
+                    self.initLayUI.navShow(10);
+                }else{
+                    self.initLayUI.navHide(10);
+                }
+                self.initLayUI._util(element);
+            })
+
+        }
+    }
+    indexMain.init();
+    window.indexMain = indexMain;
+})
+</script>
+</body>
+</html>
+<!-- 更多请参考layui官方文档  http://www.layui.com/doc -->

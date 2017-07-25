@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>内容管理</title>
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/v1/style.css">
+    <link rel="stylesheet" href="/static/plugin/zTree/zTreeStyle.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+</head>
+<body class="body">
+<!-- tree table -->
+<div class="my-tree-table-box">
+    <!-- tree -->
+    <ul id="ztree" class="tree-table-tree-box ztree"></ul>
+    <div class="tree-table-table-box">
+        <!-- <div class="my-btn-box">
+            <span class="fl">
+                <button class="layui-btn layui-btn-small layui-btn-normal" id="addBtn">
+                    <i class="layui-icon">&#xe654;</i> 新增
+                </button>
+                <button class="layui-btn layui-btn-small layui-btn-warm" id="editBtn">
+                    <i class="layui-icon">&#xe642;</i> 编辑
+                </button>
+                <button class="layui-btn layui-btn-small layui-btn-danger" id="delBtn">
+                    <i class="layui-icon">&#xe640;</i> 删除
+                </button>
+                <button class="layui-btn layui-btn-small" id="upBtn">
+                    <i class="layui-icon">&#xe605;</i> 上架
+                </button>
+                <button class="layui-btn layui-btn-small layui-btn-danger" id="downBtn">
+                    <i class="layui-icon">&#x1006;</i> 下架
+                </button>
+            </span>
+            <span class="fr">
+                <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">
+                    <input type="search" autocomplete="off" class="" placeholder="请输入搜索条件" aria-controls="dateTable">
+                </div>
+                <button class="layui-btn mgl-20">查询</button>
+            </span>
+        </div> -->
+        <!-- table -->
+        <table id="dateTable" class="layui-table li-align-center">
+            <thead>
+            <tr>
+                <th><input type="checkbox" class="my-checkbox" /></th>
+                <th>ID</th>
+                <th>标题</th>
+                <th>副标题</th>
+                <th>titleDesc</th>
+                <th>网址</th>
+                <th>大图</th>
+                <th>小图</th>
+                <th>内容</th>
+                <th>创建日期</th>
+                <th>更新日期</th>
+            </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <div class="pageplace" id="pageplace"></div>
+    </div>
+</div>
+<div class="li-place"></div>
+<script id="itemListTpl" type="text/html">
+{{#  layui.each(d.rows, (i, v) => { }}
+    <tr>
+        <td><input type="checkbox" class="my-checkbox" data-id="{{v.id}}" /></td>
+        <td>{{v.id}}</td>
+        <td>{{v.title}}</td>
+        <td>{{v.subTitle}}</td>
+        <td>{{v.titleDesc}}</td>
+        <td>{{v.url}}</td>
+        <td>
+            <img src="{{v.pic}}">
+        </td>
+        <td>
+            <img src="{{v.pic2}}">
+        </td>
+        <td>{{v.content || '暂无'}}</td>
+        <td>{{dateFormat(v.created,'default')}}</td>
+        <td>{{dateFormat(v.updated,'default')}}</td>
+    </tr>
+{{#  }); }}
+{{#  if(d.rows.length <= 0){ }}
+    <tr>
+        <td colspan="11">暂无数据</td>
+    </tr>
+{{# }  }}
+</script>
+<script src="/static/plugin/jquery/jquery-1.8.3.min.js"></script>
+<script src="/static/plugin/jquery/jquery.dataTables.min.js"></script>
+<script src="/static/plugin/jquery/colResizable-1.6.js"></script>
+<script src="/static/plugin/jquery/table-tool.js"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/plugin/zTree/jquery.ztree.all.min.js"></script>
+<script src="/static/utils/dateFormat.js"></script>
+<script src="/static/js/common.js"></script>
+<script type="text/javascript">
+"use strict";
+CRAMIX.init(function(){
+    layui.use(['tree','element','layer','laypage','laytpl'], function(){
+        var element = layui.element,
+            laypage = layui.laypage,
+            layer = layui.layer,
+            laytpl = layui.laytpl;
+
+        let ItemListMain = {
+            init: function(){
+                this.getItemList();
+                this.renderHtml();
+                this.renderComponent();
+                this.getTreeList();
+                this.watch();
+            },
+
+            options: {
+                renderTable: false
+            },
+
+            renderHtml: function(){
+                
+            },
+
+            renderComponent: function(){
+
+            },
+
+            getItemList: function(pageNumber,pageSize,categoryId,flag){
+                var self = this;
+                CRAMIX.GET({
+                    baseUrl: URL.BASE + API.demoContentList,
+                    data: {
+                        page: pageNumber || 1,
+                        rows: pageSize || 2,
+                        categoryId: categoryId || 1
+                    },
+                    beforeSend: function(){
+                        CRAMIX.loadingShow()
+                    },
+                    success: function(data){
+                        self.renderItemList(data,categoryId,flag);
+                    },
+                    error: function(){
+                        CRAMIX.commonError()
+                    }
+                })
+            },
+            renderItemList: function(data,categoryId,flag){
+                var self = this;
+                laytpl(itemListTpl.innerHTML).render(data, (html) => {
+                    tbody.innerHTML = html;
+
+                    if(!self.options.renderTable){//保证只渲染一次
+                        self.initDataTable(data);
+                        self.options.renderTable = true;
+                    }
+                    
+                    if(flag){//点击的树，重新渲染分页
+                        self.initPage(data,categoryId);
+                    }
+                    
+                    CRAMIX.loadingHide();
+                })
+            },
+
+            getTreeList: function(parentId){
+                var self = this;
+                CRAMIX.GET({
+                    baseUrl: URL.BASE + API.categoryList,
+                    data: {
+                        parentId: parentId || 0
+                    },
+                    beforeSend: function(){
+                        CRAMIX.loadingShow()
+                    },
+                    success: function(data){
+                        self.renderTree(data);
+                    },
+                    error: function(){
+                        CRAMIX.commonError()
+                    }
+                })
+            },
+            //渲染左侧树形
+            renderTree: function(data){
+                var self = this;
+                var zTreeObj,
+                    setting = {
+                        async: {
+                            enable: true,
+                            url: URL.BASE + API.categoryList,
+                            autoParam: ["id"],
+                            type:"get"
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        view: {
+                            expandSpeed: ""
+                        },
+                        callback: {
+                            onClick: function(e, treeId, node){
+                                console.log('e',e);
+                                console.log('treeId',treeId);
+                                console.log('node',node.id);
+                                layer.msg('点击的id是 '+ node.id);
+                                self.getItemList(null, null, node.id, 1);//需要重新渲染分页
+                            }
+                        }
+                    }
+
+               zTreeObj = $.fn.zTree.init($("#ztree"), setting, data);
+            },
+
+            // 初始化表格
+            initDataTable: function(data){
+                var self = this;
+
+                $('#dateTable').DataTable({
+                    "dom": '<"top">rt<"bottom"flp><"clear">',
+                    "order": [[ 1, "desc" ]],               // 排序
+                    "stripeClasses": ["odd", "even"],       // 为奇偶行加上样式，兼容不支持CSS伪类的场合
+                    "aoColumnDefs": [{                      // 指定列不参与排序
+                        "orderable": false,
+                        "aTargets": [0]                   // 对应表格的列数
+                    }],
+                    "searching": true,     
+                    "paging": false,//不使用这个分页，使用layui的分页
+                    "language": {                           // 国际化
+                        "url":'/static/file/json/language.json'
+                    }
+                })
+
+                $('#dateTable').colResizable();  
+
+                self.initPage(data);
+            },
+            //初始化分页
+            initPage: function(data,categoryId){
+                var self = this;
+                laypage({
+                    cont: 'pageplace',
+                    pages: data.total - 1,//如果是从0开始则减1
+                    first: 1,
+                    last: data.total,
+                    prev: '<em><</em>',
+                    next: '<em>></em>',
+                    jump: function(obj, first){
+                        if(!first){
+                            layer.msg('第 '+ obj.curr +' 页');
+                            self.getItemList(obj.curr, null, categoryId)
+                        }
+                    }
+                })
+            },
+
+            //事件监听
+            watch: function(){
+                var self = this;
+                
+                // 获取ids
+                $(document).on('click','#addBtn,#editBtn,#delBtn,#upBtn,#downBtn', function(){
+                    // getIds(table对象,获取input为id的属性)
+                    var list = getIds($('#dateTable'),'data-id');
+                    if(list == null || list == ''){
+                        layer.msg('未选择');
+                    }else{
+                        layer.msg(list);
+                    }
+                })
+            }
+        }
+        ItemListMain.init();
+    })
+})
+</script>
+</body>
+</html>

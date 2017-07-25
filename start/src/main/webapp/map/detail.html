@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta name="format-detection" content="telephone=no" >
+        <link rel="stylesheet" type="text/css" href="/static/li/li-1.2.0.css">
+        <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
+    <title>训练场详情</title>
+    <style>
+      body,article {
+        background-color: white;
+      }
+    </style>
+    </head>
+<body>
+    <header></header>
+    <article>
+        <div class="li-init-loading" id="initLoading">
+            <div class="li-initload-container li-initload-conone">
+                <div class="li-initload-cirone"></div>
+                <div class="li-initload-cirtwo"></div>
+                <div class="li-initload-cirthree"></div>
+                <div class="li-initload-cirfour"></div>
+            </div>
+            <div class="li-initload-container li-initload-contwo">
+                <div class="li-initload-cirone"></div>
+                <div class="li-initload-cirtwo"></div>
+                <div class="li-initload-cirthree"></div>
+                <div class="li-initload-cirfour"></div>
+            </div>
+            <div class="li-initload-container li-initload-conthree">
+                <div class="li-initload-cirone"></div>
+                <div class="li-initload-cirtwo"></div>
+                <div class="li-initload-cirthree"></div>
+                <div class="li-initload-cirfour"></div>
+            </div>
+        </div>
+    </article>
+<script type="text/html" id="detailTpl">
+    <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img class="li-full-img" src="http://www.tljx.sh.cn/uploads/141113/1-141113112R5C1.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img class="li-full-img" src="http://www.tljx.sh.cn/uploads/141113/1-141113112R5C1.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img class="li-full-img" src="http://www.tljx.sh.cn/uploads/141113/1-141113112R5C1.jpg" alt="">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    
+    <div class="li-pd-m">
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          场地名称
+        </div>
+        <div class="li-col-70 li-align-right">
+          深大C1训练场
+        </div>
+      </div>
+
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          场地介绍
+        </div>
+        <div class="li-col-70 li-align-right">
+          大学分校
+        </div>
+      </div>
+    
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          详细地址
+        </div>
+        <div class="li-col-70 li-align-right li-color-info">
+          深圳市南山区深圳大学北门附近 <i class="li-arrow li-arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          负责人
+        </div>
+        <div class="li-col-70 li-align-right">
+          小覃
+        </div>
+      </div>
+
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          手机号码
+        </div>
+        <div class="li-col-70 li-align-right li-color-info">
+          17603001616
+        </div>
+      </div>
+
+      <div class="li-row li-cell-xl li-bottom ">
+        <div class="li-col-30">
+          现场视频
+        </div>
+        <div class="li-col-70 li-align-right">
+          暂无
+        </div>
+      </div>
+    </div>
+</script>
+<script src="/static/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+    var script = document.createElement("script"),
+        head = document.head || document.getElementsByTagName('head')[0];
+
+    script.type = "text/javascript";
+    script.src = '/config.js?ver=' + (new Date()).getTime();
+
+    head.appendChild(script); 
+
+    script.onload = script.onreadystatechange = function() {
+    require(
+    [
+      'jquery',
+      'fastclick',
+      'underscore',
+      'common',
+      'jqueryWeUI'
+    ], function($, FastClick, _, START){
+        FastClick.attach(document.body);
+
+        var detailMain = {
+            init: function(){
+                this.renderHtml();
+                this.renderComponent();
+                this.watch(); 
+            },
+            //全局属性
+            options: {
+                
+            },
+            
+            //渲染模板的数据
+            data: {
+                height: window.innerHeight
+            },
+
+            //渲染html
+            renderHtml: function(){
+                
+            },
+            //渲染组件
+            renderComponent: function(){
+                var self = this;
+                
+                $('article').html(_.template(detailTpl.innerHTML)(self.data))
+                
+                require(['swiper'],function(){
+                  var mySwiper = new Swiper('.swiper-container', {
+                    watchSlidesProgress : true,
+                    loop : true,
+                    pagination : '.swiper-pagination',
+                    speed: 400,
+                    spaceBetween: 100
+                })
+                })
+                  
+            },
+
+            watch: function(){
+
+            }
+            
+        } 
+        detailMain.init();
+    })
+  }
+</script>
+
+<style type="text/css">
+  .weui-cells {
+    margin: 0;
+  }
+  .li-arrow {
+      border-color: #10aeff;
+  }
+</style>
+</body>
+</html>
