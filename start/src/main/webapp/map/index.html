@@ -13,38 +13,113 @@
     <title>附近的训练场</title>
     <style>
       .m-search {
-        height: 10%;
+        padding-top: .48rem;
+        height: 6%;
       }
       .m-map {
-
+        
+      }
+      .el-location {
+        color: #514d4d;
       }
       .m-detail {
         height: 15%;
+        width: 100%;
         background-color: white;
+        z-index: 999;
+        transition: height 0.6s;
+        position: absolute;
+        bottom: 0;
+      }
+      .m-detail-list {
+        padding-bottom: 2px;
+        border-bottom: 4px solid #e9e9e9;
       }
       .el-detail-img {
         width: 100%;
-        height: 0.8rem;
+        height: 0.88rem;
         background: url('/static/img/map/folder-up.png') no-repeat 50% 0;
         background-size: 100%;
         position: absolute;
-        bottom: 15%;
         z-index: 999;
+        top: -16px;
+      }
+      .el-detail-main {
+        overflow: auto;
+        height: 100%;
       }
       .el-txt-subtitle {
         font-weight: 400;
         font-size: 0.682rem;
       }
+      
+      .el-input-icon {
+          border: 1px solid #d5d2d2;;
+          border-radius: .2rem;
+          box-sizing: border-box;
+      }
+      .m-search {
+          font-size: .78rem;
+      }
+      .el-input-icon i {
+          color: #ccc;
+      }
+      .m-search input {
+          padding: .4rem;
+          height: 1.2rem;
+      }
+      .el-btn-search {
+          display: inline;
+          padding: .28rem .68rem;
+          box-sizing: border-box;
+          color: white;
+          background-color: #10aeff;
+          border-radius: .28rem;
+          font-size: .68rem;
+      }
+      .el-btn-search:hover {
+          background-color: #1b93d1;
+      }
 
       #panel {
-            position: fixed;
-            background-color: white;
-            max-height: 90%;
-            overflow-y: auto;
-            top: 10px;
-            right: 10px;
-            width: 280px;
-        }
+          position: fixed;
+          background-color: white;
+          max-height: 90%;
+          overflow-y: auto;
+          top: 10px;
+          right: 10px;
+          width: 280px;
+      }
+
+      @font-face {font-family: "index";
+        src: url('/static/font/map/index.eot?t=1501061705710'); /* IE9*/
+        src: url('/static/font/map/index.eot?t=1501061705710#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/static/font/map/index.woff?t=1501061705710') format('woff'), /* chrome, firefox */
+        url('/static/font/map/index.ttf?t=1501061705710') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+        url('/static/font/map/index.svg?t=1501061705710#iconfont') format('svg'); /* iOS 4.1- */
+      }
+      
+      [class^="icon-"]:before,
+      [class*=" icon-"]:before
+      {
+        font-family:"index" !important;
+        font-size: 16px;
+        font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .icon-sousuo:before { content: "\e62c"; }
+
+      .icon-xianlu:before { content: "\e633"; }
+
+      .icon-luxian:before { content: "\e610"; }
+
+      .icon-dianhua:before { content: "\e618"; }
+    
+     .el-luxian-dianhua {
+      font-size: .6286rem;
+     }
     </style>
     </head>
 <body>
@@ -74,50 +149,81 @@
 
 <script type="text/html" id="indexTpl">
     <section class="m-main" style="height: <%= height + 'px' %>">
-        <div class="weui-cells weui-cells_form m-search">
-          <div class="weui-cell weui-cell_vcode">
-            <div class="weui-cell__hd">
-              <label class="weui-label">深圳市</label>
+
+        <div class="li-row li-cell m-search">
+          <div class="li-col-30 li-align-center el-location">
+            深圳市 <i class="li-arrow li-arrow-bottom"></i>
+          </div>
+          <div class="li-col-50 li-row el-input-icon">
+            <div class="li-col-20 li-align-right">
+              <i class="icon-sousuo"></i>
             </div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" placeholder="请输入关键字搜索">
-            </div>
-            <div class="weui-cell__ft">
-              <button class="weui-vcode-btn">搜索</button>
-            </div>
+            <input type="text" class="li-input li-col-80" placeholder="请输入关键字搜索">
+          </div>
+          <div class="li-col-20 li-align-center">
+            <a class="li-btn el-btn-search">搜索</a>
           </div>
         </div>
 
-        <div class="m-map" id="mapMain" tabindex="0" style="height: <%= height*0.75 + 'px' %>"></div>
+        <div class="m-map" id="mapMain" tabindex="0" style="height: <%= height*0.79 + 'px' %>"></div>
         <div id="panel"></div>
 
         <div class="m-detail">
-            <div class="el-detail-img">
-              
-            </div>
-            <div class="el-detail-main li-pd-m">
-              <p class="li-text-ellipsis">训练场</p>
-              <div class="li-row li-align-center">
-                  <div class="li-col-80 li-text-ellipsis li-txt-title li-txt-subtitle li-align-left">
-                    深圳市福田区深南大道与香蜜湖度假村内部
-                  </div>
-                  <div class="li-col-20 el-txt-subtitle li-color-info" id="seeDetail">
-                    详情 <i class="li-arrow li-arrow-right"></i>
-                  </div>
-              </div>
-
-              <div class="li-row li-align-center li-pt-m">
-                  <div class="li-col-50">
-                    路线
-                  </div>
-                  <div class="li-col-50">
-                    电话
-                  </div>
-              </div>
+            <div class="el-detail-img" data-status='1'></div>
+            <div class="el-detail-main">
+            
             </div>
         </div>
 
     </section>
+</script>
+
+<script type="text/html" id="oneDetailTpl">
+  <div class="li-pd-m">
+    <p class="li-text-ellipsis">训练场</p>
+    <div class="li-row li-align-center">
+        <div class="li-col-80 li-text-ellipsis li-txt-title li-txt-subtitle li-align-left">
+          深圳市福田区深南大道与香蜜湖度假村内部
+        </div>
+        <div class="li-col-20 el-txt-subtitle li-color-info" id="seeDetail">
+          详情 <i class="li-arrow li-arrow-right"></i>
+        </div>
+    </div>
+
+    <div class="li-row li-align-center li-pt-m el-luxian-dianhua">
+        <div class="li-col-50 li-right">
+          <i class="icon-luxian"></i>路线
+        </div>
+        <div class="li-col-50">
+          <i class="icon-dianhua"></i>电话
+        </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="listDetailTpl">
+<% data.forEach(function(v){ %>
+  <div class="m-detail-list li-pd-m">
+    <p class="li-text-ellipsis">训练场</p>
+    <div class="li-row li-align-center">
+        <div class="li-col-80 li-text-ellipsis li-txt-title li-txt-subtitle li-align-left">
+          深圳市福田区深南大道与香蜜湖度假村内部
+        </div>
+        <div class="li-col-20 el-txt-subtitle li-color-info" id="seeDetail">
+          详情 <i class="li-arrow li-arrow-right"></i>
+        </div>
+    </div>
+
+    <div class="li-row li-align-center li-pt-m el-luxian-dianhua">
+        <div class="li-col-50 li-right">
+          <i class="icon-luxian"></i>路线
+        </div>
+        <div class="li-col-50">
+          <i class="icon-dianhua"></i>电话
+        </div>
+    </div>
+  </div>
+<% })%>
 </script>
 <script src="/static/plugin/requirejs/require.min.js"></script>
 <script type="text/javascript">
@@ -136,7 +242,8 @@
       'fastclick',
       'underscore',
       'common',
-      'jqueryWeUI'
+      'jqueryWeUI',
+      'li'
     ], function($, FastClick, _, START){
         FastClick.attach(document.body);
 
@@ -153,7 +260,8 @@
             
             //渲染模板的数据
             data: {
-                height: window.innerHeight
+                height: window.innerHeight,
+                data: [1,2,2,3,4,5,6,7,8,9]
             },
 
             //渲染html
@@ -165,6 +273,8 @@
                 var self = this;
                 
                 $('article').html(_.template(indexTpl.innerHTML)(self.data))
+                $('.el-detail-main').html(_.template(oneDetailTpl.innerHTML)(self.data))
+
                 
                 START.loadScript('http://webapi.amap.com/maps?v=1.3&key=fdce27a4cc7a66646d6c99571828778d',function(){
                   START.loadScript('http://cache.amap.com/lbs/static/addToolbar.js',function(){
@@ -242,9 +352,85 @@
             },
 
             watch: function(){
-                $(document).on('click','#seeDetail', function(){
-                    window.location.href = '/map/detail.html?id=1'
+              var self = this;
+
+                $(document)
+                .on('click','#seeDetail', function(){
+                    START.openPage('/map/detail.html?id=1')
                 })
+                .on('click','.el-detail-img', function(event){
+                  var $current = $(event.currentTarget),
+                      $parent = $('.m-detail');
+
+                  if($current.attr('data-status') == 1){//单个
+                    $current.css({
+                      background: "url('/static/img/map/folder-down.png') no-repeat 50% 0",
+                      'background-size': '100%',
+                    })
+
+                    $parent.css({
+                      height: '60%'
+                    })
+                        
+                    $('.el-detail-main').html(_.template(listDetailTpl.innerHTML)(self.data))
+
+                    $current.attr('data-status',2)
+                  }else{//多个list
+                    $current.css({
+                      background: "url('/static/img/map/folder-up.png') no-repeat 50% 0",
+                      'background-size': '100%',
+                    })
+
+                    $parent.css({
+                      height: '15%'
+                    })
+
+                    $('.el-detail-main').html(_.template(oneDetailTpl.innerHTML)(self.data))
+
+                    $current.attr('data-status',1)
+                  }
+                })
+                .on('click','.el-location',function(){
+                  $.actionSheet({
+                        content: [
+                            {
+                                text: '深圳市',
+                                value: '0'
+                            },
+                            {
+                                text: '附近1km',
+                                value: '1'
+                            },
+                            {
+                                text: '附近3km',
+                                value: '3'
+                            },
+                            {
+                                text: '附近5km',
+                                value: '5'
+                            }
+
+                        ],
+                        blankclose: true,
+                        after: function(){
+                            $('.li-sheet-elment').off().on('click', function(event2){
+                                var $this = $(event2.currentTarget),
+                                    $location = $('.el-location');
+                                
+                                $location.html($(event2.currentTarget).text() + '<i class="li-arrow li-arrow-bottom"></i>')
+                                
+                                console.log($(event2.currentTarget).attr('data-value'))
+                                console.log($(event2.currentTarget).text())
+                                setTimeout(function(){
+                                    $('#sheetMain').remove();
+
+                                },100)
+                            })
+                        }
+                    })
+                })
+              
+            
             }
             
         } 

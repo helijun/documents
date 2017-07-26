@@ -80,7 +80,7 @@
         <div class="li-col-30">
           详细地址
         </div>
-        <div class="li-col-70 li-align-right li-color-info">
+        <div class="li-col-70 li-align-right li-color-info" id="addressDetail" data-dest="116.481488,39.990464">
           深圳市南山区深圳大学北门附近 <i class="li-arrow li-arrow-right"></i>
         </div>
       </div>
@@ -99,7 +99,7 @@
           手机号码
         </div>
         <div class="li-col-70 li-align-right li-color-info">
-          17603001616
+          <a href="tel:17603001616">17603001616</a>
         </div>
       </div>
 
@@ -167,13 +167,20 @@
                     pagination : '.swiper-pagination',
                     speed: 400,
                     spaceBetween: 100
-                })
+                  })
                 })
                   
             },
 
             watch: function(){
 
+                $(document).on('click','#addressDetail',function(event){//详细地址导航
+                  var dest = $(event.currentTarget).attr('data-dest'),
+                      start = START.getUrlParameter('start'),
+                      destName = $(event.currentTarget).text().trim();
+
+                  START.openPage('http://m.amap.com/navi/?start='+ start +'&dest='+ dest +'&destName='+ destName +'&naviBy=walk&key='+ MAPKEY)
+                })
             }
             
         } 
@@ -188,6 +195,9 @@
   }
   .li-arrow {
       border-color: #10aeff;
+  }
+  a {
+    color:#10aeff;
   }
 </style>
 </body>

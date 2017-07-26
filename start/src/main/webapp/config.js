@@ -1,7 +1,7 @@
 "use strict";
 var VERSION = (new Date()).getTime();//开发，测试环境 || 20170517;//生产环境
 var H5TOKEN = 'h5_token';//h5（微信)平台证书缓存key名称
-
+var MAPKEY = 'fdce27a4cc7a66646d6c99571828778d';
 //url地址
 var URL = {
     BASE: 'http://' + window.location.host,//域名url，如本地则是为空
@@ -43,7 +43,8 @@ require.config({
         jqueryWeUI: 'plugin/jqweui/js/jquery-weui',
         swiper: 'plugin/jqweui/js/swiper',
         dateFormat: 'utils/date/dateFormat',
-        amap: "http://webapi.amap.com/maps?v=1.3&key=fdce27a4cc7a66646d6c99571828778d"　　　　
+        amap: "http://webapi.amap.com/maps?v=1.3&key=" + MAPKEY,
+        li: 'li/li-1.1.0'
     },
     shim: {
     	jqueryWeUI: {
@@ -55,6 +56,10 @@ require.config({
             exports: '$'
         },
         common: {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        li: {
             deps: ['jquery'],
             exports: '$'
         },
