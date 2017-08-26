@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author helijun
  *
  */
-public class filterUtil {
+public class FilterUtil {
 	
 	/**
      * 检测是否有emoji字符
