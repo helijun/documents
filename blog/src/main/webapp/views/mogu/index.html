@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html><head>
+		<title>主页</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="/views/mogu/css/imgStyle.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" href="/views/mogu/css/main.css">
+		<script src="/views/mogu/js/jquery.min.js" type="text/javascript"></script>
+		<link type="text/css" rel="stylesheet" href="/views/mogu/js/default.css">
+<script type="text/javascript" src="/views/mogu/js/jquery.min.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex.min.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex-parser.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex-jit.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex-builderbase.min.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex-async.min.js"></script>
+<script type="text/javascript" src="/views/mogu/js/jscex-async-powerpack.min.js"></script>
+<script type="text/javascript" src="/views/mogu/js/functions.js" charset="utf-8"></script>
+<script type="text/javascript" src="/views/mogu/js/love.js" charset="utf-8"></script>
+
+		<script>
+				 (function () {
+        var canvas = $('#canvas');
+
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]]
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            // 会有闪烁不得意这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var together = new Date();
+            together.setFullYear(2010, 3,1); 			//时间年月日
+            together.setHours(16);						//小时	
+            together.setMinutes(53);					//分钟
+            together.setSeconds(0);					//秒前一位
+            together.setMilliseconds(2);				//秒第二位
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+			</script>
+</head>
+	<body class="index" id="mainBody"">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<header id="header" class="reveal alt">
+					<div style="font-family:'微软雅黑';font-size: 20px;float: left;">爱我，你怕了吗?</div>
+					<nav id="nav">
+						<ul>
+							<li class="current" style="white-space: nowrap;"><a href="index.html">返回首页</a></li>
+							<li class="submenu opener" style="-webkit-user-select: none; cursor: pointer; white-space: nowrap;">
+								<a href="#">我们的故事</a>
+							<ul style="-webkit-user-select: none; display: none; position: absolute;" class="">
+									<li style="white-space: nowrap;">
+										待续..
+									</li>
+									<li style="white-space: nowrap;">
+										待续..
+									</li>
+									<li style="white-space: nowrap;">
+										待续..
+									</li>
+									<li style="white-space: nowrap;">
+										待续..
+									</li>
+								</ul></li>
+						</ul>
+					</nav>
+				</header>
+			<!-- Banner -->
+				<section id="banner">
+					<div class="inner">
+						<header>
+							<p style="font-size: 40px;font-family: '微软雅黑';padding-bottom: 14px;">遇见你，我愿意花光所有运气</p>
+						</header>
+						<br>
+							喜欢你的笑
+						<br>
+						 喜欢你的可爱
+						 <br>
+						 喜欢缠着你
+						<br>
+						喜欢，没有不喜欢
+						<footer>
+							<ul class="buttons vertical">
+								<li><a href="#main" class="button fit scrolly">START</a></li>
+							</ul>
+						</footer>
+					</div>
+				</section>
+<div id="main">
+  <div id="wrap">
+    <div id="text">
+      <div id="code"> <font color="#FF0000"> <span class="say">亲爱的覃蘑菇同学：</span><br>
+        <span class="say">我们在一起 我都没有好好的正式表白 所以我制作这个</span><br />
+        <span class="say">网页 给你一个不一样的小惊喜 以此当做我对你的告白</span><br />
+        <span class="say"> <p style="color: #000000;float: left;">我爱你</p>简短的三个字 我想用漫长的一生去证明 。</span><br>             
+        <span class="say">在遇见青旅 遇见你 我愿意花光我所有的运气</span><br>
+        <span class="say">我们约好了每两个月见一次</span><br>
+        <span class="say">我想这样就可以保持想念 也有盼头</span>
+        <span class="say">好让日子天天都过 得难忘吧..</span><br>
+        <span class="say">我们还约好了去很多很多地方 放心吧</span><br>
+        <span class="say">都会慢慢实现的 我带上你 去到那远方</span><br>
+        <span class="say">我不会讲什么甜言蜜语 我就想我们简简单单</span><br>
+        <span class="say">平平淡淡 一直一直走下去..</span><br>
+        <span class="say">愿上苍为你指引平坦的道路</span><br>
+        <span class="say">愿命运让你遇见善良的人们</span><br>
+        <span class="say">愿命远方的阳光和璀璨的灯火</span><br>
+        <span class="say">为你照亮每一片未来的天空 </span><br>
+        <span class="say"><span class="space"></span> -- 爱你的<p style="color: #000000;float: right;margin-right: 88px;">蘑菇先生~</p></span> </font>
+      </div>
+    </div>
+    
+    
+    <canvas id="canvas" width="1200" height="700"></canvas>
+  </div>
+</div>
+<script>
+    (function () {
+        var canvas = $('#canvas');
+
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(400, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]]
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            canvas.parent().css("background", "#BCE8F1");
+            canvas.css("background", "#BCE8F1");
+            $await(Jscex.Async.sleep(280));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var together = new Date();
+            together.setFullYear(2015, 5,23); 			//时间年月日 2015 06 24 21:01:32
+            together.setHours(21);						//小时	
+            together.setMinutes(01);					//分钟
+            together.setSeconds(3);					//秒前一位
+            together.setMilliseconds(2);				//秒第二位
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(480);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+        runAsync().start();
+    })();
+    </script>
+    
+			<!-- Main -->
+				<article id="main">
+					<!-- One -->
+						<section class="wrapper style2 container special-alt">
+							<h1>这里是某某人的照骗墙：</h1>	
+							<div class="container">
+								<img src="/views/mogu/img/蘑菇蘑菇呀.jpg" class="pic pic1"/>
+						        <img src="/views/mogu/img/2222.jpg" class="pic pic2"/>
+						        <img src="/views/mogu/img/3333.jpg" class="pic pic6"/>
+						        <img src="/views/mogu/img/1111.jpg" class="pic pic7"/>
+						        <img src="/views/mogu/img/4444.jpg" class="pic pic5"/>
+						    </div>
+						</section>
+
+					<!--  
+					<div id="waterwheel-carousel-higharch">
+						<section class="wrapper style1 container special">
+							<div id="feedbox" style="display:none;">
+							<div class="main"><img src="img/20150628110235.png"/></div>
+					</div>
+							
+							<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+										</header>
+									<button class="od" onClick="show('feedbox');return false;">点击查看图片</button>
+									<button class="od" onclick="closeed('feedbox');return false;" href="#"> 关闭</button>			
+									</section>
+								</div>
+							</div>
+						</section>
+																			
+							<section>
+							</section>
+							-->
+				</article>
+			<!-- CTA -->
+				<section id="cta">
+					<header>
+						<div id="clock-box"> 亲爱的<span class="STYLE1"></span><font color="#FF4500"><strong>蘑菇蘑菇呀-</strong></font> <span class="STYLE1">我们已经在一起..</span>
+				     <div id="clock"></div>
+				    </div>						
+					<div style="padding-top: 10px;">
+										<p>designer:@moguxiansheng</p>
+					</div>
+					</header>
+					<footer>
+						<ul class="buttons">
+							<li><a href="#" class="button">再看一遍</a></li>
+						</ul>
+					</footer>
+				</section>
+		</div>
+		
+		<script type="text/javascript">
+			var prox;
+			var proy;
+			var proxc;
+			var proyc;
+			function show(id){
+				clearInterval(prox);
+				clearInterval(proy);
+				clearInterval(proxc);
+				clearInterval(proyc);
+				var o = document.getElementById(id);
+				o.style.display = "block";
+				o.style.width = "1px";
+				o.style.height = "1px"; 
+				prox = setInterval(function(){
+					openx(o,500)
+				},10);
+			} 
+			function openx(o,x){
+				var cx = parseInt(o.style.width);
+				if(cx < x){
+					o.style.width = (cx + Math.ceil((x-cx)/5)) +"px";
+				}else{
+					clearInterval(prox);
+					proy = setInterval(function(){
+						openy(o,200)
+					},10);
+				}
+			}
+			
+			function openy(o,y){
+				var cy = parseInt(o.style.height);
+				if(cy < y){
+					o.style.height = (cy + Math.ceil((y-cy)/5)) +"px";
+				}else{
+					clearInterval(proy);   
+				}
+			}
+			
+			function closeed(id){
+				clearInterval(prox);
+				clearInterval(proy);
+				clearInterval(proxc);
+				clearInterval(proyc);  
+				var o = document.getElementById(id);
+				if(o.style.display == "block"){
+					proyc = setInterval(function(){
+						closey(o)
+					},10);   
+				}  
+			}
+			
+			function closey(o){
+				var cy = parseInt(o.style.height);
+				if(cy > 0){
+					o.style.height = (cy - Math.ceil(cy/5)) +"px";
+				}else{
+					clearInterval(proyc);    
+					proxc = setInterval(function(){closex(o)},10);
+				}
+			}
+			
+			function closex(o){
+				var cx = parseInt(o.style.width);
+				if(cx > 0){
+					o.style.width = (cx - Math.ceil(cx/5)) +"px";
+				}else{
+					clearInterval(proxc);
+					o.style.display = "none";
+				}
+			} 
+			
+			/*-------------------------鼠标拖动---------------------*/ 
+			var od = document.getElementById("feedbox"); 
+			var dx,dy,mx,my,mouseD;
+			var odrag;
+			var isIE = document.all ? true : false;
+			document.onmousedown = function(e){
+				var e = e ? e : event;
+				if(e.button == (document.all ? 1 : 0)){
+					mouseD = true;   
+				}
+			}
+			
+			document.onmouseup = function(){
+				mouseD = false;
+				odrag = "";
+				if(isIE){
+					od.releaseCapture();
+					od.filters.alpha.opacity = 100;
+				}else{
+					window.releaseEvents(od.MOUSEMOVE);
+					od.style.opacity = 1;
+				}  
+			}
+			
+			
+			//function readyMove(e){ 
+			od.onmousedown = function(e){
+				odrag = this;
+				var e = e ? e : event;
+				if(e.button == (document.all ? 1 : 0)){
+					mx = e.clientX;
+					my = e.clientY;
+					od.style.left = od.offsetLeft + "px";
+					od.style.top = od.offsetTop + "px";
+					if(isIE){
+						od.setCapture();    
+						od.filters.alpha.opacity = 50;
+					}else{
+						window.captureEvents(Event.MOUSEMOVE);
+						od.style.opacity = 0.5;
+					}
+				} 
+			}
+			
+			document.onmousemove = function(e){
+				var e = e ? e : event;
+				if(mouseD==true && odrag){  
+					var mrx = e.clientX - mx;
+					var mry = e.clientY - my; 
+					od.style.left = parseInt(od.style.left) +mrx + "px";
+					od.style.top = parseInt(od.style.top) + mry + "px";   
+					mx = e.clientX;
+					my = e.clientY;
+				}
+			}
+			</script>
+			<script src="/views/mogu/js/jquery.dropotron.min.js"></script>
+			<script src="/views/mogu/js/jquery.scrolly.min.js"></script>
+			<script src="/views/mogu/js/jquery.scrollgress.min.js"></script>
+			<script src="/views/mogu/js/skel.min.js"></script>
+			<script src="/views/mogu/js/util.js"></script>
+			<script src="/views/mogu/js/main.js"></script>
+			<embed src="/views/mogu/data/The Best Of Piano - Kiss The Rain.mp3" width=0 height=0 type=audio/mpeg loop="true" autostart="true">
+<ul style="-webkit-user-select: none; display: none; position: absolute; z-index: 1000;" class="dropotron level-0">
+									<li style="white-space: nowrap;"><a href="left-sidebar.html" style="display: block;">Left Sidebar</a></li>
+									<li style="white-space: nowrap;"><a href="right-sidebar.html" style="display: block;">Right Sidebar</a></li>
+									<li style="white-space: nowrap;"><a href="no-sidebar.html" style="display: block;">No Sidebar</a></li>
+									<li style="white-space: nowrap;"><a href="contact.html" style="display: block;">Contact</a></li>
+									<li class="submenu opener" style="-webkit-user-select: none; cursor: pointer; white-space: nowrap;">
+										<a href="#" style="display: block;">Submenu</a>
+										<ul style="-webkit-user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+											<li style="white-space: nowrap;"><a href="#" style="display: block;">Dolore Sed</a></li>
+											<li style="white-space: nowrap;"><a href="#" style="display: block;">Consequat</a></li>
+											<li style="white-space: nowrap;"><a href="#" style="display: block;">Lorem Magna</a></li>
+											<li style="white-space: nowrap;"><a href="#" style="display: block;">Sed Magna</a></li>
+											<li style="white-space: nowrap;"><a href="#" style="display: block;">Ipsum Nisl</a></li>
+										</ul>
+									</li>
+								</ul><div id="navButton"><a href="#navPanel" class="toggle"></a></div><div id="navPanel"><nav><a class="link depth-0" href="index.html" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-0"></span>Welcome</a><a class="link depth-0" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-0"></span>Layouts</a><a class="link depth-1" href="left-sidebar.html" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-1"></span>Left Sidebar</a><a class="link depth-1" href="right-sidebar.html" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-1"></span>Right Sidebar</a><a class="link depth-1" href="no-sidebar.html" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-1"></span>No Sidebar</a><a class="link depth-1" href="contact.html" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-1"></span>Contact</a><a class="link depth-1" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-1"></span>Submenu</a><a class="link depth-2" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-2"></span>Dolore Sed</a><a class="link depth-2" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-2"></span>Consequat</a><a class="link depth-2" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-2"></span>Lorem Magna</a><a class="link depth-2" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-2"></span>Sed Magna</a><a class="link depth-2" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-2"></span>Ipsum Nisl</a><a class="link depth-0" href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="indent-0"></span>Sign Up</a></nav></div></body></html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <meta name="keywords" content="莉莉·安，ITer请跟随兴趣一路前行"/>
+    <meta name="description" content="何立军的个人博客，欢迎大家一起交流学习。" />
+    <meta name="baidu-site-verification" content="pOTtshh74R" />
+    <title>首页--莉莉·安</title>
+    
+    <link rel="stylesheet" type="text/css" href="/plugin/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+    <style type="text/css">
+        
+        .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+            padding: 0;
+            height: 100%;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .li-title {
+            background-color: #e28181;
+            height: 2.88rem;
+            font-size: 1.868rem;
+            line-height: 2.88rem;
+        }
+        .li-title:hover {
+            font-size: 1.918rem;
+            transition: .2s;
+        }
+        .li-erweima {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+        }
+        .li-erweima i{
+            font-size: 1.662rem;
+        }
+        .li-erweima i:hover{
+            color: #e28181;
+        }
+        .li-img {
+            width: 100%;
+            height: 100%;
+            background: url("/dist/img/list/VY6rzPUa6FNKWXVosdGs.jpg");
+            background-size: 100% 100%;
+            margin-bottom: 0;
+        }
+        .li-blog-title {
+            color: black;
+            line-height: 4;
+        }
+        .li-blog-title>h3 {
+            margin-top: 1.2rem;
+        }
+        .li-nav-left>p {
+            cursor: pointer;
+        }
+        .li-nav-left>.active{
+            color: #e28181;
+        }
+        .li-nav-left>.active:hover{
+            color: #e28281;
+            font-size: 1.83rem;
+            transition: .5s;
+        }
+
+        .li-main {
+            height: 100%;
+        }
+
+        .main-left {
+            background: rgba(0,0,0,.86);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19black);
+            text-align: center;
+            color: white;
+        }
+        .main-right {
+            padding: 0 16px;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .li-mood-text {
+            position: absolute;
+            left: 4%;
+            bottom: 16%;
+        }
+
+        .li-mood-text>h2 {
+            font-weight: 600;
+        }
+
+        /* 右侧滑菜单开始 */
+        .nav-right-mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background-color: rgba(0,0,0,.7);
+        }
+        .nav-right-content {
+            position: absolute;
+            top: 0;
+            right: -800px;
+            height: 100%;
+            width: 50%;
+            background-color: white;
+            text-align: center;
+            list-style: none;
+            -webkit-transition: .8s;
+            -moz-transition: .8s;
+            transition: .8s;
+            background-color: #040a09;
+        }
+
+        .nav-right-content>li:nth-child(1) {
+            height: 10%;
+        }
+        .nav-right-content>li:not(:nth-child(1)) {
+            line-height: 2.8em;
+            border-bottom: 1px solid #CCC;
+        }
+        .nav-right-content>li {
+            color: black;
+            text-align: left;
+            padding-left: 1.8em;
+        }
+        .nav-right-content>li>a {
+            color: white;
+        }
+        .nav-right-content>li>a>strong {
+            margin-left: 1.26rem;
+            font-size: 1.96rem;
+        }
+        .nav-right-content>li:nth-last-child(1) {
+            position: absolute;
+            bottom: 10%;
+            color: white;
+        }
+        .nav-right-content>li>img {
+            width: 80%;
+        }
+        /** 右侧滑菜单结束 */
+
+        @media (max-width: 768px) { 
+            .main-left {
+                display: none;
+            }
+            .main-nav {
+                display: block;
+                height: 3.2rem;
+                line-height: 3.2rem;
+                font-size: 1.6rem;
+                background-color: #fdb8b8;
+                color: white;
+                text-align: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 999;
+            }
+            .li-blog-title>h3 {
+                font-size: 1.8rem;
+            }
+            .main-nav .title {
+                font-size: 1.96rem;
+            }
+            .main-right {
+                padding: 0 1.02rem;
+                height: auto;
+            }
+            .right-nav-icon {
+                font-size: 2.86rem;
+                color: #e28281;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1200px) { 
+            
+        }
+        @media (min-width: 1200px) { 
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row li-main">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 main-left">
+            <div class="row">
+                <div class="col-sm-2 col-md-2 col-lg-2 li-nav-left">
+                    <p class="li-title">莉</p>
+                    <p class="active">
+                        <i class="icon-boke" id="iconBoke"></i>
+                    </p>
+                    <p class="li-erweima" title="点击查看二维码">
+                        <i class="icon-erweima" id="iconErweima"></i>
+                    </p>
+                    
+                </div>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <div class="li-img">
+                        <div class="li-mood-text">
+                            <h2 class="text-left">莉莉·安</h2>
+                            <h4 class="text-right">认真做点事情，万一做好了呢..</h4>
+                            <!-- <a class="btn btn-primary btn-lg text-right" href="#" role="button">未完，待续</a> -->
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 main-nav li-hide">
+            <div class="row">
+                <div class="col-xs-2 goback"></div>
+                <div class="col-xs-8 title">莉莉·安</div>
+                <div class="col-xs-2 menu">
+                    <i class="icon-caidan"></i>
+                </div>
+            </div>
+
+            <section class="nav-right-mask li-hide">
+                <ul class="nav-right-content">
+                    <li></li>
+                    <li>
+                        <a class="li-text-none" href="http://github.com/helijun">
+                            <i class="icon-github right-nav-icon"></i>
+                            <strong>Github</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <img id="myWechatQr" src="/dist/img/common/my-wechat-qr.jpg">
+                        <h4>扫一扫，联系我</h4>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 main-right">
+            <div class="page-header">
+                <h1>ITer <small>请跟随兴趣一路前行</small></h1>
+            </div>
+            
+            <button class="btn btn-info li-blog-type" type="button" data-type="1">
+                前端 <span class="badge"> 4</span>
+            </button>
+            <button class="btn btn-warning li-blog-type" type="button" data-type="2">
+                JAVA<span class="badge"> 2</span>
+            </button>
+            <button class="btn btn-default li-blog-type" type="button" data-type="3">
+                感悟<span class="badge"> 1</span>
+            </button>
+
+            <p class="divider"></p>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10" id="blogContent">
+                    <div class="li-spinner">
+                        <div class="first-bounce"></div>
+                        <div class="next-bounce"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script id="blogListTpl" type="text/html">
+    {{each data as value i}}
+        <div class="media">
+            <!-- <a class="pull-right" href="{{value.listLink}}" target="_blank">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE0LjUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 8rem; height: 8rem;">
+            </a> -->
+            <div class="media-body">
+                <a href="{{value.listLink}}" class="li-blog-title" target="_blank">
+                    <h3 class="media-heading">{{value.listTitle}}</h3>
+                </a>
+                <p class="text-ellipsis">{{value.listDescript}}</p>
+            </div>
+        </div>
+        <div class="row">   
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <!-- 是否置顶 -->
+                <!-- <i class="icon-zhiding"></i> -->
+                
+                <!-- 是否加精 -->
+                {{if value.isGood == 1}}
+                    <i class="icon-jinghua"></i>
+                {{/if}}
+
+                <!-- 是否原创 -->
+                {{if value.isOwner == 1}}
+                    <i class="icon-yuan"></i>
+                {{else}}
+                    <i class="icon-zhuan"></i>
+                {{/if}}
+
+                <!-- 来源 -->
+                {{if value.listFrom == 1}}
+                    <i class="icon-boke2"></i>
+                {{else if value.listFrom == 2}}
+                    <i class="icon-github2"></i>
+                {{else if value.listFrom == 3}}
+                    <i class="icon-jian"></i>
+                {{/if}}
+                
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xs-offset-2 col-sm-offset-2 col-md-offset-4 col-lg-offset-4">
+                <i class="icon-liulan">{{value.listRead}}</i>
+                <i class="icon-pinglun">{{value.listComment}}</i>
+            </div>
+        </div>
+        
+    {{/each}}
+
+    <br>
+    <h6><a class="li-text-none li-black" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action?spm=5176.8087400.6.2.MG5NAa&file=indexFirst.action">粤ICP备16104098号</a> <strong>版权所有 @helijun</strong></h6> 
+</script>
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+    require(['jquery'],function($){
+        require(['common','artTemplate'],function(undefined,template){
+            var blogMain = {
+                init: function(){
+                    var self = blogMain;
+                        self.renderHtml();
+                        self.renderComponent();
+                        self.watch();
+                },
+                options: {
+                    
+                },
+                
+                //渲染html
+                renderHtml: function(){
+                    var self = blogMain;
+                        self.getBlogListFun();
+                    $('.li-nav-left,.li-main,.li-img').css({height: window.innerHeight+'px'}); 
+                },
+                
+                //渲染组件
+                renderComponent: function(){
+
+                },
+                
+                //获取博客列表
+                getBlogListFun: function(type,isShowLoading){
+                    var self = blogMain;
+
+                    $.ajax({
+                        url: liliangel._XHR + 'blog/list',
+                        type: "GET",
+                        data: {
+                            listType: type || ''
+                        },
+                        beforeSend: function () {
+                            isShowLoading && liliangel.common.loading('show','#blogContent');
+                        },
+                        success: function (json) {
+                            if (json) {
+                                self.renderBlogListFun(json);
+                                isShowLoading && liliangel.common.loading('hide');
+                            }else {
+                                //common.error();
+                            }
+                        },
+                        complete: function () {
+                            
+                        },
+                        timeout: 50000
+                    });
+                },
+                //渲染博客列表
+                renderBlogListFun(json){
+                    console.log('博客列表',json)
+                    $('#blogContent').html(template('blogListTpl', json || {}))
+                },
+
+                watch: function(){
+                    var self = blogMain;
+
+                    $('.li-blog-type').on('click',function(event){
+                        var type = $(event.currentTarget).attr('data-type');
+                        self.getBlogListFun(type,true);
+                    })
+
+                    $('.icon-boke').on('click',function(event){
+                        require(['artDialog'],function(){
+                            var d = dialog({
+                                align: 'right',
+                                content: '博客列表',
+                                quickClose: true// 点击空白处快速关闭
+                            });
+                            d.show(document.getElementById('iconBoke'));
+                        }) 
+                    })
+                    $('.icon-erweima').on('click',function(event){
+                        require(['artDialog'],function(){
+                            var d = dialog({
+                                align: 'right',
+                                content: '<img id="myWechatQr" src="/dist/img/common/my-wechat-qr.jpg" style="height:8.89rem"><h5>扫一扫，联系我</h5>',
+                                quickClose: true// 点击空白处快速关闭
+                            });
+                            d.show(document.getElementById('iconErweima'));
+                        }) 
+                    })
+
+                    //侧滑导航，存在加载后渲染dom问题
+                    $('.menu').on('click',liliangel.common.rightNavShow)
+                    $('.nav-right-mask:not(.nav-right-content)').on('click',liliangel.common.rightNavHide);
+                }
+            }
+        blogMain.init(); 
+        })
+    })
+}
+</script>
+</html>

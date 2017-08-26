@@ -1,0 +1,89 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+body{
+    background-color: #eeeeee;
+}
+.container{
+    width: 960px;
+    height: 600px;
+    margin: 60px auto;
+    position: relative;
+
+}
+.pic{
+    width: 200px;
+}
+.container img:hover{
+	cursor: pointer;
+    box-shadow: 16px 15px 20px rgba(50,50,50,04);
+    transform: rotate(0deg) scale(1.30);
+    -webkit-transform: rotate(0deg) scale(1.60);
+    z-index: 2;
+}
+.container img {
+    padding: 10px 10px 15px;
+    background:white;
+    border:1px solid #ddd;
+    box-shadow:2px 2px 3px rgba(50,50,50,0.4);
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in ;
+    -ms-transition: all 0.5s ease-in ;
+    -o-transition: all 0.5s ease-in ;
+    transition: all 0.5s ease-in ;
+    position: absolute;
+    z-index: 1;
+}
+.icon featured fa-check img{
+	background:white;
+    border:1px solid #ddd;
+    box-shadow:2px 2px 3px rgba(50,50,50,0.4);
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in ;
+    -ms-transition: all 0.5s ease-in ;
+    -o-transition: all 0.5s ease-in ;
+    transition: all 0.5s ease-in ;
+    position: absolute;
+    z-index: 1;
+}
+.pic1{
+    left: 400px;
+    top: 120;
+    transform: rotate(-20deg);
+    -webkit-transform: rotate(-5deg);
+}
+
+.pic2{
+    left: 200px;
+    top: 0;
+    transform: rotate(20deg);
+    -webkit-transform: rotate(15deg);
+}
+
+.pic5{
+    bottom: 0px;
+    top: 0px;
+    transform: rotate(-10deg);
+    -webkit-transform: rotate(5deg);
+}
+
+.pic6{
+    left: 600px;
+    top: 0px;
+    transform: rotate(10deg);
+    -webkit-transform: rotate(13deg);
+}
+
+.pic7{
+    left:850px;
+    top: 0px;
+    transform: rotate(20deg);
+    -webkit-transform: rotate(-10deg);
+}
+
+a.od:hover{background:#83D3C9}
+#feedbox{margin:1px 0 0 1px;float:left;overflow:initial;position:absolute;top:120px;left:400px;}
+
+

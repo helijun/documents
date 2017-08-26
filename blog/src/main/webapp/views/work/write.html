@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>写日志</title>
+
+    <style type="text/css">
+        header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #f76260;
+            color: white;
+        }
+        header>.weui-col-60 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+        header>.weui-col-20:nth-child(1) {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .button_sp_area {
+            text-align: right;
+            margin-right: 2%;
+            margin-bottom: 2%;
+        }
+        .save-btn {
+            box-sizing: border-box;
+            width: 80%;
+            margin: 14px auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="weui-row"></header>
+    <article></article>
+    <footer></footer>
+</body>
+<script id="indexHeaderTpl" type="text/html">
+    <div class="weui-col-20"><</div>
+    <div class="weui-col-60">{{title}}</div>
+    <div class="weui-col-20">菜单</div>
+</script>
+<script id="indexArticleTpl" type="text/html">
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">房子</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" placeholder="请选择当前工作的房子" id="currentHId">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">日期</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" readonly="readonly" placeholder="请选择日期" id="defaultNewDate" value="{{showDate}}">
+            </div>
+        </div>
+
+        <div class="my-partner" id="myPartner">
+            {{include 'partnerTpl'}}
+        </div>
+        <div class="button_sp_area">
+            <a href="javascript:window.writeMain.addPartner();" class="weui_btn weui_btn_mini weui_btn_warn">再添加一个</a>
+        </div>
+        
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">备注</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="说说今天的工作状态吧~" rows="3" maxlength="400"></textarea>
+                <div class="weui_textarea_counter">
+                    <span>200个字以内</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="save-btn">
+        <a class="weui_btn weui_btn_primary" id="saveBtn">保存</a>
+    </div>
+</script>
+
+<script id="partnerTpl" type="text/html">
+    <div class="weui_cell">
+        <div class="weui_cell_hd">
+            <label class="weui_label">工友{{idFlag}}</label>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input gong-you" readonly="readonly" type="text" placeholder="请选择工友{{idFlag}}姓名和出勤状态" id="gongYou{{idFlag}}">
+        </div>
+    </div>
+</script>
+
+<script id="indexFooterTpl" type="text/html">
+    <div class="weui_tabbar">
+        <a href="javascript:window.writeMain.noFinsh();" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_article.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">工作台</p>
+        </a>
+        <a href="javascript:window.writeMain.noFinsh();" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我</p>
+        </a>
+    </div>
+</script>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+    require(['jquery','css!plugin/jqweui/css/weui-and-jqueryweui.css'],function($){
+        require([
+            'common',
+            'jqueryWeUI'
+            ],
+        function(){
+            var $header = $('header'),
+                $article = $('article'),
+                $footer = $('footer');
+
+            var writeMain = {
+                    init: function(){
+                        var self = writeMain;
+                        require(['artTemplate'],function(template){
+                            $header.html(template('indexHeaderTpl', self.data.header));    
+                            $article.html(template('indexArticleTpl', self.data.article));    
+                            $footer.html(template('indexFooterTpl', self.data));
+                            self.getHouse();
+                            self.getParter();
+                            //self.renderPartner('#gongYou'); 
+                            self.watch();
+                        })
+                    },
+
+                    options: {
+                        houseInfo: [],
+                        partnerInfo: [],
+                        idFlag: 2,
+                        gongYouValues: null
+                    },
+
+                    data: {
+                        header: {
+                            gobackShow: false,
+                            menuShow: '',
+                            title: '写日志'
+                        },
+                        article: {
+                            showDate: liliangel.common.getUrlParameter('showDate')
+                        },
+                        footer: {
+
+                        }
+                    },
+
+                    noFinsh: function(text){
+                        $.toast(text || "何立军正在努力开发中....", "cancel");
+                    },
+
+                    //获取房子列表
+                    getHouse: function(){
+                        var self = this;
+                        $.ajax({
+                            url : liliangel._XHR + 'work/house-list',
+                            type: "GET",
+                            success: function (json) {
+                                if (json && json.code == 0) {
+                                    var _values = [];
+                                    $(json.data).each(function(i,el){
+                                        console.log('i',i);
+                                        console.log('el',el.hDescription);
+                                        _values.push(el.hDescription)
+
+                                        var _houseInfo = {};
+                                            _houseInfo.name = el.hDescription;
+                                            _houseInfo.id = el.hid;
+                                        self.options.houseInfo.push(_houseInfo)
+                                    })
+                                    console.log('_values',_values);
+                                    console.log('获取房子列表',json)
+                                    $('#currentHId').picker({
+                                        title: "选择当前工作的房子",
+                                        cols: [
+                                            {
+                                                textAlign: 'center',
+                                                values: _values
+                                            }
+                                        ]
+                                    });
+                                } else {
+                                    $.toast("哎哟，出错了！", "cancel");
+                                }
+                            },
+                            timeout: 20000
+                        });
+                    },
+
+                    //获取伙伴列表
+                    getParter: function(){
+                        var self = this;
+                        $.ajax({
+                            url : liliangel._XHR + 'work/partner-list',
+                            type: "GET",
+                            success: function (json) {
+                                if (json && json.code == 0) {
+                                    var _values = [];
+                                    $(json.data).each(function(i,el){
+                                        _values.push(el.aliasName)
+
+                                        var _partnerInfo = {};
+                                        _partnerInfo.name = el.aliasName;
+                                        _partnerInfo.id = el.pId;
+                                        self.options.partnerInfo.push(_partnerInfo);
+                                    })
+                                    self.options.gongYouValues = _values;
+                                    self.renderPartner('#gongYou');
+                                } else {
+                                    $.toast("哎哟，出错了！", "cancel");
+                                }
+                            },
+                            timeout: 20000
+                        });
+                    },
+                    renderPartner: function(selector){
+                        var self = this;
+                        $(selector).picker({
+                            title: "选择工友的名字和出勤状态",
+                            toolbar: true,
+                            cols: [
+                                {
+                                    textAlign: 'center',
+                                    values: self.options.gongYouValues
+                                },
+                                {
+                                    textAlign: 'center',
+                                    values: [
+                                            '全勤',
+                                            '半天',
+                                            '没来'
+                                        ]
+                                },
+                            ]
+                        });
+                    },
+                    //添加工友
+                    addPartner: function(){
+                        var self = writeMain;
+                        require(['artTemplate'],function(template){
+                            $('#myPartner').append(template('partnerTpl',{
+                                idFlag: self.options.idFlag
+                            }))
+                            self.renderPartner('#gongYou' + self.options.idFlag);
+                            self.options.idFlag ++;
+                        })
+                    },
+
+                    //保存记录
+                    save: function(){
+                        var self = this;
+                        console.log('self.options.houseInfo',self.options.houseInfo)
+                        console.log('self.options.partnerInfo',self.options.partnerInfo)
+                        
+
+                        var _pIdIsFull = '';
+                        $('.gong-you').each(function(i,v){
+                            _pIdIsFull += self.getIdForData($(v).val().split(' ')[0],self.options.partnerInfo)
+
+                            //0全勤、0.5半天，-1没来
+                            if($(v).val().split(' ')[1] == '全勤'){
+                                _pIdIsFull += ',0;'
+                            }else if($(v).val().split(' ')[1] == '半天'){
+                                _pIdIsFull += ',0.5;'
+                            }else if($(v).val().split(' ')[1] == '没来'){
+                                _pIdIsFull += ',-1;'
+                            }
+                            console.log('split',$(v).val().split(' ')[1])
+                        })
+                        console.log('_pIdIsFull',_pIdIsFull);
+
+                        var json = {};
+                            json.pid = 1;
+                            json.hid = self.getIdForData($('#currentHId').val().trim(),self.options.houseInfo);
+                            json.farmerDate = $('#defaultNewDate').val().trim();
+                            json.pIdIsfull = _pIdIsFull;
+                            json.remark = $('.weui_textarea').val().trim();
+                            json.rWeather = 1;
+
+                        console.log('提交的json',JSON.stringify(json));
+                        $.ajax({
+                            url : liliangel._XHR + 'work/save',
+                            type: "POST",
+                            data: {
+                                json: JSON.stringify(json)
+                            },
+                            success: function (json) {
+                                if (json && json.code == 0) {
+                                    $.toast("记录成功！",function(){
+                                        window.location.href = '/work/record'
+                                    })
+                                } else {
+                                    $.toast("哎哟，出错了！", "cancel");
+                                }
+                            },
+                            timeout: 20000
+                        });
+                    },
+
+                    //根据指定的数据获取id
+                    getIdForData: function(name,data){
+                        var _id;
+                        $(data).each(function(i,v){
+                            if(v.name == name){
+                                _id = v.id;
+                            }
+                        })
+                        return _id;
+                    },
+
+                    watch: function(){
+                        var self = writeMain;
+
+                        $('header>.weui-col-20:nth-child(1)').on('click',function(){
+                            window.history.go(-1)
+                        })
+
+                        $(document).on('click','#saveBtn',function(event){
+                            self.save();
+                        })
+                    }
+                }
+
+                writeMain.init();
+
+                window.writeMain = writeMain;
+        })
+    })
+	
+}
+</script>
+<style>
+    .weui_label {
+        width: 60px;
+    }
+</style>
+</html>

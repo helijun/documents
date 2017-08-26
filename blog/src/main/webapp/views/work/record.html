@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>记录</title>
+
+    <style type="text/css">
+        header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #f76260;
+            color: white;
+        }
+        header>.weui-col-60 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .avatar-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6%;
+            box-sizing: border-box;
+            background-color: #f76260;
+        }
+        .avatar-area img {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 2px #f76260;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="weui-row"></header>
+    <article></article>
+    <footer></footer>
+</body>
+<script id="indexHeaderTpl" type="text/html">
+    <div class="weui-col-20"></div>
+    <div class="weui-col-60">{{title}}</div>
+    <div class="weui-col-20">菜单</div>
+</script>
+<script id="indexArticleTpl" type="text/html">
+    <div class="avatar-area">
+        <img src="/dist/img/avatar/IMG_0533.JPG">
+    </div>
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_hd">
+            <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_title">记录成功！感谢认真工作的你~</h4>
+                <p class="weui_media_desc">{{data.farmerDate}}</p>
+            </div>
+        </div>
+    </div>
+    {{each data.workPartner as value i}}
+      <div class="weui_cell">
+        <div class="weui_cell_hd">
+          <p>{{value.realName}}</p>
+        </div>
+        <div class="weui_cell_ft">{{value.flag}}</div>
+      </div>
+    {{/each}}
+
+    <div class="go-index-btn">
+        <a class="weui_btn weui_btn_primary" id="goIndexBtn">返回首页</a>
+    </div>
+    <div class="space-div"></div>
+
+</script>
+
+<script id="indexFooterTpl" type="text/html">
+    <div class="weui_tabbar">
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_article.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">工作台</p>
+        </a>
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我</p>
+        </a>
+    </div>
+</script>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+    require(['jquery','dateFormat','css!plugin/jqweui/css/weui-and-jqueryweui.css','common'],function($,dateFormat){
+        var $header = $('header'),
+            $article = $('article'),
+            $footer = $('footer');
+
+        var indexMain = {
+                init: function(){
+                    var self = indexMain;
+                        self.getTodayData();
+                        require(['artTemplate'],function(template){
+                            self.registHelper(template);
+                            $header.html(template('indexHeaderTpl', self.data.header));    
+                            $article.html(template('indexArticleTpl', self.data.article));    
+                            $footer.html(template('indexFooterTpl', self.data));    
+                            self.watch();
+                        })
+                },
+
+                //注册模板函数
+                registHelper: function(template){
+                    var self = indexMain;
+                    template.helper('$addUrl', function (content) {
+                        console.log('content',content)
+                        return content + '?showDate=' + self.data.article.urlDate + '&saveDate=' + self.data.article.date;
+                    });
+                },
+
+                options: {
+                    
+                },
+                noFinsh: function(){
+                    $.toast("何立军正在努力开发中....", "cancel");
+                },
+
+                data: {
+                    header: {
+                        gobackShow: false,
+                        menuShow: '',
+                        title: '填写成功'
+                    },
+                    article: {
+                        date: null,
+                    },
+                    footer: {
+
+                    }
+                },
+
+                //获得今天的出勤数据
+                getTodayData: function(){
+                    var self = this;
+                    var _date = dateFormat(new Date(),'default');
+                    console.log('今天的日期',_date);
+
+                    $.ajax({
+                        url : liliangel._XHR + 'work/record',
+                        type: "GET",
+                        async: false,
+                        data: {
+                            date: _date
+                        },
+                        success: function (json) {
+                            if (json && json.code == 0) {
+                                console.log('今天的数据',json.data);
+
+                                self.data.article.data = json.data;
+
+                            } else {
+                                
+                            }
+                        },
+                        timeout: 20000
+                    });
+                },
+
+                watch: function(){
+                    var self = indexMain;
+
+                    $(document).on('click','#goIndexBtn',function(){
+                        window.location.href = '/work/index'
+                    })
+                }
+            }
+        indexMain.init();
+
+        window.indexMain = indexMain;
+    });
+	
+}
+</script>
+<style type="text/css">
+    .weui_icon_waiting:before {
+        font-size: 59px;
+    }
+    .weui_media_box {
+        padding: 5px
+    }
+    .weui_panel {
+        margin-top: 0;
+    }
+    .weui_cell_ft {
+        margin-left: 100px;
+    }
+    .go-index-btn {
+        padding: 30px;
+    }
+    footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</html>
