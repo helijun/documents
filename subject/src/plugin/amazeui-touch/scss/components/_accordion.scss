@@ -1,0 +1,81 @@
+// Amaze UI Touch: Accordion
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$accordion-prefix} {
+  margin: $global-spacing 0;
+  border-top: $accordion-border;
+  background: $accordion-background;
+
+  .#{$card-prefix}-body & {
+    @extend %card-nested-component;
+
+    border-top: none;
+
+    .#{$accordion-prefix}-item:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.#{$accordion-prefix}-item {
+  margin: 0;
+  border-bottom: $accordion-border;
+
+  // active
+  &.#{map_get($am-states, active)} {
+    .#{$accordion-prefix}-icon {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.#{$accordion-prefix}-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: rem-calc(10) $global-spacing;
+  font-weight: normal;
+  cursor: pointer;
+
+  &:active {
+    background: $gray-lighter;
+  }
+
+  .#{$accordion-prefix}-item.#{map_get($am-states, disabled)} & {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .#{$accordion-prefix}-icon {
+    @include fixes-flexbox-for-android;
+    font-size: rem-calc(20);
+    color: rgba($gray-light, .45);
+    transform: rotate(0deg);
+    transition: transform .3s;
+  }
+}
+
+// 规避 Collapase 处理不当的问题
+.#{$accordion-prefix}-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.#{$accordion-prefix}-content {
+  padding: 0 $global-spacing rem-calc(10);
+  font-size: rem-calc(15);
+  color: $gray;
+}
+
+// modifier: inset
+// -----------------------------------------------------------------------------
+.#{$accordion-prefix}-inset {
+  margin-left: $global-spacing;
+  margin-right: $global-spacing;
+}

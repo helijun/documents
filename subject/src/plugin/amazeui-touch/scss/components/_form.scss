@@ -1,0 +1,233 @@
+// Amaze UI Touch: Form
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+
+
+// Output
+// -----------------------------------------------------------------------------
+
+#{$text-field-selectors} {
+  $padding-top: get-side($form-padding, top);
+  $padding-bottom: get-side($form-padding, bottom);
+  // $height: ($form-fontsize * 1.4) + $padding-top + $padding-bottom;
+
+  @include no-appearance;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  // height: $height;
+  padding: $form-padding;
+  margin-bottom: $global-padding;
+  border: 1px solid $text-field-border;
+  border-radius: 0;
+  outline: 0;
+  background: $text-field-background;
+  color: $text-field-color;
+  font-size: $form-fontsize;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+  transition: border .15s;
+
+  &:hover {
+    border-color: $text-field-border-hover;
+    background: $text-field-background-hover;
+    color: $text-field-color-hover;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: $text-field-border-focus;
+    background: $text-field-background-focus;
+    color: $text-field-color-focus;
+  }
+}
+
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"] {
+  $padding-top: get-side($form-padding, top);
+  $padding-bottom: get-side($form-padding, bottom);
+  $height: $form-fontsize + $padding-top + $padding-bottom + rem-calc(2);
+  height: $height;
+}
+
+// Labels
+label {
+  display: block;
+  font-size: $form-label-fontsize;
+  margin-bottom: $form-label-margin;
+  color: $form-label-color;
+
+  > input,
+  > select,
+  > textarea {
+    margin-top: $form-label-margin;
+  }
+
+  .#{$field-prefix}-icon {
+    display: none;
+  }
+}
+
+// Disabled state
+input,
+textarea {
+  &.#{map_get($am-states, disabled)},
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+    cursor: $text-field-cursor-disabled;
+
+    &,
+    &:hover {
+      background-color: $text-field-background-disabled;
+    }
+  }
+}
+
+// Form set
+// -----------------------------------------------------------------------------
+.#{$form-prefix}-set {
+  margin-bottom: $global-spacing;
+
+  > input {
+    position: relative;
+    top: -1px;
+    border-radius: 0!important;
+
+    &:not(:last-of-type) {
+      margin-bottom: 0;
+    }
+
+    &:focus {
+      z-index: 2;
+    }
+
+    &:first-child {
+      top: 1px;
+    }
+
+    &:last-child {
+      top: -2px;
+    }
+  }
+}
+
+// Number input
+// -----------------------------------------------------------------------------
+input[type="number"] {
+  &::-webkit-inner-spin-button {
+  }
+
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    background: $global-primary;
+  }
+}
+
+// Select
+// -----------------------------------------------------------------------------
+select {
+  $top-padding: get-side($form-padding, top);
+  $bottom-padding: get-side($form-padding, bottom);
+  $height: ($form-fontsize * 1.4) + $top-padding + $bottom-padding;
+  $color: islight($select-background);
+
+  @include no-appearance;
+  display: block;
+  width: 100%;
+  // height: $height;
+  padding: $form-padding;
+  margin: 0 0 $global-spacing 0;
+  font-size: $form-fontsize;
+  line-height: normal;
+  color: $select-color;
+  border-radius: 0;
+  border: 1px solid $text-field-border;
+
+  @if $select-arrow {
+    background: $select-background url(image-triangle($select-arrow-color)) right 10px center no-repeat;
+    background-size: 8px 8px;
+    padding-right: rem-calc(18) + get-side($form-padding, right);
+  } @else {
+    background-color: $select-background
+  }
+
+  &:hover {
+    background-color: $select-background-hover;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  // Remove IE10/11 dropdown arrow
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+// Textarea
+// -----------------------------------------------------------------------------
+textarea {
+  height: auto;
+  width: 100%;
+  min-height: 5rem;
+  resize: vertical;
+}
+
+// Field group
+// -----------------------------------------------------------------------------
+.#{$field-group-prefix} {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  margin-bottom: $global-padding;
+
+  // Stretch input
+  > input,
+  > select {
+    flex: 1;
+    margin: 0;
+  }
+
+  // Shrink label/buttons
+  > .#{$button-prefix},
+  .#{$field-group-prefix}-label {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
+
+    &:first-child {
+      border-right: 0;
+    }
+
+    &:last-child {
+      border-left: 0;
+    }
+  }
+
+  > .#{$button-prefix} {
+    border-color: $field-group-border;
+  }
+}
+
+// Field group label style
+.#{$field-group-prefix}-label {
+  padding-left: get-side($form-padding, left);
+  padding-right: get-side($form-padding, left);
+  border: 1px solid $field-group-border;
+  background: $field-group-background;
+  color: $field-group-color;
+}
+
+@import "form-range";
+// @import "form-meter-progress";

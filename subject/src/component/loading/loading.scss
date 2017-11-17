@@ -1,0 +1,33 @@
+.component-loading {
+    .loading-content-animation {
+        animation: rotate 0.892s linear infinite;
+    }
+    .li-icon-loading:before {
+        font-size: 30px;
+    }
+    .loading-mask {
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    .loading-content {
+        position: fixed;
+        width: 7.6rem;
+        height: 7.6rem;
+        background: rgba(40,40,40,.75);
+        text-align: center;
+        border-radius: 5px;
+        color: #fff;
+        opacity: 1;
+        visibility: visible;
+        animation: scale 0.3992s linear forwards;
+        left: 50%;
+        top: 35%;
+        padding-top: 1rem;
+        margin-left: -3.8rem;
+    }
+
+}

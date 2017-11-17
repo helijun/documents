@@ -1,0 +1,137 @@
+// Amaze UI Touch: Base Styles
+// =============================================================================
+
+/* Amaze UI Touch Base Styles */
+
+@import "env";
+
+// Normalize styles
+@import "vendor/normalize";
+
+// Make extra sure we're using the whole window
+// @see http://mir.aculo.us/2011/07/29/prevent-rubber-band-scrolling-for-single-page-apps-in-safari-5-1/
+// @see http://www.luster.io/blog/9-29-14-mobile-web-checklist.html
+// @see http://blog.christoffer.me/post/2015-06-10-six-things-i-learnt-about-ios-rubberband-overflow-scrolling/#.VkL9ra4rL4M
+// @see https://github.com/luster-io/prevent-overscroll
+// @see http://browser.colla.me/show/disable_elastic_scroll_on_iOS_safari
+body {
+  height: 100%;
+  overflow: auto;
+  font-size: $base-font-size;
+}
+
+// Set box-sizing globally to handle padding and border widths
+html {
+  box-sizing: border-box;
+  display: block;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+// Removes webkit border when the element is on focus
+* {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: none;
+  // Firefox OS
+  background: linear-gradient(to bottom,transparent,transparent);
+}
+
+// Default body styles
+body {
+  background: $body-background;
+  color: $body-font-color;
+  padding: 0;
+  margin: 0;
+  font-family: $body-font-family;
+  font-weight: $body-font-weight;
+  font-style: $body-font-style;
+  line-height: 1.6;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Others
+label {
+  -webkit-appearance: none;
+}
+
+
+img {
+  // Grid Defaults to get images and embeds to work properly
+  max-width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+
+  // Get rid of gap under images by making them display: inline-block; by default
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a {
+  color: $global-primary;
+  text-decoration: none;
+}
+
+// Remove max-width style for map
+// TODO: add selectors like Baidu Map, Sogou Map, AutoNavi, .etc
+#map_canvas,
+.map_canvas {
+  img,
+  embed,
+  object {
+    max-width: none !important;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+// CSS transition helpers
+// Used by CollapseMixin
+// -----------------------------------------------------------------------------
+.#{$namespace}fade {
+  opacity: 0;
+  transition: opacity .2s linear;
+  &.#{$namespace}in {
+    opacity: 1;
+  }
+}
+
+.#{$namespace}collapsed {
+}
+
+.#{$namespace}collapse {
+  display: none;
+
+  &.#{$namespace}in {
+    display: block;
+  }
+}
+
+tr.#{$namespace}collapse.#{$namespace}in {
+  display: table-row;
+}
+
+tbody.#{$namespace}collapse.#{$namespace}in {
+  display: table-row-group;
+}
+
+.#{$namespace}collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height .3s ease;
+}

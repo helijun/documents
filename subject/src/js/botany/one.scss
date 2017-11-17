@@ -1,0 +1,62 @@
+.component-botany-one {
+    background-image: url('../../img/botany/text-bg.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+    
+    .m-header {
+        background-image: url('../../img/botany/text-header.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .m-article {
+        .el-article {
+            background-color: white;
+            margin: 0 4%;
+            box-sizing: border-box;
+            padding-top: -10%;
+            width: 90%;
+            margin: 0 5%;
+            margin-top: -25%;
+
+            img {
+                margin-top: -9.5%;
+                width: 80%;
+                margin-left: 10%;
+            }
+
+            .el-solid {
+                margin: 1rem;
+
+                .el-solid-xl {
+                    border: 2px solid #b00111;
+                }
+                .el-solid-l {
+                    border: 1px solid #b00111;
+                    margin-top: .2rem;
+                }
+            }
+            .el-text {
+                margin: 0 1rem;
+                overflow: auto;
+                height: 100%;
+                text-align: center;
+                
+                p {
+                    font-family: STZhongsong;
+                    font-size: 1.22rem;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    line-height: 2.23rem;
+                    letter-spacing: 0rem;
+                    color: #686868;
+                    padding-bottom: 1.8rem;
+                }
+            }
+        }
+    }
+    .m-footer {
+        background-image: url('../../img/botany/text-footer.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+}

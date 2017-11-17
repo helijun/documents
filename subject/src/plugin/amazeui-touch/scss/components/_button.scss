@@ -1,0 +1,155 @@
+// Amaze UI Touch: Button
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin button-size($size: $button-font-size) {
+  font-size: $size;
+}
+
+@mixin button-block() {
+  display: block;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@mixin button-style(
+  $background: $button-background,
+  $background-active: $button-background-active,
+  $color: $button-color,
+  $style: $button-style,
+  $radius: $button-radius
+) {
+  @if $style == hollow { // hollow style
+    border: 1px solid $background;
+    color: $background;
+
+    // hover/focus style is not needed for touch devices
+    &:active,
+    &.#{map_get($am-states, active)} {
+      background: $background;
+      color: islight($background);
+    }
+  } @else { // with background
+    @if $color == auto {
+      $color: islight($background);
+    }
+
+    background: $background;
+    border: 1px solid $background;
+    color: $color;
+
+    .#{$button-group-prefix} & {
+      border-color: scale-color($background, $lightness: -15%);
+    }
+
+    &:hover,
+    &:active,
+    &.#{map_get($am-states, active)} {
+      @if $background-active == auto {
+        $background-active: scale-color($background, $lightness: -15%);
+      }
+
+      background: $background-active;
+      border-color: $background-active;
+      color: $color;
+    }
+  }
+}
+
+@mixin button-disabled() {
+  opacity: $button-opacity-disabled;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@mixin button() {
+  display: inline-block;
+  border: 0;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  transition: .25s ease-out;
+  vertical-align: middle;
+
+  padding: $button-padding;
+  margin: $button-margin;
+  border-radius: $button-radius;
+
+  &:only-child {
+    margin-bottom: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @include button-size();
+  @include button-style($button-background, $button-background-active, $button-color, $button-style);
+}
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$button-prefix} {
+  @include button;
+
+  &[disabled],
+  &.#{map-get($am-states, disabled)} {
+    @include button-disabled;
+  }
+}
+
+@if $button-tag-selector {
+  button {
+    @extend .#{$button-prefix};
+  }
+}
+
+// Mofifiers: block
+// -----------------------------------------------------------------------------
+.#{$button-prefix}-block {
+  @include button-block();
+}
+
+// Modifiers: colors
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+  .#{$button-prefix}-#{$color-key} {
+    @include button-style($color, auto);
+  }
+}
+
+// Modifiers: sizes
+// -----------------------------------------------------------------------------
+@each $size-key, $size-size in $am-sizes {
+  .#{$button-prefix}-#{$size-key} {
+    @include button-size($size-size);
+  }
+}
+
+// Modifiers: hollow
+// -----------------------------------------------------------------------------
+.#{$button-prefix}-hollow {
+  background: transparent;
+
+  @include button-style($background: $gray-light, $style: hollow);
+
+  @each $color-key, $color in $am-colors {
+    &.#{$button-prefix}-#{$color-key} {
+      @include button-style($color, $style: hollow);
+    }
+  }
+}
+
+// M odifiers: radius
+// -----------------------------------------------------------------------------
+@each $radius-key, $radius in $am-radius {
+  .#{$button-prefix}-#{$radius-key} {
+    border-radius: $radius;
+  }
+}

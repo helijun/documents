@@ -1,0 +1,149 @@
+// Amaze UI Touch: NavBar
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+
+@mixin navbar-colors(
+  $background: $navbar-background,
+  $color: $navbar-color,
+  $item-style: true
+) {
+  background: $background;
+  color: $color;
+  @include retina-line-color(after, darken($background, 5));
+  // border-bottom: 1px solid darken($background, 5);
+
+
+  @if $item-style {
+    .#{$navbar-prefix}-nav-item {
+      color: darken(islight($background), 5%);
+    }
+  }
+}
+
+@mixin navbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: visible;
+  height: $navbar-height;
+  padding: $navbar-padding;
+  line-height: $navbar-line-height;
+
+  @include navbar-colors($navbar-background, $navbar-color, false);
+  @extend %retina-line-bottom-after;
+}
+
+.#{$navbar-prefix} {
+  @include navbar;
+}
+
+// Navbar Elements
+// -----------------------------------------------------------------------------
+
+// the title of the bar
+.#{$navbar-class-title} {
+  margin: 0;
+  font-size: 100%;
+  font-weight: bold;
+  color: inherit;
+}
+
+// left, right, and center sections
+.#{$navbar-class-left},
+.#{$navbar-class-center},
+.#{$navbar-class-right} {
+  display: block;
+  white-space: nowrap;
+  overflow: visible;
+
+  // only one section is in use, stretch it
+  &:first-child:last-child {
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.#{$navbar-prefix}-nav-item {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  @include navbar-item-android-uc-fallback();
+
+  & + & {
+    margin-left: rem-calc(10);
+  }
+}
+
+/*
+.#{$navbar-prefix}-nav-title {
+  & ~ .#{$navbar-prefix}-icon {
+    font-size: inherit;
+    line-height: normal;
+  }
+}
+*/
+
+.#{$navbar-prefix}-icon-sibling-of-title {
+  font-size: inherit;
+  line-height: normal;
+}
+
+
+// Order: left | center | right
+.#{$navbar-class-left} {
+  order: 1;
+  flex: 0 0 $navbar-side-width;
+  @include flex-basis-fallback($navbar-side-width);
+
+  .#{$navbar-prefix}-icon {
+    order: -1;
+  }
+}
+
+.#{$navbar-class-center} {
+  order: 2;
+  flex: 0 0 $navbar-center-width;
+  text-align: center;
+  @include flex-basis-fallback($navbar-center-width);
+}
+
+.#{$navbar-class-right} {
+  order: 3;
+  flex: 0 0 $navbar-side-width;
+  text-align: right;
+  @include flex-basis-fallback($navbar-side-width);
+}
+
+// only left + right
+.#{$navbar-class-left}:first-child {
+  flex: 1 1 auto;
+}
+
+.#{$navbar-class-left}:first-child + .#{$navbar-class-right}:last-child {
+  flex: 1 1 auto;
+}
+
+// only center + right
+.#{$navbar-class-center}:first-child:not(:last-child) {
+  margin-left: $navbar-side-width;
+}
+
+// only center + left
+.#{$navbar-class-center} + .#{$navbar-class-left} {
+  margin-right: -($navbar-side-width);
+}
+
+// Modifiers
+// -----------------------------------------------------------------------------
+$navbar-styles: map_merge($am-colors, (dark: $dark-alt)) !default;
+
+@each $color-key, $color in $navbar-styles {
+  .#{$navbar-prefix}-#{$color-key} {
+    @include navbar-colors($color, islight($color));
+  }
+}

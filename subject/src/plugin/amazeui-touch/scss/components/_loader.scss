@@ -1,0 +1,67 @@
+// Amaze UI Touch: Loading spinner
+//
+// @see https://github.com/rtheunissen/md-preloader
+// @see https://github.com/tobiasahlin/SpinKit
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$loader-prefix} {
+  display: inline-block;
+  text-align: center;
+
+  > div {
+    width: 16px;
+    height: 16px;
+    background-color: #888;
+    display: inline-block;
+    animation: amt-bouncedelay 1.4s infinite ease-in-out both;
+
+    + div {
+      margin-left: 5px;
+    }
+  }
+
+  .#{$loader-prefix}-bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  .#{$loader-prefix}-bounce2 {
+    animation-delay: -0.16s;
+  }
+
+  @keyframes amt-bouncedelay {
+    0%, 80%, 100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1.0);
+    }
+  }
+}
+
+// Modifiers: shape
+// -----------------------------------------------------------------------------
+.#{$loader-prefix}-rounded {
+  > div {
+    border-radius: 100%;
+  }
+}
+
+// Modifiers: colors
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+  .#{$loader-prefix}-#{$color-key} {
+    > div {
+      background-color: $color;
+    }
+  }
+}
+
+.#{$loader-prefix}-white {
+  > div {
+    background-color: #fff;
+  }
+}

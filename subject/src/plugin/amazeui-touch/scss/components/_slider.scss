@@ -1,0 +1,168 @@
+// Amaze UI Touch: Slider
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$slider-prefix} {
+  position: relative;
+
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.#{$slider-prefix}-slides {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+
+  > li {
+    position: relative;
+    display: none;
+    transition: transform $slider-duration ease-in-out;
+    backface-visibility: hidden;
+    perspective: 1000px;
+
+    > img,
+    > a > img {
+      display: block;
+      width: 100%;
+      height: auto;
+      line-height: 1;
+    }
+
+    &.next,
+    &.active.right {
+      left: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+    &.prev,
+    &.active.left {
+      left: 0;
+      transform: translate3d(-100%, 0, 0);
+    }
+    &.next.left,
+    &.prev.right,
+    &.active {
+      left: 0;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  > .active,
+  > .next,
+  > .prev {
+    display: block;
+  }
+
+  > .active {
+    left: 0;
+  }
+
+  > .next,
+  > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// Slider prev/next controls
+// -----------------------------------------------------------------------------
+.#{$slider-prefix}-control {
+}
+
+%slider-control-item {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  transform: translate3d(0, -50%, 0);
+  border-radius: 50%;
+  color: rgba($white, .7);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.#{$slider-prefix}-control-prev {
+  left: 10px;
+
+  @extend %slider-control-item;
+}
+
+.#{$slider-prefix}-control-next {
+  right: 10px;
+
+  @extend %slider-control-item;
+}
+
+// Slider indicators
+// -----------------------------------------------------------------------------
+.#{$slider-prefix}-indicators {
+  position: absolute;
+  bottom: $global-spacing;
+  left: 50%;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  transform: translate3d(-50%, 0, 0);
+
+  li {
+    display: block;
+    @include square(8px);
+    overflow: hidden;
+    text-indent: -999px;
+    border: 1px solid $slider-indicator-border-color;
+    border-radius: 10px;
+    cursor: pointer;
+
+    & + li {
+      margin-left: 8px;
+    }
+  }
+
+  .active {
+    background: $slider-indicator-active-bg;
+  }
+}
+
+// Slider thumbnails
+// -----------------------------------------------------------------------------
+.#{$slider-prefix}-thumbs {
+  display: flex;
+  margin: 5px 0 0;
+
+  li {
+    flex: 1;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity $slider-duration;
+
+    + li {
+      margin-left: 2px;
+    }
+  }
+
+  .#{map_get($am-states, active)} {
+    opacity: 1;
+  }
+}
+
+// Caption
+// -----------------------------------------------------------------------------
+.#{$slider-prefix}-caption {
+  position: absolute;
+  bottom: 20px;
+  z-index: 10;
+  width: 100%;
+  padding-top: $global-spacing;
+  padding-bottom: $global-spacing;
+  color: $slider-caption-color;
+  text-align: center;
+  text-shadow: $slider-text-shadow;
+}

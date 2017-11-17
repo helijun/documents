@@ -1,0 +1,132 @@
+// Amaze UI Touch: Form - progress and meter
+//
+// =============================================================================
+
+@import "../env";
+
+// variables
+// -----------------------------------------------------------------------------
+$meter-height: 1.5rem !default;
+$meter-background: #ddd !default;
+$meter-fill: $global-primary !default;
+$meter-fill-high: $global-success !default;
+$meter-fill-medium: $global-warning !default;
+$meter-fill-low: $global-alert !default;
+$meter-radius: 0 !default;
+
+// mixins
+// -----------------------------------------------------------------------------
+
+// Output
+// -----------------------------------------------------------------------------
+progress, meter {
+  @include no-appearance;
+  display: block;
+  width: 100%;
+  height: $meter-height;
+  margin-bottom: 1rem;
+
+  @if hasValue($meter-radius) {
+    border-radius: $meter-radius;
+  }
+
+  // For Firefox
+  background: $meter-background;
+  border: 0;
+}
+
+progress {
+  &::-webkit-progress-bar {
+    background: $meter-background;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-webkit-progress-value {
+    background: $meter-fill;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-moz-progress-bar {
+    background: $meter-fill;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  @each $name, $color in (
+      high: $meter-fill-high,
+      medium: $meter-fill-medium,
+      low: $meter-fill-low
+  ) {
+    &.#{$name} {
+      &::-webkit-progress-value {
+        background: $color;
+      }
+      &::-moz-progress-bar {
+        background: $color;
+      }
+    }
+  }
+}
+
+meter {
+  // Chrome/Safari
+  &::-webkit-meter-bar {
+    background: $meter-background;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-webkit-meter-inner-element {
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-webkit-meter-optimum-value {
+    background: $meter-fill-high;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-webkit-meter-suboptimum-value {
+    background: $meter-fill-medium;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &::-webkit-meter-even-less-good-value {
+    background: $meter-fill-low;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  // Firefox
+  background: $meter-background;
+  &::-moz-meter-bar {
+    background: $global-primary;
+    @if hasValue($meter-radius) {
+      border-radius: $meter-radius;
+    }
+  }
+
+  &:-moz-meter-optimum::-moz-meter-bar {
+    background: $meter-fill-high;
+  }
+
+  &:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: $meter-fill-medium;
+  }
+
+  &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: $meter-fill-low;
+  }
+}

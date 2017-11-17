@@ -1,0 +1,230 @@
+// Amaze UI Touch: List
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin list-item() {
+  min-height: rem-calc(44);
+  margin-bottom: -1px;
+  border: 1px solid $list-border-color;
+  border-width: 1px 0;
+}
+
+%list-item-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Output
+// -----------------------------------------------------------------------------
+
+.#{$list-prefix} {
+  margin: $list-margin;
+  padding: 0;
+  list-style: none;
+  background: $list-background;
+
+  // nested list
+  @extend %card-nested-component;
+}
+
+// list item
+.#{$item-prefix} {
+  @extend %list-item-layout;
+  padding: rem-calc(10) $global-spacing;
+  @include list-item;
+
+  // nested in card
+  .#{$card-prefix}-body & {
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// item: header
+.#{$item-prefix}-header {
+  min-height: 0;
+  padding: rem-calc(3) $global-spacing;
+  border-top: 1px solid $list-border-color;
+  background: #f7f7f7;
+  color: $gray-light;
+  @extend %text-truncate;
+}
+
+// item: linked
+.#{$item-prefix}-linked {
+  padding: 0;
+  > a {
+    @extend %list-item-layout;
+    width: 100%;
+    padding: rem-calc(10) $global-spacing * .5 rem-calc(10) $global-spacing;
+    color: $gray-darker;
+
+    &:active {
+      background: $gray-lighter;
+    }
+  }
+}
+
+.#{$item-prefix}-main {
+  @extend %list-item-layout;
+  flex: 1;
+}
+
+// item: title wrapper -> wrap: title, title after, chevron
+.#{$item-prefix}-title-row {
+  @extend %list-item-layout;
+  flex: 1;
+
+  & ~ [class*="#{$item-prefix}-"] {
+    margin-top: rem-calc(5);
+  }
+}
+
+// item: main -> title
+.#{$item-prefix}-title {
+  flex: 1;
+  margin: 0;
+  font-size: rem-calc(17);
+  font-weight: 500;
+}
+
+// link chevron
+.#{$item-prefix}-icon {
+  color: rgba($gray-light, .45);
+  font-size: rem-calc(20);
+}
+
+// item: title after
+.#{$item-prefix}-after {
+  color: $gray-light;
+  margin-left: rem-calc(5);
+
+  & + .#{$icon-prefix} {
+    margin-left: rem-calc(3);
+  }
+}
+
+.#{$item-prefix}-subtitle {
+  color: $gray;
+}
+
+.#{$item-prefix}-desc {
+  font-size: rem-calc(14);
+  color: $gray-light;
+  @include line-clamp();
+}
+
+// list with subtitle/description
+.#{$item-prefix}-content {
+  .#{$item-prefix}-main {
+    display: block;
+  }
+}
+
+// item: media
+.#{$item-prefix}-media {
+  & + .#{$item-prefix}-main {
+    margin-left: rem-calc(10);
+  }
+}
+
+// List item: field in item
+// -----------------------------------------------------------------------------
+%item-field {
+  border-color: #ddd;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .#{$field-prefix}-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.#{$item-prefix}-input {
+  @extend %item-field;
+
+  .#{$field-prefix}-label {
+    @include fixes-flexbox-for-android;
+    width: 35%;
+  }
+
+  input,
+  textarea {
+    flex: 1;
+
+    &,
+    &:hover,
+    &:focus {
+      margin: 0;
+      padding: unquote(get-side($form-padding, top) + rem-calc(1) + " " + 0);
+      border: none;
+    }
+  }
+}
+
+%item-radio-checkbox {
+  @extend %item-field;
+  padding: 0;
+
+  .#{$field-prefix}-container {
+    padding: 0 $global-spacing;
+
+    &:active {
+      background: $gray-lighter;
+    }
+  }
+
+  .#{$field-prefix}-label {
+    @include fixes-flexbox-for-android;
+    flex: 1;
+    padding: unquote(get-side($form-padding, top) + rem-calc(1) + " " + 0);
+    line-height: normal;
+  }
+
+  input {
+    display: none;
+
+    & + .#{$field-prefix}-icon {
+      display: none;
+      overflow: hidden;
+      border-radius: rem-calc(10);
+      color: $global-primary;
+      font-size: rem-calc(20);
+    }
+
+    &:checked + .#{$field-prefix}-icon {
+      display: block;
+    }
+  }
+}
+
+.#{$item-prefix}-checkbox,
+.#{$item-prefix}-radio {
+  @extend %item-radio-checkbox;
+}
+
+.#{$item-prefix}-checkbox {
+  .#{$field-prefix}-icon {
+    background: $global-primary;
+    color: $white !important;
+  }
+}
+
+// Modifiers: inset
+// -----------------------------------------------------------------------------
+.#{$list-prefix}-inset {
+  margin-left: $global-spacing;
+  margin-right: $global-spacing;
+}

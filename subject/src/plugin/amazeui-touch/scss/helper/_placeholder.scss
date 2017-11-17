@@ -1,0 +1,64 @@
+// animation
+// -----------------------------------------------------------------------------
+%force-hardware-acceleration {
+  @include force-hardware-acceleration();
+}
+
+
+// retina line
+// -----------------------------------------------------------------------------
+%retina-line-v-scale {
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    transform: scaleY(0.5) translateZ(0);
+  }
+  @media (-webkit-min-device-pixel-ratio: 3) {
+    transform: scaleY(.33) translateZ(0);
+  }
+}
+
+%retina-line-h-scale {
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    transform: scaleX(0.5) translateZ(0);
+  }
+  @media (-webkit-min-device-pixel-ratio: 3) {
+    transform: scaleX(.33) translateZ(0);
+  }
+}
+
+%retina-line-top-before {
+  @include retina-line(top, before);
+}
+
+%retina-line-bottom-after {
+  @include retina-line(bottom, after);
+}
+
+%retina-line-right-before {
+  @include retina-line(right, before);
+}
+
+
+// clearfix
+// -----------------------------------------------------------------------------
+%clearfix {
+  @include clearfix();
+}
+
+// card
+// -----------------------------------------------------------------------------
+%card-nested-component {
+  .#{$card-prefix}-body & {
+    margin: unquote(
+        "-" + get-side($card-padding, top) +
+            " -" + get-side($card-padding, right) +
+            " -" + get-side($card-padding, bottom) +
+            " -" + get-side($card-padding, left)
+    );
+  }
+}
+
+// Text helpers
+// -----------------------------------------------------------------------------
+%text-truncate {
+  @include text-overflow();
+}

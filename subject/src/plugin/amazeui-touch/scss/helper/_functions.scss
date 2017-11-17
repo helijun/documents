@@ -1,0 +1,170 @@
+// https://github.com/wilsonpage/sass-import-once
+// @mixin exports($name)
+
+
+// Strip Unit
+// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+//
+// @param {number} $num - Number to strip unit from.
+//
+// @return The same number, sans unit.
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// Turn to Degrees
+// Converts a turn unit to the equivalent unit in degrees. 1turn is equal to 360 degrees. Not all browsers support turn, so this function allows us to use turns while outputting a value that all browsers understand.
+//
+// @param {number} $value - Turn value to convert.
+//
+// @return The same value, but in degrees.
+@function to-deg($value) {
+  @return strip-unit($value) * 360deg;
+}
+
+// Convert to Rem
+// Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$rem-base` variable.
+//
+// @param {number} $value - Pixel value to convert.
+//
+// @return A number in rems, calculated based on the given value and the base pixel value.
+@function to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+// Rem Calculator
+// Converts one or more pixel values into matching rem values. This function works a lot like `convert-to-rem`, except it can convert more than one value at once, which is useful when setting multiple values on a `margin` or `padding` property.
+//
+// @param {number|list} $values - One or more values to convert. Be sure to separate them with spaces and not commas. If you need to convert a comma-separated list, wrap the list in parentheses.
+//
+// @return A list of converted values.
+@function rem-calc($values, $base-value: null) {
+  @if $base-value == null {
+    $base-value: $rem-base;
+  }
+  $max: length($values);
+
+  @if $max == 1 {
+    @return to-rem(nth($values, 1), $base-value);
+  }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, to-rem(nth($values, $i), $base-value));
+  }
+
+  @return $remValues;
+}
+
+/// Is It Light?
+/// Checks the lightness of $color, and if it passes the $threshold of lightness, it returns the `$yes` color. Otherwise, it returns the `$no` color. Use this function to dynamically output a foreground color based on a given background color.
+///
+/// @param {color} $color - Color to check the lightness of.
+/// @param {color} $yes - Color to return if $color is light.
+/// @param {color} $no - Color to return if $color is dark.
+/// @param {percentage} $threshold - Threshold of lightness to check against.
+///
+/// @return The $yes color or $no color.
+@function islight($color, $yes: #333, $no: #fff, $threshold: 60%) {
+  @if (lightness($color) > $threshold) {
+    @return $yes;
+  }
+  @else {
+    @return $no;
+  }
+}
+
+/// Smart Scale
+/// Scales a color to be lighter if it's light, or darker if it's dark. Use this function to "fade" a color appropriate to its lightness.
+///
+/// @param {color} $color - Color to scale.
+/// @param {percentage} $scale - Amount to scale up or down.
+/// @param {percentage} $threshold - Threshold of lightness to check against.
+///
+/// @return A scaled color.
+@function smartscale($color, $scale: 5%, $threshold: 60%) {
+  @if lightness($color) > $threshold {
+    $scale: -$scale;
+  }
+  @return scale-color($color, $lightness: $scale);
+}
+
+// Has Value
+//
+// @param $val - Value to check.
+// @return True if `$val` is not 0, null, or none.
+@function hasValue($val) {
+  @if $val == null or $val == none {
+    @return false;
+  }
+  @if type-of($val) == 'number' and strip-unit($val) == 0 {
+    @return false;
+  }
+  @return true;
+}
+
+
+// Get Side
+// @description Determine a top/right/bottom/right value on a padding, margin, etc.
+// @return A single value based on `$val` and `$side`.
+@function get-side($val, $side) {
+  $length: length($val);
+
+  @if $length == 1 {
+    @return $val;
+  }
+  @if $length == 2 {
+    @return map-get((
+        top: nth($val, 1),
+        bottom: nth($val, 1),
+        left: nth($val, 2),
+        right: nth($val, 2),
+    ), $side);
+  }
+  @if $length == 3 {
+    @return map-get((
+        top: nth($val, 1),
+        left: nth($val, 2),
+        right: nth($val, 2),
+        bottom: nth($val, 3),
+    ), $side);
+  }
+  @if $length == 4 {
+    @return map-get((
+        top: nth($val, 1),
+        right: nth($val, 2),
+        bottom: nth($val, 3),
+        left: nth($val, 4),
+    ), $side);
+  }
+}
+
+// Image triangle
+@function image-triangle($color: #000) {
+  $color: rgb(red($color), green($color), blue($color));
+  @return "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20version%3D%221.1%22%20width%3D%2232%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2020%22%3E%3Cpolygon%20points%3D%220%2C0%2032%2C0%2016%2C20%22%20style%3D%22fill%3A%20#{$color}%22%3E%3C/polygon%3E%3C/svg%3E";
+}
+
+@function pi() {
+  @return 3.14159265359;
+}
+
+
+// Map keys to comma separated selector
+// @see http://miphe.com/articles/dry-selectors
+// @see http://roytomeij.com/blog/2012/using-each-in-sass-to-create-selectors.html
+@function keys-to-selector($map, $prefix: '') {
+  $selector: ();
+
+  @if ($prefix != '') {
+    $prefix: '#{$prefix}-';
+  }
+
+  @each $key, $v in $map {
+    $selector: join($selector, unquote('.#{$prefix}#{$key}'), comma);
+  }
+
+  @return $selector;
+}

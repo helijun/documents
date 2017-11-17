@@ -1,0 +1,115 @@
+// Amaze UI Touch: Form - Range
+//
+// @see https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+// @see http://danielstern.ca/range.css/
+// =============================================================================
+
+@import "../env";
+
+// Variables
+// -----------------------------------------------------------------------------
+$range-background: #ddd !default;
+$range-height: 1rem !default;
+$range-radius: 0px !default;
+$range-thumb-height: 1.5rem !default;
+$range-thumb-color: $global-primary !default;
+$range-thumb-radius: 0px !default;
+
+// Output
+// -----------------------------------------------------------------------------
+input[type="range"] {
+  $margin: ($range-thumb-height - $range-height) / 2;
+
+  @include no-appearance;
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  margin-top: $margin;
+  margin-bottom: $margin;
+  border: 0;
+  line-height: 1;
+
+  @if hasValue($range-radius) {
+    border-radius: $range-radius;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  // Chrome/Safari
+  &::-webkit-slider-runnable-track {
+    height: $range-height;
+    background: $range-background;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: $range-thumb-color;
+    width: $range-thumb-height;
+    height: $range-thumb-height;
+    margin-top: -$margin;
+    border: none; // remove black border for Safari (iOS 9.2)
+
+    @if hasValue($range-thumb-radius) {
+      border-radius: $range-thumb-radius;
+    }
+  }
+
+  // Firefox
+  &::-moz-range-track {
+    -moz-appearance: none;
+    height: $range-height;
+    background: #ccc;
+  }
+
+  &::-moz-range-thumb {
+    -moz-appearance: none;
+    background: $range-thumb-color;
+    width: $range-thumb-height;
+    height: $range-thumb-height;
+    margin-top: -$margin;
+
+    @if hasValue($range-thumb-radius) {
+      border-radius: $range-thumb-radius;
+    }
+  }
+
+  // Internet Explorer
+  &::-ms-track {
+    height: $range-height;
+    background: $range-background;
+    color: transparent;
+    border: 0;
+    overflow: visible;
+    border-top: $margin solid $body-background;
+    border-bottom: $margin solid $body-background;
+  }
+
+  &::-ms-thumb {
+    background: $range-thumb-color;
+    width: $range-thumb-height;
+    height: $range-thumb-height;
+    border: 0;
+    @if hasValue($range-thumb-radius) {
+      border-radius: $range-thumb-radius;
+    }
+  }
+
+  &::-ms-fill-lower,
+  &::-ms-fill-upper {
+    background: $range-background;
+  }
+
+  .field-container & {
+    margin-top: 0.5rem + $margin;
+    margin-bottom: $global-padding + $margin;
+  }
+}
+
+output {
+  line-height: $range-thumb-height;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}

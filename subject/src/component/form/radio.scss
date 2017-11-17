@@ -1,0 +1,24 @@
+.component-form-radio {
+    .li-radio {
+        min-height: 14px;
+        min-width: 14px;
+        display: inline-block;
+    }
+    .li-radio-fire {
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-right: .2rem;
+        height: 16px;
+        width: 16px;
+    }
+    .li-radio-fire.select {
+        background-image: url('../../img/icon/fire-active.png')
+    }
+    .li-radio-fire.unselect {
+        background-image: url('../../img/icon/fire-pre.png')
+    }
+    .radio-text-fire {
+        color: #8c5420;
+    }
+
+}

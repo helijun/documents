@@ -1,0 +1,507 @@
+// =============================================================================
+// Amaze UI Mobile: Variables
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Global Variables
+// -----------------------------------------------------------------------------
+
+// Set classes namespace, e.g. `am-`
+$namespace: null !default;
+
+// This sets 1rem to be 16px
+$rem-base: 16px;
+
+// The default font-size is set to 100% of the browser style sheet (usually 16px)
+// for compatibility with browser-based text zoom or user-set defaults.
+
+// Since the typical default browser font-size is 16px, that makes the calculation for grid size.
+// If you want your base font-size to be different and not have it affect the grid breakpoints,
+// set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+$base-font-size: 100% !default;
+
+// $base-line-height is 24px while $base-font-size is 16px
+$base-line-height: 1.5 !default;
+
+// Define default font weights
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
+
+$font-size-xs: rem-calc(12) !default;
+$font-size-sm: rem-calc(14) !default;
+$font-size-default: rem-calc(16) !default;
+$font-size-lg: rem-calc(18) !default;
+$font-size-xl: rem-calc(20) !default;
+$font-size-xxl: rem-calc(24) !default;
+
+$black: #000 !default;
+$white: #fff !default;
+
+// Application Colors
+$global-primary: #0e90d2 !default;
+$global-secondary: lighten($global-primary, 15%) !default;
+$global-success: #5eb95e !default;
+$global-warning: #F37B1D !default;
+$global-alert: #dd514c !default;
+
+// @see http://sassme.arc90.com/
+$gray-darker: lighten($black, 13.5%) !default; // #222
+$gray-dark: lighten($black, 20%) !default;   // #333
+$gray: lighten($black, 33.5%) !default; // #555
+// $gray-light: lighten($black, 46.7%) !default; // #777
+$gray-light: lighten($black, 53.3%) !default; // #888
+$gray-lighter: lighten($black, 93.5%) !default; // #eee
+// 87.5 => #dfdfdf
+
+// @see https://github.com/winjs/winjs/blob/master/src/less/color-definitions.less
+$light-alt: #e6e6e6 !default;
+$light-base: $gray-dark !default;
+
+$dark-alt: #393939 !default;
+$dark-base: $white !default;
+
+
+// For internal use: a color map
+$am-colors: (
+    primary: $global-primary,
+    secondary: $global-secondary,
+    success: $global-success,
+    warning: $global-warning,
+    alert: $global-alert,
+    dark: $dark-alt
+);
+
+$am-sizes: (
+    xs: $font-size-xs,
+    sm: $font-size-sm,
+    lg: $font-size-lg,
+    xl: $font-size-xl
+);
+
+$am-states: (
+    active: #{$namespace}active,
+    disabled: #{$namespace}disabled
+);
+
+// Diffirent border-radius styles
+$global-radius: 4px !default;
+$global-rounded: 1000px !default;
+
+$am-radius: (
+  radius: $global-radius,
+  rounded: $global-rounded
+);
+
+// Default spacing
+$global-padding: 1rem !default;
+$global-margin: 1rem !default;
+$global-spacing: rem-calc(15) !default;
+
+// Font-families
+// @see https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$font-family-sans-serif: /* 1 */ -apple-system, BlinkMacSystemFont,
+  /* 2 */ "PingFang SC", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "wenquanyi micro hei",
+  /* 3 */ "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, SimSun, serif !default; // FangSong, STFangSong
+$font-family-monospace: Monaco, Menlo, Consolas, "Courier New", monospace !default;
+
+// Z-index
+$z-index-view-top: 20 !default;
+$z-index-view-bottom: $z-index-view-top - 10 !default;
+
+$z-index-base: 1000 !default;
+$z-index-modal: $z-index-base + 10 !default;
+$z-index-notification: $z-index-base + 100 !default;
+$z-index-offcanvas: $z-index-base + 20 !default;
+$z-index-popover: $z-index-base + 30 !default;
+
+
+// -----------------------------------------------------------------------------
+// Components Variables
+// -----------------------------------------------------------------------------
+
+// Compatibility
+// - set NavBar & Col width for browsers which don't support flex-basis
+// -----------------------------------------------------------------------------
+$legacy-flexbox-support: true !default;
+
+// Base
+// -----------------------------------------------------------------------------
+$body-background: #f4f4f4 !default;
+$body-font-color: $gray-dark !default;
+$body-font-family: $font-family-sans-serif;
+$body-font-weight: $font-weight-normal !default;
+$body-font-style: normal !default;
+
+
+// Accordion Variables
+// -----------------------------------------------------------------------------
+$accordion-prefix: #{$namespace}accordion !default;
+$accordion-background: $white !default;
+$accordion-border: 1px solid #eee !default;
+
+
+// Badge Variables
+// -----------------------------------------------------------------------------
+$badge-prefix: #{$namespace}badge !default;
+$badge-fontsize: .8rem !default;
+$badge-padding: ($global-padding / 3) ($global-padding / 2) !default;
+$badge-radius: 0 !default;
+$badge-background: $light-alt !default;
+$badge-color: islight($badge-background) !default;
+
+
+// Button Variables
+// -----------------------------------------------------------------------------
+$button-prefix: #{$namespace}btn !default;
+$button-group-prefix: #{$namespace}btn-group !default;
+$button-padding: 0.75em 1em !default; // 10px 15px
+$button-margin: 0 $global-padding $global-padding 0 !default;
+$button-style: solid !default;
+$button-background: $light-alt !default;
+$button-background-active: scale-color($button-background, $lightness: -15%) !default;
+$button-color: auto !default;
+$button-radius: 0 !default;
+$button-font-size: $font-size-default !default;
+$button-opacity-disabled: 0.5 !default;
+$button-tag-selector: false !default;
+
+
+// Button Group Variables
+// -----------------------------------------------------------------------------
+
+
+// Card Variables
+// -----------------------------------------------------------------------------
+$card-prefix: #{$namespace}card !default;
+$card-margin: rem-calc(10) $global-spacing !default;
+$card-padding: rem-calc(20) $global-spacing !default;
+$card-background: $white !default;
+$card-color: islight($card-background) !default;
+
+
+// Container Variables
+// -----------------------------------------------------------------------------
+$container-prefix: #{$namespace}container !default;
+
+
+// Form Variables
+// -----------------------------------------------------------------------------
+$form-prefix: #{$namespace}form;
+$field-prefix: #{$namespace}field;
+
+$form-fontsize: 1rem !default;
+$form-padding: 0.75rem 0.5rem !default;
+
+// Text fields
+// datetime has been removed from WHATWG HTML
+// @see https://github.com/whatwg/html/issues/336
+$text-field-selectors: 'input[type="text"],
+                        input[type="password"],
+                        input[type="date"],
+                        input[type="datetime"],
+                        input[type="datetime-local"],
+                        input[type="month"],
+                        input[type="week"],
+                        input[type="time"],
+                        input[type="email"],
+                        input[type="tel"],
+                        input[type="url"],
+                        input[type="number"],
+                        input[type="search"],
+                        input[type="color"],
+                        textarea';
+$text-field-color: $gray-darker !default;
+$text-field-color-hover: $text-field-color !default;
+$text-field-color-focus: $text-field-color !default;
+$text-field-background: #fff !default;
+$text-field-background-hover: $text-field-background !default;
+$text-field-background-focus: $text-field-background !default;
+$text-field-background-disabled: smartscale($text-field-background) !default;
+$text-field-border: #ccc !default;
+$text-field-border-hover: #bbb !default;
+$text-field-border-focus: #999 !default;
+$text-field-cursor-disabled: not-allowed !default;
+
+// Labels
+$form-label-fontsize: 1rem !default;
+$form-label-margin: 0.5rem !default;
+$form-label-color: #333 !default;
+
+// Select
+$select-color: $gray-darker !default;
+$select-background: #fafafa !default;
+$select-background-hover: smartscale($select-background, 4%) !default;
+$select-arrow: true !default;
+$select-arrow-color: $select-color !default;
+
+// Field group
+$field-group-prefix: #{$namespace}field-group;
+$field-group-color: #333 !default;
+$field-group-background: #eee !default;
+$field-group-border: $text-field-border !default;
+
+
+// Grid Variables
+// -----------------------------------------------------------------------------
+$grid-prefix: #{$namespace}g !default;
+$col-prefix: #{$namespace}col !default;
+$grid-padding: rem-calc(10) !default;
+$grid-aligns: (
+  left: flex-start,
+  right: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+) !default;
+$total-columns: 6 !default;
+
+
+// Group Variables
+// -----------------------------------------------------------------------------
+$group-prefix:  #{$namespace}group !default;
+$group-header-color: #6d6d72 !default;
+$group-header-font-size: $font-size-sm !default;
+
+
+// Icon Variables
+// -----------------------------------------------------------------------------
+// font list: (font-family, font-weight, font-style, src)
+$icon-prefix: #{$namespace}icon !default;
+$ratchicons-path: '/fonts/' !default;
+$icon-fonts: (
+  Ratchicons: (
+    weight: normal,
+    style: normal,
+    src: unquote(
+        'url("#{$ratchicons-path}ratchicons.woff2") format("woff2"),
+        url("#{$ratchicons-path}ratchicons.woff") format("woff"),
+        url("#{$ratchicons-path}ratchicons.ttf") format("truetype");'
+    )
+  ),
+) !default;
+// $icon-font-family: Ratchicons, sans-serif !default;
+$icon-font-size: 24px !default;
+$icons: (
+  back: \e80a,
+  bars: \e80e,
+  caret: \e80f,
+  check: \e810,
+  close: \e811,
+  code: \e812,
+  compose: \e813,
+  download: \e815,
+  edit: \e829,
+  forward: \e82a,
+  gear: \e821,
+  home: \e82b,
+  info: \e82c,
+  list: \e823,
+  more-vertical: \e82e,
+  more: \e82f,
+  pages: \e824,
+  pause: \e830,
+  person: \e832,
+  play: \e816,
+  plus: \e817,
+  refresh: \e825,
+  search: \e819,
+  share: \e81a,
+  sound: \e827,
+  sound2: \e828,
+  sound3: \e80b,
+  sound4: \e80c,
+  star-filled: \e81b,
+  star: \e81c,
+  stop: \e81d,
+  trash: \e81e,
+  up-nav: \e81f,
+  up: \e80d,
+  right-nav: \e818,
+  right: \e826,
+  down-nav: \e814,
+  down: \e820,
+  left-nav: \e82d,
+  left: \e822
+) !default;
+
+
+// List Variables
+// -----------------------------------------------------------------------------
+$list-prefix: #{$namespace}list !default;
+$item-prefix: #{$namespace}item !default;
+$list-margin: $global-spacing * 2 0 !default;
+$list-background: $white !default;
+$list-border-color: $light-alt !default;
+
+
+// Loader Variables
+// -----------------------------------------------------------------------------
+$loader-prefix: #{$namespace}loader !default;
+$loader-width: 32px !default;
+$loader-color: $gray-light !default;
+
+
+// Modal Variables
+// -----------------------------------------------------------------------------
+$modal-prefix: #{$namespace}modal !default;
+$modal-width: 270px !default;
+$modal-background: #f8f8f8 !default;
+$modal-btn-color: $global-primary !default;
+$modal-btn-bg: $modal-background !default;
+$modal-btn-active-bg: #d4d4d4 !default;
+$modal-duration: .3s !default;
+$modal-border-color: #dedede !default;
+
+$modal-actions-btn-bg: rgba(243, 243, 243, 0.95) !default;
+$modal-actions-active-btn-bg: #dcdcdc !default;
+
+$modal-popup-prefix: #{$namespace}popup !default;
+$modal-popup-title-height: 44 !default;
+
+
+// Navbar Variables
+// -----------------------------------------------------------------------------
+$navbar-prefix: #{$namespace}navbar !default;
+$navbar-class-center: #{$navbar-prefix}-center !default;
+$navbar-class-left: #{$navbar-prefix}-left !default;
+$navbar-class-right: #{$navbar-prefix}-right !default;
+$navbar-class-title: #{$navbar-prefix}-title !default;
+
+$navbar-height-px: 44 !default;
+$navbar-height: rem-calc($navbar-height-px) !default;
+$navbar-center-width: 50% !default;
+$navbar-side-width: (100% - $navbar-center-width) / 2 !default;
+$navbar-background: $gray-lighter !default;
+$navbar-color: $gray-dark !default;
+$navbar-padding: 0 rem-calc(10) !default;
+$navbar-line-height: rem-calc($navbar-height-px - 1);
+
+
+// Notification Variables
+// -----------------------------------------------------------------------------
+$notification-prefix: #{$namespace}notification !default;
+$notification-padding: rem-calc(10) $global-padding !default;
+$notification-background: $gray-darker !default;
+$notification-color: $white!default;
+
+
+// OffCanvas Variables
+// -----------------------------------------------------------------------------
+$offcanvas-prefix: #{$namespace}offcanvas !default;
+$offcanvas-width: rem-calc(270);
+$offcanvas-background: $white !default;
+$offcanvas-duration: .4s !default;
+$offcanvas-timing-function: ease-in-out !default;
+
+
+// Popover Variables
+// -----------------------------------------------------------------------------
+$popover-prefix: #{$namespace}popover !default;
+$popover-width: rem-calc(240);
+$popover-background: $white !default;
+$popover-border: #ddd !default;
+$popover-color: $gray-dark !default;
+$popover-duration: .3s !default;
+$popover-angle-size: 8px !default;
+
+
+// Slider Variables
+// -----------------------------------------------------------------------------
+$slider-prefix: #{$namespace}slider !default;
+$slider-duration: .5s;
+$slider-text-shadow: 0 1px 2px rgba(0, 0, 0, .6) !default;
+$slider-indicator-active-bg: $white !default;
+$slider-indicator-border-color: $white !default;
+$slider-caption-color: $white !default;
+
+
+// Switch Variables
+// -----------------------------------------------------------------------------
+$switch-prefix: #{$namespace}switch !default;
+$switch-background: #aaa !default;
+$switch-background-active: $global-primary !default;
+$switch-inner-background: $white !default;
+$switch-radius: 9999px !default;
+
+
+// TabBar Variables
+// -----------------------------------------------------------------------------
+$tabbar-prefix: #{$namespace}tabbar !default;
+$tabbar-height-px: 49 !default;
+$tabbar-height: rem-calc($tabbar-height-px) !default;
+$tabbar-padding-horizontal: $global-padding !default;
+$tabbar-background: $light-alt !default;
+$tabbar-color: $gray-light!default;
+
+
+// Tabs Variables
+// -----------------------------------------------------------------------------
+$tabs-prefix: #{$namespace}tabs !default;
+$tab-prefix: #{$namespace}tab !default;
+$tabs-background: $white !default;
+
+
+// Typography
+// -----------------------------------------------------------------------------
+
+// Headers
+$header-font-weight: $font-weight-bold;
+$header-font-color: $gray-darker !default;
+$header-line-height: 1.2 !default;
+$header-top-margin: 1.5em !default;
+$header-bottom-margin: $global-margin !default;
+
+// We use these to control header font sizes
+$h1-font-size: rem-calc(24) !default;
+$h2-font-size: rem-calc(22) !default;
+$h3-font-size: rem-calc(20) !default;
+$h4-font-size: rem-calc(18) !default;
+$h5-font-size: rem-calc(16) !default;
+$h6-font-size: rem-calc(14) !default;
+
+// Paragraph
+// We use these to style paragraphs
+$paragraph-font-size: 1rem !default;
+$paragraph-line-height: 1.6 !default;
+
+// Lists
+$list-line-height: $paragraph-line-height !default;
+$list-side-padding: 2em !default;
+$dl-header-weight: $font-weight-bold !default;
+$dl-header-margin-bottom: rem-calc(10) !default;
+$dl-margin-bottom: rem-calc(12) !default;
+
+// Blockquotes
+$blockquote-font-family: $font-family-serif;
+$blockquote-padding: rem-calc(10 10 10 15) !default;
+$blockquote-border: 3px solid #ddd !default;
+$blockquote-cite-font-size: rem-calc(13) !default;
+$blockquote-cite-font-color: $gray !default;
+$blockquote-cite-link-color: $blockquote-cite-font-color !default;
+
+// <hr>
+$hr-border-width: 1px !default;
+$hr-border-style: solid !default;
+$hr-border-color: #ddd !default;
+$hr-margin: rem-calc(20) !default;
+
+
+// View
+// -----------------------------------------------------------------------------
+$views-prefix: #{$namespace}views !default;
+$view-prefix: #{$namespace}view !default;
+
+$view-transition-duration: .5s;
+$view-transition-timing-function: cubic-bezier(.36, .66, .04, 1) !default;
+// cubic-bezier(0.03, 0.76, 0.31, 1.0);
+// cubic-bezier(0.1,0.9,0.2,1);
+// cubic-bezier(0.84, 0, 1, 0.32) !default;
+// cubic-bezier(.36, .66, .04, 1) !default; // iOS
+
+
+// Compatibility fallback
+// -----------------------------------------------------------------------------
+
+// FUCK Android UC class namespace
+$android-legacy-flexbox: 'fb-legacy-flexbox';

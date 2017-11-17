@@ -1,0 +1,105 @@
+// Amaze UI Touch: TabBar
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+
+@mixin tabbar-style(
+  $background: $tabbar-background
+) {
+  background: $background;
+  // border-top: 1px solid darken($background, 5);
+
+  // Retina border top color
+  @include retina-line-color(before, darken($background, 8));
+}
+
+@mixin tabbar-link-color(
+  $color: $tabbar-color,
+  $active-color: $global-primary
+) {
+  &,
+  & a {
+    color: $color;
+  }
+
+  > .#{map_get($am-states, active)} {
+    // background: smartscale($background, 7%);
+    &,
+    & a {
+      color: $active-color;
+    }
+  }
+}
+
+
+// Output
+// -----------------------------------------------------------------------------
+
+.#{$tabbar-prefix} {
+  display: flex;
+  width: 100%;
+  height: $tabbar-height;
+  padding: 0 $tabbar-padding-horizontal;
+
+  @include tabbar-style();
+  @include tabbar-link-color();
+  @extend %retina-line-top-before;
+}
+
+.#{$tabbar-prefix}-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .#{$icon-prefix} {
+    position: relative;
+  }
+
+  .#{$badge-prefix} {
+    position: absolute;
+    left: 100%;
+    top: -2px;
+    margin-left: -10px;
+    padding: 2px 5px;
+    font-size: rem-calc(10);
+    min-width: 0;
+  }
+
+  &.#{map_get($am-states, active)} {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.#{$tabbar-prefix}-label {
+  position: relative;
+  display: block;
+  text-align: center;
+
+  @extend %text-truncate;
+
+  .#{$icon-prefix} ~ & {
+    font-size: rem-calc(10);
+  }
+}
+
+// Modifiers
+// -----------------------------------------------------------------------------
+$tabbar-styles: map_merge($am-colors, (dark: $dark-alt)) !default;
+
+@each $color-key, $color in $tabbar-styles {
+  .#{$tabbar-prefix}-#{$color-key} {
+    @include tabbar-style($color);
+  }
+}
+
+// common style
+#{keys-to-selector($tabbar-styles, $tabbar-prefix)} {
+  @include tabbar-link-color(#dedede, $white);
+}

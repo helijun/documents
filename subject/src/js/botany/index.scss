@@ -1,0 +1,73 @@
+.component-botany-index {
+    img {
+        width: 100%;
+    }
+    .m-flow {
+        background-image: url('../../img/botany/flow-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .el-flow-bg {
+            position: relative;
+            background-image: url('../../img/botany/flow-four.png');
+            background-repeat: no-repeat;
+            width: 75%;
+            margin-left: 12.5%;
+            background-size: 100%;
+
+            a {
+                display: block;
+            }
+
+            .el-guide {
+                position: absolute;
+                height: 35px;
+                width: 35px;
+                animation-name: 'scale-xl';/*动画属性名，也就是我们前面keyframes定义的动画名*/
+                animation-duration: 0.5s;/*动画持续时间*/
+                animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/
+                animation-delay: 0s;/*动画延迟时间*/
+                animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
+                animation-direction: alternate;/*定义动画方式*/
+            }
+
+            .el-guide1 {
+                top: 2rem;
+                right: 18%;
+            }
+            .el-guide2 {
+                top: 41%;
+                right: 34%;
+            }
+            .el-guide3 {
+                top: 62%;
+                right: -7%;
+            }
+            .el-guide4 {
+                bottom: 1%;
+                right: 29%;
+            }
+        }
+    }
+    .m-footer {
+        background-image: url('../../img/botany/index-footer.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+
+        .el-footer-btn {
+            background-image: url('../../img/botany/btn.png');
+            background-repeat: no-repeat;
+            background-size: 100%;
+            height: 3.69rem;
+            width: 10rem;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            margin-left: -5rem;
+        }
+    }
+    
+    
+}

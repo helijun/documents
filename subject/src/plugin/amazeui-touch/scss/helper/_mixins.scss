@@ -1,0 +1,190 @@
+// Clearfix
+// @see http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Sizing
+// -----------------------------------------------------------------------------
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+  @include size($size, $size);
+}
+
+// TODO: add scrollableX & scrollableY
+@mixin scrollable() {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Text
+// -----------------------------------------------------------------------------
+
+// Text overflow
+// Requires inline-block or block for proper styling
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line clamp
+// http://dropshado.ws/post/1015351370/webkit-line-clamp
+@mixin line-clamp($lines: 2, $line-height: 1.3em) {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines; // number of lines to show
+  overflow: hidden;
+  line-height: $line-height;
+  max-height: $line-height * $lines;
+}
+
+// Form
+// -----------------------------------------------------------------------------
+
+// Disable OS-level styles
+@mixin no-appearance {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+// Shape
+// -----------------------------------------------------------------------------
+/// CSS Triangle
+/// Creates a CSS triangle, which can be used for dropdown arrows, popup tails, and more. Use this mixin inside a `&::before` or `&::after` selector, to attach the triangle to an existing element.
+///
+/// @param {number} $triangle-size - Width of the triangle.
+/// @param {color} $triangle-color - Color of the triangle.
+/// @param {keyword} $triangle-direction - Direction the triangle points. Can be `top`, `right`, `bottom`, or `left`.
+@mixin css-triangle($triangle-size, $triangle-color, $triangle-direction) {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: inset $triangle-size;
+  @if ($triangle-direction == top) {
+    border-color: $triangle-color transparent transparent transparent;
+    border-top-style: solid;
+  }
+  @if ($triangle-direction == bottom) {
+    border-color: transparent transparent $triangle-color transparent;
+    border-bottom-style: solid;
+  }
+  @if ($triangle-direction == left) {
+    border-color: transparent transparent transparent $triangle-color;
+    border-left-style: solid;
+  }
+  @if ($triangle-direction == right) {
+    border-color: transparent $triangle-color transparent transparent;
+    border-right-style: solid;
+  }
+}
+
+
+// Retina hairline
+// @see https://gist.github.com/w0rm/c0dd4b7aed71acc03900
+// @see http://dieulot.net/css-retina-hairline
+// -----------------------------------------------------------------------------
+$rl-pseudo-element: (
+  top: before,
+  right: after,
+  bottom: after,
+  left: before,
+);
+
+@mixin rl-get-size($position) {
+  @if ($position == top or $position == bottom) {
+    @include size(100%, 1px);
+  } @else {
+    @include size(1px, 100%);
+  }
+}
+
+// simulate a 1px border on retina screens
+@mixin rl-get-scale($position) {
+  @if ($position == top or $position == bottom) {
+    @extend %retina-line-v-scale;
+  } @else {
+    @extend %retina-line-h-scale;
+  }
+}
+
+// @param {top|right|bottom|left} $position - line position
+// @param {before|after} $element - pseudo element
+// @param {String} $color - border color
+@mixin retina-line($position: top, $element: before, $color: #d8d8d8) {
+  $transform-origin-map: (
+    top: 50% 0,
+    right: 100% 50%,
+    bottom: 50% 100%,
+    left: 0 50%,
+  );
+
+  position: relative;
+
+  &:#{$element} {
+    content: "";
+    position: absolute;
+
+    @if ($position == top or $position == left) {
+      top: 0;
+      left: 0;
+      bottom: auto;
+      right: auto;
+    } @else if ($position == right) {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+    } @else if ($position == bottom) {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+    }
+
+    z-index: 15;
+    display: block;
+    box-sizing: content-box;
+    background-color: transparent; // $color;
+    // fixes Android rending: 1px width scale(0.5) not work well on Android
+    border-#{$position}: 1px solid $color;
+    @include rl-get-size($position);
+    transform-origin: map_get($transform-origin-map, $position);
+    @include rl-get-scale($position);
+  }
+}
+
+@mixin retina-line-color($element, $color) {
+  &:#{$element} {
+    border-color: $color;
+  }
+}
+
+@mixin retina-line-remove($element) {
+  &:#{$element} {
+    display: none;
+  }
+}
+
+// Animation
+// -----------------------------------------------------------------------------
+
+@mixin force-hardware-acceleration {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}

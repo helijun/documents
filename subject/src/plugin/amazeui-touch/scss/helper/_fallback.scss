@@ -1,0 +1,30 @@
+// Browser compatibility fallback
+// -----------------------------------------------------------------------------
+
+// 在安卓里 flex 里的子元素一定要是 block 元素，如果用行内元素 可以用flex-inline。
+// (不过 flex-inline 兼容也不好，所以全改成块元素就好了)
+// @see https://github.com/amazeui/amazeui-touch/issues/12#issuecomment-169879658
+@mixin fixes-flexbox-for-android {
+  display: block;
+}
+
+// flex-basis fallback
+@mixin flex-basis-fallback($width) {
+  @if $legacy-flexbox-support {
+    .#{$android-legacy-flexbox} & {
+      width: $width;
+    }
+  }
+}
+
+// 安卓 UC UA 检测
+// - 解决 NavBar `.navbar-nav-item` 使用 inline-flex 以后宽度异常问题
+// - 测试环境：MI4 / Android 6.0.1 / MIUI 7 6.4.14 开发版
+// - 负面影响: 产生左侧的链接 icon 和 tile 顺序不对（`order` 失效）问题 -> JS 中已调整顺序
+@mixin navbar-item-android-uc-fallback() {
+  @if $legacy-flexbox-support {
+    .#{$android-legacy-flexbox} & {
+      display: inline-block;
+    }
+  }
+}

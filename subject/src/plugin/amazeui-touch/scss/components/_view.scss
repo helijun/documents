@@ -1,0 +1,211 @@
+// Amaze UI Touch: View
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+
+// View Container
+.#{$views-prefix} {
+  position: relative;
+  flex: 1 1 0;
+  @include square(100%);
+  overflow: hidden;
+}
+
+// View
+.#{$view-prefix} {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include square(100%);
+  overflow: hidden;
+  background: $body-background;
+
+  backface-visibility: hidden;
+  // transform: translateZ(0);
+
+  & > .#{$container-prefix} {
+    flex: 1 1 0;
+  }
+}
+
+// Animations
+// -----------------------------------------------------------------------------
+
+// sfl: Show From Left
+@keyframes amt-view-sfl-enter {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes amt-view-sfl-leave {
+  /*from {
+    transform: translate3d(0, 0, 0);
+  }*/
+  to {
+    opacity: .75;
+    transform: translate3d(25%, 0, 0);
+  }
+}
+
+
+// Show From Right
+@keyframes amt-view-sfr-enter {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes amt-view-sfr-leave {
+  to {
+    opacity: .75;
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+
+// REVEAL
+// -----------------------------------------------------------------------------
+
+// Reveal From Feft
+@keyframes amt-view-rfl-enter {
+  from {
+    opacity: .75;
+    transform: translate3d(75%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes amt-view-rfl-leave {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+// Reveal From Right
+@keyframes amt-view-rfr-enter {
+  from {
+    opacity: .75;
+    transform: translate3d(-25%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes amt-view-rfr-leave {
+  to {
+    opacity: 0.75;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+
+// Transition: Show
+// sfl: show-from-left
+// sfr: show-from-right
+// -----------------------------------------------------------------------------
+
+%view-transition-common {
+  animation-duration: $view-transition-duration;
+  animation-timing-function: $view-transition-timing-function;
+  animation-fill-mode: forwards;
+}
+
+.#{$view-prefix}-transition-sfr-enter-active,
+.#{$view-prefix}-transition-sfl-enter-active {
+  pointer-events: none;
+  z-index: $z-index-view-top;
+}
+
+.#{$view-prefix}-transition-sfr-leave,
+.#{$view-prefix}-transition-sfl-leave {
+  pointer-events: none;
+  z-index: $z-index-view-bottom;
+}
+
+// animation common
+.#{$view-prefix}-transition-sfl-enter-active,
+.#{$view-prefix}-transition-sfl-leave,
+.#{$view-prefix}-transition-sfr-enter-active,
+.#{$view-prefix}-transition-sfr-leave {
+  @extend %view-transition-common;
+}
+
+.#{$view-prefix}-transition-sfr-enter-active {
+  animation-name: amt-view-sfr-enter;
+}
+
+.#{$view-prefix}-transition-sfl-enter-active {
+  animation-name: amt-view-sfl-enter;
+}
+
+.#{$view-prefix}-transition-sfr-leave {
+  animation-name: amt-view-sfr-leave;
+}
+
+.#{$view-prefix}-transition-sfl-leave {
+  animation-name: amt-view-sfl-leave;
+}
+
+
+// Transition: Reveal
+// rfr: reveal from right
+// rfl: reveal from left
+// -----------------------------------------------------------------------------
+
+.#{$view-prefix}-transition-rfr-enter-active,
+.#{$view-prefix}-transition-rfl-enter-active {
+  pointer-events: none;
+  z-index: $z-index-view-bottom;
+}
+
+.#{$view-prefix}-transition-rfr-leave,
+.#{$view-prefix}-transition-rfl-leave {
+  pointer-events: none;
+  z-index: $z-index-view-top;
+}
+
+// animation common
+.#{$view-prefix}-transition-rfl-enter-active,
+.#{$view-prefix}-transition-rfl-leave,
+.#{$view-prefix}-transition-rfr-enter-active,
+.#{$view-prefix}-transition-rfr-leave {
+  @extend %view-transition-common;
+}
+
+.#{$view-prefix}-transition-rfr-enter-active {
+  animation-name: amt-view-rfr-enter;
+}
+
+.#{$view-prefix}-transition-rfr-leave {
+  animation-name: amt-view-rfr-leave;
+}
+
+.#{$view-prefix}-transition-rfl-enter-active {
+  animation-name: amt-view-rfl-enter;
+}
+
+.#{$view-prefix}-transition-rfl-leave {
+  animation-name: amt-view-rfl-leave;
+}

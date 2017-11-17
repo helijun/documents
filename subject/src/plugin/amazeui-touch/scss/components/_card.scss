@@ -1,0 +1,85 @@
+// Amaze UI Touch: Card
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin card-style(
+  $background: $card-background,
+  $color: $card-color
+) {
+  @if ($color == 'auto') {
+    $color: islight($background);
+  }
+
+  background: $background;
+  color: $color;
+}
+
+// general style for card-element
+%card-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: rem-calc(44);
+  padding: $card-margin;
+}
+
+
+// output
+// -----------------------------------------------------------------------------
+
+.#{$card-prefix} {
+  margin: $card-margin;
+  // fixes box-shadow
+  // @see http://stackoverflow.com/questions/26407299/ios-8-box-shadow-on-iphone-6-plus
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  @include card-style();
+}
+
+.#{$card-prefix}-header {
+  @extend %card-section;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+// header with cover
+.#{$card-prefix}-cover {
+  background-size: cover;
+  background-position: center;
+  min-height: rem-calc(160); // TODO: to vh?
+  color: darken($white, 5%);
+
+  &.#{$card-prefix}-header {
+    align-items: flex-end;
+  }
+
+  .#{$card-prefix}-title {
+    color: inherit;
+  }
+}
+
+.#{$card-prefix}-title {
+  font-size: rem-calc(16);
+  margin: 0;
+}
+
+.#{$card-prefix}-body {
+  padding: $card-padding;
+  line-height: 1.6;
+}
+
+.#{$card-prefix}-footer {
+  @extend %card-section;
+  border-top: 1px solid #eee;
+  font-size: $font-size-sm;
+  color: $gray-light;
+}
+
+// TODO: mofidiers
+// modifiers
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+
+}

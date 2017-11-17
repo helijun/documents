@@ -1,0 +1,73 @@
+// Amaze UI Touch: Badge
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin badge-layout(
+  $fontsize: $badge-fontsize,
+  $padding: $badge-padding
+) {
+  font-size: $fontsize;
+  padding: $padding;
+}
+
+@mixin badge-style(
+  $background: $badge-background,
+  $color: $badge-color,
+  $radius: $badge-radius
+) {
+  background: $background;
+  border-radius: $radius;
+
+  @if $color == auto {
+    color: islight($background);
+  } @else {
+    color: $color;
+  }
+}
+
+@mixin badge(
+  $background: $badge-background,
+  $color: $badge-color,
+  $radius: $badge-radius,
+  $fontsize: $badge-fontsize,
+  $padding: $badge-padding
+) {
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: default;
+  min-width: 1.5rem;
+
+  @include badge-layout($fontsize, $padding);
+  @include badge-style($background, $color, $radius);
+}
+
+
+.#{$badge-prefix} {
+  @include badge();
+}
+
+// modifiers: colors
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+  .#{$badge-prefix}-#{$color-key} {
+    @include badge-style($color, auto);
+  }
+}
+
+// modifiers: radius
+// -----------------------------------------------------------------------------
+@each $radius-key, $radius in $am-radius {
+  .#{$badge-prefix}-#{$radius-key} {
+    border-radius: $radius;
+  }
+}
+
+.doc-content {
+  .badge {
+    margin: 5px;
+  }
+}

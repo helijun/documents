@@ -1,0 +1,50 @@
+// Amaze UI Touch: Icons
+//
+// @via https://github.com/twbs/ratchet/tree/master/fonts
+// @licence MIT
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+@each $family, $map in $icon-fonts {
+  @font-face {
+    font-family: $family;
+    font-weight: map_get($map, weight);
+    font-style: map_get($map, style);
+    src: map_get($map, src);
+  }
+}
+
+%font-icon {
+  $font-family: '';
+  @each $family, $map in $icon-fonts {
+    $font-family: unquote('#{$font-family}#{$family}, ');
+  }
+
+  display: inline-block;
+  font-family: unquote('#{$font-family}sans-serif');
+  font-size: $icon-font-size;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.#{$icon-prefix} {
+  @extend %font-icon;
+
+  .#{$button-prefix} & {
+    font-size: inherit;
+  }
+}
+
+// @see https://github.com/sass/sass/issues/659#issuecomment-119285467
+@each $icon-name, $icon-code in $icons {
+  .#{$icon-prefix}-#{$icon-name} {
+    &:before {
+      content: unquote('"#{$icon-code}"');
+    }
+  }
+}

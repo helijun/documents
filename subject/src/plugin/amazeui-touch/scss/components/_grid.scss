@@ -1,0 +1,188 @@
+// Amaze UI Touch: Grid
+// =============================================================================
+
+@import "../env";
+
+$avg-col-selectors: '> .#{$col-prefix}, > li, > div';
+
+// Mixins
+// -----------------------------------------------------------------------------
+
+// Define the size of a grid col.
+@mixin grid-size($size: expand) {
+  @if (type-of($size) == 'number') {
+    $percent: percentage($size / $total-columns);
+    flex: 0 0 $percent;
+    // max-width prevents columns from wrapping early in IE10/11
+    max-width: $percent;
+
+    // fuck android uc
+    @include flex-basis-fallback($percent)
+  } @else if ($size == shrink) {
+    flex: 0 0 auto;
+    overflow: visible;
+  } @else if ($size == expand) {
+    flex: 1 1 auto;
+  }
+}
+
+// Define the offset of col.
+@mixin grid-offset($offset: false) {
+  @if ($offset != false) {
+    margin-left: percentage($offset / $total-columns);
+  }
+}
+
+// Set grid container wrap.
+@mixin grid-wrap($wrap: nowrap) {
+  flex-wrap: $wrap;
+}
+
+// Set the alignment of cols within a grid.
+@mixin grid-align($align: left) {
+  justify-content: map-get($grid-aligns, $align);
+}
+
+// Set col order in grid.
+@mixin grid-order($order: 0) {
+  order: $order;
+}
+
+// Remove col padding
+@mixin grid-collapse($collapse: true) {
+  @if ($collapse) {
+    padding: 0;
+  }
+}
+
+//
+@mixin grid-nest($nest: true) {
+  @if ($nest) {
+    margin-left: -$grid-padding;
+    margin-right: -$grid-padding;
+  }
+}
+
+// average grid base
+@mixin grid-average-base() {
+  flex-wrap: wrap;
+  overflow: visible;
+  list-style: none;
+
+  > .#{$col-prefix},
+  > li,
+  > div {
+    padding: $grid-padding;
+
+    // FUCK Android UC
+    // AVG Grid flex-wrap fallback
+    .#{$android-legacy-flexbox} & {
+      display: inline-block;
+    }
+  }
+}
+
+// average cols
+@mixin grid-average($cols) {
+  #{$avg-col-selectors} {
+    // padding: 0 $grid-padding $grid-padding;
+    flex: 0 0 percentage(1 / $cols);
+    max-width: percentage(1 / $cols);
+
+    @include flex-basis-fallback(percentage(1 / $cols));
+  }
+
+  &.#{$grid-prefix}-bordered #{$avg-col-selectors} {
+    &:nth-of-type(#{$cols}n) {
+      @include retina-line-remove(before);
+    }
+  }
+}
+//@see https://css-tricks.com/filling-space-last-row-flexbox/
+
+// Output
+// -----------------------------------------------------------------------------
+
+.#{$grid-prefix} {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  backface-visibility: hidden;
+  align-items: stretch;
+
+  // nested grid
+  .#{$grid-prefix} {
+    @include grid-nest();
+  }
+
+  // collapse
+  &.#{$grid-prefix}-collapse {
+    .#{$col-prefix} {
+      @include grid-collapse();
+    }
+  }
+}
+
+[class*="#{$grid-prefix}-avg-"] {
+  @include grid-average-base();
+}
+
+// grid modifiers: flex container wrap
+@each $wrap in wrap, wrap-reverse {
+  .#{$grid-prefix}-#{$wrap} {
+    @include grid-wrap($wrap);
+  }
+}
+
+// grid modifiers: flex children alignment
+@each $grid-align-key, $grid-align-v in $grid-aligns {
+  .#{$grid-prefix}-#{$grid-align-key} {
+    @include grid-align($grid-align-key);
+  }
+}
+
+.#{$col-prefix} {
+  @include grid-size();
+  padding-left: $grid-padding;
+  padding-right: $grid-padding;
+}
+
+@for $i from 1 through $total-columns {
+  // col sizing
+  .#{$col-prefix}-#{$i} {
+    @include grid-size($i);
+  }
+
+  // col offset
+  .#{$col-prefix}-offset-#{$i} {
+    @include grid-offset($i);
+  }
+
+  // flex child order
+  .#{$namespace}order-#{$i} {
+    @include grid-order($i);
+  }
+
+  // average children
+  .#{$grid-prefix}-avg-#{$i} {
+    @include grid-average($i);
+  }
+}
+
+// modifier: col shrink
+.#{$col-prefix}-shrink {
+  @include grid-size(shrink);
+}
+
+// modifier: g-bordered
+// -----------------------------------------------------------------------------
+
+.#{$grid-prefix}-bordered {
+  @extend %retina-line-top-before;
+  // @extend %retina-line-bottom-after;
+
+  > .#{$col-prefix} {
+    @extend %retina-line-bottom-after;
+    @extend %retina-line-right-before;
+  }
+}

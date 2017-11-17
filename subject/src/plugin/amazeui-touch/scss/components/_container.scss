@@ -1,0 +1,136 @@
+// Amaze UI Touch: Container
+// @via: https://github.com/JedWatson/react-container
+// @license: MIT https://github.com/JedWatson/react-container/blob/master/LICENSE
+// =============================================================================
+
+@import "../env";
+
+/**
+ * Fill Container
+ * 1. on its own - fill available vertical space
+ * 2. as a child - flex to fill vertical space
+ * 3. fill available vertical space without resorting to "height: 100%", which
+	 *    yields undesirable results
+ */
+
+.#{$container-prefix} {
+  // height: 100%;
+}
+
+.#{$container-prefix}-fill {
+  height: 100%; // 1
+
+  & > & { // 2
+    flex: 1 1 0; // 3
+    position: relative;
+  }
+}
+
+/**
+ * Container Layout
+ * 1. create a flexible layout, either `column` or `row`
+ * 2. flex-column elements collapse horizontally, so we stretch them out again
+ */
+
+.#{$container-prefix}-column,
+.#{$container-prefix}-row {
+  display: flex;
+  max-height: 100%;
+  width: 100%; // 2
+
+  > .#{$container-prefix}-fill {
+    flex: 1 1 0;
+    position: relative;
+  }
+}
+
+.#{$container-prefix}-column {
+  flex-direction: column;
+}
+
+.#{$container-prefix}-row {
+  flex-direction: row;
+  height: auto;
+
+  > .#{$container-prefix}-fill {
+    height: auto;
+    width: auto;
+  }
+}
+
+// Handle alignment of containers' children
+// -----------------------------------------------------------------------------
+.#{$container-prefix}-align-end {
+  align-items: flex-end;
+}
+
+.#{$container-prefix}-align-center {
+  align-items: center;
+
+  // center children as users may expect
+  .#{$container-prefix}-direction-column > & {
+    text-align: center;
+  }
+}
+
+.#{$container-prefix}-align-start {
+  align-items: flex-start;
+}
+
+// Handle justification of containers' children
+// -----------------------------------------------------------------------------
+.#{$container-prefix}-justified {
+  justify-content: space-around;
+}
+
+.#{$container-prefix}-justify-end {
+  justify-content: flex-end;
+}
+
+.#{$container-prefix}-justify-center {
+  justify-content: center;
+}
+
+.#{$container-prefix}-justify-start {
+  justify-content: flex-start;
+}
+
+// Scrollable containers
+// -----------------------------------------------------------------------------
+.#{$container-prefix}-scrollable {
+  // position: relative;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  // Fixes: https://github.com/amazeui/amazeui-touch/issues/8
+  // @see https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#//apple_ref/doc/uid/TP30001266-SW26
+  // @see http://weblog.west-wind.com/posts/2015/Jun/05/IPad-Scroll-Issues-with-Fixed-Content
+  // @see http://www.quirksmode.org/css/css2/overflowscrolling.html
+  // - 如果声明的值为 `touch`，在结合 Container 使用时，Modal 的遮罩层在 iOS Safari 中会被截取遮挡
+  //   原因是 Safari 真的用了原生控件来实现，对于有 -webkit-overflow-scrolling 的网页
+  //   会创建一个 UIScrollView，提供子 layer 给渲染模块使用
+  //   http://blog.csdn.net/hursing/article/details/9186199
+  // - 可以尝试使用绝对定位的方式定位 kitchen-sink 中的 navbar 和 tabbar，以避免这一问题，
+  //   提高交互体验，具体可参考 Framework7 的实现方式
+
+  // 2016.05.06 update:
+  // Modal 和 Notification 改为使用 portal 模式，即渲染的时候会插入到 body 下面，避免被 UIScrollView 截断
+  -webkit-overflow-scrolling: touch;
+
+  // introduce iOS style springy scrolling
+  &:before,
+  &:after {
+    content: "";
+    height: 1px;
+    position: absolute;
+    width: 1px;
+  }
+
+  &:before {
+    bottom: -1px;
+  }
+  &:after {
+    top: -1px;
+  }
+}

@@ -1,0 +1,62 @@
+// Amaze UI Touch: Tabs
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$tabs-prefix} {
+  margin: $global-spacing 0;
+  background: $tabs-background;
+  @extend %card-nested-component;
+}
+
+.#{$tabs-prefix}-nav {
+  margin-bottom: 0;
+
+  .#{$button-prefix} {
+    @extend %text-truncate;
+  }
+}
+
+.#{$tabs-prefix}-body {
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.#{$tab-prefix}-panel {
+  $panel: &;
+
+  position: absolute;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  padding: $global-spacing;
+  visibility: hidden;
+  transition: transform 0.3s;
+  transform: translateX(-100%);
+
+  &.#{map_get($am-states, active)} {
+    position: relative;
+    z-index: 100;
+    visibility: visible;
+    transform: translateX(0);
+
+    & ~ #{$panel} {
+      transform: translateX(100%);
+    }
+  }
+
+  // panel without padding
+  &#{$panel}-no-padded {
+    padding: 0;
+  }
+}
+
+// Mofidier: inset
+// -----------------------------------------------------------------------------
+.#{$tabs-prefix}-inset {
+  margin-left: $global-spacing;
+  margin-right: $global-spacing;
+}

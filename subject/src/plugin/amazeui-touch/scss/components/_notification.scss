@@ -1,0 +1,119 @@
+// Amaze UI Touch: Notification
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin notification-style(
+  $background: $notification-background,
+  $color: $notification-color
+) {
+  @if ($color == 'auto') {
+    $color: islight($background);
+  }
+
+  background: rgba($background, 0.9);
+  color: $color;
+}
+
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$notification-prefix} {
+  top: 0;
+  left: 0;
+  z-index: $z-index-notification;
+  display: flex;
+  width: 100%;
+  padding: $notification-padding;
+
+  /*.#{map_get($am-states, active)} {
+    display: flex;
+  }*/
+
+  @include notification-style();
+}
+
+.#{$notification-prefix}-icon {
+  cursor: pointer;
+}
+
+.#{$notification-prefix}-content {
+  flex: 1;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &,
+  .#{$notification-prefix}-title {
+    font-size: $font-size-sm;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.#{$notification-prefix}-title {
+  margin: 0;
+  color: inherit;
+}
+
+// Modifiers
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+  @if ($color-key != 'dark') {
+    .#{$notification-prefix}-#{$color-key} {
+      @include notification-style($color, auto);
+    }
+  }
+}
+
+// Animation
+// -----------------------------------------------------------------------------
+.#{$notification-prefix}-animated {
+  position: absolute;
+}
+
+.#{$notification-prefix}-enter {
+  transform: translate3d(0, -100%, 0);
+}
+
+.#{$notification-prefix}-enter-active {
+  animation: amt-notification-enter .3s ease-in-out;
+}
+
+.#{$notification-prefix}-leave {
+  animation: amt-notification-leave .3s ease-in-out;
+}
+
+// Slide down
+@keyframes amt-notification-enter {
+  from {
+    transform: translate3d(0, -100%, 0);
+    opacity: .5;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+// Slide up
+@keyframes amt-notification-leave {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+    opacity: .5;
+  }
+}

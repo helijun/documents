@@ -1,0 +1,145 @@
+// Amaze UI Touch: Utilities
+// =============================================================================
+
+@import "../env";
+
+.#{$namespace}root {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+// Float
+// -----------------------------------------------------------------------------
+.#{$namespace}cf {
+  @extend %clearfix;
+}
+
+@each $s, $float in (
+  l: left,
+  r: right,
+  n:none) {
+  .#{$namespace}f#{$s} {
+    float: #{$float};
+  }
+}
+
+// Margin & Padding
+// -----------------------------------------------------------------------------
+$am-spaces: (
+  0: 0,
+  xs: rem-calc(5),
+  sm: rem-calc(10),
+  default: $global-spacing,
+  lg: rem-calc(20),
+  xl: rem-calc(32),
+) !default;
+$am-dimensions: (null, h, v, top, right, bottom, left) !default;
+
+@mixin makeSpacings($dimension: null) {
+  @each $space-key, $space-value in $am-spaces {
+    $padding-selector: 'padding';
+    $margin-selector: 'margin';
+    $dash: '';
+
+    @if $dimension {
+      $dash: '-' + $dimension;
+    }
+
+    @if $space-key != 'default' {
+      $dash: $dash + '-' + $space-key;
+    }
+
+    $padding-selector: $padding-selector + $dash;
+    $margin-selector: $margin-selector + $dash;
+
+    // horizontal spacing
+    @if $dimension == h {
+      .#{$namespace}#{$padding-selector} {
+        padding-left: $space-value !important;
+        padding-right: $space-value !important;
+      }
+
+      .#{$namespace}#{$margin-selector} {
+        margin-left: $space-value !important;
+        margin-right: $space-value !important;
+      }
+      // vertical spacing
+    } @else if $dimension == v {
+      .#{$namespace}#{$padding-selector} {
+        padding-top: $space-value !important;
+        padding-bottom: $space-value !important;
+      }
+
+      .#{$namespace}#{$margin-selector} {
+        margin-top: $space-value !important;
+        margin-bottom: $space-value !important;
+      }
+    } @else {
+      $paddingProperty: 'padding';
+      $marginProperty: 'margin';
+
+      @if $dimension {
+        $paddingProperty: $paddingProperty + '-' + $dimension;
+        $marginProperty: $marginProperty + '-' + $dimension;
+      }
+
+      .#{$namespace}#{$padding-selector} {
+        #{$paddingProperty}: $space-value !important;
+      }
+
+      .#{$namespace}#{$margin-selector} {
+        #{$marginProperty}: $space-value !important;
+      }
+    }
+  }
+}
+
+@each $dimension in $am-dimensions {
+  @include makeSpacings($dimension);
+}
+
+// Alignment
+// -----------------------------------------------------------------------------
+// Vertical alignment
+.#{$namespace}align-v {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  $align-values: (
+    'top': flex-start,
+    'center': center,
+    'bottom': flex-end,
+  );
+
+  @each $orient in (top, center, bottom) {
+    .#{$namespace}align-#{$orient} {
+      align-self: map-get($align-values, $orient);
+    }
+  }
+}
+
+
+// Text helpers
+// -----------------------------------------------------------------------------
+.#{$namespace}text-truncate {
+  @extend %text-truncate;
+}
+
+// Text Alignment
+@each $align in (left, right, center, justify) {
+  .#{$namespace}text-#{$align} {
+    text-align: $align !important;
+  }
+}
+
+// Text colors
+@each $key, $color in $am-colors {
+  @if $key != dark {
+    .#{$namespace}text-#{$key} {
+      color: $color !important;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.component-form-button {
+    .li-btn {
+        width: 80%;
+        margin-left: 10%;
+        height: 2.8rem;
+        line-height: 2.8rem;
+        border-radius: .28rem;
+        color: white;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .li-btn.li-btn-submit {
+        background-color: #f76260;        
+    }
+
+    .li-btn.li-btn-code {
+        font-size: .9868rem;
+        background-color: #ccc;
+    }
+    .li-btn.li-btn-code-active {
+        font-size: .9868rem;
+        background-color: #f76260;
+    }
+}

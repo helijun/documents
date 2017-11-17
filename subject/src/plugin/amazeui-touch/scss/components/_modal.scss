@@ -1,0 +1,279 @@
+// Amaze UI Touch: Modals
+//
+// Includes Alert, Prompt, Confirm, Loading, Actions, Popup, Popover
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+
+.#{$modal-prefix} {
+  position: fixed;
+  z-index: $z-index-modal;
+  left: 50%;
+  top: 50%;
+  width: $modal-width;
+  text-align: center;
+  transform: translate3d(-50%, -50%, 0);
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.#{$modal-prefix}-inner {
+  position: relative;
+  background: $modal-background;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  animation: amt-modal-in $modal-duration ease-out;
+
+  .#{$modal-prefix}-out & {
+    animation-name: amt-modal-out;
+  }
+}
+
+@keyframes amt-modal-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes amt-modal-out {
+  to {
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 1);
+  }
+}
+
+// modal header
+.#{$modal-prefix}-header {
+  padding: $global-spacing rem-calc(10);
+}
+
+.#{$modal-prefix}-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: rem-calc(18);
+}
+
+// close icon
+%modal-icon {
+  position: absolute;
+  right: rem-calc(5);
+  top: rem-calc(5);
+  color: rgba($gray-light, .5);
+  cursor: pointer;
+
+  &:active {
+    color: $gray;
+    background: $gray-lighter;
+  }
+}
+
+.#{$modal-prefix}-icon {
+  @extend %modal-icon;
+}
+
+// modal body
+// -----------------------------------------------------------------------------
+.#{$modal-prefix}-body {
+  padding: rem-calc(15) rem-calc(10);
+  text-align: center;
+
+  .#{$modal-prefix}-header + & {
+    padding-top: 0;
+  }
+
+  + .#{$modal-prefix}-body {
+    margin-top: 5px;
+  }
+
+  input[type="text"] {
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+
+  > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  + .#{$modal-prefix}-footer {
+    border-top: 1px solid $modal-border-color;
+  }
+}
+
+// modal footer
+// -----------------------------------------------------------------------------
+.#{$modal-prefix}-footer {
+  display: flex;
+  overflow: hidden;
+}
+
+.#{$modal-prefix}-btn {
+  flex: 1;
+  display: block;
+  font-size: rem-calc(16);
+  line-height: rem-calc(44);
+  text-align: center;
+  color: $global-primary;
+  cursor: pointer;
+  @include text-overflow();
+
+  & + & {
+    border-left: 1px solid $modal-border-color;
+  }
+
+  &:active {
+    background: $modal-btn-active-bg;
+  }
+}
+
+// Modal - Loading
+// -----------------------------------------------------------------------------
+.#{$modal-prefix}-loading {
+}
+
+// Modal - Action
+// -----------------------------------------------------------------------------
+%modal-translate {
+  &.#{$modal-prefix}-transition-appear {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  &.#{$modal-prefix}-transition-appear-active {
+    transform: translate3d(0, 0, 0);
+    transition: transform $modal-duration linear;
+  }
+
+  &.#{$modal-prefix}-out {
+    animation: amt-modal-transition-out $modal-duration linear;
+  }
+}
+
+.#{$modal-prefix}-actions {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: $z-index-modal;
+  width: 100%;
+  text-align: center;
+
+  @extend %modal-translate;
+
+  // nested List
+  .#{$list-prefix} {
+    margin: 0;
+  }
+}
+
+@keyframes amt-modal-transition-out {
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.#{$modal-prefix}-actions-group {
+  margin: rem-calc(10);
+}
+
+.#{$modal-prefix}-actions-header {
+  color: $gray-light;
+  font-size: rem-calc(14);
+}
+
+.#{$modal-prefix}-actions-alert {
+  color: $global-alert;
+
+  a {
+    color: inherit;
+  }
+}
+
+// Modal Popup
+// -----------------------------------------------------------------------------
+.#{$modal-popup-prefix} {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index-modal;
+  background: #fff;
+  overflow: hidden;
+
+  @extend %modal-translate;
+}
+
+.#{$modal-prefix}-popup-appear-active {
+  color: red!important;
+  border: 1px solid red;
+}
+
+.#{$modal-popup-prefix}-inner {
+  padding-top: rem-calc($modal-popup-title-height);
+  height: 100%;
+  @include scrollable();
+}
+
+.#{$modal-popup-prefix}-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: rem-calc($modal-popup-title-height);
+  border-bottom: 1px solid $modal-border-color;
+  background-color: #fff;
+}
+
+.#{$modal-popup-prefix}-icon {
+  @extend %modal-icon;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.#{$modal-popup-prefix}-title {
+  margin: 0 rem-calc(30);
+  font-size: rem-calc(16);
+  font-weight: bold;
+  line-height: rem-calc(43);
+  text-align: center;
+  color: $gray-dark;
+}
+
+.#{$modal-popup-prefix}-body {
+  padding: $global-spacing;
+  background: #f8f8f8;
+  color: $gray;
+}
+
+
+// Modal backdrop
+// -----------------------------------------------------------------------------
+.#{$modal-prefix}-backdrop {
+  $this-selector: &;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-modal - 1;
+  background: rgba(0, 0, 0, .3);
+  opacity: 1;
+  animation-duration: $modal-duration;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-name: amt-fade-in;
+
+  &#{$this-selector}-out {
+    animation-name: amt-fade-out;
+  }
+}

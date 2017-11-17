@@ -1,0 +1,99 @@
+// Amaze UI Touch: OffCanvas
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$offcanvas-prefix} {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: $z-index-offcanvas;
+  width: $offcanvas-width;
+  height: 100%;
+  @include scrollable();
+  background: $offcanvas-background;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  animation-duration: $offcanvas-duration;
+  animation-timing-function: $offcanvas-timing-function;
+}
+
+// Slide from left
+.#{$offcanvas-prefix}-left {
+  left: 0;
+  animation-name: offcanvas-left-in;
+
+  &.#{$offcanvas-prefix}-out {
+    animation-name: offcanvas-left-out;
+  }
+}
+
+@keyframes offcanvas-left-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes offcanvas-left-out {
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+// Slide from right
+.#{$offcanvas-prefix}-right {
+  right: 0;
+  animation-name: offcanvas-right-in;
+
+  &.#{$offcanvas-prefix}-out {
+    animation-name: offcanvas-right-out;
+  }
+}
+
+@keyframes offcanvas-right-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes offcanvas-right-out {
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+// Push effect
+// -----------------------------------------------------------------------------
+%offcanvas-push-transition {
+  transition: transform $offcanvas-duration $offcanvas-timing-function;
+}
+
+.with-offcanvas-left .#{$offcanvas-prefix}-push-target {
+  transform: translate3d($offcanvas-width, 0, 0);
+  @extend %offcanvas-push-transition;
+}
+
+.with-offcanvas-right .#{$offcanvas-prefix}-push-target {
+  transform: translate3d(-$offcanvas-width, 0, 0);
+  @extend %offcanvas-push-transition;
+}
+
+.with-offcanvas-closing .#{$offcanvas-prefix}-push-target {
+  transform: translate3d(0, 0, 0);
+  @extend %offcanvas-push-transition;
+}

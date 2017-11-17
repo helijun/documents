@@ -1,0 +1,242 @@
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #e2dfdf;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #e2dfdf;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #e2dfdf;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #e2dfdf;
+}
+.component-botany-fire {
+    background-image: url('../../img/botany/text-bg.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+
+    .el-title-text {
+        padding: 1rem 0;
+    }
+
+    .m-article {
+        background-image: url('../../img/botany/text-bg.jpg');
+        background-repeat: repeat;
+        background-size: 100%;
+
+        .item {
+            border: 0;
+            padding: 0.625rem 5%;
+        }
+
+        .el-article {
+            background-color: white;
+            margin: 0 4%;
+            box-sizing: border-box;
+            padding-top: -10%;
+            width: 90%;
+            margin: 0 5%;
+            margin-top: 5%;
+
+            .el-submit-img,
+            .el-title-img {
+                margin-top: -8.5%;
+                width: 40%;
+                margin-left: 30%;
+            }
+
+            .el-solid {
+                margin: 1rem;
+
+                .el-solid-xl {
+                    border: 2px solid #b00111;
+                }
+                .el-solid-l {
+                    border: 1px solid #b00111;
+                    margin-top: .2rem;
+                }
+            }
+            .el-text {
+                margin: 0 1rem;
+                overflow: auto;
+                height: 100%;
+                
+                p {
+                    font-family: STZhongsong;
+                    font-size: 1.22rem;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    line-height: 2.23rem;
+                    letter-spacing: 0rem;
+                    color: #686868;
+                    padding-bottom: 1.2rem;
+                }
+            }
+
+            .label-title {
+                color: #8c5420;
+            }
+            .label-title-special {
+                color: #8c5420;
+                padding-left: 1.19552rem;
+            }
+
+            .el-money,
+            .el-area {
+                width: 100%;
+            }
+
+            .el-use {
+                border: solid 1px #8c5420;
+                margin: 5%;
+                padding: 2%;
+                border-radius: .2rem;
+
+                .field-label {
+                    color: #8c5420;
+                }
+                textarea {
+                    border: 0;
+                }
+            }
+
+            .el-better {
+                border: solid 1px #8c5420;
+                margin: 5%;
+                padding: 2%;
+                border-radius: .2rem;
+
+                .field-label {
+                    color: #8c5420;
+                }
+                input {
+                    border: 0;
+                }
+            }
+
+            .special-input,
+            .special-input-xl {
+                input {
+                    border: 1px solid #8c5420;
+                    height: 2.64rem;
+                    border-radius: .2rem;
+                    padding: 0 1rem;
+                }
+
+                .field-label {
+                    width: 28%;
+                    color: #8c5420;
+                }
+                .field-group-label {
+                    padding: 0;
+                    border: 0;
+                    background-color: white;
+                    color: #8c5420;
+                    font-size: 1rem;
+                    width: 28%;
+                }
+                .field-group-label {
+                    color: #8c5420;
+                    padding-left: .2rem;
+                }
+            }
+            .special-input-xl {
+                .field-label {
+                    width: 44%;
+                }
+            }
+
+            .special-area-select {
+                select {
+                    border: 1px solid #8c5420;
+                    height: 2.64rem;
+                    border-radius: .2rem;
+                    padding: 0 1rem;
+                    background-color: #ffffff;
+                }
+                select:hover {
+                    background-color: #ffffff;
+                }
+                .field-label {
+                    width: 40%;
+                    color: #8c5420;
+                }
+            }
+
+            .special-type-select {
+                select {
+                    border: 1px solid #8c5420;
+                    height: 2.64rem;
+                    border-radius: .2rem;
+                    padding: 0 1rem;
+                    width: 40%;
+                    margin-right: 41%;
+                    background-color: #ffffff;
+                }
+                select:hover {
+                    background-color: #ffffff;
+                }
+                .field-label {
+                    width: 40%;
+                    color: #8c5420;
+                }
+            }
+
+            .el-submit-btn {
+                padding: 4rem 0;
+            }
+        }
+
+        
+    }
+
+    .modal-backdrop {
+        background: rgba(0, 0, 0, 0.63);
+    }
+    .modal-inner {
+        border-radius: .424rem;
+    }
+    .botany-success-modal {
+        box-sizing: border-box;
+        padding: 0 1.638rem;
+        .close {
+            font-size: 1.62rem;
+            color: #8c5420;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .title {
+            font-family: STZhongsong;
+            font-size: 1.82rem;
+            color: #8c5420;
+            padding: 1rem 0;
+        }
+        .text {
+            font-family: STZhongsong;
+            font-size: 1.0516rem;
+            color: #8c5420;
+            text-align: left;
+        }
+        .btn-img {
+            width: 41%;
+            height: 3rem;
+            margin-bottom: -2.55rem;;
+            z-index: 999;
+            background-image: url('../../img/botany/iknow.png');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: inline-block;
+        }
+        .footer {
+            margin-top: 2rem;
+            transform: scale(1.332);
+            background-image: url('../../img/botany/modal-footer.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 7.2rem;
+        }
+    }
+    input[readonly], input[readonly]:hover {
+        background-color: transparent;
+    }
+}

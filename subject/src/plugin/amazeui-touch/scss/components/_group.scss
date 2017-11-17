@@ -1,0 +1,31 @@
+// Amaze UI Touch: Group
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$group-prefix} {
+  margin: $global-spacing * 2 0;
+
+  .#{$list-prefix} {
+    margin: 0;
+  }
+}
+
+.#{$group-prefix}-body {
+  display: block;
+  padding: $global-spacing;
+  background: $white;
+
+  .#{$group-prefix}-no-padded & {
+    padding: 0;
+  }
+}
+
+.#{$group-prefix}-header,
+.#{$group-prefix}-footer {
+  padding: rem-calc(5) $global-spacing;
+  color: $group-header-color;
+  font-size: $group-header-font-size;
+}

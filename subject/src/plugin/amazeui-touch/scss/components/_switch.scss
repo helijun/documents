@@ -1,0 +1,136 @@
+// Amaze UI Touch: Switch
+//
+// @see http://callmenick.com/post/css-toggle-switch-examples
+// @see https://proto.io/freebies/onoff/
+// =============================================================================
+
+@import "../env";
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin switch-style(
+  $background: $switch-background,
+  $inner-background: $switch-inner-background,
+  $background-active: $switch-background-active
+) {
+  .#{$switch-prefix}-label {
+
+    // outer style
+    @if hasValue($background) {
+      &,
+      &:after {
+        background: $background;
+      }
+    }
+
+    // inner style
+    @if hasValue($inner-background) {
+      &:before {
+        background: $inner-background;
+      }
+    }
+  }
+
+  // active style
+  input:checked + .#{$switch-prefix}-label {
+    &,
+    &:after {
+      background: $background-active;
+    }
+  }
+}
+
+@mixin switch-label-base() {
+  position: relative;
+  display: block;
+  // outline: none;
+  // cursor: pointer;
+  // user-select: none;
+  // touch-action: manipulation;
+}
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$switch-prefix} {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  align-self: center;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+
+  input[type="checkbox"] {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+
+    &:checked + .#{$switch-prefix}-label {
+
+      &:after {
+        transform: translateX(rem-calc(22));
+      }
+    }
+  }
+
+  // status modifier: disabled
+  &.#{map-get($am-states, disabled)} {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @include switch-style();
+
+  .#{$list-prefix} & {
+    margin-bottom: 0;
+  }
+}
+
+.#{$switch-prefix}-label {
+  @include switch-label-base;
+
+  width: rem-calc(52);
+  height: rem-calc(30);
+  border-radius: $switch-radius;
+  transition: background .35s;
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: " ";
+    transition: all .35s;
+    border-radius: $switch-radius;
+  }
+
+  &:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+  }
+
+  &:after {
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: rem-calc(22);
+    transform: translateX(0);
+  }
+}
+
+// Modifiers
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $am-colors {
+  @if ($color-key != 'primary') {
+    .#{$switch-prefix}-#{$color-key} {
+      @include switch-style(
+          $background: null,
+          $inner-background: null,
+          $background-active: $color);
+    }
+  }
+}

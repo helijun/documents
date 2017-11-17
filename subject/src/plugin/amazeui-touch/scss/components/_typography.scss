@@ -1,0 +1,167 @@
+// Amaze UI Touch: Typography
+//
+// @see http://www.99css.com/915/
+// -----------------------------------------------------------------------------
+
+@import "../env";
+
+address,
+blockquote,
+dl,
+fieldset,
+figure,
+hr,
+ol,
+p,
+pre,
+ul {
+  margin: 0 0 $global-margin;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+* + address,
+* + blockquote,
+* + dl,
+* + fieldset,
+* + figure,
+* + hr,
+* + ol,
+* + p,
+* + pre,
+* + ul {
+  margin-top: $global-margin
+}
+
+// Headers
+// -----------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $header-font-weight;
+  color: $header-font-color;
+  margin: 0 0 $header-bottom-margin;
+  line-height: $header-line-height;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+* + h1,
+* + h2,
+* + h3,
+* + h4,
+* + h5,
+* + h6 {
+  margin-top: 1.5em
+}
+
+// Paragraphs
+// -----------------------------------------------------------------------------
+p {
+  font-size: $paragraph-font-size;
+  line-height: $paragraph-line-height;
+}
+
+// Links
+// -----------------------------------------------------------------------------
+
+// Lists
+// -----------------------------------------------------------------------------
+// ul, ol, dl
+
+ul,
+ol,
+dl {
+  padding: 0;
+  line-height: $list-line-height;
+}
+
+ul,
+ol {
+  padding-left: $list-side-padding;
+  li {
+    ul,
+    ol {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+}
+
+dl {
+  dt {
+    margin-bottom: $dl-header-margin-bottom;
+    font-weight: $dl-header-weight;
+  }
+
+  dd {
+    margin: 0 0 $dl-margin-bottom 0;
+    font-size: rem-calc(15);
+  }
+}
+
+
+// Blockquotes
+// -----------------------------------------------------------------------------
+blockquote {
+  font-family: $blockquote-font-family;
+  padding: $blockquote-padding;
+  border-left: $blockquote-border;
+
+  cite,
+  small {
+    display: block;
+    font-size: $blockquote-cite-font-size;
+    color: $blockquote-cite-font-color;
+
+    a,
+    a:visited {
+      color: $blockquote-cite-link-color;
+    }
+  }
+}
+
+// Hr
+// -----------------------------------------------------------------------------
+hr {
+  border: $hr-border-style $hr-border-color;
+  border-width: $hr-border-width 0 0;
+  clear: both;
+  margin: $hr-margin 0;
+  height: 0;
+}
+
+
+// Responsive-img
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}

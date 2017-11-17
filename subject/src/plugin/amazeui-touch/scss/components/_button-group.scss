@@ -1,0 +1,87 @@
+// Amaze UI Touch: Button Group
+// =============================================================================
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$button-group-prefix} {
+  margin: 0 0 1rem;
+  list-style-type: none;
+  display: inline-flex;
+  overflow: hidden;
+  font-size: $button-font-size;
+
+  > .#{$button-prefix} {
+    flex: 0 0 auto;
+    position: relative;
+    margin: 0;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.#{map-get($am-states, active)} {
+      z-index: 2;
+    }
+  }
+}
+
+// remove double borders between button
+.#{$button-group-prefix} {
+  .#{$button-prefix} + .#{$button-prefix},
+  .#{$button-prefix} + .#{$button-group-prefix},
+  .#{$button-group-prefix} + .#{$button-prefix},
+  .#{$button-group-prefix} + .#{$button-group-prefix} {
+    margin-left: -1px;
+  }
+}
+
+// Sub object: btn-toolbar
+// -----------------------------------------------------------------------------
+.#{$button-prefix}-toolbar {
+  display: flex;
+  margin-left: -(rem-calc(5)); // Offset the first child's margin
+
+  .#{$button-group-prefix} {
+    flex: 0 0 auto;
+  }
+
+  > .#{$button-prefix},
+  > .#{$button-group-prefix} {
+    margin-left: -(rem-calc(5));
+  }
+}
+
+// Modifiers: button-group-stacked/justify
+// -----------------------------------------------------------------------------
+.#{$button-group-prefix}-stacked {
+  display: inline-block;
+
+  > .#{$button-prefix},
+  > .#{$button-group-prefix},
+  > .#{$button-group-prefix} > .#{$button-prefix} {
+    flex: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  > .#{$button-prefix} + .#{$button-prefix},
+  > .#{$button-prefix} + .#{$button-group-prefix},
+  > .#{$button-group-prefix} + .#{$button-prefix}btn,
+  > .#{$button-group-prefix} + .#{$button-group-prefix} {
+    margin-top: -1px;
+    margin-left: 0;
+  }
+}
+
+.#{$button-group-prefix}-justify {
+  display: flex;
+  width: 100%;
+
+  > .#{$button-prefix},
+  > .#{$button-group-prefix} {
+    @include fixes-flexbox-for-android;
+    flex: 1;
+  }
+}

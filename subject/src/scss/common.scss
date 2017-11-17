@@ -1,0 +1,28 @@
+html {
+    box-sizing: border-box;
+    display: block;
+}
+body {
+    height: 100%;
+    overflow: auto;
+}
+.react-root {
+    font-size: 16px;
+    position: relative;
+    height: 100%; 
+    width: 100%; 
+    overflow: hidden;
+    background: #fff;
+
+    .navbar {
+        background-color: #f76260;
+        color: #fff;
+            
+        a {
+            color: #fff;
+        }
+        :after {
+            border-bottom: 0 !important;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.component-tips {
+    position: fixed;
+    z-index: 999;
+    top: 30%;
+    right: 0;
+    left: 0;
+    display: block;
+    margin: auto;
+    padding: 1.5%;
+    width: 60%;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.7);
+    color: #fff;
+    text-align: center;
+    animation: fade-in 0.61s;
+}
+.component-tips.li-none {
+    display: none;
+}

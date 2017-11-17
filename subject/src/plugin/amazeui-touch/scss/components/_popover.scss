@@ -1,0 +1,136 @@
+// Amaze UI Touch: Popover
+// =============================================================================
+
+//@require='./_animation.scss';
+
+@import "../env";
+
+// Output
+// -----------------------------------------------------------------------------
+.#{$popover-prefix} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-index-popover;
+  width: $popover-width;
+  margin: 0;
+  background: $popover-background;
+  color:$popover-color;
+  border: 1px solid $popover-border;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  animation-duration: $popover-duration;
+  animation-timing-function: ease-out;
+  animation-name: amt-slide-top-fixed;
+}
+
+.#{$namespace}popover-out {
+  animation-name: amt-popover-out;
+}
+
+@keyframes amt-popover-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.#{$popover-prefix}-inner {
+  position: relative;
+  z-index: 110;
+  background: $popover-background;
+  padding: 8px;
+}
+
+.#{$popover-prefix}-angle {
+  border-width: $popover-angle-size;
+
+  &,
+  &:after {
+    position: absolute;
+    z-index: 120;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &:after {
+    content: "";
+    border-width: $popover-angle-size - 1;
+  }
+}
+
+// Popover on top: caret on bottom
+.#{$popover-prefix}-angle-bottom {
+  bottom: 0;
+  border-top-color: $popover-border;
+  transform: translate3d(-50%, 100%, 0);
+
+  &:after {
+    border-top-color: $popover-background;
+    bottom: 1px;
+  }
+
+  &,
+  &:after {
+    border-bottom-width: 0;
+  }
+}
+
+.#{$popover-prefix}-angle-top {
+  top: 0;
+  border-bottom-color: $popover-border;
+  transform: translate3d(-50%, -100%, 0);
+
+  &:after {
+    top: 1px;
+    border-bottom-color: $popover-background;
+  }
+
+  &,
+  &:after {
+    border-top-width: 0;
+  }
+}
+
+.#{$popover-prefix}-angle-top,
+.#{$popover-prefix}-angle-bottom {
+  &:after {
+    transform: translateX(-50%);
+  }
+}
+
+.#{$popover-prefix}-angle-left {
+  left: 0;
+  border-right-color: $popover-border;
+  transform: translateX(-100%);
+
+  &:after {
+    border-right-color: $popover-background;
+    top: -7px;
+    left: 1px;
+  }
+
+  &,
+  &:after {
+    border-left-width: 0;
+  }
+}
+
+.#{$popover-prefix}-angle-right {
+  right: 0;
+  border-left-color: $popover-border;
+  transform: translateX(100%);
+
+  &:after {
+    border-left-color: $popover-background;
+    top: -7px;
+    right: 1px;
+  }
+
+  &,
+  &:after {
+    border-right-width: 0;
+  }
+}
