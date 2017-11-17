@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>通用的require</title>
+    
+    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+</head>
+<body>
+    <article>
+        <section class="module-section margin-top0">
+            
+        </section>
+
+        <form name="goingOutDetail" id="goingOutDetail">
+	        <section class="module-section">
+	            
+	        </section>
+        </form> 
+
+        <section class="blank-place"></section>
+    </article>
+</body>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js" data-main="/config"></script>
+<script type="text/javascript">
+require.config({
+    baseUrl : "/",
+    paths: {
+        jquery:'plugin/jquery/jquery-3.1.0.min',
+        fastclick: 'plugin/jquery/fastclick',
+        jqueryWeUI: 'plugin/jqweui/js/jquery-weui',
+        common: 'js/common',
+        page: 'plugin/jsBrigde/page',
+        formValidate: 'plugin/validate/form-validate',
+        mdater: 'plugin/mdater/js/jquery.mdater.min',//日期选择插件，from github，经过改造
+        dateFormat: 'utils/dateFormat.min',//日期格式化工具组件，自己封装、轻量级
+        rules: 'plugin/validate/rules',
+    },
+    shim: {
+        jqueryWeUI: {
+            deps: ['jquery'],
+            exports: '$'
+        }
+    }
+});
+
+require(
+    [
+        'jquery',
+        'fastclick',
+    ], 
+    function($,FastClick){
+        $(document).ready(function() { 
+            FastClick.attach(document.body);
+
+           	var xx = {
+                init: function(){
+                    var self = xx;
+                    
+                },
+                options: {
+                    
+                },
+
+                bind: function(){
+                    var self = xx;
+                }
+            }
+
+        require(['common','formValidate','rules'],xx.init)
+        });
+    });
+</script>
+</html>

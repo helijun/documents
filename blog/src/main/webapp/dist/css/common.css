@@ -1,0 +1,233 @@
+/** 全局样式  **/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+}
+
+/** 通用的一些属性 **/
+.width-all {
+    width: 100%;
+}
+.space-div{
+    height: 100px;
+}
+
+.li-hide {
+    display: none;
+}
+.li-text-none {
+    font-style: normal;
+    text-decoration: none;
+}
+
+.li-black {
+    color: black;
+}
+
+/** 字体图标 **/
+@font-face {font-family: "blog";
+    src: url('/dist/font/blog/blog.eot?t=1474266249'); /* IE9*/
+    src: url('/dist/font/blog/blog.eot?t=1474266249#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/dist/font/blog/blog.woff?t=1474262429') format('woff'), /* chrome, firefox */
+    url('/dist/font/blog/blog.ttf?t=1474266249') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('/dist/font/blog/blog.svg?t=1474266249#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.icon-boke,
+.icon-boke2,
+.icon-github,
+.icon-github2,
+.icon-caidan,
+.icon-pinglun,
+.icon-liulan,
+.icon-yuan,
+.icon-zhuan,
+.icon-erweima,
+.icon-jinghua,
+.icon-zhiding,
+.icon-jian {
+    font-family:"blog" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-boke:before { 
+	 content: "\e60a"; 
+}
+.icon-boke {
+  	font-size: 2.88rem;
+  	margin: 6.2rem 0;
+}
+.icon-boke2 {
+    font-size: 2.49rem;
+}
+.icon-boke2:before { 
+    content: "\e60a"; 
+    color: #84dec2;
+}
+.icon-github2 { 
+    font-size: 2.69rem;
+}
+.icon-github2:before { 
+  content: "\e6ed"; 
+}
+.icon-github:before { 
+  content: "\e6ed"; 
+}
+
+.icon-caidan {
+    font-size: 2.43rem;
+}
+.icon-caidan:before { 
+    content: "\e622"; 
+}
+
+.icon-zhuan {
+    font-size: 2.38rem;
+    color: #8a6d3b;
+}
+.icon-zhuan:before { 
+  content: "\e606"; 
+}
+
+.icon-pinglun {
+    line-height: 2.85rem;
+    color: #ababab;
+}
+.icon-pinglun:before { 
+    content: "\e607"; 
+    color: #97c5dc;
+    font-size: 1.86rem;
+}
+
+.icon-liulan {
+    line-height: 2.85rem;
+    color: #6e7071;
+    margin-right: 1.8rem;
+}
+.icon-liulan:before { 
+    font-size: 1.66rem;
+    content: "\e78e"; 
+    color: #337ab7;
+}
+
+.icon-yuan {
+    font-size: 2.3698rem;
+    color: #ffabab;
+}
+.icon-yuan:before { 
+    content: "\e608"; 
+}
+
+.icon-erweima:before { 
+    content: "\e602"; 
+}
+.icon-jinghua {
+    font-size: 2.42rem;
+    color: #ff6b6b;
+}
+.icon-jinghua:before { 
+    content: "\e601"; 
+}
+
+.icon-zhiding {
+    font-size: 2.298rem;
+    color: #40a7ff;
+}
+.icon-zhiding:before { 
+    content: "\e600"; 
+}
+
+.icon-jian {
+    font-size: 2.068rem;
+    color: #ffa3a3;
+}
+.icon-jian:before { 
+    content: "\e68a"; 
+}
+
+/** 2行文本溢出 **/
+.text-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/** 加载中动画 **/
+.li-spinner {
+    width: 60px;
+    height: 60px;
+   
+    position: relative;
+    margin: 100px auto;
+}
+.first-bounce, .next-bounce {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #67CF22;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+}
+.next-bounce {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+@-webkit-keyframes bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+/** 通用的提示 */
+.li-tips {
+    color: white;
+    font-size: 16px;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+    -webkit-animation-name: fadeIn; /*动画名称*/
+    -webkit-animation-duration: 5s; /*动画持续时间*/
+    -webkit-animation-iteration-count: 1; /*动画次数*/
+    -webkit-animation-delay: 0s; /*延迟时间*/
+}
+.tips-default {
+    background-color: #28D428;
+}
+.tips-success {
+    background-color: #28D428;
+}
+.tips-error {
+    background-color: red;
+}
+.tips-warning {
+    background-color: #FF991A;
+}

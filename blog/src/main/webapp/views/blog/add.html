@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <meta name="keywords" content="莉莉·安，ITer请跟随兴趣一路前行"/>
+    <meta name="description" content="何立军的个人博客，欢迎大家一起交流学习。" />
+    <meta name="baidu-site-verification" content="pOTtshh74R" />
+    <title>添加文章--莉莉·安</title>
+    
+    <link rel="stylesheet" type="text/css" href="/plugin/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+    <style type="text/css">
+        
+        .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+            padding: 0;
+            height: 100%;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form-horizontal" role="form" id="addBlogForm">
+            <div class="form-group">
+                <label for="listTitle" class="col-sm-2 col-md-2 col-lg-2  control-label">标题：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="text" class="form-control" name="listTitle" id="listTitle" placeholder="请输入文章标题">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="listDescript" class="col-sm-2 col-md-2 col-lg-2  control-label">描述：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <textarea class="form-control" rows="3" name="listDescript" id="listDescript" placeholder="请输入文章描述"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="listLink" class="col-sm-2 col-md-2 col-lg-2  control-label">链接：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="text" class="form-control" name="listLink" id="listLink" placeholder="请输入文章链接">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2  control-label">分类：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="listType" id="listType1" value="1"> 前端
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="listType" id="listType2" value="2"> JAVA
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="listType" id="listType3" value="3"> JAVA
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2 control-label">来源：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="listFrom" id="listFrom1" value="1"> 博客园
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="listFrom" id="listFrom2" value="2"> github
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="listFrom" id="listFrom3" value="3"> 简书
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2 control-label">是否原创：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="isOwner" id="isOwner1" value="1"> 原创
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="isOwner" id="isOwner2" value="2"> 转载
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2 control-label">文章状态：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="listStatus" id="listStatus1" value="1"> 显示
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="listStatus" id="listStatus2" value="0"> 隐藏
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2 control-label">是否加精：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="isGood" id="isGood1" value="1"> 是
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="isGood" id="isGood2" value="0"> 否
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="listRead" class="col-sm-2 col-md-2 col-lg-2  control-label">阅读次数：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="number" class="form-control" name="listRead" id="listRead" placeholder="请输入文章阅读次数">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="listLike" class="col-sm-2 col-md-2 col-lg-2  control-label">喜欢次数：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="number" class="form-control" name="listLike" id="listLike" placeholder="请输入文章喜欢次数">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="listComment" class="col-sm-2 col-md-2 col-lg-2  control-label">评论次数：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="number" class="form-control" name="listComment" id="listComment" placeholder="请输入文章评论次数">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="coverImg" class="col-sm-2 col-md-2 col-lg-2  control-label">封面图片：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="text" class="form-control" name="coverImg" id="coverImg" placeholder="请输入文章封面图片链接">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="coverDesc" class="col-sm-2 col-md-2 col-lg-2  control-label">封面描述：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="text" class="form-control" name="coverDesc" id="coverDesc" placeholder="请输入文章封面描述">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="listSort" class="col-sm-2 col-md-2 col-lg-2  control-label">排序位：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
+                    <input type="number" class="form-control" name="listSort" id="listSort" placeholder="请输入文章排序位">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="isTop" class="col-sm-2 col-md-2 col-lg-2  control-label">是否顶置：</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="isTop" id="isTop1" value="1"> 是
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="isTop" id="isTop2" value="0"> 否
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="button" class="btn btn-success btn-lg btn-block" id="addBlogBtn">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+    require(['jquery'],function($){
+        require(['common'],function(){
+            var blogAddMain = {
+                init: function(){
+                    var self = blogAddMain;
+                        self.renderHtml();
+                        self.renderComponent();
+                        self.watch();
+                },
+                options: {
+                    
+                },
+                
+                //渲染html
+                renderHtml: function(){
+                    var self = blogAddMain;
+                       
+                },
+                
+                //渲染组件
+                renderComponent: function(){
+
+                },
+                
+                //添加文章
+                addBlogFun: function(){
+                    var formJson = $('#addBlogForm').serializeArray(),
+                        par = {};
+
+                    $(formJson).each(function(index, value) {
+                        par[value.name] = value.value;
+                    });
+
+                    par.listType = $("input[name='listType']:checked").val();
+                    par.listFrom = $("input[name='listFrom']:checked").val();
+                    par.isOwner = $("input[name='isOwner']:checked").val();
+                    par.listStatus = $("input[name='listStatus']:checked").val();
+                    par.isGood = $("input[name='isGood']:checked").val();
+                    par.isTop = $("input[name='isTop']:checked").val();
+                    console.log(par)
+
+                    $.ajax({
+                        url: liliangel._XHR + 'blog/add',
+                        type: "POST",
+                        data: {json:JSON.stringify(par)},
+                        beforeSend: function () {
+                            liliangel.common.tips({stayTime:5000})
+                        },
+                        success: function (json) {
+                            if (json) {
+                                if(json.code == 0){
+                                    liliangel.common.tips({
+                                        updateText: true,
+                                        type: 'success',
+                                        msg: '保存成功',
+                                        callback: function(){
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            }else {
+                                //common.error();
+                            }
+                        },
+                        complete: function () {
+                            
+                        },
+                        timeout: 6000
+                    });
+                },
+                //渲染博客列表
+                renderBlogListFun(json){
+                    
+                },
+
+                watch: function(){
+                    var self = blogAddMain;
+                    $('#addBlogBtn').on('click',function(event){
+                        self.addBlogFun();
+                    })
+                }
+            }
+        blogAddMain.init(); 
+        })
+    })
+}
+</script>
+</html>

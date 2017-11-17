@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microman.blog.mapper.PageRecordMapper">
+
+	<insert id="insertRecord" useGeneratedKeys="true" keyProperty="id" parameterType="PageRecord" >
+	    insert into my_record_page(source,page,model,network_state,browser) values(#{source},#{page},#{model},#{networkState},#{browser})
+	</insert>
+</mapper>
