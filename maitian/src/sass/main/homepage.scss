@@ -1,0 +1,498 @@
+/** banner部分样式 **/
+.ntjr-m-banner {
+	height: 505px;
+	overflow: hidden;
+	.ntjr-banner-bg {
+		height: 436px;
+		background-color: #0d0b07;
+	}
+	.ntjr-banner-main {
+		height: 505px;
+	}
+	.ntjr-login-regist {
+		width: 247px;
+		height: 292px;
+		right: 100px;
+		background-image: url('/dist/static/img/main/banner-op.png');
+		text-align: center;
+		position: absolute;
+		top: 100px;
+		right: 73px;
+		z-index: 3;
+
+		.content-data {
+			padding-top: 60px;
+			.data-value {
+				font-family: Avenir-Medium;
+				font-size: 93.61px;
+				line-height: 34px;
+				letter-spacing: 3.7px;
+				color: #f83835;
+			}
+			.data-symbol {
+				font-family: Avenir-Medium;
+				font-size: 28px;
+				line-height: 34px;
+				letter-spacing: 1.1px;
+				color: #f7323b;
+			}
+		}
+		.data-explain {
+			font-family: FZLTXHK--GBK1-0;
+			font-size: 14px;
+			line-height: 34px;
+			letter-spacing: 0.6px;
+			color: white;
+		}
+		.is-user {
+			color: white;
+
+			a {
+				color: #ce9b44;
+				cursor: pointer;
+			}
+			a:hover {
+				color: #ce9b44;
+				text-decoration: underline;	
+			}
+		}
+
+		.login-title {
+			padding-top: 60px;
+			font-size: 20px;
+			color: white;
+		}
+		.login-user {
+			font: 16px/44px 'Microsoft YaHei';
+			color: white;
+			margin-top: 38px;
+		}
+		.login-mobile {
+			font: 24px/1 'Microsoft YaHei';
+			color: #cc2e33;
+		}
+		.is-login {
+			text-align: right;
+			color: #ce9b44;
+			cursor: pointer;
+			padding-right: 42px;
+			
+			a:hover {
+				color: #ce9b44;
+				text-decoration: underline;	
+			}
+		}
+		
+		
+		.ntjr-btn {
+			margin: 50px 0px 10px 44px;
+		}
+		.ntjr-btn.to-usercenter {
+			margin: 20px 0px 10px 44px;
+		}
+	}
+	.ntjr-m-notice {
+		.notice-0,
+		.notice-1 {
+			transition: all 0.2s linear;
+		}
+		position: absolute;
+		bottom: 0;
+		line-height: 40px;
+		height: 40px;
+		padding: 0px 14px;
+		background: rgba(0,0,0,.5);
+		width: 100%;
+		z-index: 4;
+		overflow: hidden;
+
+		a {
+			color: white;
+		}
+		a:hover {
+			color: #fdc76a;
+		}
+	}
+	.ntjr-banner-dynamic {
+		position: relative;
+		width: 6000px;
+		.wave {
+			position: relative;
+			width: 6000px;
+		}
+		img {
+			position: absolute;
+			left: 0;
+			top: -84px;
+		}
+		.ntjr-wave-img {
+			max-width: 100%;
+			height: auto;
+		}
+		.wave-1 {
+			left: 0;
+		}
+		.wave-1-2 {
+			left: 3000px;
+		}
+		.wave-2 {
+			left: 0;
+		}
+		.wave-2-2 {
+			left: 3000px;
+		}
+		.wave-3 {
+			left: 0;
+		}
+		.wave-3-2 {
+			left: 3000px;
+		}
+	}
+}
+
+/** 运营数据 **/ 
+.ntjr-m-data {
+	padding: 28px 0px 10px;
+
+	b {
+		font-family: 'HiraginoSansGB-W3';
+		font-size: 26px;
+		line-height: 34px;
+		letter-spacing: 1px;
+		color: #cc2e33;
+		padding: 0 2px;
+	}
+}
+
+/** 四个重点介绍 **/
+.ntjr-m-introduce {
+	box-sizing: border-box;
+	padding: 30px 0;
+
+	.introduce-detail .icon {
+		width: 60px;
+		height: 95px;
+		background-image: url('/dist/static/img/main/main-sprite.png');
+	}
+
+	.introduce-detail.beijing .icon {
+		background-position: 0px -146px;
+	}
+	.introduce-detail.sannong .icon {
+		background-position: -87px -146px;
+	}
+	.introduce-detail.cunguan .icon {
+		background-position: -174px -146px;
+	}
+	.introduce-detail.baozhang .icon {
+		background-position: -261px -146px;
+	}
+	.introduce-detail {
+		.text {
+			margin-left: 16px;
+		}
+		.title {
+			font-size: 18px;
+			line-height: 22px;
+			letter-spacing: 0px;
+			color: #333333;
+			margin-top: 20px;
+		}
+		.desc {
+			font-size: 14px;
+			line-height: 20px;
+			letter-spacing: 0px;
+			color: #999999;
+		}
+	}
+}
+
+/** 新手专区 **/
+.ntjr-m-newuser {
+	margin-top: 33px;
+	box-shadow: 0.9px 10px 9px 0px 
+		rgba(0, 0, 0, 0.06);
+	border: solid 1px rgba(231, 231, 231, 1);
+	border-top: 2px solid #fd5468;
+
+	.newuser-qr {
+		text-align: center;
+		border-left: solid 1px rgba(235, 235, 235, 1);
+		height: 233px;
+
+		img {
+			padding-top: 32px;
+		}
+	}
+
+	.newuser-content .newuser-title {
+		margin-left: -69px;
+		padding-left: 69px;
+		margin-top: 16px;
+		font-size: 24px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 22px;
+		letter-spacing: 0px;
+		color: #333333;
+	}
+
+	.newuser-data {
+		padding-top: 30px;
+		margin-left: -69px;
+		padding-left: 69px;
+	}
+	.newuser-data-number {
+		height: 46px;
+	}
+
+	.newuser-data-number {
+		.number-value {
+			font-size: 36px;
+			font-family: MicrosoftYaHei;
+			line-height: 22px;
+			letter-spacing: 0px;
+			color: #df1818;
+		}
+		.number-symbol {
+			font-size: 19.2px;
+			line-height: 22px;
+			letter-spacing: 0px;
+			color: #666666;
+		}
+	}
+	.newuser-data-text {
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: 0px;
+		color: #666666;
+	}
+	.newuser-data-text.cricle-text {
+		margin-top: -6px;
+	}
+	.newuser-data-circle {
+		width: 52px;
+		height: 52px;
+		position: relative;
+		top: -15px;
+		font: 18px/52px 'Microsoft YaHei';
+		color: #cc2e33;
+		text-align: center;
+		background: url(/dist/static/img/main/progress.png) no-repeat 0 0;
+	}
+	.newuser-guide {
+		margin-left: -69px;
+		padding-left: 69px;
+		height: 69px;
+		margin-top: 28px;
+		background-color: rgba(249, 249, 249, 1);
+		.newuser-guide-1 {
+			width: 166px;
+			float: left;
+		} 
+		.newuser-guide-2 {
+			width: 200px;
+			float: left;
+		}
+		.newuser-guide-3 {
+			width: 163px;
+			float: left;
+		}
+		.newuser-guide-4 {
+			width: 168px;
+			float: left;
+		}
+		.guide-number {
+			font-family: MicrosoftYaHei;
+			font-size: 20px;
+			line-height: 68px;
+			letter-spacing: 0px;
+			color: #666666;
+			padding: 0 6px;
+		}
+		.guide-text {
+			font-size: 14px;
+			line-height: 22px;
+			letter-spacing: 0px;
+			color: #333333;
+		}
+		.guide-line {
+			color: rgba(184, 184, 184, 1);
+		}
+		.guide-icon {
+			width: 42px;
+			height: 42px;
+			background-image: url('/dist/static/img/main/main-sprite.png');
+			display: inline-block;
+			float: left;
+			margin-top: 14px;
+		}
+		.guide-icon1 {
+			background-position: -357px -173px;
+		}
+		.guide-icon2 {
+			background-position: -422px -173px;
+		}
+		.guide-icon3 {
+			background-position: -486px -173px;
+		}
+		.guide-icon4 {
+			background-position: -551px -173px;
+		}
+	}
+}
+
+/** 三个大模块的标题图片 **/
+.ntjr-m-title-img {
+	padding: 60px 0;
+	box-sizing: border-box;
+}
+
+/** 优选产品 **/
+.ntjr-m-product {
+	.product-list {
+		height: 371px;
+		background-color: rgba(255, 255, 255, 1);
+		box-shadow: 0.9px 10px 9px 0px 
+			rgba(0, 0, 0, 0.06);
+		border: solid 1px rgba(231, 231, 231, 1);
+		border-top: 2px solid rgba(230, 184, 140, 1);
+		margin-bottom: 26px;
+		border-left: 0;
+	}
+	.product-left-img {
+		position: relative;
+		.product-more {
+			position: absolute;
+			bottom: 40px;
+			left: 83px;
+			font-size: 16px;
+			line-height: 22px;
+			color: #995d10;
+		}
+	}
+	.product-win,
+	.product-direct,
+	.product-plan {
+		.product-item {
+			width: 966px;
+			height: 370px;
+
+			.item-list {
+				width: 483px;
+				height: 182px;
+				box-sizing: border-box;
+				padding: 30px 0px 30px 40px;
+				cursor: pointer;
+				transition: all 0.2s linear;
+				.item-title {
+					font-size: 18px;
+
+					i {
+						background: #fff;
+						color: #ce9b44;
+						font-size: 14px;
+						padding: 0 6px;
+						border: 1px solid #ce9b44;
+						border-radius: 4px;
+						margin-left: 4px;
+						vertical-align: 2px;
+					}
+				}
+				.item-sub-title {
+					font: 12px/26px 'Microsoft YaHei';
+					color: #999;
+					text-align: center;
+				}
+				.item-content {
+					.layui-col-xs4,
+					.layui-col-xs5,
+					.layui-col-xs3 {
+						text-align: center;
+						margin-top: 18px;
+					}
+					.item-data-red {
+						color: #cc2e33;
+						font-size: 40px;
+					}
+					.item-data-black {
+						font-size: 38px;
+					}
+					.item-data-change {
+						font-size: 25px;
+						line-height: 40px;
+					}
+					.item-last-money {
+						font: 12px/26px 'Microsoft YaHei';
+						color: #999;
+						margin-top: 3px;
+						text-align: left;
+					}
+				}
+				
+
+			}
+			.item-list:hover {
+				box-shadow: 0.2px 0.2px 10px rgba(0, 0, 0, 0.06);
+			}
+			.item-list1 {
+				border-right: 1px solid rgba(231, 231, 231, 1);
+			}
+			.item-list2 {
+				
+			}
+			.item-list3 {
+				border-top: 1px solid rgba(231, 231, 231, 1);
+				border-right: 1px solid rgba(231, 231, 231, 1);
+			}
+			.item-list4 {
+				border-top: 1px solid rgba(231, 231, 231, 1);
+			}
+		}
+	}
+	.product-plan .item-list4 {
+		padding: 0 !important; //最后一张图片
+	}
+}
+
+/** 资讯信息 **/
+.ntjr-m-news {
+	.news-list {
+		padding-left: 26px;
+		height: 393px;
+		width: 383px;
+		margin-left: 8px;
+		background-color: rgba(255, 255, 255, 1);
+		box-shadow: 0.9px 10px 9px 0px 
+			rgba(0, 0, 0, 0.06);
+		border: solid 1px rgba(231, 231, 231, 1);
+		
+		.news-img {
+			padding-top: 50px;
+		}
+		
+		.news-list-text {
+			padding: 20px 2px;
+		}
+		.news-list-href {
+			padding: 20px 0;
+			line-height: 33px;
+			color: #333333;
+		}
+		.news-list-href:hover {
+			color: #cd9b57;
+		}
+		.news-list-more {
+			font-size: 14px;
+			line-height: 30px;
+			color: #cd9b57;
+		}
+	}
+	
+}
+
+/** 合作伙伴 **/
+.ntjr-m-partner {
+				
+}
