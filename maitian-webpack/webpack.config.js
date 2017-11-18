@@ -18,15 +18,50 @@ var AUTOPREFIXER_BROWSERS = [
 	'bb >= 10'
 ];
 
+var entryList = {
+	'js/index/index': ROOT + '/src/js/index/index'
+};
+
+var pageArray = [
+	new HtmlWebpackPlugin({
+		alwaysWriteToDisk: true,
+		filename: ROOT + '/dist/index.html',
+		template: ROOT + '/index.html',
+		chunks: ['common', 'js/index/index'],
+		minify: {
+			removeAttributeQuotes: true, // 移除属性的引号
+			removeComments: true, //移除html注释
+		},
+		hash: true
+	}),
+	new HtmlWebpackPlugin({
+		alwaysWriteToDisk: true,
+		filename: ROOT + '/dist/page/base/one1.html',
+		template: ROOT + '/src/page/base/one.html',
+		chunks: ['common', 'js/index/index'],
+		minify: {
+			removeAttributeQuotes: true, // 移除属性的引号
+			removeComments: true, //移除html注释
+		},
+		hash: true
+	}),
+
+]
+
 module.exports = {
-	entry: {
-		'page2/main': ROOT + '/src/page2/main'
-	},
+	entry: entryList,
 	output: {
 		filename: '[name].js',
 		path: ROOT + '/dist',
 		publicPath: '/dist'
 	},
+	devServer: {
+        contentBase: 'dist',
+        host: '0.0.0.0',
+        port: 1118, 
+        inline: true, //可以监控js变化
+        hot: true, //热启动
+    },
 	module: {
 		loaders: [
 			{
@@ -41,28 +76,48 @@ module.exports = {
 			}
 		]
 	},
+	externals: {
+		jQuery: 'window.jQuery'
+	},
 	resolve: {
 		alias: {
-			pages: ROOT + '/pages'
+			//pages: ROOT + '/pages'
 		}
 	},
 	postcss: [autoprefixer({ browsers: AUTOPREFIXER_BROWSERS })],//使用postcss的插件autoprefixer来给css属性添加浏览器前缀
 	watch: true,
 	plugins: [
 		extractCSS,
-		new webpack.DefinePlugin({
-			'ENV': JSON.stringify(process.env.ENV)
-		}),
 		new HtmlWebpackPlugin({
 			alwaysWriteToDisk: true,
-			filename: ROOT + '/pages/html/page2.html',
-			template: ROOT + '/pages/tpl/page2.html',
-			chunks: ['page2/main'],
+			filename: ROOT + '/dist/index.html',
+			template: ROOT + '/index.html',
+			chunks: ['common', 'js/index/index'],
 			minify: {
-				removeAttributeQuotes: true // 移除属性的引号
+				removeAttributeQuotes: true, // 移除属性的引号
+				removeComments: true, //移除html注释
 			},
 			hash: true
 		}),
+		new HtmlWebpackPlugin({
+			alwaysWriteToDisk: true,
+			filename: ROOT + '/dist/page/base/one.html',
+			template: ROOT + '/src/page/base/one.html',
+			chunks: ['common', 'js/index/index'],
+			minify: {
+				removeAttributeQuotes: true, // 移除属性的引号
+				removeComments: true, //移除html注释
+			},
+			hash: true
+		}),
+		new webpack.DefinePlugin({
+			'ENV': JSON.stringify(process.env.ENV)
+		}),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		}),
+		new webpack.optimize.CommonsChunkPlugin('common','common.js'),
 		new HtmlWebpackHarddiskPlugin(),
 	]
 }

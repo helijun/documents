@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "cross-env ENV=DEV webpack-dev-server --inline --hot --quiet --progress --content-base pages/html  --host 0.0.0.0 --port 1118",
+    "dev": "cross-env ENV=DEV webpack-dev-server --inline --hot --quiet --progress",
     "build": "webpack"
   },
   "devDependencies": {
@@ -21,6 +21,7 @@
     "style-loader": "^0.13.1",
     "sass-loader": "^3.2.0",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "jquery" : "^1.8.0"
   }
 }
