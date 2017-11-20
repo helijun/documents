@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 var autoprefixer = require("autoprefixer");
 
-var AUTOPREFIXER_BROWSERS = [
+const AUTOPREFIXER_BROWSERS = [
 	'ie_mob >= 10',
 	'ff >= 40',
 	'chrome >= 40',
@@ -17,13 +17,25 @@ var AUTOPREFIXER_BROWSERS = [
 	'bb >= 10'
 ];
 
-var entryList = {
-	'common': ROOT + '/src/js/common/common',
-	'page/common/header': ROOT + '/src/page/common/header',
-	'js/index/index': ROOT + '/src/js/index/index'
-};
+//入口文件前置目录
+let entryPath = ROOT + '/src';
+//$开头的所有js(页面)入口
+let $common = 'common';
+let $header = 'js/base/header';
+let $footer = 'js/base/footer';
+let $index = 'js/index/index';
 
-module.exports = {
+let entryArray = [$common, $header, $footer, $index];
+let entryList = {};
+entryArray.forEach((v) => {
+	if('common' === v ){
+		entryList[v] = entryPath + '/js/common/' + v
+	}else{
+		entryList[v] = entryPath + '/' + v
+	}
+})
+
+let config = {
 	entry: entryList,
 	output: {
 		filename: '[name].js',
@@ -31,25 +43,25 @@ module.exports = {
 		publicPath: '/dist'
 	},
 	devServer: {
-        contentBase: 'dist',
-        port: 1118, 
-        inline: true, //可以监控js变化
-        hot: true, //热启动
-    },
+		contentBase: 'dist',
+		port: 1118,
+		inline: true, //可以监控js变化
+		hot: true, //热启动
+	},
 	module: {
 		loaders: [
 			{
-			    test: /\.js$/,
-			    loader: "babel",
-			    exclude: /node_modules/
-			}, 
-			{
-	　　　　　　 test: /\.html$/,
-	　　　　　　 loader: 'html-withimg-loader'
-	 　　　　},
+				test: /\.js$/,
+				loader: "babel",
+				exclude: /node_modules/
+			},
 			{
 				test: /\.html$/,
-				loader: "raw-loader" 
+				loader: 'html-withimg-loader'
+			},
+			{
+				test: /\.html$/,
+				loader: "raw-loader"
 			},
 			{
 				test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -76,54 +88,69 @@ module.exports = {
 	},
 	watch: true,
 	postcss: [autoprefixer({ browsers: AUTOPREFIXER_BROWSERS })],//使用postcss的插件autoprefixer来给css属性添加浏览器前缀
-	plugins: [
-		new ExtractTextPlugin('[name].css'),
-		new HtmlWebpackPlugin({
-			alwaysWriteToDisk: true,
-			filename: ROOT + '/dist/page/common/header.html',
-			template: ROOT + '/src/page/common/header.html',
-			chunks: ['common', 'page/common/header'],
-			minify: {
-				removeAttributeQuotes: true, // 移除属性的引号
-				removeComments: true, //移除html注释
-			},
-			hash: true
-		}),
+}
+
+let plugins = [
+	new ExtractTextPlugin('[name].css'),
+	new webpack.DefinePlugin({
+		'ENV': JSON.stringify(process.env.ENV)
+	}),
+	new webpack.ProvidePlugin({
+		$: 'jquery',
+		jQuery: 'jquery'
+	}),
+	new webpack.optimize.CommonsChunkPlugin({
+		name: 'common', // 不用.js后缀
+		chunks: [$common] //对应entry
+	}),
+	new HtmlWebpackHarddiskPlugin()
+];
+
+//满足通用的chunks页面模板数组
+let commonPage = [$header, $footer];
+
+commonPage.forEach((v) => {
+	plugins.push(
 		new HtmlWebpackPlugin({
 			alwaysWriteToDisk: true,
 			favicon: './favicon.ico',
-			filename: ROOT + '/dist/index.html',
-			template: ROOT + '/index.html',
-			chunks: ['common', 'js/index/index'],
-			minify: {
-				removeAttributeQuotes: true, // 移除属性的引号
-				removeComments: true, //移除html注释
-			},
+			filename: config.output.path + '/' + v.replace('js', 'page') + '.html',
+			template: entryPath + '/' + v.replace('js', 'page') + '.html',
+			chunks: [$common, v],
 			hash: true
-		}),
-		new HtmlWebpackPlugin({
-			alwaysWriteToDisk: true,
-			filename: ROOT + '/dist/page/base/one.html',
-			template: ROOT + '/src/page/base/one.html',
-			chunks: ['common', 'js/index/index'],
-			minify: {
-				removeAttributeQuotes: true, // 移除属性的引号
-				removeComments: true, //移除html注释
-			},
-			hash: true
-		}),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.DefinePlugin({
-			'ENV': JSON.stringify(process.env.ENV)
-		}),
-		new webpack.ProvidePlugin({
-			$: 'jquery',
-			jQuery: 'jquery'
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'common', // 不用.js后缀
-			chunks: ['common'] //对应entry
-		}),
-		new HtmlWebpackHarddiskPlugin()
-	]
+		})
+	)
+})
+
+//不满足上面通用的页面模板（如首页），在这里push
+plugins.push(
+	new HtmlWebpackPlugin({
+		alwaysWriteToDisk: true,
+		favicon: './favicon.ico',
+		filename: config.output.path + '/index.html',
+		template: ROOT + '/index.html',
+		chunks: [$common, $index],
+		hash: true
+	})
+)
+
+//生产环境开启压缩
+if (process.env.ENV !== 'dev'){
+	plugins.push(
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
+		})
+	)
+}else{
+	//开发环境开启热加载
+	plugins.push(
+		new webpack.HotModuleReplacementPlugin()
+	)
 }
+
+config.plugins = plugins;
+
+console.log('config', JSON.stringify(config))
+module.exports = config;

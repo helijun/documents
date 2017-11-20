@@ -17,5 +17,5 @@ $('body')
 */
 
 
-import '../../page/common/header.scss';
+import '../../sass/base/header.scss';
 import '../../plugin/layui/css/layui.css'
