@@ -67,9 +67,9 @@ let config = {
 				test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
 				loader: 'url-loader?limit=8192&name=[path][name].[ext]'
 			},
-			{
-				test: /\.css$/,
-				loader: "style-loader!css-loader!postcss-loader"
+			{ 
+				test: /\.css$/, 
+				loader: ExtractTextPlugin.extract('style', 'css') 
 			},
 			{
 				test: /.scss$/,

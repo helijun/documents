@@ -1,7 +1,7 @@
 ;(function(win){
 	"use strict";
-	//全局变量 >> NTJR
-	var NTJR = {
+	//全局变量 >> MT
+	var MT = {
 	    //全局初始化函数
 	    init: function(callback){
 	        this.watch();
@@ -46,12 +46,12 @@
 	                    }
 	                }else{
 	                    console.error(opts.baseUrl || opts.url,'ajax 数据返回格式异常');
-	                    NTJR.ajaxError();
+	                    MT.ajaxError();
 	                }
 	            },
 	            error: function(){
 	                console.error(opts.baseUrl || opts.url,' ajax is error');
-	                opts.error != undefined ? opts.error() : NTJR.commonError();
+	                opts.error != undefined ? opts.error() : MT.commonError();
 	            },
 	            complete: function(XMLHttpRequest, textStatus) {
 	                console.log(opts.baseUrl || opts.url,' ajax is complete');
@@ -235,13 +235,13 @@
 
 	if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
 		define(function() {
-			return NTJR;
+			return MT;
 		});
 	} else if (typeof module !== 'undefined' && module.exports) {
-		module.exports = NTJR;
-		module.exports.NTJR = NTJR;
+		module.exports = MT;
+		module.exports.MT = MT;
 	} else {
-		win.NTJR = NTJR;
+		win.MT = MT;
 	}
 
 })(window)

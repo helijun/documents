@@ -1,5 +1,16 @@
 @charset "utf-8";
-article {
-	height: 10rem;
-	background-color: red;
+.mt-body-footer {
+	.m-footer-content {
+		width: 100%;
+		height: 228px;
+		background-color: #f6f6f6;
+	}
+
+	.m-footer-bottom {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		background-color: #ececec;
+	}
 }

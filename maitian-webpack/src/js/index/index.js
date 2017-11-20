@@ -17,5 +17,12 @@ $('body')
 */
 
 
-import '../../sass/base/header.scss';
 import '../../plugin/layui/css/layui.css'
+import '../../sass/common.scss';
+import '../../sass/base/header.scss';
+import '../../sass/index/index.scss';
+import '../../sass/base/footer.scss';
+
+if (ENV == 'dev') {
+    require('../../../index.html');
+}

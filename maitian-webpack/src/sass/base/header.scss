@@ -1,5 +1,35 @@
 @charset "utf-8";
-article {
-	height: 10rem;
-	background-color: red;
+.mt-body-header {
+	.mt-header {
+		height: 117px;
+		line-height: 117px;
+	}
+
+	.mt-logo {
+
+	}
+
+	.layui-nav {
+		background-color: white;
+		
+
+		.layui-nav-item {
+			a {
+				font-size: 18px;
+				color: #333333;
+			}
+		}
+		.layui-nav-item.layui-this {
+			a {
+				color: #cca482;
+			}
+
+			
+		}
+		.layui-nav-item.layui-this:after {
+			height: 2px;
+    		background-color: #cca482;
+		}
+		
+	}
 }
