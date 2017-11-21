@@ -110,6 +110,37 @@
 
 	.mt-module-callme {
 		height: 640px;
+
+		.el-callme-content {
+			padding-top: 65px;
+
+			.layui-col-xs6 {
+
+				.layui-form {
+					height: 400px;
+					padding-right: 30px;
+					border-right: 1px solid #ccc;
+
+					.layui-form-label {
+						width: 130px;
+					}
+					.layui-input-block {
+						margin-left: 160px;
+					}
+				}
+
+				.el-callme-maptitle {
+					font-family: AdobeHeitiStd-Regular;
+					font-size: 14px;
+					font-weight: 600;
+					line-height: 34px;
+					color: #333333;
+				}
+				iframe {
+					padding-top: 20px;
+				}
+			}
+		}
 	}
 	
 }

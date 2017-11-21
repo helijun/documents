@@ -1,12 +1,25 @@
 @charset "utf-8";
 .mt-body-footer {
-	.m-footer-content {
+	
+	.mt-footer-content {
 		width: 100%;
 		height: 228px;
 		background-color: #f6f6f6;
+		overflow: hidden;
+		.layui-col-xs4 {
+			text-align: left;
+			padding: 45px 12%;
+			line-height: 38px;
+			strong {
+				font-size: 16px;
+			}
+			a {
+				display: block;
+			}
+		}
 	}
 
-	.m-footer-bottom {
+	.mt-footer-bottom {
 		width: 100%;
 		height: 50px;
 		line-height: 50px;

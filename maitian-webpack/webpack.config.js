@@ -24,8 +24,22 @@ let $common = 'common';
 let $header = 'js/base/header';
 let $footer = 'js/base/footer';
 let $index = 'js/index/index';
+let $layui = 'plugin/layui/layui';
+let $layuiForm = 'plugin/layui/lay/modules/form';
+let $layuiLayer = 'plugin/layui/lay/modules/layer';
+let $layuiJquery = 'plugin/layui/lay/modules/jquery';
 
-let entryArray = [$common, $header, $footer, $index];
+let entryArray = [
+		$common, 
+		$header, 
+		$footer, 
+		$index, 
+		$layui, 
+		$layuiForm, 
+		$layuiLayer, 
+		$layuiJquery
+	];
+
 let entryList = {};
 entryArray.forEach((v) => {
 	if('common' === v ){
@@ -44,6 +58,7 @@ let config = {
 	},
 	devServer: {
 		contentBase: 'dist',
+		host: '192.168.1.193',
 		port: 1118,
 		inline: true, //可以监控js变化
 		hot: true, //热启动
@@ -83,7 +98,7 @@ let config = {
 	},
 	resolve: {
 		alias: {
-			//pages: ROOT + '/pages'
+			'mt-common': '../../js/common/common'  //../../开头的只能在页面级js中使用
 		}
 	},
 	watch: true,
@@ -99,10 +114,6 @@ let plugins = [
 		$: 'jquery',
 		jQuery: 'jquery'
 	}),
-	new webpack.optimize.CommonsChunkPlugin({
-		name: 'common', // 不用.js后缀
-		chunks: [$common] //对应entry
-	}),
 	new HtmlWebpackHarddiskPlugin()
 ];
 
@@ -117,6 +128,7 @@ commonPage.forEach((v) => {
 			filename: config.output.path + '/' + v.replace('js', 'page') + '.html',
 			template: entryPath + '/' + v.replace('js', 'page') + '.html',
 			chunks: [$common, v],
+			chunksSortMode: 'manual',//让chunk按顺序加载
 			hash: true
 		})
 	)
@@ -129,7 +141,8 @@ plugins.push(
 		favicon: './favicon.ico',
 		filename: config.output.path + '/index.html',
 		template: ROOT + '/index.html',
-		chunks: [$common, $index],
+		chunks: [$layui, $common, $index],
+		chunksSortMode: 'manual',
 		hash: true
 	})
 )

@@ -6,6 +6,11 @@
 3. 集成jquery
 4. html/js/css引入图片测试
 5. 集成layui
+6. 完善滚屏循环动画
+
+## 待完善
+1· 集成layui.js
+2. 添加animate.css 滚屏流动加载效果
 
 ## 存在问题
 1. 公共引用部分有待加强（如抽取jquery）

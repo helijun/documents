@@ -18,11 +18,37 @@ $('body')
 
 
 import '../../plugin/layui/css/layui.css'
+import '../../plugin/layui/css/modules/layer/default/layer.css';
+import '../../plugin/animate/animate.css';
 import '../../sass/common.scss';
 import '../../sass/base/header.scss';
 import '../../sass/index/index.scss';
 import '../../sass/base/footer.scss';
 
+import MT from "mt-common";
+
 if (ENV == 'dev') {
     require('../../../index.html');
 }
+
+// var a = document.getElementById("eq").offsetTop;
+// if (a >= $(window).scrollTop() && a < ($(window).scrollTop() + $(window).height())) {
+// }
+
+
+console.log('layui', layui)
+layui.use('form', function () {
+    var form = layui.form,
+        layer = layui.layer;
+
+    //监听提交
+    form.on('submit(callmeForm)', function (data) {
+        layer.msg(JSON.stringify(data.field));
+        return false;
+    });
+});
+
+MT.renderAnimate('.mt-body-index');
+$(document).on('mousewheel', () => {
+    MT.renderAnimate('.mt-body-index', 'srcoll');
+})

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>地图名片 - 我的地图名片</title>
+    <style>body{margin:0}.iw-m{width:28px;height:43px;background:url(/console/public/show/map.png) 0 -100px no-repeat}#map{width:100%;height:100%}#iw{font:13px/1.6 "Microsoft YaHei","Helvetica Neue","Sans-Serif";width:360px}#iw h4{font-size:16px;border-bottom:2px solid #666;margin:0 0 6px;padding:0 0 4px;position:relative;word-break:break-all;word-wrap:break-word;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#iw .close{position:absolute;z-index:2;right:15px;top:15px;width:20px;height:20px;background:url(/console/public/show/map.png) 4px -46px no-repeat}#iw .iw{border:1px solid #ccc;padding:15px;position:relative;background:#fff}#iw .arrow2{position:relative;height:9px}#iw .arrow{position:absolute;height:9px;width:16px;top:-1px;left:50%;margin-left:-8px;background:url(/console/public/show/map.png) 0 0 no-repeat}#iw .div{*zoom:1}#iw .div:after{clear:both;content:"";display:table}#iw .img{padding:2px;border:1px solid #CCC;max-height:64px;max-width:96px;margin-left:10px;float:right}</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="iw"></div>
+<script src="//webapi.amap.com/maps?v=1.3&amp;key=8325164e247e15eea68b59e89200988b"></script>
+<script>
+/**
+ * Created by guofang.zhang on 5/5.
+ */
+!function(){
+	var mapObj, config,
+		i, html, infoWindow, lnglat, marker,
+		params = location.search.replace(/^\?/,"").split("&="),
+		fnEncode = function(text){
+			return text.replace(/[<>'"]/g, function(all){ return "&"+({"<":"lt",">":"gt",'"':"#34","'":"#39"})[all]+";"; });
+		};
+
+    var iw, height;
+	if(params.length == 6){
+		for(i = 0; i < 6; i++){
+			params[i] = decodeURIComponent(params[i]);
+		}
+
+		config = params[0].split("_");
+		document.body.style.cssText = "width:" + Number(config[1]) + "px;" + "height:" + Number(config[2]) +"px;";
+		lnglat = new AMap.LngLat(config[3], config[4]);
+		mapObj = new AMap.Map("map",{resizeEnable: true, level:13, center: lnglat});
+
+	marker = new AMap.Marker({map: mapObj, title: params[1], position: lnglat,
+        content:'<div class="iw-m"></div>', offset: new AMap.Pixel(-14, -40)});
+        if(config[0]==0){  return;  }
+
+	html =['<div class="iw"><a class="close" id="btnClose" href="javascript:;"></a><h4>' + fnEncode(params[1]) + '</h4><div class="div">', //name
+	       params[3]?('<img class="img" alt="我的地图名片" src="' + fnEncode(params[3])  + '"/>'):'',//img
+	       params[2]?("地址："+fnEncode(params[2])+'<br/>'):'', //address
+	       params[4]?("电话：" +fnEncode(params[4])+'<br/>'):'', //phone
+	       params[5]?(fnEncode(params[5])+'<br/>'):'', //desc
+	       '</div></div><div class="arrow2"><div class="arrow"></div></div>'
+	];
+        iw = document.getElementById('iw');
+        iw.innerHTML = html.join("");
+        document.getElementById('btnClose').onclick = function(){
+            infoWindow.close();
+        };
+        height = iw.offsetHeight;
+	infoWindow = new AMap.InfoWindow({content: iw, autoMove: true, isCustom:true, size: new AMap.Size(360, height)
+        // , offset: new AMap.Pixel(-35, -43)
+        , offset: new AMap.Pixel(0, -43)
+    });
+        //infoWindow.setOffset();
+
+//	if(config[0]==1){
+		infoWindow.open(mapObj, lnglat);
+		mapObj.setFitView([infoWindow]);
+//	}
+//	else{
+//		mapObj.setCenter(lnglat);
+//	}
+//		mapObj.setZoomAndCenter(13, lnglat);
+
+	AMap.event.addListener(marker, "click", function(){
+		infoWindow.open(mapObj, lnglat);
+	});
+		mapObj.plugin(["AMap.ToolBar"], function(){
+			mapObj.addControl(new AMap.ToolBar({ruler: false, direction: false}));
+		});
+	}
+}();</script>
+</body>
+</html>
