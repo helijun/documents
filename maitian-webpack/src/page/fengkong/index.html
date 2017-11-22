@@ -9,138 +9,88 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>麦甜科技</title>
+    <title>麦甜科技-风控系统</title>
   
 </head>
 <body>
-    #include("./src/page/base/header.html")
+    #include("../base/header.html")
      
-    <div class="mt-body-index">
-        <div class="mt-fluid" data-mt-animate='{"animate": "pulse"}'>
-            <img class="mt-full-img" src="./src/img/index/index-banner.png" alt="">
+    <div class="mt-body-fengkong">
+        <div class="mt-fluid">
+            <img class="mt-full-img" src="../../img/fengkong/index-banner.png" alt="">
         </div>
 
-        <div class="mt-container mt-module-product">
-            <div class="mt-module-title" data-mt-animate='{"animate": "fadeInDown"}'>
-                <strong id="myProduct">我们的产品</strong>
+        <div class="mt-module-why">
+            <div class="mt-module-title-pro">
+                <div class="element-content">
+                    <p class="title">风控系统</p>
+                    <p class="solid"></p>
+                </div>
             </div>
-            <div class="mt-container el-product-content">
-                <div class="el-product-list el-product-list1" data-mt-animate='{"animate": "fadeInLeft"}'>
-                    <p class="el-product-title">银行存管系统</p>
-                    <div class="el-product-detail">
-                        为网贷平台对接银行存管系统提供强大技术支持、咨询服务，解决存管对接中的各种难点、痛点，承接整体银行存管系统开发。
-                    </div>
-                </div>
-                <div class="el-product-list el-product-list2" data-mt-animate='{"animate": "fadeInDown"}'>
-                    <img src="./src/img/index/cp1.png" alt="">
-                </div>
-                <div class="el-product-list el-product-list3" data-mt-animate='{"animate": "fadeInRight"}'>
-                    <p class="el-product-title">网贷系统</p>
-                    <div class="el-product-detail">
-                        为互金企业提供网贷平台一站式解决方案，系统功能强大、稳定，支持个性化定制，助力平台顺利开展业务。
-                    </div>
-                </div>
 
-                <div class="el-product-list el-product-list4" data-mt-animate='{"animate": "fadeInDown"}'>
-                    <img src="./src/img/index/cp2.png" alt="">
-                </div>
-                <div class="el-product-list el-product-list5" data-mt-animate='{"animate": "fadeInDown"}'>
-                    <p class="el-product-title">风控系统</p>
-                    <div class="el-product-detail">
-                         为进军农村金融的网贷平台提供风险评估、风控建议、业务决策等功能，填补农民征信信息的缺失，避免网贷平台人海战术做风控。
-                    </div>
-                </div>
-                <div class="el-product-list el-product-list6" data-mt-animate='{"animate": "fadeInDown"}'>
-                    <img src="./src/img/index/cp3.png" alt="">
-                </div>
+            <div class="mt-container el-why-content">
+                麦甜科技风控系统，20年积淀的农业产业链金融数据，为进军农村金融的网贷平台提供风险评估、风控建<br>议、业务决策等功能，填补农民征信信息的缺失，避免网贷平台人海战术做风控。
             </div>
         </div>
 
-        <div class="mt-container mt-module-advantage">
-            <div class="mt-container mt-module-title" data-mt-animate='{"animate": "fadeInDown"}'>
-                <strong id="proAdvantage">产品优势</strong>
-            </div>
-            <div class="mt-container el-advantage-content layui-row">
-                <div class="layui-col-xs3" data-mt-animate='{"animate": "fadeInDown", "delay": "150"}'>
-                    <img src="./src/img/index/ys1.png" alt="">
-                    <p>专业团队</p>
-                </div>
-                <div class="layui-col-xs3" data-mt-animate='{"animate": "fadeInDown", "delay": "350"}'>
-                    <img src="./src/img/index/ys2.png" alt="">
-                    <p>快速交付</p>
-                </div>
-                <div class="layui-col-xs3" data-mt-animate='{"animate": "fadeInDown", "delay": "550"}'>
-                    <img src="./src/img/index/ys3.png" alt="">
-                    <p>高标准高安全</p>
-                </div>
-                <div class="layui-col-xs3" data-mt-animate='{"animate": "fadeInDown", "delay": "850"}'>
-                    <img src="./src/img/index/ys4.png" alt="">
-                    <p>合法合规</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-container mt-module-callme">
-            <div class="mt-container mt-module-title">
-                <strong id="callMe">联系我们</strong>
-            </div>
-
-            <div class="mt-container el-callme-content layui-row layui-col-space30">
-                <div class="layui-col-xs6">
-                    <form class="layui-form" id="callmeForm">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">想了解的业务</label>
-                            <div class="layui-input-block">
-                                <select name="wantKnow" lay-verify="required">
-                                    <option value="0">银行存管系统</option>
-                                    <option value="1">网贷系统</option>
-                                    <option value="2">风控系统</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">您的姓名</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入您的姓名" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">联系方式</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入您的联系方式" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                         
-                        <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">备注</label>
-                            <div class="layui-input-block">
-                                <textarea name="desc" placeholder="请在这里留言，我们会尽快回复您！" class="layui-textarea"></textarea>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="layui-col-xs6">
-                    <p class="el-callme-maptitle">
-                        公司地址：深圳市南山区威盛科技大厦21层
-                    </p>
-                    <p class="el-callme-maptitle">
-                        邮箱：<a href="mailto:service@myteamtech.com">service@myteamtech.com</a>
-                    </p>
-                    <iframe width='560' height='325' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://f.amap.com/5VydQ_0213NwJ'></iframe>
+        <div class="mt-module-business">
+            <div class="mt-module-title-pro">
+                <div class="element-content">
+                    <p class="title">业务模式</p>
+                    <p class="solid"></p>
                 </div>
             </div>
             
+            <div class="mt-container el-business-content">
+                <img class="mt-full-img" src="../../img/fengkong/business.png" alt="">
+            </div>
+        </div>
+
+        <div class="mt-module-advantage">
+            <div class="mt-module-title-pro">
+                <div class="element-content">
+                    <p class="title">麦甜优势</p>
+                    <p class="solid"></p>
+                </div>
+            </div>
+        
+            <div class="layui-row mt-container el-advantage-content">
+                <div class="layui-col-xs3">
+                    移动：6/12 | 平板：6/12 | 桌面：4/12
+                </div>
+                <div class="layui-col-xs3">
+                    移动：6/12 | 平板：6/12 | 桌面：4/12
+                </div>
+                <div class="layui-col-xs3">
+                    移动：6/12 | 平板：6/12 | 桌面：4/12
+                </div>
+                <div class="layui-col-xs3">
+                    移动：6/12 | 平板：6/12 | 桌面：4/12
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-module-workflow">
+            <div class="mt-module-title-pro">
+                <div class="element-content">
+                    <p class="title">开发流程</p>
+                    <p class="solid"></p>
+                </div>
+            </div>
+        
+            <div class="mt-container el-workflow-content">
+                <img class="mt-full-img" src="../../img/cunguan/workflow.png" alt="">
+                <div class="el-workflow-text">
+                    <p class="one">商务洽谈</p>
+                    <p class="two">项目对接</p>
+                    <p class="three">系统开发</p>
+                    <p class="four">测试验证</p>
+                    <p class="five">系统投产</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    #include("./src/page/base/footer.html")
+    #include("../base/footer.html")
 </body>
 </html>

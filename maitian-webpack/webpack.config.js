@@ -27,6 +27,7 @@ let $index = 'js/index/index';
 let $aboutUs = 'js/base/aboutUs';
 let $cunguanIndex = 'js/cunguan/index';
 let $wangdaiIndex = 'js/wangdai/index';
+let $fengkongIndex = 'js/fengkong/index';
 let $layui = 'plugin/layui/layui';
 let $layuiForm = 'plugin/layui/lay/modules/form';
 let $layuiLayer = 'plugin/layui/lay/modules/layer';
@@ -40,6 +41,7 @@ let entryArray = [
 		$aboutUs,
 		$cunguanIndex,
 		$wangdaiIndex,
+		$fengkongIndex,
 		$layui, 
 		$layuiForm, 
 		$layuiLayer, 
@@ -124,19 +126,18 @@ let plugins = [
 ];
 
 //满足通用的chunks页面模板数组
-let commonPage = [$header, $footer, $aboutUs, $cunguanIndex, $wangdaiIndex];
+let commonPage = [$header, $footer, $aboutUs, $cunguanIndex, $wangdaiIndex, $fengkongIndex];
 
 commonPage.forEach((v) => {
 	let chunks = [$common, v];
 	if(
 		v === $cunguanIndex ||
 		v === $aboutUs || 
-		v === $wangdaiIndex
+		v === $wangdaiIndex ||
+		v === $fengkongIndex
 	){
 		chunks.push($layui)
 	}
-
-	console.log('chunck', chunks)
 
 	plugins.push(
 		new HtmlWebpackPlugin({
