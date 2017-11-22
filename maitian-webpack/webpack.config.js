@@ -24,6 +24,8 @@ let $common = 'common';
 let $header = 'js/base/header';
 let $footer = 'js/base/footer';
 let $index = 'js/index/index';
+let $aboutUs = 'js/base/aboutUs';
+let $cunguanIndex = 'js/cunguan/index';
 let $layui = 'plugin/layui/layui';
 let $layuiForm = 'plugin/layui/lay/modules/form';
 let $layuiLayer = 'plugin/layui/lay/modules/layer';
@@ -34,6 +36,8 @@ let entryArray = [
 		$header, 
 		$footer, 
 		$index, 
+		$aboutUs,
+		$cunguanIndex,
 		$layui, 
 		$layuiForm, 
 		$layuiLayer, 
@@ -118,16 +122,26 @@ let plugins = [
 ];
 
 //满足通用的chunks页面模板数组
-let commonPage = [$header, $footer];
+let commonPage = [$header, $footer, $aboutUs, $cunguanIndex];
 
 commonPage.forEach((v) => {
+	let chunks = [$common, v];
+	if(
+		v === $cunguanIndex ||
+		v === $aboutUs
+	){
+		chunks.push($layui)
+	}
+
+	console.log('chunck', chunks)
+
 	plugins.push(
 		new HtmlWebpackPlugin({
 			alwaysWriteToDisk: true,
 			favicon: './favicon.ico',
 			filename: config.output.path + '/' + v.replace('js', 'page') + '.html',
 			template: entryPath + '/' + v.replace('js', 'page') + '.html',
-			chunks: [$common, v],
+			chunks: chunks,
 			chunksSortMode: 'manual',//让chunk按顺序加载
 			hash: true
 		})

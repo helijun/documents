@@ -224,23 +224,19 @@ let MT = {
 			let dampVal = 0;//阻尼系数
 
 			if (type && type == 'srcoll'){
-				dampVal = 400;
+				dampVal = 100;
 			}
-
-			console.log('selfDomOffsetTop + dampVal', selfDomOffsetTop + dampVal)
-
-			console.log('当前dom离屏幕顶部高度 selfDomOffsetTop + dampVal', selfDomOffsetTop + dampVal)
-			console.log('屏幕高度 screenHeight', screenHeight)
-			console.log('滚动后离屏幕顶部高度 screenScrollTop', screenScrollTop)
-
-			if (screenScrollTop < selfDomOffsetTop + dampVal //滑动时在屏幕内
-				
-			) {
-				
-
-				$(v).addClass('animated ' + json.animate);
+			return;//暂时不做动画
+			if (selfDomOffsetTop <= screenHeight //出现时就在屏幕里面
+				|| selfDomOffsetTop + dampVal <= screenScrollTop) {
+				if (json.delay){
+					setTimeout(() => {
+						$(v).addClass('animated ' + json.animate);
+					}, json.delay);
+				}else{
+					$(v).addClass('animated ' + json.animate);
+				}
 			} else {
-				console.log('移除成功')
 				$(v).removeClass('animated ' + json.animate);
 			}
 		})
