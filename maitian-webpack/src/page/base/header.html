@@ -1,10 +1,6 @@
 ﻿<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
 </head>
 <!-- #include界面不能写html、body标签，因为会生成多个</html>，
     webpack HtmlWebpackPlugin插件会将js文件插入到第一个</html>前，
@@ -21,20 +17,20 @@
         <!--TODO 跳转页面后选中 -->
         <!-- a标签href处理暂时没有好的方案，先用绝对路径 -->
         <ul class="layui-nav layui-layout-right" lay-filter="">
-            <li class="layui-nav-item layui-this">
-                <a href="/">首页</a>
+            <li class="layui-nav-item index-page">
+                <a class="nav-href" href="/index.html">首页</a>
             </li>
             <li class="layui-nav-item">
-                <a href="/page/cunguan/index.html">银行存管系统</a>
+                <a class="nav-href" href="/page/cunguan/index.html">银行存管系统</a>
             </li>
             <li class="layui-nav-item">
-                <a href="">网贷系统</a>
+                <a class="nav-href" href="/page/wangdai/index.html">网贷系统</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;">风控系统</a>
+                <a class="nav-href" href="/page/fengkong/index.html">风控系统</a>
             </li>
             <li class="layui-nav-item">
-                <a href="/page/base/aboutUs.html">关于我们</a>
+                <a class="nav-href" href="/page/base/aboutUs.html">关于我们</a>
             </li>
         </ul>
     </div>

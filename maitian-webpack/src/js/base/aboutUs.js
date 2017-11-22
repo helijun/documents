@@ -12,3 +12,4 @@ if (ENV == 'dev'){
     require('../../page/base/aboutUs.html');
 }
 
+MT.selectNav();

@@ -30,11 +30,7 @@ import MT from "mt-common";
 if (ENV == 'dev') {
     require('../../../index.html');
 }
-
-// var a = document.getElementById("eq").offsetTop;
-// if (a >= $(window).scrollTop() && a < ($(window).scrollTop() + $(window).height())) {
-// }
-
+MT.selectNav();
 
 console.log('layui', layui)
 layui.use('form', function () {

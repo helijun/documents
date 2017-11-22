@@ -153,6 +153,25 @@ let MT = {
 	},
 
 	/**
+	 * 选中导航条
+	 */
+	selectNav: function() {
+		let url = window.location.href.split('/page/')[1];
+		$('.nav-href').each((k, v) => {
+			let thisHref = $(v).attr('href');
+			thisHref = thisHref.split('#')[0];
+			thisHref = thisHref.split('?')[0];
+			thisHref = thisHref.replace('/page/', '');
+			if (!url){//首页
+				$('.index-page').addClass('layui-this')
+				return false
+			}
+			if (url && url == thisHref){
+				$(v).parents('li').addClass('layui-this')
+			}
+		})
+	},
+	/**
 	 * 数据请求失败提示
 	 * @param  {[type]}
 	 * @return {[type]}         [description]
