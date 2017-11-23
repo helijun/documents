@@ -30,10 +30,15 @@
 		.el-product-content {
 			margin-top: 66px;
 
+			.el-product-list:hover {
+				background-color: #daa879;
+			}
 			.el-product-list {
+				transition: all 1.5s;
 				height: 279px;
 				width: 395px;
 				float: left;
+				overflow: hidden;
 			}
 
 			.el-product-list1,
@@ -64,6 +69,9 @@
 			.el-product-list5 {
 				background-color: #5d6e8a;
 			}
+			.el-product-list5:hover {
+				background-color: #4d6996;
+			}
 
 			.el-product-list2,
 			.el-product-list3,
@@ -78,7 +86,12 @@
 				margin-top: 6px;
 			}
 			
-			
+			img {
+				transition: all 1.5s;
+			}
+			img:hover {
+				transform: scale(1.1);
+			}
 		}
 	}
 
@@ -139,6 +152,16 @@
 				iframe {
 					padding-top: 20px;
 				}
+			}
+
+			.mt-btn-submit {
+				background-color: #5a7197;
+			}
+			.layui-btn-primary:hover {
+				border-color: #5a7197;
+			}
+			.layui-textarea {
+				height: 190px;
 			}
 		}
 	}
