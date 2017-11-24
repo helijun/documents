@@ -1,29 +1,203 @@
 @charset "utf-8";
 .mt-body-aboutus {
-	
-	.mt-aboutus-content {
-		width: 100%;
-		height: 228px;
-		background-color: #f6f6f6;
-		overflow: hidden;
-		.layui-col-xs4 {
-			text-align: left;
-			padding: 45px 12%;
-			line-height: 38px;
-			strong {
-				font-size: 16px;
-			}
-			a {
-				display: block;
-			}
-		}
-	}
+    .mt-module-banner {
+        p {
+            text-align: left;
+            position: absolute;
+            bottom: 20%;
+            padding-left: 19%;
+            width: 100%;
+        }
+        .mt-btn-m {
+            padding: 12px 30px;
+        }
+    }
+    .module-aboutus-ad {
+      background-size:100% auto;
+      height: 430px;
+      background-size:cover;
+      background-repeat:no-repeat;
 
-	.mt-footer-bottom {
-		width: 100%;
-		height: 50px;
-		line-height: 50px;
-		text-align: center;
-		background-color: #ececec;
-	}
+
+      .aboutus-contactus {
+        margin-left: 368px;
+        margin-top: 303px;
+        width: 193px;
+        height: 54px;
+        border-radius: 5px;
+        position:absolute;
+        text-align: center;
+        line-height: 54px;
+        background-color: #d8b38f;
+        font-size: 22px;
+        color: #ffffff;
+      }
+    }
+
+    .module-aboutmt {
+      width: 100%;
+      height: 566px;
+      background-color: #f6f6f6;
+
+      .mt-aboutmt {
+        height: 566px;
+
+        .aboutmt-img {
+          width: 50%;
+          height: 100%;
+          float: left;
+
+          .aboutmt-img-content {
+            margin-top: 124px;
+            margin-right: 40px;
+            width: 527px;
+            height: 356px;
+            background-color: #eb7350;
+            float: right;
+          }
+        }
+
+        .aboutmt-content {
+          width: 50%;
+          height: 100%;
+          float: right;
+
+          .content-text {
+            width: 92%;
+            margin-left: 45px;
+            margin-top: 124px;
+
+            .content-text-head {
+              line-height: 62px;
+
+              .text-head-img {
+                width: 61px;
+                height: 62px;
+                float: left;
+              }
+
+              a {
+                margin-left: 10px;
+                font-size: 32px;
+                line-height: 36px;
+                color: #222222;
+              }
+
+              .space-line {
+                width: 61px;
+                height: 2px;
+                background-color: #b0b0b0;
+                margin-left: 71px;
+                margin-bottom: 10px;
+              }
+            }
+
+            p {
+              margin-top: 24px;
+              font-size: 18px;
+              line-height: 25px;
+              color: #2f2f2f;
+            }
+
+
+            .my-advantage {
+              margin-top: 15px;
+
+              a {
+                font-size: 24px;
+                color: #cca27a;
+                line-height: 40px;
+              }
+
+              .content-text-advantage {
+                .text-advantage-img {
+                  width: 7px;
+                  height: 8px;
+                }
+
+                a {
+                  font-size: 18px;
+                  color: #2f2f2f;
+                  line-height: 25px;
+                }
+              }
+            }
+
+          }
+
+
+        }
+      }
+    }
+
+    .module-contactway {
+      width: 100%;
+      height: 625px;
+
+      .mt-contactway {
+        height: 625px;
+
+        .contactway-content{
+          width: 50%;
+          height: 100%;
+          float: left;
+
+          .content-text {
+            margin-top: 116px;
+            margin-left: 40px;
+            width: 450px;
+            height: 356px;
+
+            .content-text-head {
+              line-height: 62px;
+
+              .text-head-img {
+                width: 61px;
+                height: 62px;
+                float: left;
+              }
+
+              a {
+                margin-left: 10px;
+                font-size: 32px;
+                line-height: 36px;
+                color: #222222;
+              }
+
+              .space-line {
+                width: 61px;
+                height: 2px;
+                background-color: #b0b0b0;
+                margin-left: 71px;
+                margin-bottom: 10px;
+              }
+            }
+
+
+            .content-address {
+              margin-top: 24px;
+
+              p {
+                font-size: 18px;
+                line-height: 28px;
+                color: #333333;
+              }
+            }
+
+          }
+        }
+
+        .contactway-map {
+          width: 50%;
+          height: 100%;
+          float: right;
+
+          .map {
+            margin-top: 116px;
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+
 }

@@ -25,7 +25,9 @@
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0"
   },
   "dependencies": {
     "jquery": "^1.8.0"

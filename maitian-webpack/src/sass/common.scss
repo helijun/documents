@@ -80,6 +80,7 @@ ul {
 .mt-fluid {
 	width: 100%;
 	margin: 0 auto;
+	position: relative;
 }
 
 /* 按钮 */
@@ -89,14 +90,14 @@ ul {
 	cursor: pointer;
 }
 .mt-btn.active {
-	background-color: red;/*ie8*/
-    background-image: linear-gradient(268deg, rgba(246, 49, 60, 1) 0%,rgba(248, 54, 56, 1) 35%, rgba(254, 73, 37, 1) 89%), 
-	linear-gradient(rgba(220, 57, 75, 1), rgba(220, 57, 75, 1));
-	background-blend-mode: normal, normal;
-	color: #ffffff;
+	background-color: #d8b38f;
+	color: white;
+}
+.mt-btn.active:hover {
+	background-color: #E9AF79;
 }
 .mt-btn.active a {
-	color: #ffffff;
+	color: white;
 }
 .mt-btn.disable {
 	background-color: #CCC;

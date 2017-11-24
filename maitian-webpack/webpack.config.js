@@ -18,9 +18,9 @@ const AUTOPREFIXER_BROWSERS = [
 ];
 
 //入口文件前置目录
-let entryPath = ROOT + '/src';
+let entryPath = ROOT + '/src/';
 //$开头的所有js(页面)入口
-let $common = 'common';
+let $common = 'js/common/common';
 let $header = 'js/base/header';
 let $footer = 'js/base/footer';
 let $index = 'js/index/index';
@@ -50,22 +50,17 @@ let entryArray = [
 
 let entryList = {};
 entryArray.forEach((v) => {
-	if('common' === v ){
-		entryList[v] = entryPath + '/js/common/' + v
-	}else{
-		entryList[v] = entryPath + '/' + v
-	}
+	entryList[v] = entryPath + '/' + v
 })
 
 let config = {
 	entry: entryList,
 	output: {
 		filename: '[name].js',
-		path: ROOT + '/dist',
-		publicPath: '/dist'
+		path: ROOT + '/maitian/',
+		publicPath: '/maitian/'
 	},
 	devServer: {
-		contentBase: 'dist',
 		host: '192.168.1.193',
 		port: 1118,
 		inline: true, //可以监控js变化
@@ -170,7 +165,9 @@ if (process.env.ENV !== 'dev'){
 	plugins.push(
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
-				warnings: false
+				warnings: false,
+				drop_debugger: true,
+				drop_console: true
 			}
 		})
 	)

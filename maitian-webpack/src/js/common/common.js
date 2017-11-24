@@ -156,12 +156,12 @@ let MT = {
 	 * 选中导航条
 	 */
 	selectNav: function() {
-		let url = window.location.href.split('/page/')[1];
+		let url = window.location.href.split('/maitian/')[1];
 		$('.nav-href').each((k, v) => {
 			let thisHref = $(v).attr('href');
 			thisHref = thisHref.split('#')[0];
 			thisHref = thisHref.split('?')[0];
-			thisHref = thisHref.replace('/page/', '');
+			thisHref = thisHref.replace('/maitian/', '');
 			if (!url){//首页
 				$('.index-page').addClass('layui-this')
 				return false
@@ -226,6 +226,15 @@ let MT = {
 		console.error('出错');
 	},
 	
+	//判断是否是ie浏览器
+	isIe: (layer) => {
+		const device = layui.device();
+		console.log('当前device', device);
+
+		if (device.ie && device.ie < 8) {
+			layer.alert('如果您非得使用ie，那么请使用ie10+');
+		}
+	},
 	getScreenWidth: function(){
 		//TODO 兼容ie8
 		return window.innerWidth
@@ -274,8 +283,12 @@ let MT = {
 				self.openPage(500)
 			}*/
 		})
+
+
+		
 	}
 }
 
-module.exports = MT;
+window.MT = MT;
+//module.exports = MT;
 	

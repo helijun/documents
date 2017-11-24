@@ -25,24 +25,70 @@ import '../../sass/base/header.scss';
 import '../../sass/index/index.scss';
 import '../../sass/base/footer.scss';
 
-import MT from "mt-common";
-
+let ajaxHost = '';
 if (ENV == 'dev') {
+    ajaxHost = '//192.168.1.188:8081';
     require('../../../index.html');
 }
-MT.selectNav();
 
-console.log('layui', layui)
 layui.use('form', function () {
     var form = layui.form,
         layer = layui.layer;
 
-    //监听提交
-    form.on('submit(callmeForm)', function (data) {
-        layer.msg(JSON.stringify(data.field));
-        return false;
-    });
-});
+    let maitianIndex = {
+        init: function() {
+            this.formValidate();
+            this.rendCommonVoid();
+            this.watch();
+        },
+
+        rendCommonVoid: () => {
+            MT.isIe(layer);
+            MT.selectNav();
+        },
+
+        //验证表单
+        formValidate: function () {
+            form.verify({
+            })
+        },
+
+        save: () => {
+            $.ajax({
+                url: ajaxHost + "/userWonder/addInfo.do",
+                data: $('#callmeForm').serialize(),
+                type: 'post',
+                beforeSend: () => {
+                    layer.msg('请稍后..');
+                },
+                success: (json) => {
+                    if (0 == json) {
+                        layer.msg('感谢您的反馈，我们会尽快联系您！', {
+                            icon: 1,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        layer.msg('异常，请稍后重试！');
+                    }
+                }
+            });  
+        },
+        
+        watch: () => {
+
+            form.on('submit(formCallme)', function (data) {
+                maitianIndex.save();
+                return false;
+            });
+        }
+    }
+
+    maitianIndex.init();
+
+    window.maitianIndex = maitianIndex;
+})
 
 MT.renderAnimate('.mt-body-index');
 $(document).on('mousewheel', () => {

@@ -4,8 +4,6 @@ import '../../sass/base/header.scss'
 import '../../sass/wangdai/index.scss'
 import '../../sass/base/footer.scss'
 
-import MT from "mt-common";
-
 if (ENV == 'dev'){
     require('../../page/wangdai/index.html');
 }
