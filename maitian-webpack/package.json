@@ -1,4 +1,7 @@
 {
+  "name": "webpack-maitian",
+  "version": "1.5.0",
+  "description": "麦甜科技官网",
   "scripts": {
     "start": "cross-env ENV=dev webpack-dev-server --quiet --progress",
     "build": "cross-env ENV=production webpack"

@@ -1,4 +1,11 @@
-# 使用webpack构建多页面开发环境 --用于麦甜科技官网开发
+# 使用webpack构建多页面开发环境
+
+## 使用
+1. 更改npm来源 npm config set registry https://registry.npm.taobao.org  
+2. 安装依赖 npm install 
+3. 修改webpack.config dev-server --host 为本机ip地址
+4. npm run start 开发热加载
+5. npm run build 生产压缩打包
 
 ## 已完成
 1. 基本的目录结构
@@ -19,5 +26,4 @@
 ## 注
 1. index.html 网页主入口
 2. src/page 所有页面
-
-
+3. gulp 用来构建一个测试build后的目录的本地服务器
