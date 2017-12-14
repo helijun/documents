@@ -1,9 +1,31 @@
 @charset "utf-8";
+@import "../variables";
+
 .mt-body-header {
 	.mt-header {
-		height: 117px;
-		line-height: 117px;
+		height: $header-height-pc;
+		line-height: $header-height-pc;
+
+		/* 手机 */
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			
+		}
+		/** iphone5 **/
+		@media #{$media} and ($media-min-width: $min-width-320) {
+			
+		}
+
+		/** iphone6 **/
+		@media #{$media} and ($media-min-width: $min-width-375) {
+			
+		}
+
+		/** iphone6plus **/
+		@media #{$media} and ($media-min-width: $min-width-414) {
+			
+		}
 	}
+
 
 	.mt-logo {
 
@@ -15,21 +37,23 @@
 
 		.layui-nav-item {
 			a {
-				font-size: 18px;
+				font-size: $base-font-size-pc;
 				color: #333333;
 			}
-		}
-		.layui-nav-item.layui-this {
-			a {
-				color: #cca482;
-			}
-
 			
-		}
-		.layui-nav-item.layui-this:after {
-			height: 2px;
-    		background-color: #cca482;
+			&.layui-this {
+				a {
+					color: #cca482;
+				}
+
+				&:after {
+					height: 2px;
+					background-color: #cca482;
+				}
+				
+			}
 		}
 		
 	}
 }
+

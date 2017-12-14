@@ -26,6 +26,12 @@ ul {
 }
 /* input placeholder 文字样式 */
 
+//隐藏滚动条
+::-webkit-scrollbar {
+  width: 0;/*对垂直流动条有效*/
+  height: 0;/*对水平流动条有效*/
+}
+
 /* 常用属性开始 */
 .mt-full-img {
 	max-width: 100%;
