@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../function";
+
 .mt-body-index {
 
 	.mt-module-title {
@@ -6,6 +9,12 @@
 		height: 66px;
 		position: relative;
 
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			height: 33px;
+			width: 60%;
+    		margin-left: 20%;
+		}
+
 		strong {
 			font-size: 32px;
 			font-weight: normal;
@@ -13,21 +22,35 @@
 			line-height: 34px;
 			letter-spacing: 1px;
 			color: #333333;
-			position: absolute;
 			background-color: white;
 			padding: 0 40px;
 			margin-bottom: -14px;
 			position: absolute;
 			bottom: 0;
 			margin-left: -122px;
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				font-size: torem(31px);
+				transform: translate(-50%, -50%);
+				padding: 0 torem(10px);
+				margin-bottom: -34px;
+				margin-left: 0;
+			}
 		}
 	}
 	
 	.mt-module-product {
 		height: 785px;
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			height: torem(865px);
+			padding: 0 torem(40px);
+		}
 
 		.el-product-content {
 			margin-top: 66px;
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				margin-top: 18px;
+			}
 
 			.el-product-list:hover {
 				background-color: #daa879;
@@ -38,6 +61,12 @@
 				width: 395px;
 				float: left;
 				overflow: hidden;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					width: 49%;
+					height: torem(230px);
+					margin-top: torem(20px);
+				}
 			}
 
 			.el-product-list1,
@@ -46,12 +75,21 @@
 				background-color: #d8b38f;
 				padding: 46px 32px;
 				text-align: center;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					padding: 10px;
+				}
 				
 				.el-product-title {
 					font-size: 28px;
 					line-height: 34px;
 					letter-spacing: 1px;
 					color: #ffffff;
+
+					@media #{$media} and ($media-max-width: $max-width-768) {
+						font-size: torem(28px);
+						line-height: torem(34px);
+					}
 				}
 
 				.el-product-detail {
@@ -61,6 +99,12 @@
 					color: #ffffff;
 					text-align: left;
 					padding-top: 24px;
+
+					@media #{$media} and ($media-max-width: $max-width-768) {
+						font-size: torem(20px);
+						line-height: torem(34px);
+						padding-top: torem(4px);
+					}
 				}
 			}
 			.el-product-list5 {
@@ -75,12 +119,29 @@
 			.el-product-list5,
 			.el-product-list6 {
 				margin-left: 6px;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					margin-left: 0;
+				}
 			}
 
 			.el-product-list4,
 			.el-product-list5,
 			.el-product-list6 {
 				margin-top: 6px;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					margin-top: torem(20px);
+				}
+			}
+			
+			@media #{$media} and ($media-max-width: $max-width-768) {
+
+				.el-product-list1,
+				.el-product-list4,
+				.el-product-list5 {
+					float: right;
+				}
 			}
 			
 			img {
@@ -97,10 +158,20 @@
 		height: 510px;
 		background-color: #3c5479;
 
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			height: auto;
+			background-color: #ffffff;
+		}
+		
 		.mt-module-title {
 			strong {
 				background-color: #3c5479;
 				color: white;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					background-color: white;
+					color: black;
+				}
 			}
 		}
 	
@@ -108,11 +179,30 @@
 			text-align: center;
 			padding-top: 80px;
 
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				padding: torem(80px) 0;
+			}
+			
 			p {
 				font-size: 22px;
 				line-height: 34px;
 				color: #ffffff;
 				padding-top: 30px;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					padding-top: 0;
+					font-size: torem(26px);
+					line-height: torem(34px);
+					color: black;
+					margin-bottom: torem(40px)
+				}
+			}
+
+			.layui-col-xs6 {
+				img {
+					width: 65%;
+					height: 65%;
+				}
 			}
 		}
 	}

@@ -6,13 +6,13 @@
     <div class="mt-container layui-header mt-header">
         <div class="layui-logo mt-logo">
             <a href="/maitian/index.html">
-                <img src="../../img/logo/logo.png" />
+                <img class="layui-hide-xs" src="../../img/logo/logo.png" />
+                <img class="layui-hide-lg layui-hide-sm layui-hide-md mt-full-img mt-logo-mobile" src="../../img/logo/logo-mobile.png" />
             </a>
         </div>
         
-        <!--TODO 跳转页面后选中 -->
         <!-- a标签href处理暂时没有好的方案，先用绝对路径 -->
-        <ul class="layui-nav layui-layout-right" lay-filter="">
+        <ul class="layui-nav layui-layout-right layui-hide-xs" lay-filter="">
             <li class="layui-nav-item index-page">
                 <a class="nav-href" href="/maitian/index.html">首页</a>
             </li>
@@ -29,5 +29,30 @@
                 <a class="nav-href" href="/maitian/page/base/aboutUs.html">关于我们</a>
             </li>
         </ul>
+
+        <div class="layui-layout-right layui-hide-lg layui-hide-sm layui-hide-md mt-menu-mobile">
+            <img src="../../img/icon/menu.png" alt="">
+        </div>
+    </div>
+
+    <div class="layui-hide-lg layui-hide-sm layui-hide-md mt-menu-content layui-hide">
+        <dl class="mt-menu-list">
+            <dd>
+                <a class="nav-href" href="/maitian/index.html">首页</a>
+            </dd>
+            <dd>
+                <a class="nav-href" href="/maitian/page/cunguan/index.html">银行存管系统</a>
+            </dd>
+            <dd>
+                <a class="nav-href" href="/maitian/page/wangdai/index.html">网贷系统</a>
+            </dd>
+            <dd>
+                <a class="nav-href" href="/maitian/page/fengkong/index.html">风控系统</a>
+            </dd>
+            <dd>
+                <a class="nav-href" href="/maitian/page/base/aboutUs.html">关于我们</a>
+            </dd>
+        </dl>
+        <div class="mt-menu-mask"></div>
     </div>
 </div>

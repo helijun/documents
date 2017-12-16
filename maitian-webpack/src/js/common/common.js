@@ -171,6 +171,20 @@ let MT = {
 			}
 		})
 	},
+
+	/**
+	 * 移动端导航点击
+	 */
+	toggleMobileNav: function() {
+		$('.mt-menu-mobile').on('click', () => {
+			$('.mt-menu-content').toggleClass('layui-show')
+		})
+
+		$('.mt-menu-mask').on('click', () => {
+			$('.mt-menu-content').toggleClass('layui-show')
+		})
+	},
+
 	/**
 	 * 数据请求失败提示
 	 * @param  {[type]}

@@ -5,6 +5,7 @@ $max-width-320: 320px;
 $max-width-375: 375px;
 $max-width-414: 414px;
 $max-width-768: 768px;
+$max-width-992: 992px;
 
 $media-min-width: min-width;
 $min-width-320: 320px;
@@ -13,13 +14,13 @@ $min-width-414: 414px;
 /** media end ---------------------------------------   **/
 
 /** pc base **/
-$base-font-size-pc: 18px !default;
+$normal-font-size-pc: 18px !default;
+$base-font-size-pc: 14px !default;
 /** pc base end ---------------------------------------   **/
 
 
 /** mobile base **/
-$base-font-size-mobile: 16px !default;
-$rem-base: 16px;
+$rem-base: 100px; //750设计稿
 /** mobile base end ---------------------------------------   **/
 
 /** header start **/

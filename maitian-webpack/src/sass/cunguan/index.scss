@@ -1,3 +1,8 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+
 .mt-body-cunguan {
     .mt-module-banner {
         p {
@@ -16,6 +21,11 @@
         margin-bottom: 68px;
         text-align: center;
         border-bottom: 1px solid #CCC;
+
+        @media #{$media} and ($media-max-width: $max-width-768) {
+            padding-top: torem(44px);
+            margin-bottom: 0;
+        }
         .element-content {
 
             .title {
@@ -28,6 +38,16 @@
                 padding: 20px;
                 background-color: white;
                 background-color: transparent;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    font-size: torem(32px);
+                    margin-bottom: 0;
+                    transform: translate(-50%, -50%);
+                    padding: 0;
+                    margin-bottom: -34px;
+                    margin-left: 0;
+                    position: absolute;
+                }
             }
 
             .solid {
@@ -38,6 +58,10 @@
                 position: absolute;
                 margin-left: 48%;
                 border-bottom: 3px solid #CCA483;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    display: none;
+                }
             }
         }
     }
@@ -46,6 +70,11 @@
         width: 100%;
         height: 375px;
         background-color: #f6f6f6;
+
+        @media #{$media} and ($media-max-width: $max-width-768) {
+            height: auto;
+            padding: 0 torem(48px);
+        }
 
         .mt-module-title-pro {
             .element-content{
@@ -60,6 +89,11 @@
             padding-top: 15px;
             text-align: center;
             line-height: 30px;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                font-size: torem(24px);
+                text-align: left;
+            }
         }
 
     }
