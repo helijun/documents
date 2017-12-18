@@ -1,0 +1,195 @@
+@charset "utf-8";
+@import "./variables";
+@import "./function";
+
+//mobile开头是手机专用，common是手机+pc公用的
+//手机端不固定高度 
+@mixin mobile-height-auto($padding: null) {
+    @media #{$media} and ($media-max-width: $max-width-768) {
+		height: auto;
+
+		@if ($padding != null) {
+			padding: 0 torem($padding)
+		}
+	}
+}
+
+//手机端隐藏
+@mixin mobile-hide {
+    @media #{$media} and ($media-max-width: $max-width-768) {
+		display: none;
+	}
+}
+
+//麦甜优势雪碧图
+@mixin common-advantage-sprite($y, $x1, $x2, $x3, $x4) {
+	.advantage-list-one {
+		.icon {
+			background-position: $x1 $y;
+		}
+	}
+	.advantage-list-two {
+		.icon {
+			background-position: $x2 $y;
+		}
+	}
+	.advantage-list-three {
+		.icon {
+			background-position: $x3 $y;
+		}
+	}
+	.advantage-list-four {
+		.icon {
+			background-position: $x4 $y;
+		}
+	}
+}
+
+/** 可以使用@extends 公用的代码 **/
+//banner
+.extend-banner {
+	.mt-module-banner {
+		font-size: 0px;
+		p {
+			text-align: center;
+			position: absolute;
+			bottom: 20%;
+			width: 100%;
+		}
+		.mt-btn-m {
+			padding: 12px 30px;
+		}
+	}
+}
+
+//标题
+.extend-title {
+	.mt-module-title-pro {
+		width: 100%;
+		padding-top: 100px;
+		margin-bottom: 68px;
+		text-align: center;
+		border-bottom: 1px solid #CCC;
+
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			padding-top: torem(44px);
+			margin-bottom: 0;
+			width: 80%;
+			margin-left: 10%;
+		}
+		.element-content {
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				padding-top: torem(22px);
+			}
+			.title {
+				font-size: 32px;
+				line-height: 0px;
+				letter-spacing: 0px;
+				color: #333333;
+				margin-bottom: 2.5%;
+				display: inline;
+				padding: 20px;
+				background-color: white;
+				background-color: transparent;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					font-size: torem(32px);
+					margin-bottom: 0;
+					transform: translate(-50%, -50%);
+					margin-bottom: -34px;
+					margin-left: 0;
+					position: absolute;
+				}
+			}
+
+			.plus {
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					min-width: 235px !important;
+				}
+			}
+
+			.solid {
+				width: 76px;
+				height: 22px;
+				background-color: white;
+				background-color: transparent;
+				position: absolute;
+				margin-left: 48%;
+				border-bottom: 3px solid #CCA483;
+				@include mobile-hide;
+			}
+		}
+	}
+}
+
+//开发流程
+.extend-workflow {
+	.mt-module-workflow {
+        height: 600px;
+        width: 100%;
+        @include mobile-height-auto;
+
+        .mt-module-title-pro {
+            .element-content{
+                .title {
+                    background-color: white;
+                }
+            }
+        }
+
+        .el-workflow-text {
+            p {
+                float: left;
+                font-size: 18px;
+                color: #333333;
+                padding-top: 26px;
+                text-align: center;
+            }
+            .one {
+                width: 158px;
+            }
+            .two {
+                width: 375px;
+            }
+            .three {
+                width: 138px;
+            }
+            .four {
+                width: 364px;
+            }
+            .five {
+                width: 165px;
+            }
+        }
+    }
+
+    .el-workflow-content-mobile {
+        padding: torem(54px) 
+    }
+}
+
+.extend-business {
+	.mt-module-business {
+        height: 800px;
+        width: 100%;
+        background-color: white;
+        @include mobile-height-auto;
+        
+        .mt-module-title-pro {
+            .element-content{
+                .title {
+                    background-color: white;
+                }
+            }
+        }
+
+        .el-business-content {
+            text-align: center;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                padding: torem(40px) torem(28px) 0 torem(28px)
+            }
+        }
+    }
+}
+/** @extends end **/

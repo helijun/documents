@@ -94,8 +94,4 @@ layui.use('form', function () {
 MT.renderAnimate('.mt-body-index');
 $(document).on('mousewheel', () => {
     MT.renderAnimate('.mt-body-index', 'srcoll');
-}).on('click', '.mt-menu-mobile', () => {
-    $('.mt-menu-content').toggleClass('layui-hide').children('.mt-menu-list').toggleClass('layui-show')
-}).on('click', '.mt-menu-mask', () => {
-    $('.mt-menu-content').addClass('layui-hide')
 })

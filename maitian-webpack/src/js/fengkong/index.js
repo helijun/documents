@@ -8,4 +8,4 @@ if (ENV == 'dev'){
     require('../../page/fengkong/index.html');
 }
 MT.selectNav();
-
+MT.toggleMobileNav();

@@ -9,3 +9,4 @@ if (ENV == 'dev'){
 }
 
 MT.selectNav();
+MT.toggleMobileNav();

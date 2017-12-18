@@ -177,11 +177,11 @@ let MT = {
 	 */
 	toggleMobileNav: function() {
 		$('.mt-menu-mobile').on('click', () => {
-			$('.mt-menu-content').toggleClass('layui-show')
+			$('.mt-menu-content').toggleClass('layui-hide')
 		})
 
 		$('.mt-menu-mask').on('click', () => {
-			$('.mt-menu-content').toggleClass('layui-show')
+			$('.mt-menu-content').toggleClass('layui-hide')
 		})
 	},
 
