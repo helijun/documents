@@ -32,7 +32,7 @@
                 margin-top: -50px;
 
                 @media #{$media} and ($media-max-width: $max-width-768) {
-                    margin-top: -12px;
+                    margin-top: -36px;
                     padding: torem(42px) 0;
                 }
             }
@@ -54,7 +54,6 @@
     .mt-module-advantage {
         height: 600px;
         width: 100%;
-
         @include mobile-height-auto(42px);
 
         .mt-module-title-pro {
@@ -116,9 +115,7 @@
                     line-height: 26px;
                     color: #6e6e6e;
 
-                    @media #{$media} and ($media-max-width: $max-width-768) {
-                        font-size: torem(24px);
-                    }
+                    @include mobile-font-size(24px);
                 }
             }
 

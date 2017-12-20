@@ -21,6 +21,33 @@
 	}
 }
 
+/** 手机端设置字体
+	$mobile 所有手机
+	$mobile-xl 6plus
+	$mobile-l 6
+	$mobile-s 5
+**/
+@mixin mobile-font-size($mobile, $mobile-xl: null, $mobile-l: null, $mobile-s: null) {
+    @media #{$media} and ($media-max-width: $max-width-768) {
+		font-size: torem($mobile);
+	}
+	@if ($mobile-xl != null) {
+		@media #{$media} and ($media-max-width: $max-width-414) {
+			font-size: torem($mobile-xl);
+		}
+	}
+	@if ($mobile-l != null) {
+		@media #{$media} and ($media-max-width: $max-width-375) {
+			font-size: torem($mobile-l);
+		}
+	}
+	@if ($mobile-s != null) {
+		@media #{$media} and ($media-max-width: $max-width-320) {
+			font-size: torem($mobile-s);
+		}
+	}
+}
+
 //麦甜优势雪碧图
 @mixin common-advantage-sprite($y, $x1, $x2, $x3, $x4) {
 	.advantage-list-one {
@@ -44,6 +71,7 @@
 		}
 	}
 }
+/** 使用 @include end----------------------------------------- **/
 
 /** 可以使用@extends 公用的代码 **/
 //banner
@@ -168,6 +196,7 @@
     }
 }
 
+//业务模式
 .extend-business {
 	.mt-module-business {
         height: 800px;

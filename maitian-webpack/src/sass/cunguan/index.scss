@@ -102,9 +102,7 @@
                     line-height: 26px;
                     color: #6e6e6e;
 
-                    @media #{$media} and ($media-max-width: $max-width-768) {
-                        font-size: torem(24px);
-                    }
+                    @include mobile-font-size(24px);
                 }
             }
 

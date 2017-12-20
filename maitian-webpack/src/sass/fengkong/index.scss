@@ -1,51 +1,18 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+
 .mt-body-fengkong {
-    .mt-module-banner {
-        p {
-            text-align: center;
-            position: absolute;
-            bottom: 20%;
-            width: 100%;
-        }
-        .mt-btn-m {
-            padding: 12px 30px;
-        }
-    }
-	.mt-module-title-pro {
-        width: 100%;
-        padding-top: 100px;
-        margin-bottom: 68px;
-        text-align: center;
-        border-bottom: 1px solid #CCC;
-        .element-content {
-
-            .title {
-                font-size: 32px;
-                line-height: 0px;
-                letter-spacing: 0px;
-                color: #333333;
-                margin-bottom: 2.5%;
-                display: inline;
-                padding: 20px;
-                background-color: white;
-                background-color: transparent;
-            }
-
-            .solid {
-                width: 76px;
-                height: 22px;
-                background-color: white;
-                background-color: transparent;
-                position: absolute;
-                margin-left: 48%;
-                border-bottom: 3px solid #CCA483;
-            }
-        }
-    }
+    @extend .extend-banner;
+    @extend .extend-title;
 
     .mt-module-why {
         width: 100%;
         height: 375px;
         background-color: #f6f6f6;
+        @include mobile-height-auto(48px);
 
         .mt-module-title-pro {
             .element-content{
@@ -63,34 +30,30 @@
 
             .left {
                 margin-top: -50px;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    margin-top: -12px;
+                    padding: torem(42px) 0;
+                }
             }
             .right {
                 text-align: left;
             }
-        }
-    }
-
-    .mt-module-business {
-        height: 520px;
-        width: 100%;
-        background-color: white;
-
-        .mt-module-title-pro {
-            .element-content{
-                .title {
-                    background-color: white;
-                }
+            
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                font-size: torem(24px);
+                line-height: torem(34px);
+                padding-top: torem(42px);
             }
         }
-
-        .el-business-content {
-            text-align: center;
-        }
     }
+
+    @extend .extend-business;
 
     .mt-module-advantage {
         height: 600px;
         width: 100%;
+        @include mobile-height-auto(42px);
 
         .mt-module-title-pro {
             .element-content{
@@ -116,7 +79,13 @@
                 text-align: center;
                 transition: all 1.52s;
                 
-
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    padding: torem(43px) torem(35px);
+                    width: 48.6%;
+                    height: torem(375px);
+                    padding: 0 torem(24px);
+                }
+                
                 .icon {
                     display: block;
                     background-repeat: no-repeat;
@@ -124,16 +93,28 @@
                     height: 108px;
                     margin-left: 30px;
                     background-image: url('../../img/css-sprites/advantage-sprites.png');
+
+                    @media #{$media} and ($media-max-width: $max-width-768) {
+                        transform: scale(.6);
+                        margin-left: torem(30px);
+                    }
                 }
                 .title {
                     font-size: 18px;
                     color: #333333;
                     padding: 30px 0;
+
+                    @media #{$media} and ($media-max-width: $max-width-768) {
+                        font-size: torem(28px);
+                        padding: 0;
+                    }
                 }
                 .sub-title {
                     font-size: 14px;
                     line-height: 26px;
                     color: #6e6e6e;
+
+                    @include mobile-font-size(24px);
                 }
             }
 
@@ -143,66 +124,20 @@
                 margin-left: 38px;
             }
 
-            .advantage-list-one {
-                .icon {
-                    background-position: -70px -221px;
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                .advantage-list-four,
+                .advantage-list-three {
+                    margin-left: torem(13px);
                 }
-            }
-            .advantage-list-two {
-                .icon {
-                    background-position: -242px -221px;
-                }
-            }
-            .advantage-list-three {
-                .icon {
-                    background-position: -413px -221px;
-                }
-            }
-            .advantage-list-four {
-                .icon {
-                    background-position: -584px -221px;
-                }
-            }
-        }
 
-        
-    }
-
-    .mt-module-workflow {
-        height: 600px;
-        width: 100%;
-
-        .mt-module-title-pro {
-            .element-content{
-                .title {
-                    background-color: white;
+                .advantage-list-two {
+                    margin-left: 0;
                 }
             }
-        }
 
-        .el-workflow-text {
-            p {
-                float: left;
-                font-size: 18px;
-                color: #333333;
-                padding-top: 26px;
-                text-align: center;
-            }
-            .one {
-                width: 158px;
-            }
-            .two {
-                width: 375px;
-            }
-            .three {
-                width: 138px;
-            }
-            .four {
-                width: 364px;
-            }
-            .five {
-                width: 165px;
-            }
+            @include common-advantage-sprite(-221px, -70px, -242px, -413px, -584px);
         }
     }
+
+    @extend .extend-workflow;
 }
