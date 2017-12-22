@@ -32,7 +32,7 @@
                 margin-top: -50px;
 
                 @media #{$media} and ($media-max-width: $max-width-768) {
-                    margin-top: -12px;
+                    margin-top: 0;
                     padding: torem(42px) 0;
                 }
             }
@@ -43,7 +43,9 @@
             @media #{$media} and ($media-max-width: $max-width-768) {
                 font-size: torem(24px);
                 line-height: torem(34px);
-                padding-top: torem(42px);
+                display: flex;
+                align-items: center;
+                padding-top: 0;
             }
         }
     }
@@ -137,6 +139,8 @@
 
             @include common-advantage-sprite(-221px, -70px, -242px, -413px, -584px);
         }
+
+        
     }
 
     @extend .extend-workflow;

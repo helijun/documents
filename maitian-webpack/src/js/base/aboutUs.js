@@ -11,3 +11,5 @@ if (ENV == 'dev'){
 }
 
 MT.selectNav();
+MT.toggleMobileNav();
+MT.renderOpenBigImg();

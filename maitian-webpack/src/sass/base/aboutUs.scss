@@ -1,4 +1,9 @@
 @charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+
 .mt-body-aboutus {
     .mt-module-banner {
         p {
@@ -11,6 +16,10 @@
         .mt-btn-m {
             padding: 12px 30px;
         }
+
+      @media #{$media} and ($media-max-width: $max-width-768) {
+        line-height: 0;
+      }
     }
     .module-aboutus-ad {
       background-size:100% auto;
@@ -18,6 +27,9 @@
       background-size:cover;
       background-repeat:no-repeat;
 
+      @media #{$media} and ($media-max-width: $max-width-768) {
+        height: auto;
+      }
 
       .aboutus-contactus {
         margin-left: 368px;
@@ -39,21 +51,45 @@
       height: 566px;
       background-color: #f6f6f6;
 
+      @media #{$media} and ($media-max-width: $max-width-768) {
+        height: auto;
+      }
+
       .mt-aboutmt {
         height: 566px;
+
+        @media #{$media} and ($media-max-width: $max-width-768) {
+          height: auto;
+        }
 
         .aboutmt-img {
           width: 50%;
           height: 100%;
           float: left;
 
+          @media #{$media} and ($media-max-width: $max-width-768) {
+            margin-top: 0;
+            margin-right: 0;
+            margin-left: 12%;
+            width: 82%;
+            height: auto;
+            float: none;
+          }
+
           .aboutmt-img-content {
             margin-top: 124px;
             margin-right: 40px;
             width: 527px;
             height: 356px;
-            background-color: #eb7350;
             float: right;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+              margin-top: 0;
+              margin-right: 0;
+              width: 100%;
+              height: 100%;
+              float: none;
+            }
           }
         }
 
@@ -62,18 +98,45 @@
           height: 100%;
           float: right;
 
+          @media #{$media} and ($media-max-width: $max-width-768) {
+            float: left;
+            height: auto;
+            width: 100%;
+            font-size: 0;
+          }
+
           .content-text {
             width: 92%;
             margin-left: 45px;
             margin-top: 124px;
 
+            @media #{$media} and ($media-max-width: $max-width-768) {
+              width: 100%;
+              margin-left: 0;
+              margin-top: 0;
+            }
+
             .content-text-head {
               line-height: 62px;
+
+              @media #{$media} and ($media-max-width: $max-width-768) {
+                margin-top: torem(40px);
+                margin-left: torem(32px);
+                width: 90%;
+                line-height: 0;
+                display: flex;
+                align-items: center;
+              }
 
               .text-head-img {
                 width: 61px;
                 height: 62px;
                 float: left;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  width: torem(50px);
+                  height: torem(51px);
+                }
               }
 
               a {
@@ -81,6 +144,12 @@
                 font-size: 32px;
                 line-height: 36px;
                 color: #222222;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-left: torem(10px);
+                  font-size: torem(31px);
+                  line-height: torem(34px);
+                }
               }
 
               .space-line {
@@ -88,7 +157,11 @@
                 height: 2px;
                 background-color: #b0b0b0;
                 margin-left: 71px;
-                margin-bottom: 10px;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-left: 5px;
+                  width: torem(60px);
+                }
               }
             }
 
@@ -97,19 +170,43 @@
               font-size: 18px;
               line-height: 25px;
               color: #2f2f2f;
+
+              @media #{$media} and ($media-max-width: $max-width-768) {
+                margin-top: torem(24px);
+                margin-left: 12%;
+                width: 82%;
+                font-size: torem(24px);
+                line-height: torem(36px);
+              }
             }
 
 
             .my-advantage {
               margin-top: 15px;
 
+              @media #{$media} and ($media-max-width: $max-width-768) {
+                margin-left: 12%;
+                width: 82%;
+                font-size: 0;
+                line-height: torem(36px);
+              }
+
               a {
                 font-size: 24px;
                 color: #cca27a;
                 line-height: 40px;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  font-size: torem(28px);
+                  line-height: 10px;
+                }
               }
 
               .content-text-advantage {
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-top: torem(10px);
+                }
+
                 .text-advantage-img {
                   width: 7px;
                   height: 8px;
@@ -119,6 +216,12 @@
                   font-size: 18px;
                   color: #2f2f2f;
                   line-height: 25px;
+
+                  @media #{$media} and ($media-max-width: $max-width-768) {
+                    font-size: torem(24px);
+                    line-height: 10px;
+                  }
+
                 }
               }
             }
@@ -134,13 +237,28 @@
       width: 100%;
       height: 625px;
 
+      @media #{$media} and ($media-max-width: $max-width-768) {
+        height: auto;
+      }
+
       .mt-contactway {
         height: 625px;
+
+        @media #{$media} and ($media-max-width: $max-width-768) {
+          height: auto;
+          font-size: 0;
+        }
 
         .contactway-content{
           width: 50%;
           height: 100%;
           float: left;
+
+          @media #{$media} and ($media-max-width: $max-width-768) {
+            width: 100%;
+            height: auto;
+            float: none;
+          }
 
           .content-text {
             margin-top: 116px;
@@ -148,13 +266,34 @@
             width: 450px;
             height: 356px;
 
+            @media #{$media} and ($media-max-width: $max-width-768) {
+              margin-top: 0;
+              margin-left: 0;
+              width: 100%;
+              height: auto;
+            }
+
             .content-text-head {
               line-height: 62px;
+
+              @media #{$media} and ($media-max-width: $max-width-768) {
+                margin-top: torem(40px);
+                margin-left: torem(32px);
+                width: 90%;
+                line-height: 0;
+                display: flex;
+                align-items: center;
+              }
 
               .text-head-img {
                 width: 61px;
                 height: 62px;
                 float: left;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  width: torem(50px);
+                  height: torem(51px);
+                }
               }
 
               a {
@@ -162,6 +301,12 @@
                 font-size: 32px;
                 line-height: 36px;
                 color: #222222;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-left: torem(10px);
+                  font-size: torem(31px);
+                  line-height: torem(34px);
+                }
               }
 
               .space-line {
@@ -169,7 +314,11 @@
                 height: 2px;
                 background-color: #b0b0b0;
                 margin-left: 71px;
-                margin-bottom: 10px;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-left: 5px;
+                  width: torem(60px);
+                }
               }
             }
 
@@ -177,10 +326,21 @@
             .content-address {
               margin-top: 24px;
 
+              @media #{$media} and ($media-max-width: $max-width-768) {
+                margin-top: torem(24px);
+              }
+
               p {
                 font-size: 18px;
                 line-height: 28px;
                 color: #333333;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                  margin-left: 12%;
+                  width: 82%;
+                  font-size: torem(24px);
+                  line-height: torem(36px);
+                }
               }
             }
 
@@ -192,11 +352,64 @@
           height: 100%;
           float: right;
 
+          @media #{$media} and ($media-max-width: $max-width-768) {
+          margin-top: torem(40px);
+          margin-left: 12%;
+          width: 82%;
+          height: auto;
+          float: none;
+        }
+
           .map {
             margin-top: 116px;
             margin-left: 40px;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+              margin-top: 0;
+              margin-left: 0;
+              width: 100%;
+              height: 100%;
+            }
           }
         }
+
+        .aboutmt-img {
+          width: 50%;
+          height: 100%;
+          float: left;
+
+          @media #{$media} and ($media-max-width: $max-width-768) {
+            margin-top: torem(10px);
+            margin-right: 0;
+            margin-left: 12%;
+            width: 82%;
+            height: auto;
+            float: none;
+          }
+
+          .aboutmt-img-content {
+            margin-top: 124px;
+            margin-right: 40px;
+            width: 527px;
+            height: 356px;
+            float: right;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+              margin-top: 0;
+              margin-right: 0;
+              width: 100%;
+              height: 100%;
+              float: none;
+            }
+          }
+        }
+
+      }
+    }
+
+    .space-bottom {
+      @media #{$media} and ($media-max-width: $max-width-768) {
+        height: torem(68px);
       }
     }
 

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/src/plugin/photoswipe/photoswipe.css">
+    <link rel="stylesheet" href="/src/plugin/photoswipe/default-skin/default-skin.css">
     <title>关于我们--麦甜科技-互联网金融系统解决方案专家</title>
 </head>
 <body>
@@ -13,14 +15,15 @@
     
     <div class="mt-body-aboutus">
         <div class="mt-fluid mt-module-banner">
-            <img class="mt-full-img" src="../../img/aboutus/about-us-banner.png?v=20171124" alt="">
+            <img class="mt-full-img layui-hide-xs" src="../../img/aboutus/about-us-banner.png?v=20171124" alt="">
+            <img class="layui-hide-lg layui-hide-sm layui-hide-md mt-full-img" src="../../img/aboutus/am-banner-wx.jpg?v=20171124" alt="">
             <p>
-                <a class="mt-btn mt-btn-m active" href="/maitian/index.html#callMe">联系我们</a>
+                <a class="mt-btn mt-btn-m active layui-hide-xs" href="/maitian/index.html#callMe">联系我们</a>
             </p>
         </div>
         <div class="module-aboutmt">
             <div class="mt-container mt-aboutmt">
-                <div class="aboutmt-img">
+                <div class="aboutmt-img layui-hide-xs">
                     <img class="aboutmt-img-content" src="../../img/aboutus/am2.png?v=20171124" alt="">
                 </div>
                 <div class="aboutmt-content">
@@ -49,6 +52,10 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="layui-hide-lg layui-hide-sm layui-hide-md aboutmt-img">
+                    <img class="aboutmt-img-content" src="../../img/aboutus/am2.png?v=20171124" alt="">
+                </div>
             </div>
         </div>
         <div class="module-contactway" id="contactWay">
@@ -72,14 +79,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="contactway-map">
+                <div class="contactway-map layui-hide-xs">
                     <iframe class="map" width='600' height='381' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://f.amap.com/v6x7_0B53ODj'></iframe>
+                </div>
+                <div class="layui-hide-lg layui-hide-sm layui-hide-md aboutmt-img">
+                    <img class="aboutmt-img-content" id="aboutMap" src="../../img/aboutus/am-map-wx.jpg?v=20171220" data-big-img="img/aboutus/am-map-wx-big.png" data-width="618" data-height="356" alt="">
                 </div>
             </div>
         </div>
 
+        <div class="layui-hide-lg layui-hide-sm layui-hide-md space-bottom"></div>
     </div>
 
     #include("./footer.html")
+    #include("./photoswipe.html")
+    <script src="/src/plugin/photoswipe/photoswipe.min.js"></script>
+    <script src="/src/plugin/photoswipe/photoswipe-ui-default.min.js"></script>
 </body>
 </html>

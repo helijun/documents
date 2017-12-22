@@ -134,6 +134,9 @@
 				@media #{$media} and ($media-max-width: $max-width-768) {
 					min-width: 235px !important;
 				}
+				@media #{$media} and ($media-max-width: $max-width-414) {
+					min-width: 265px !important;
+				}
 			}
 
 			.solid {

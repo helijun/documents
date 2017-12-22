@@ -153,6 +153,36 @@ let MT = {
 	},
 
 	/**
+	 * 渲染点击打开大图
+	 * 
+	 * src -- data-big-img 大图路径、img开头，前缀已做处理
+	 * w --   data-width 大图宽
+	 * h --   data-height 大图高
+	 */
+
+	renderOpenBigImg: () => {
+		$('img').on('click', (event) => {
+			var self = $(event.currentTarget);
+			var pswpElement = document.querySelectorAll('.pswp')[0];
+
+			var items = [
+				{
+					src: require('../../' + self.attr('data-big-img')),
+					w: self.attr('data-width'),
+					h: self.attr('data-height')
+				}
+			];
+			var options = {
+				index: 0, // start at first slide
+				bgOpacity: .925
+			};
+
+			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+			gallery.init();
+		})
+	},
+
+	/**
 	 * 选中导航条
 	 */
 	selectNav: function() {
@@ -232,6 +262,96 @@ let MT = {
 	},
 
 	/**
+     * 动态加载JS，同步
+     */
+	synchronizationScript: function (url, callback) {
+		$.ajax({
+			async: false,
+			dataType: "script",
+			url: url,
+			success: function (json) {
+				callback && callback();
+			}
+		});
+	},
+
+	/**
+     * 图片懒加载
+     * @param  {[type]} opts [description]
+     * @return {[type]}      [description]
+     */
+	imgLazy: function (opts) {
+		var store = [],
+			offset,
+			throttle,
+			poll;
+
+		function _inView(el) {
+			var coords = el.getBoundingClientRect();
+			return ((coords.top >= 0 && coords.left >= 0 && coords.top) <= (window.innerHeight || document.documentElement.clientHeight) + parseInt(offset));
+		};
+
+		function _pollImages() {
+			for (var i = store.length; i--;) {
+				var self = store[i];
+				if (_inView(self)) {
+					self.src = self.getAttribute('data-liImg');
+					store.splice(i, 1);
+				}
+			}
+		};
+
+		function _throttle() {
+			clearTimeout(poll);
+			poll = setTimeout(_pollImages, throttle);
+		};
+
+		function init(obj) {
+			var nodes = document.querySelectorAll('[data-liImg]');
+			var opts = obj || {};
+			offset = opts.offset || 0;
+			throttle = opts.throttle || 250;
+
+			for (var i = 0; i < nodes.length; i++) {
+				store.push(nodes[i]);
+			}
+
+			_throttle();
+
+			if (document.addEventListener) {
+				window.addEventListener('scroll', _throttle, false);
+			} else {
+				window.attachEvent('onscroll', _throttle);
+			}
+		};
+
+		return {
+			init: init,
+			render: _throttle
+		};
+	},
+	
+	/**
+     * 动态加载JS，异步
+     */
+	loadScript: function (url, callback) {
+		var script = document.createElement("script");
+		var head = document.head || document.getElementsByTagName('head')[0];
+		script.type = "text/javascript";
+		script.src = url + '?ver=' + Math.random();
+
+		if (callback) {
+			script.onload = script.onreadystatechange = function () {
+				setTimeout(function () {
+					callback();
+				}, 20);
+			}
+		}
+
+		head.appendChild(script);
+	},
+
+	/**
 	 * 通用的错误提示
 	 * @param  {[type]} element [待展示错误的dom]
 	 * @return {[type]}         [description]
@@ -257,6 +377,7 @@ let MT = {
 		return window.innerHeight
 	},
 
+	//渲染动画  TODO
 	renderAnimate: (el, type) => {
 		$(el + ' [data-mt-animate]').each(function (k, v) {
 			let json = JSON.parse($(v).attr('data-mt-animate'));
@@ -284,6 +405,8 @@ let MT = {
 		})
 	},
 
+	//图片懒加载  TODO
+
 	//所有全局事件监听
 	watch: function(){
 		var self = this;
@@ -297,9 +420,6 @@ let MT = {
 				self.openPage(500)
 			}*/
 		})
-
-
-		
 	}
 }
 

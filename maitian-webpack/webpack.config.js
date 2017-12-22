@@ -28,6 +28,7 @@ let $aboutUs = 'js/base/aboutUs';
 let $cunguanIndex = 'js/cunguan/index';
 let $wangdaiIndex = 'js/wangdai/index';
 let $fengkongIndex = 'js/fengkong/index';
+let $successCase = 'js/success/case';
 let $layui = 'plugin/layui/layui';
 let $layuiForm = 'plugin/layui/lay/modules/form';
 let $layuiLayer = 'plugin/layui/lay/modules/layer';
@@ -42,6 +43,7 @@ let entryArray = [
 		$cunguanIndex,
 		$wangdaiIndex,
 		$fengkongIndex,
+		$successCase,
 		$layui, 
 		$layuiForm, 
 		$layuiLayer, 
@@ -61,7 +63,7 @@ let config = {
 		publicPath: '/maitian/'
 	},
 	devServer: {
-		host: '192.168.1.193',
+		host: '192.168.1.104',
 		port: 1118,
 		inline: true, //可以监控js变化
 		hot: true, //热启动
@@ -121,7 +123,7 @@ let plugins = [
 ];
 
 //满足通用的chunks页面模板数组
-let commonPage = [$header, $footer, $aboutUs, $cunguanIndex, $wangdaiIndex, $fengkongIndex];
+let commonPage = [$header, $footer, $aboutUs, $cunguanIndex, $wangdaiIndex, $fengkongIndex, $successCase];
 
 commonPage.forEach((v) => {
 	let chunks = [$common, v];
@@ -129,7 +131,8 @@ commonPage.forEach((v) => {
 		v === $cunguanIndex ||
 		v === $aboutUs || 
 		v === $wangdaiIndex ||
-		v === $fengkongIndex
+		v === $fengkongIndex ||
+		v === $successCase
 	){
 		chunks.push($layui)
 	}
