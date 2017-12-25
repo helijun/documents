@@ -1,0 +1,31 @@
+/** media start **/
+$media: screen;
+$media-max-width: max-width;
+$max-width-320: 320px;
+$max-width-375: 375px;
+$max-width-414: 414px;
+$max-width-768: 768px;
+$max-width-992: 992px;
+
+$media-min-width: min-width;
+$min-width-320: 320px;
+$min-width-375: 375px;
+$min-width-414: 414px;
+/** media end ---------------------------------------   **/
+
+/** pc base **/
+$normal-font-size-pc: 18px !default;
+$base-font-size-pc: 14px !default;
+$base-color: rgb(22, 218, 224);
+/** pc base end ---------------------------------------   **/
+
+
+/** mobile base **/
+$rem-base: 14px; //750设计稿
+/** mobile base end ---------------------------------------   **/
+
+/** header start **/
+$header-height-pc: 117px;
+$header-height-mobile: 117px;
+
+/** header end ---------------------------------------   **/

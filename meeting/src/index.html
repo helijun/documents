@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理系统</title>
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugin/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="plugin/daterangepicker/css/daterangepicker.css">
+    <link rel="stylesheet" href="plugin/jQueryPage/pager.css">
+    <link rel="stylesheet" href="css/index.css?v=1.1&t=20171222">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+</head>
+
+<body>
+    <div class="content">
+        <div class="content-left">
+            <div class="logo">
+                <div class="img-box logo-box">
+                    <img src="imgs/logo.png" alt="" class="logo-img">
+                </div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li class="nav-item nav-show">
+                        <a href="javascript:;">
+                            <i class="guard-icon"></i>
+                            <span>门禁管理</span>
+                        </a>
+                        <ul class="submenu" style="display:block;">
+                            <li id="btnRecord" class="activate">
+                                <a href="javascript:;">
+                                    <span>识别记录</span>
+                                </a>
+                            </li>
+                            <li id="btnAuthorization">
+                                <a href="javascript:;">
+                                    <span>访问授权</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>考勤管理</span></a>
+                        <ul class="submenu">
+                            <li id="btnAttendanceManager"><a href="javascript:;"><span>考勤设置</span></a></li>
+                        </ul>
+                    </li>-->
+                    <li class="nav-item">
+                        <a href="javascript:;">
+                            <i class="people-icon"></i>
+                            <span>人员管理</span>
+                        </a>
+                        <ul class="submenu">
+                            <li id="btnApproval">
+                                <a href="javascript:;">
+                                    <span>入库审批</span>
+                                </a>
+                                <span id="messages" class="opacity0"></span>
+                            </li>
+                            <li id="btnPeopleManager">
+                                <a href="javascript:;">
+                                    <span>员工管理</span>
+                                </a>
+                            </li>
+                            <li id="btnVisitorManager">
+                                <a href="javascript:;">
+                                    <span>访客管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--系统设置换位置-->
+                    <li class="nav-item" id="configManager">
+                        <a href="javascript:;">
+                            <i class="config-icon"></i>
+                            <span>系统管理</span>
+                        </a>
+                        <ul class="submenu">
+                            <li id="btnUsersManager">
+                                <a href="javascript:;">
+                                    <span>账号管理</span>
+                                </a>
+                            </li>
+                            <li id="btnDeviceManagement">
+                                <a href="javascript:;">
+                                    <span>设备管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="nav-item personal">
+                        <a href="javascript:;" class="btnPersonalCenter">
+                            <i class="personal-icon"></i>
+                            <span>个人信息</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <!-- top navigation -->
+            <!--中转点-->
+            <div id="btnVisitorManager"></div>
+            <div id="btnEmployeeApproval"></div>
+            <div id="btnVisitorApproval"></div>
+            <div class="btnVisitantList"></div>
+            <div id="btnSearchWords"></div>
+            <div id="btnKeepSearchWords"></div>
+            <div id="btnStarttime"></div>
+            <div id="btnEndtime"></div>
+            <div id="btnSimilarity"></div>
+            <div id="btnPersontype"></div>
+            <div id="btnPager"></div>
+            <div id="btnMySource"></div>
+            <div id="btnRecordEdit"></div>
+            <div id="btnDeviceids"></div>
+            <div id="testData"></div>
+            <div id="btnFirstFacedata"></div>
+            <div id="btnOrganizationid"></div>
+            <div id="btnOrgTree"></div>
+            <div id="btnApQtype"></div>
+            <div id="btnCheckresult"></div>
+            <div id="btnAptype"></div>
+            <div id="btnVsStatus"></div>
+            <div id="btnApprovalTip"></div>
+            <!--/中转点-->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <!-- /.col-lg-6 -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown" id="psDropdown">
+                                <a href="javascript:void(0);" class="user-profile dropdown-toggle">
+                                    <span class="reminder_text welcome"></span>
+                                    <img src="imgs/pic.jpg" id="ps-head-img" class="btnPersonalCenter" alt="">
+                                    <span id="userName"></span>
+                                    <span id="btnLogout" style="color:#357aed;margin-right:40px;margin-left:16px;">[退出]</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <div class="panel panel-default displayN" id="my-tree" style="width:214px;position:fixed;top:117px;z-index:999;margin-left:16px;border:0px;">
+                <div class="panel-body" style="padding:0;height:80vh;background-color:#fff;min-height:500px;">
+                    <!--组织架构树-->
+                    <div id="TreeList">
+
+                    </div>
+                </div>
+            </div>
+            <div class="module-container" style="padding-top:40px;min-height:100vh;">
+
+                <!--第一次加载预动画-->
+                <div id="modalLoading" style="margin-top:30vh;">
+                    <div style="background-color:transparent;display:flex;justify-content:center;align-items:center;flex-direction:column;">
+                        <img src=" imgs/loading.gif " alt=" ">
+                        <p style="margin-top:5px;" class="info_text">正在刷新，请稍候···</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/lib/require.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../li-1.2.0";
+
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+
+	@extend .extend-login-header;
+}
+
+.page-pwd-success {
+	max-width: 100%;
+    	height: 100%;
+    	background: url(../../img/base/bg.png) no-repeat;
+	background-size: cover;
+}

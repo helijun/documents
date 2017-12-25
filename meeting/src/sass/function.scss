@@ -1,0 +1,11 @@
+@charset "utf-8";
+@import "./variables";
+
+//$px为需要转换的字号
+//40px为根字体大小
+@function torem($px, $base-value: null){
+	@if $base-value == null {
+		$base-value: $rem-base;
+	}
+    @return $px / $base-value * 0.5rem; 
+}

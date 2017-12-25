@@ -1,0 +1,18 @@
+{
+  "name": "hs",
+  "version": "1.0.0",
+  "description": "会议签到系统",
+  "scripts": {
+    "start": "gulp live"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-mini-css": "0.0.3",
+    "gulp-sass": "^3.1.0",
+    "http-proxy-middleware": "^0.17.4",
+    "run-sequence": "^2.1.0"
+  }
+}
