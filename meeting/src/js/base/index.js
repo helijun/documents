@@ -1,54 +1,36 @@
-/**
- * 2017.9.11
- * Created by land
- */
-// 配置文件路径
-require.config({
-    urlArgs: 'v=' + new Date().getTime(),
-    baseUrl: "./js",
-    paths: {
-        jquery: "lib/jquery-2.1.4",
-        cookie: "lib/jquery.cookie",
-        text: "lib/text",
-        qrcode: "lib/jquery.qrcode.min",
-        artTemplate: "lib/template-web",
-        bootstrap: "../plugin/bootstrap/js/bootstrap",
-        typeahead: "../plugin/bootstrap/js/bootstrap-typeahead",
-        pager: "../plugin/jQueryPage/pager",
-        //配置模板文件夹的路径
-        tpls: "../tpls",
-        // 日期控件
-        datetimepicker: "../plugin/datetimepicker/js/bootstrap-datetimepicker.min",
-        daterangepicker: "../plugin/daterangepicker/js/daterangepicker",
-        moment: "../plugin/daterangepicker/js/moment.min",
-        datetimepickerLang: "../plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN",
-        lrz: "../plugin/lrz/lrz.bundle",
-        clipboard: "lib/clipboard"
-    },
-    // 设置依赖
-    shim: {
-        bootstrap: {
-            deps: ["jquery"]
-        },
-        datetimepickerLang: {
-            deps: ["datetimepicker"]
-        },
-        daterangepicker: {
-            deps: ["moment"]
-        },
-        typeahead: {
-            deps: ["bootstrap"]
-        },
-        qrcode: {
-            deps: ["jquery"]
-        },
-        clipboard: {
-            deps: ["jquery"]
+
+require(
+[
+    'jquery',
+    'underscore',
+    'common',
+    'js/device/list'
+],
+function ($, _, HSKJ, deviceList) {
+    HSKJ.ready(function() {
+
+        
+        
+        var index = {
+            init: function(){
+                deviceList(); //进入首页默认渲染设备列表
+                this.wactch();
+            },
+
+            wactch: function() {
+
+                $(document).on('click', '.nav-list', function(){//左边三个菜单点击
+                    $(this).addClass('active').siblings().removeClass('active');
+                    var loadFun = $(this).attr('data-load');
+                    loadFun && eval(loadFun)();
+                })      
+            }
         }
-    },
-    waitSeconds: 0
+        index.init();
+    })
 })
 
+/*
 //因为checkLogin依赖了cookie，所以cookie已经被加载
 require([
     "jquery", 
@@ -378,4 +360,4 @@ require([
         $(this).removeClass('open');
     });
 
-})
+}) */

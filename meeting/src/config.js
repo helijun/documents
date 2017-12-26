@@ -1,7 +1,35 @@
+//禾思科技唯一全局变量
+var HSKJ = {
+    VERSION: (new Date()).getTime(), //开发，测试环境 || 20170517;//生产环境
+    BASE: 'http://' + window.location.host,//域名url，如本地则是为空
+}
+
+//js配置项
+require.config({
+    urlArgs: "v=" + HSKJ.VERSION,
+    baseUrl: "/",
+    paths: {
+        jquery: 'plugin/jquery/jquery-3.1.0.min',
+        underscore: 'plugin/underscore/underscore',
+        common: 'js/common',
+    },
+    shim: {
+        underscore: {
+            exports: '_'
+        },
+        common: {
+            deps: ['jquery'],
+            exports: '$'
+        }
+    }
+});
+/* 
+
+
 /**
  * 2017.9.11
  * Created by land
- */
+
 // 配置文件路径
 require.config({
     urlArgs: 'v=' + new Date().getTime(),
@@ -378,4 +406,4 @@ require([
         $(this).removeClass('open');
     });
 
-})
+}) */
