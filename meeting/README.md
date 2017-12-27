@@ -7,7 +7,7 @@
 4. 主页index.html
 
 ## 使用
-1. 安装node环境，更改npm来源 npm config set registry https://registry.npm.taobao.org  
+1. https://nodejs.org/en/ 安装node环境v6 + ，更改npm来源 npm config set registry https://registry.npm.taobao.org  
 2. 在当前目录（根目录）安装依赖 npm install 
 4. npm run start 开发环境实时刷新页面
 5. 生产环境TODO
