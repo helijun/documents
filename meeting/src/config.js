@@ -10,6 +10,8 @@ require.config({
     baseUrl: "/",
     paths: {
         jquery: 'plugin/jquery/jquery-3.1.0.min',
+        layui: 'plugin/layui/layui',
+        layuiAll: 'plugin/layui/layui.all',
         underscore: 'plugin/underscore/underscore',
         common: 'js/common',
     },

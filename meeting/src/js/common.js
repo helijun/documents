@@ -190,6 +190,9 @@
 			}).on('click', '.tabs-item', function(){
 				$(this).addClass('active').siblings().removeClass('active');
 			})
+			.on('click', '.module-to-login', function () {
+				window.location.href = '/page/base/login.html'
+			})
 	    }
 	}
 

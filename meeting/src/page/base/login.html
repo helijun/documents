@@ -4,55 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../plugin/layui/css/layui.css">
     <link rel="stylesheet" href="../../css/base/login.css">
 </head>
 
 <body>
     <div class="page-login">
-        <div class="m-login-box">
+        <div class="module-login-box">
+            <div class="element-content">
+                <div class="title">
+                    <span class="login">登录</span>
+                    <a class="regist" href="#">注册
+                        <img src="../../img/icon/icon-goto.png" alt="">
+                    </a>
+                </div>
+                <form class="layui-form">
+                    <div class="module-input-border">
+                        <img src="../../img/icon/icon-user.png" alt="">
+                        <input type="text" name="mobile" placeholder="请输入11位手机号" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="module-input-border">
+                        <img src="../../img/icon/icon-pwd.png" alt="">
+                        <input type="text" name="mobile" placeholder="密码" autocomplete="off" class="layui-input">
+                    </div>
 
-            
-            <!-- <div class="img-box">
-                <img src="./imgs/login/bg-pic.png" alt="">
-            </div>
-            <div class="rows">
-                <form class="form-horizontal">
-                    <span class="heading">禾思守护者
-                        <span class="line">|</span>
-                        <span class="login">登录</span>
-                    </span>
-                    <div class="login_error_wrap opacity0">
-                        <span>用户名或密码错误</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="用户名" col-sm-6 name="username">
-                        <i class="username-icon"></i>
-                    </div>
-                    <div class="form-group help">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="密　码" name="password">
-                        <i class="password-icon"></i>
-                        <a href="#" class="fa fa-question-circle"></a>
-                    </div>
-                    <div class="form-group">
-                        <div class="main-checkbox">
-                            <input type="checkbox" value="true" id="checkbox1" name="isRemember" />
-                            <label for="checkbox1"></label>
+                    <div class="layui-form-item ">
+                        <div class="layui-input-inline element-remember">
+                            <input type="checkbox" name="remember" lay-skin="primary" title="记住密码" checked="">
                         </div>
-                        <span class="text">记住密码</span>
-                        <button type="submit" class="btn">
-                            <span class="info">登录</span>
-                            <span class="login-icon"></span>
-                        </button>
+                        <a class="layui-form-label element-forgot">忘记密码？</a>
+                    </div>
+                    
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit="" lay-filter="">登录</button>
                     </div>
                 </form>
-            </div> -->
+            </div>
         </div>
     </div>
 </body>
+
+<script src="../../plugin/requirejs/require.min.js"></script>
+<script>
+    var script = document.createElement("script"),
+        head = document.head || document.getElementsByTagName('head')[0];
+
+    script.type = "text/javascript";
+    script.src = '../../config.js?ver=' + (new Date()).getTime();
+
+    head.appendChild(script);
+
+    script.onload = script.onreadystatechange = function () {
+        require(['js/base/login'])
+    }
+</script>
+<!--
 <script src="../../js/lib/jquery-2.1.4.js"></script>
 <script src="../../js/lib/jquery.cookie.js"></script>
-<!--<script src="js/lib/md5.js"></script>-->
+<script src="js/lib/md5.js"></script>
 <script>
     if($.cookie("username")!=undefined){
         $("#inputEmail3").val($.cookie("username"));
@@ -102,5 +111,5 @@
         return false;//阻止自动提交表单
     })
 </script>
-
+-->
 </html>
