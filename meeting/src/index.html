@@ -4,42 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <title>管理系统</title>
-    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- ie11已下、微信浏览器 跳转不兼容页面 -->
+    <script src="./js/info/no-compatible.js"></script>
+    
+    <link rel="stylesheet" href="./plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/base/index.css">
 </head>
 
 <body>
     <nav>
         <div class="left">
-            <img src="../img/logo/logo-white.png" alt="">
+            <img src="./img/logo/logo-white.png" alt="">
             <span class="title">禾思会议签到管理系统</span>
         </div>
         <div class="right">
-            <span class="welcome-msg">你好！</span>
-            <a href="#" class="logout">[退出]</a>
+            <span class="welcome-msg"></span>
+            <a href="#" class="module-go-logout logout">[退出]</a>
         </div>
     </nav>
 
     <article>
-        <ul class="nav-left">
-            <li class="nav-list active" data-load="deviceList">
-                <img src="../../img/index/sbgl-icon.png" alt="">
-                <p>设备管理</p>
-            </li>
-            <li class="nav-list" data-load="">
-                <img src="../../img/index/zhgl-icon.png" alt="">
-                <p>设备管理</p>
-            </li>
-            <li class="nav-list" data-load="">
-                <img src="../../img/index/hytj-icon.png" alt="">
-                <p>会议统计</p>
-            </li>
-        </ul>
+        <ul class="nav-left"></ul>
         <div class="module-container">
-
+            <!-- <div class="hs-loading">
+                <img src="./img/icon/icon-loading.gif" alt=" ">
+                <p class="element-loading-text">正在刷新，请稍候···</p>
+            </div> -->
+            <div class="layui-layer layui-layer-loading" id="layui-layer2" type="loading" times="2" showtime="10000" contype="string"
+                style="z-index: 19891016; top: 471px; left: 687px;">
+            <div id="" class="layui-layer-content layui-layer-loading2"></div><span class="layui-layer-setwin"></span></div>
         </div>
     </article>
     <script src="./plugin/requirejs/require.min.js"></script>
+    <!-- 左边菜单权限控制 -->
+    <script type="text/html" id="navLeftTpl">
+         {{#  layui.each(d.list, function(index, item){ }}
+            {{#  if(item.show){ }}
+                <li class="nav-list" data-url="{{item.dataUrl}}" data-load="{{item.dataLoad}}">
+                    <img src="./img/index/{{item.icon}}" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            {{# } }}
+        {{#  }); }}
+        
+    </script>
+
+    <!-- 如果toolbar d 取不到值，请把script放到index.html -->
+    <!-- 设备列表 状态栏 -->
+    <script type="text/html" id="deviceTableStatusTpl">
+        {{#  if(d.online == 0 ){ }}
+            <p class="hs-color-del">离线</p>
+        {{#  } else { }}
+            在线
+        {{#  } }}
+    </script>
+    <!-- 设备列表 操作栏 -->
+    <script type="text/html" id="deviceTableToolbar">
+        {{#  if(d.status == 1 ){ }} <!-- 只有未激活状态才给编辑 -->
+        <a class="hs-color-base hs-point" lay-event="edit">编辑</a>
+        {{#  } }}
+        <a class="hs-color-base hs-point" lay-event="del">删除</a>
+    </script>
+    <!-- 设备列表 操作栏 机构端-->
+    <script type="text/html" id="deviceOrgTableToolbar">
+        {{#  if(d.status == 1 ){ }} <!-- 只有未激活状态才给编辑 -->
+            {{#  if(window.roleid == 1 ){ }}<!-- 只有管理员角色才能编辑 -->
+                <a class="hs-color-base hs-point" lay-event="edit">编辑</a>
+            {{# } }}
+        {{#  } }}
+        <a class="hs-color-base hs-point" lay-event="del">解绑</a>
+    </script>
+     
+    <!-- 会议列表 操作栏 -->
+    <script type="text/html" id="meetingTableToolbar">
+        <a class="hs-color-base hs-pr-10 hs-point" lay-event="push">推送</a>
+        <a class="hs-color-base hs-pr-10 hs-point" lay-event="detail">会议详情</a>
+        <a class="hs-color-base hs-pr-10 hs-point" lay-event="list">参会名单</a>
+        {{# if(dateFormat.utils.startAndEndDif(new Date(), d.holdtimestart.replace(/-/g, '/').replace(/-/g, '/')) < 0){ }}
+            <a class="hs-color-disable hs-pr-10" title="已到会议开始时间，无法编辑">编辑</a>
+            <a class="hs-color-disable " title="已到会议开始时间，无法删除">删除</a>
+        {{# }else if(d.employees > 0){ }}
+            <a class="hs-color-disable hs-pr-10" title="已有人报名会议，无法编辑">编辑</a>
+            <a class="hs-color-disable " title="已有人报名会议，无法删除">删除</a>
+        {{# }else{ }}
+            <a class="hs-color-base hs-pr-10 hs-point" lay-event="edit">编辑</a>
+            <a class="hs-color-base hs-point" lay-event="del">删除</a>
+        {{# } }}
+        
+    </script>
+
+    <!-- 参会人员补签 操作栏 -->
+    <script type="text/html" id="joinListTableToolbar">
+        {{# if(d.issign != 1){ }}
+            <a class="hs-color-base hs-pr-10 hs-point" lay-event="makeUp">补签</a>
+        {{# } }}
+        <a class="hs-color-base hs-pr-10 hs-point" lay-event="detail">详情</a>
+        <a class="hs-color-base hs-pr-10 hs-point" lay-event="del">删除</a>
+    </script>
+    <!-- 参会人员是否是vip -->
+    <script type="text/html" id="joinListTableIsVip">
+        {{d.name}}  
+        {{# if(d.isvip == 1){ }}
+             <i class="icon-vip"></i>
+        {{# } }}
+    </script>
+
+    <!-- 会议统计 查看使用设备 -->
+    <script type="text/html" id="statConnectDetailToolbar">
+        {{d.connect}}
+        {{# if(d.connect != 0){ }}
+            <i class="icon-search-active hs-pl-10 hs-point" lay-event="searchConnect"></a>
+        {{# } }}
+    </script>
+
+    <!-- 会议统计 查看关联设备 -->
+    <script type="text/html" id="statDevicesDetailToolbar">
+        {{d.devices}} {{# if(d.devices != 0){ }}
+        <i class="icon-search-active hs-pl-10 hs-point" lay-event="searchDevices"></a>
+        {{# } }}
+    </script>
+     
     <script>
         var script = document.createElement("script"),
             head = document.head || document.getElementsByTagName('head')[0];
@@ -51,6 +137,7 @@
 
         script.onload = script.onreadystatechange = function () {
             require(['js/base/index'])
+
         }
     </script>
 </body>

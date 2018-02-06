@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+body {
+	@extend .extend-form-checkbox;
+	@extend .extend-layer-dialog;
+
+	.guest-dialog-content {
+		padding: 14px 72px;
+		.element-add-normal {
+			display: block;
+			width: 100%;
+			margin-left: 0;
+			@extend .extend-empty-btn;
+		}
+		.element-add-vip {
+			display: block;
+			width: 100%;
+			margin-bottom: 14px;
+			@extend .extend-full-btn;
+		}
+	}
+}
+.extend-small-fontsize {
+	font-size: 12px;
+	line-height: 17px;
+	color: #596466;
+}
+.layui-table-body [class*="-faceimage"] {
+	height: 60px;
+}
+.element-join-face {
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+}
+.module-meeting-join {
+	@extend .extend-article;
+	
+	.element-container {
+		background-color: #f8fafb;
+
+		.layui-icon {
+			cursor: pointer;
+
+			&:hover {
+				color: $base-color;
+			}
+		}
+		.element-header {
+			background-color: #ffffff;
+			height: 78px;
+			margin-bottom: 8px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			position: relative;
+			padding: 28px 25px;
+
+			.module-input-border {
+				background-color: #f4f5f6;
+				border-radius: 17px;
+				display: flex;
+				width: 276px;
+				margin-right: 38px;
+
+				input {
+					background-color: #f4f5f6;
+					border: none;
+					border-radius: 17px;
+				}
+				button {
+					background-color: #3ddfd5;
+					border-radius: 0;
+					border-top-right-radius: 17px;
+					border-bottom-right-radius: 17px;
+				}
+			}
+			.element-title {
+				font-size: 18px !important;
+				line-height: 18px;
+				color: #212023 !important;
+				padding-left: 0;
+
+				a {
+					font-size: 14px !important;
+					color: $base-color;
+				}
+			}
+
+			.element-add-guest,
+			.element-export-data {
+				@extend .extend-empty-btn;
+
+				&.disable {
+					cursor: not-allowed;
+					color: $base-disable-color !important;
+					border-color: $base-disable-color !important;
+				}
+			}
+		}
+
+		.table-content {
+			background-color: #ffffff;
+			height: 100%;
+			padding: 18px 26px;
+			
+			.element-count-data {
+				font-size: 12px;
+				line-height: 18px;
+				color: #6e7b7d;
+			}
+			.layui-table-page {
+				text-align: center;
+				margin-top: 24px;
+				border: none;
+			}
+			@extend .extend-layui-table;
+		}
+	}
+}

@@ -16,17 +16,20 @@ $min-width-414: 414px;
 /** pc base **/
 $normal-font-size-pc: 18px !default;
 $base-font-size-pc: 14px !default;
-$base-bg-color: #edeff1;
-$base-color: #3ddfd5;
+$small-font-size-pc: 12px !default;
+$base-bg-color: #edeff1; //基础背景颜色
+$article-color:#fff; //主内容颜色
+$base-color: #3ddfd5; //全局基础颜色
+$base-disable-color: #c2f9f5;
+$del-color: #ffb11b;
 $nav-height: 60px; //首页导航高度%
 $nav-left-width: 140px;//首页左边导航宽度
 $tabs-item-bottom: 6px; //选项卡下边距
 $module-container-padding: 20px;//首页主体内容边距
 /** pc base end ---------------------------------------   **/
 
-
 /** mobile base **/
-$rem-base: 14px; //750设计稿
+$rem-base: 14px; //640设计稿
 /** mobile base end ---------------------------------------   **/
 
 /** header start **/

@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+body {
+	@extend .extend-layui-radio;
+	@extend .extend-form-checkbox;
+	@extend .extend-layer-dialog;
+}
+.extend-small-fontsize {
+	font-size: 12px;
+	line-height: 17px;
+	color: #596466;
+}
+.module-meeting-vip-next {
+	height: 100%;
+
+	.hs-tabs-across {
+		height: 40px;
+		line-height: 40px - $tabs-item-bottom;
+		background-color: #ffffff;
+	}
+	.switch-pad-machine {
+		padding-left: 160px;
+		margin-top: -25px;
+		display: block;
+	}
+	.sub-tabs {
+		@extend .extend-small-fontsize;
+		cursor: pointer;
+		line-height: 22px;
+		padding-left: 8px;
+	      position: absolute;
+    		top: -32px;
+		
+		.active {
+			color: $base-color;
+		}
+	}
+
+	.element-container {
+		height: 100%;
+		margin: $module-container-padding;
+		background-color: white;
+		border-radius: 5px;
+
+		.element-header {
+			background-color: #ffffff;
+			height: 78px;
+			margin-bottom: 8px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			position: relative;
+			padding: 28px 25px;
+
+			.element-title {
+				font-size: 18px !important;
+				line-height: 18px;
+				color: #212023 !important;
+				padding-left: 0;
+
+				a {
+					font-size: 14px !important;
+					color: $base-color;
+				}
+			}
+		}
+
+		.element-welcome {
+			margin-top: 60px;
+			margin-left: 95px;
+		}
+
+		.element-form-content {
+			width: 514px;
+
+			.layui-form-label {
+				width: 140px;
+				font-size: 14px;
+				line-height: 18px;
+				letter-spacing: 0px;
+				color: #6e7b7d;
+				text-align: left;
+			}
+			.layui-input-inline {
+				width: 450px;
+				margin-left: 10px;
+				background-color: #f8fafb;
+				border: solid 1px rgba(0, 0, 0, 0.05);
+
+				input {
+					display: inline-block;
+					border: none;
+					width: 380px;
+					background-color: #f8fafb;
+				}
+
+				textarea {
+					width: 509px;
+					height: 100px;
+					background-color: #f8fafb;
+					border: none;
+				}
+				.element-input-tips {
+					display: inline-block;
+					float: right;
+					color: #c4ccd4;
+					font-size: 12px;
+					padding: 9px 5px;
+				}
+			}
+			.vip-face-select {
+				background: url('../../img/meeting/machine-screen-select.png') no-repeat;
+				width: 75px;
+    			height: 84px;
+				margin-right: 10px;
+				cursor: pointer;
+
+				&:hover {
+					background: url('../../img/meeting/machine-screen-selected.png') no-repeat;
+				}
+			}
+			.element-desc {
+				.element-example {
+					color: $base-color;
+					cursor: pointer;
+					font-size: $small-font-size-pc;
+				}
+				p {
+					font-size: 12px;
+					color: #6e7b7d;
+				}
+			}
+			.vip-face-desc {
+				width: 165px;
+				padding-top: 52px;
+			}
+			.element-save {
+				@extend .extend-full-btn;
+				width: 120px;
+				height: 40px;
+				margin-top: 180px;
+			}
+		}
+		.content-right {
+			display:  inline-block;
+			min-width: 360px;
+			padding-left: 40px;
+
+			.element-title {
+				font-size: 14px;
+				font-weight: normal;
+				font-stretch: normal;
+				line-height: 18px;
+				letter-spacing: 0px;
+				color: #6e7b7d;
+			}
+			/** 手机预览 */
+			.element-mobile {
+				background: url('../../img/meeting/mobile.png') no-repeat;
+				background-size: 100% 100%;
+				width: 249px;
+				height: 444px;
+				margin-left: 55px;
+				margin-top: -42px;
+				position: relative;
+				
+				.element-mobile-content {
+						position: absolute;
+						top: 50px;
+					width: 204px;
+					height: 339px;
+					margin-left: 23px;
+					background-color: #f4f5f6;
+					padding: 17px 15px;
+				}
+			}
+
+			/** 平板预览 **/
+			.element-pad {
+				background: url('../../img/meeting/pad.png') no-repeat;
+				background-size: cover;
+				width: 455px;
+				height: 273px;
+				position: relative;
+				margin-left: -8px;
+				margin-top: 35px;
+				
+				.element-pad-screen {
+						position: absolute;
+					top: 30px;
+					width: 344px;
+					height: 216px;
+					margin-left: 46px;
+					background-color: #f4f5f6;
+				}
+				.element-pad-recognize {
+						position: absolute;
+					top: 30px;
+					width: 344px;
+					height: 216px;
+					margin-left: 46px;
+					background-color: #1879da;
+				}
+			}
+
+			/** 立式机预览 **/
+			.element-machine {
+				background: url('../../img/meeting/machine.png') no-repeat;
+				background-size: 100% 100%;
+				width: 455px;
+				height: 769px;
+				position: relative;
+				margin-left: -8px;
+				margin-top: 35px;
+				
+				.element-machine-screen {
+						position: absolute;
+					top: 70px;
+					width: 324px;
+					height: 626px;
+					margin-left: 73px;
+					background-color: #f4f5f6;
+				}
+				.element-machine-recognize {
+						position: absolute;
+					top: 70px;
+					width: 324px;
+					height: 626px;
+					margin-left: 73px;
+					background-color: #1879da;
+				}
+			}
+		}
+	}
+}

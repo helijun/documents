@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+html,body {
+	height: 100%;
+}
+.module-meeting-form-success {
+	padding: 0 torem(36px);
+	background-color: #edeff1;
+	min-height: 100%;
+
+	.element-title {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		display: block;
+		text-align: left;
+		padding: 0 torem(36px);
+		font-size: torem(30px);
+		height: torem(88px);
+		line-height: torem(88px);
+		background-color: #ffffff;
+		box-shadow: 0px 5px 5px 0px 
+		rgba(230, 233, 237, 0.75);
+		
+		i {
+			display: inline-block;
+    			margin-top: torem(24px);
+		}
+	}
+	
+	.element-tips {
+		padding-top: torem(88px);
+		text-align: center;
+
+		.icon-success-plus {
+			margin: torem(130px) 0 torem(21px) 0;
+		}
+
+		p {
+			margin: 0;
+			margin-bottom: torem(134px);
+		}
+	}
+
+	.element-before-time {
+		font-size: torem(22px);
+		color: #596466;
+		border: solid 0px rgba(51, 51, 53, 0.2);
+		padding-bottom: torem(28px);
+		margin-top: torem(50px);
+		em {
+			color: $base-color;
+		}
+	}
+	.element-time {
+		margin-top: torem(37px);
+	}
+	.element-time,
+	.element-address {
+		font-size: torem(24px);
+		line-height: torem(36px);
+		color: #6e7b7d;
+
+		span {
+			color: #222124;
+			a {
+				color: $base-color;
+			}
+		}
+	}
+}

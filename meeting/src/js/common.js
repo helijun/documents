@@ -4,6 +4,7 @@
 	var HSKJ = {
 	    //全局初始化函数
 		ready: function(callback){
+			this.checkLogin();
 	        this.watch();
 	        callback && callback();
 	    },
@@ -17,20 +18,12 @@
 	        var self = this;
 	        self.ajax(options,'post');
 	    },
-	    ajax: function(opts,type){
-	        var selfData = {
-	                url: opts.url,//真实的url
-	                params: JSON.stringify(opts.params)
-	            };
-
-	        if (opts.baseUrl) {//非跨域
-	            selfData = opts.data;
-	        }
-
+	    ajax: function(opts, type){
+			var self = this;
 	        $.ajax({
-	            url: opts.baseUrl || URL.CORS,
-	            data: selfData,
-	            type: type,
+				url: ENV.API + opts.url,
+				data: opts.data,
+				type: type,
 	            async: opts.async,
 	            beforeSend: function() {
 	                opts.beforeSend && opts.beforeSend();
@@ -40,9 +33,10 @@
 	                    console.log(opts.baseUrl || opts.url,' ajax is successful',json);
 	                    opts.success && opts.success(json);
 
-	                    if(opts[json.status]){//区分不同的状态码回调函数
-	                    	console.log(opts.baseUrl || opts.url,'ajax status is', json.status, '并已回调'+ json.status +'方法');
-	                    	eval(opts[json.status])(json);
+						self.checkAjaxCodeIsLogin(json.code);
+						if (opts[json.code]){//区分不同的状态码回调函数
+							console.log(opts.baseUrl || opts.url, 'ajax status is', json.code, '并已回调' + json.code +'方法');
+							eval(opts[json.code])(json);
 	                    }
 	                }else{
 	                    console.error(opts.baseUrl || opts.url,'ajax 数据返回格式异常');
@@ -54,11 +48,128 @@
 	                opts.error != undefined ? opts.error() : HSKJ.commonError();
 	            },
 	            complete: function(XMLHttpRequest, textStatus) {
+					HSKJ.loadingHide();
 	                console.log(opts.baseUrl || opts.url,' ajax is complete');
 	            },
 	            timeout: opts.timeout || 20000
 	        })
-	    },
+		},
+
+		/**
+		 * 上传图片
+		 */
+		uploadFile: function(opts){
+			layui.upload.render({
+				elem: opts.elem
+				, url: ENV.FILE_URL + opts.url
+				, field: opts.field
+				, before: function (obj) {
+					layui.layer.msg('上传中，请稍后...');
+					//预读本地文件示例，不支持ie8，图片链接（base64）
+					obj.preview(function (index, file, result) {
+						opts.preview && opts.preview(index, file, result)
+					});
+				}
+				, accept: 'images'
+				, size: opts.size || 1024*10
+				, done: function (res) {
+					if (res.code > 0) {
+						return layui.layer.msg('上传失败');
+					} else if (res.code == 0) {
+						opts.done && opts.done(res)
+						return layui.layer.msg('上传成功');
+					}
+				}
+				, error: function () {
+					layui.layer.msg('上传失败，请重试！')
+				}
+			});
+		},
+
+		/**
+		 * 渲染表格，针对layui的表格加强封装，
+		 * 默认增加所有列居中、禁止列拖动
+		 * @param {any} opts 所有参数，尽量靠近layui的参数
+		 */
+		renderTable: function(opts){
+			HSKJ.loadingShow();
+
+			var arr = [];
+			opts.cols.forEach(function(v) {
+				arr.push(Object.assign(v, {
+					align: 'center', 
+					unresize: true
+				}));
+			}, this);
+
+			var noDataHtml = [
+				'<div class="module-no-data">',
+					'<img src="' + ENV.PAGE + 'img/info/no-data.png" />',
+					'<p>暂时没有数据哦~</p>',
+				'</div'
+			];
+
+			layui.layer.closeAll('tips');//表格超出部分点击后的弹框消失
+			layui.table.render({
+				id: opts.id
+				, elem: opts.elem
+				, url: opts.url
+				, where: opts.where
+				, cols: [arr]
+				, skin: 'line'
+				, page: {
+					layout: ['prev', 'page', 'next']
+					, first: false
+					, last: false
+					, theme: '#3ddfd5'
+				}
+				, limit: opts.limit || 10
+				, text: {
+					none: noDataHtml.join('')
+				}
+				, done: function (res, curr, count) {
+					opts.done && opts.done(res, curr, count);
+					HSKJ.loadingHide();
+					HSKJ.checkAjaxCodeIsLogin(res.code);
+				}
+			});
+		},
+
+		/**
+		 * 动态加载JS，异步
+		 */
+		loadScript: function (url, id, callback) {
+			var script = document.createElement("script");
+			var head = document.head || document.getElementsByTagName('head')[0];
+			script.type = "text/html";
+			script.id = id;
+			script.src = url + '?ver=' + Math.random();
+
+			if (callback) {
+				script.onload = script.onreadystatechange = function () {
+					setTimeout(function () {
+						callback();
+					}, 20);
+				}
+			}
+
+			head.appendChild(script);
+		},
+
+		/**
+		 * 动态加载JS，同步
+		 */
+		synchronizationScript: function (url, callback) {
+			console.log(1)
+			$.ajax({
+				async: false,
+				dataType: "script",
+				url: url,
+				success: function (json) {
+					callback && callback();
+				}
+			});
+		},
 
 	    /**
 	     * 获取url后面的参数，优化后版本
@@ -70,51 +181,119 @@
 	            _regNext = window.location.search.substr(1).match(_reg);
 	        if (_regNext != null) return decodeURI(_regNext[2]) || '';
 	        else return '';
-	    },
-
-	    /**
-	     * 获取登录证书
-	     * @return {[string]} [token]
-	     */
-	    getToken: function(){
-	        var token = this.getUrlParameter('token') || localStorage.getItem('token') || '';
-	        console.info('当前获取的token是：',token);
-	        return '02b95b0f-0c21-492b-b1c9-674d08559d23' || token;
 		},
 		
-	    //执行登录
-	    doLogin: function(){
-	        localStorage.setItem('token',"adminfor123456");
-	        this.openPage(URL.BASE + '/main/index');
-	    },
+		/**
+		 * 获取验证码
+		 * elem点击的元素
+		 */
+		getCode: function(elem, callback){
+			if (elem.hasClass('disable')) {
+				return;
+			}
+			elem.addClass('disable')
+			var time = 59,
+				txt = time + 's';
+			elem.html(txt);
+			//发送请求
+			callback && callback();
+			
+			var timer = setInterval(function () {
+				time--;
+				if (time == 0) {
+					txt = '重新获取';
+					time = 59;
+					clearInterval(timer)
+					elem.removeClass('disable')
+				} else {
+					txt = time + 's'
+				}
+
+				elem.html(txt);
+			}, 1000)
+		},
+		
+		/**
+		 * 写入登录用户的资料
+		 */
+		setUserInfo: function(data, callback){
+			if (typeof data == 'object') {
+				for (var i in data) {
+					$.cookie(i, data[i], { expires: 7, path: '/' });
+				}
+			}else{
+
+			}
+
+			callback && callback();
+		},
+
+		/**
+		 * 获取用户信息，传入cookie的key获得value
+		 */
+		getUserInfo: function(key){
+			return $.cookie(key); //目前暂时没有其他操作，直接返回key-value
+		},
+
+		/**
+		 * 根据后台返回的code判断是否登录session失效，用于所有ajax和数据表格
+		 */
+		checkAjaxCodeIsLogin: function(code){
+			var self = this;
+			if (code == '100012') {
+				layui.layer.msg('登录已过期，请重新登录！', { icon: 5 }, function () {
+					self.toLoginPage();
+				})
+			}
+		},
 	    /**
 	     * 判断是否登录
+		 * 没有登录直接跳转去登录
 	     */
 	    checkLogin: function(){
-	        var self = this;
-	        if(self.getToken()){
-	            //todo  验证登录是否过期、策略待定
-	        }else{
-	            self.toLoginPage();
-	        }
-	    },
+			var username = this.getUserInfo('username');
+			if (!username){
+				this.toLoginPage();
+			}
+		},
 
-	    /**
-	     * 去登录页面
-	     */
-	    toLoginPage: function(){
-	        if(window.location.href.indexOf('login') > -1) return;
-	        this.openPage(URL.BASE + '/main/login');
-	    },
+		/** 
+		 * 执行退出登录
+		*/
+		doLogout: function(callback){
+			HSKJ.POST({
+				url: 'systemuser/logout',
+				beforeSend: function () {
+					HSKJ.loadingShow();
+				},
+				success: function (json) {
+					if (json && json.code == 0) {
+						callback && callback();
+					} else {
+						layui.layer.msg(json.message)
+					}
+				}
+			})
+		},
+		
+		/**
+		 * 去登录页，区分不同角色
+		 */
+		toLoginPage: function(callback){
+			var roleid = this.getUserInfo('roleid');
+			if (!roleid){
+				this.openPage(ENV.PAGE + 'page/admin/login.html');
+			}
+			if (roleid == 1){//管理员
+				this.openPage(ENV.PAGE + 'page/admin/login.html');
+			} else if (roleid == 2){ //机构
+				this.openPage(ENV.PAGE + 'page/organization/login.html');
+			} else if (roleid == 3){ //会议举办方
+				this.openPage(ENV.PAGE + 'page/sponsor/login.html');
+			}
 
-	    /**
-         * 数据请求失败提示
-         * @param  {[type]}
-         * @return {[type]}         [description]
-         */
-        ajaxError: function(){
-        	alert('请求失败，请稍后重试！');
-        },
+			callback && callback();
+		},
 
 	    /**
 	     * 去错误页面
@@ -141,8 +320,14 @@
         /**
          * 通用的加载中动画
          */
-        loadingShow: function(){
-        	//TODO
+        loadingShow: function(msg){
+			this.loading = layui.layer.load(2, { time: 10 * 1000 });
+			/* var html = ['<div class="hs-loading">',
+							'<img src="./img/icon/icon-loading.gif" alt=" ">',
+							'<p class="element-loading-text">'+ msg +'</p>',
+						'</div>'
+						]
+			layui && layui.layer.msg(html.join('')); */
         },
 
         /**
@@ -150,7 +335,8 @@
          * @return {[type]} [description]
          */
 	    loadingHide: function(){
-
+			this.loading && layui.layer.close(this.loading);
+			/* $('.hs-loading').remove(); */
         },
 
         /**
@@ -163,6 +349,7 @@
         },
 
 		/**
+		 * 覆盖方式
 		 * el 显示模板html的地方
 		 * tplpath 模板路径
 		 * data 渲染模板的数据
@@ -170,9 +357,48 @@
 		 */
 		renderTpl: function (el, tplPath, data, callback) {
 			require([tplPath], function (html) {
-				$(el).html(_.template(html)(data));
+				$(el).html(layui ? layui.laytpl(html).render(data || {}): '缺少模板引擎依赖');
 				callback && callback();
 			})	
+		},
+
+		/**
+		 * 重叠方式
+		 * el 显示模板html的地方
+		 * tplpath 模板路径
+		 * data 渲染模板的数据
+		 * callback 渲染完成后回调函数
+		 */
+		renderFixTpl: function (el, tplPath, data, callback) {
+			require([tplPath], function (html) {
+				$(el).children('.module-container-fix').remove();
+				$(el).append(layui ? layui.laytpl(html).render(data || {}) : '缺少模板引擎依赖');
+				callback && callback();
+			})
+		},
+
+	    /**
+         * 数据请求失败提示
+         * @param  {[type]}
+         * @return {[type]}         [description]
+         */
+		ajaxError: function () {
+			alert('请求失败，请稍后重试！');
+		},
+
+		/** 
+		 * 'yyyy-MM-dd HH:mm:ss'
+		 * 给完整的时间去掉秒
+		*/
+		cutDatetimess: function(str){
+			return str.substring(0, 16)
+		},
+
+		/** 
+		 * 给完整的时间去掉年、秒
+		*/
+		cutDatetimeyyyyAndss: function (str) {
+			return str.substring(5, 16)
 		},
 
 	    //所有全局事件监听
@@ -180,7 +406,8 @@
 	        var self = this;
 
 	        //ajax 错误监听
-	        $(document).on('ajaxError', function(e, xhr, options){
+			$(document)
+			.on('ajaxError', function(e, xhr, options){
 	            var status = xhr.status;
 	            /*if (404 == status) {
 	                self.openPage(404)
@@ -190,8 +417,29 @@
 			}).on('click', '.tabs-item', function(){
 				$(this).addClass('active').siblings().removeClass('active');
 			})
-			.on('click', '.module-to-login', function () {
-				window.location.href = '/page/base/login.html'
+			.on('click', '.module-go-back', function () {//后退
+				window.location.go(-1)
+			})
+			.on('click', '.module-go-login', function () {//去登录
+				self.toLoginPage();
+			})
+			.on('click', '.module-go-regist', function () {//去注册
+				window.location.href = '/page/base/regist.html'
+			})
+			.on('click', '.module-go-forgot', function () {//忘记密码
+				window.location.href = '/page/base/pwd-find.html'
+			})
+			.off('click', '.module-go-logout')
+			.on('click', '.module-go-logout', function () {//退出登录
+				layer.confirm(
+					'<p class="hs-align-center">确定退出登录吗？</p>',
+					function (index) {
+						self.doLogout(function () {
+							self.toLoginPage()
+						})
+					}
+				);
+				
 			})
 	    }
 	}

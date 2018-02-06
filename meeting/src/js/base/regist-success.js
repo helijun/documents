@@ -7,7 +7,7 @@ require(
 ],
 function ($, HSKJ) {
     HSKJ.ready(function() {
-        var login = {
+        var registSuccess = {
             init: function(){
                 this.renderHtml();
                 this.wactch();
@@ -20,6 +20,6 @@ function ($, HSKJ) {
                   
             }
         }
-        login.init();
+        registSuccess.init();
     })
 })

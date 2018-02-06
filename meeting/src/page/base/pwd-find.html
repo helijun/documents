@@ -4,22 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <title>找回密码</title>
-    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../plugin/layui/css/layui.css">
     <link rel="stylesheet" href="../../css/base/pwd-find.css">
 </head>
 
 <body>
-    <div class="page-regist-success">
+    <div class="page-pwd-find">
         <header class="li-row li-items-center">
             <div class="li-col-30 logo">
                 <img src="../../img/base/logo.png" />
             </div>
             <div class="li-col-70 li-align-right already">
-                <span>返回</span>
+                <span class="module-go-back">返回</span>
             </div>
         </header>
-        <div class="m-regist-success-contianer">
-
+        <div class="module-contianer">
+            <div class="element-title">禾思会议签到系统密码找回</div>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block element-mobile-input">
+                        <input type="tel" name="mobile" lay-verify="title" autocomplete="off" placeholder="请填写您的手机号" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-inline element-code-input">
+                        <input type="tel" name="mobile" lay-verify="required" placeholder="手机短信验证码" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline element-code-button">
+                        <button href="pwd-new.html" class="layui-btn module-get-code" lay-submit="" lay-filter="">获取验证码</button>
+                    </div>
+                </div>
+                <button href="pwd-new.html" class="layui-btn element-next" lay-submit="" lay-filter="">下一步</button>
+            </form>
+            
         </div>
     </div>
 </body>

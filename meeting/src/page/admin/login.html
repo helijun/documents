@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <!-- ie11已下、微信浏览器 跳转不兼容页面 -->
+    <script src="../../js/info/no-compatible.js"></script>
+    <link rel="stylesheet" href="../../plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/base/login.css">
+</head>
+
+<body>
+    <div class="page-login">
+        <div class="module-login-box">
+            <div class="element-content">
+                <div class="element-title">
+                    <span class="element-login">登录</span>
+                    <!-- <a class="element-regist module-go-regist" href="#">注册
+                        <img src="../../img/icon/icon-goto.png" alt="">
+                    </a> -->
+                </div>
+                <div class="layui-form">
+                    <div class="module-input-border">
+                        <img src="../../img/icon/icon-user.png" alt="">
+                        <input type="tel" name="username" lay-verify="required" placeholder="请输入用户账号" autocomplete="off" class="layui-input" maxlength="11">
+                    </div>
+                    <div class="module-input-border">
+                        <img src="../../img/icon/icon-pwd.png" alt="">
+                        <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    </div>
+
+                    <div class="layui-form-item ">
+                        <div class="layui-input-inline element-remember">
+                            <input type="checkbox" name="isRemember" lay-skin="primary" title="记住密码" checked="">
+                        </div>
+                        <a class="layui-form-label element-forgot module-go-forgot">忘记密码？</a>
+                    </div>
+                    
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit="doLogin" lay-filter="doLogin" id="doLogin">登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../../plugin/requirejs/require.min.js"></script>
+<script>
+    var script = document.createElement("script"),
+        head = document.head || document.getElementsByTagName('head')[0];
+
+    script.type = "text/javascript";
+    script.src = '../../config.js?ver=' + (new Date()).getTime();
+
+    head.appendChild(script);
+
+    script.onload = script.onreadystatechange = function () {
+        require(
+            [
+                'jquery',
+                'common',
+                'cookie',
+                'layuiAll'
+            ],
+            function ($, HSKJ) {
+                var login = {
+                    init: function () {
+                        this.wactch();
+                    },
+
+                    doLogin: function (data) {
+                        HSKJ.POST({
+                            url: 'systemuser/login',
+                            data: data,
+                            beforeSend: function () {
+                                HSKJ.loadingShow();
+                            },
+                            success: function (json) {
+                                if (json && json.code == 0) {
+                                    HSKJ.setUserInfo(json.data, function () {
+                                        HSKJ.openPage('../../index.html');
+                                    });
+                                } else {
+                                    layui.layer.msg(json.message)
+                                }
+                            }
+                        })
+                    },
+
+                    wactch: function () {
+                        var self = this;
+                        layui.form.on('submit(doLogin)', function (data) {
+                            data.field.isRemember == 'on' ? data.field.isRemember = true : data.field.isRemember = false;
+                            self.doLogin(data.field);
+                            return false;
+                        });
+
+                        $(document).keyup(function (event) {
+                            if (event.keyCode == 13) {
+                                $("#doLogin").trigger("click");
+                            }
+                        });
+                    }
+                }
+                login.init();
+            })
+    }
+</script>

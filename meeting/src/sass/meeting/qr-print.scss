@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+body {
+	@extend .extend-layer-dialog;
+}
+#meetingQrDialog {
+	.element-title {
+		text-align: center;
+		span {
+			width: 243px;
+			display: inline-block;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+			font-size: 16px;
+			color: #222124;
+			border-bottom: 4px solid $base-color;
+			padding-bottom: 10px;
+		}
+	}
+	.element-qr {
+		text-align: center;
+
+		img,
+		canvas {
+			margin-top: 6px;
+			padding: 20px;
+    		border: 1px solid #f3e8e8;
+		}
+	}
+	.element-list {
+		text-align: center;
+		margin-top: 20px;
+		.element-list-content {
+			display: inline-block;
+			width: 280px;
+			text-align: left;
+
+			dd {
+				display: inline-block;
+				width: 72px;
+				font-size: 14px;
+				line-height: 28px;
+				color: #596466;
+				text-align: right;
+			}
+
+			span {
+				width: 100%;
+				font-size: 16px;
+				color: #222124;
+			}
+		}
+		
+	}
+
+	.element-print {
+		@extend .extend-full-btn;
+		width: 120px;
+		height: 40px;
+		margin-top: 35px;
+	}
+	
+	.element-footer-bg {
+		width: 100%;
+		text-align: center;
+		margin-top: -22px;
+	}
+}

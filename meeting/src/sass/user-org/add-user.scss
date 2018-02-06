@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+body {
+	@extend .extend-layer-dialog;
+}
+.tpl-add-user {
+	padding-right: 24px;
+	.layui-form-label {
+		width: 120px;
+	}
+	.layui-input-block {
+		margin-left: 150px;
+	}
+}
+
+.module-user-add-dialog {
+	.layui-form {
+		.element-submit {
+			@extend .extend-full-btn;
+			margin-top: 10px;
+			height: 40px;
+			width: 120px;
+		}
+	}
+}

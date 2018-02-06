@@ -17,7 +17,7 @@ function ($, HSKJ) {
             },
 
             wactch: function() {
-                  
+                
             }
         }
         login.init();

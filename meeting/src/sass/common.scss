@@ -7,11 +7,48 @@
 * {
 	box-sizing: border-box;
 }
+em {
+	font-style: normal;
+}
 ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #f8fafb inset;
+	-webkit-text-fill-color: #000;
+}
+/** 手机媒体查询 **/
+@media #{$media} and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		background-color: #fff;
+	}
+}
+@media #{$media} and ($media-min-width: $min-width-414) and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base * 1.4 !important;
+	}
+}
+@media #{$media} and ($media-min-width: $min-width-375) and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base * 1.2 !important;
+	}
+}
+@media #{$media} and ($media-max-width: $max-width-320) {
+	html,
+	body {
+		font-size: $rem-base !important;/*设计稿为iphone5*/
+	}
+}
+
 /* input placeholder 文字样式 */
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: #ccc;
@@ -31,7 +68,32 @@ ul {
 }
 /* input placeholder 文字样式 */
 
+/*
+加载中 
+*/
+.hs-loading {
+	background-color:transparent;
+	text-align: center;
+	padding-top: 16%;
+
+	.element-loading-text {
+		display: block;
+		margin-top: 4px;
+		font-size: 12px;
+	}
+}
+
 /* 常用属性开始 */
+.hs-point {
+	cursor: pointer;
+}
+.hs-none {
+	display: none !important;
+}
+.hs-all-img {
+	width: 100%;
+	height: 100%;
+}
 .hs-full-img {
 	max-width: 100%;
 	height: auto;
@@ -44,6 +106,9 @@ ul {
 }
 .hs-align-left {
 	text-align: left;
+}
+.hs-align-center {
+	text-align: center;
 }
 .hs-align-right {
 	text-align: right;
@@ -78,11 +143,44 @@ ul {
 
 /* 常用属性结束 */
 
-.hs-content {
-	width: 1200px;
-	margin: 0 auto 50px;
+/** 常用布局 **/
+.hs-flex {
+	display: flex;
+}
+.hs-flex-left-center {
+	justify-content: flex-start;
+	align-items: center;
 }
 
+.hs-display-inline {
+	display: inline-block;
+}
+.hs-display-block {
+	display: block;
+}
+/** 常用布局 end **/
+
+/** 常用颜色**/
+.hs-color-base {
+	color: $base-color;
+
+	&:hover {
+		color: #11d6ca;
+	}
+}
+.hs-color-disable {
+	color: $base-disable-color;
+	cursor: not-allowed;
+	&:hover {
+		color: $base-disable-color;
+	}
+}
+.hs-color-del {//删除
+	color: $del-color;
+}
+/** 常用颜色 end**/
+
+/** 蒙层 **/
 .hs-mask {
 	z-index: 99999;
 	background-color: rgb(0, 0, 0);
@@ -112,8 +210,25 @@ ul {
 }
 /** 表单相关**/
 
-
-
+/** 单选按钮 --这里还是叫checkbox **/
+.hs-require-tips {
+	color: $base-color;
+    padding-right: 2px;
+}
+.hs-checkbox {
+	display: inline-block;
+	line-height: 22px;
+	cursor: pointer;
+	padding-right: 15px;
+    color: #666;
+	i {
+		vertical-align: bottom;
+	}
+}
+/** layui 按钮附加属性 */
+.layui-btn.disable {
+	color: $base-disable-color !important;
+}
 /* 按钮 */
 .hs-btn {
 	color: #ffffff;
@@ -174,4 +289,10 @@ ul {
 	.active {
 		border-bottom: $tabs-item-bottom solid $base-color;
 	}
+}
+
+/** 其他公用属性 **/
+/** 没有数据 **/
+.module-no-data {
+	padding: 165px 0;
 }
