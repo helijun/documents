@@ -163,18 +163,21 @@ let MT = {
 	renderOpenBigImg: () => {
 		$('img').on('click', (event) => {
 			var self = $(event.currentTarget);
-			var pswpElement = document.querySelectorAll('.pswp')[0];
+			var bigImgPath = self.attr('data-big-img');
+			if (!bigImgPath) return;
 
+			var pswpElement = document.querySelectorAll('.pswp')[0];
 			var items = [
 				{
-					src: require('../../' + self.attr('data-big-img')),
+					src: require('../../' + bigImgPath),
 					w: self.attr('data-width'),
 					h: self.attr('data-height')
 				}
 			];
 			var options = {
 				index: 0, // start at first slide
-				bgOpacity: .925
+				bgOpacity: .925,
+				shareEl: false
 			};
 
 			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
@@ -295,7 +298,7 @@ let MT = {
 			for (var i = store.length; i--;) {
 				var self = store[i];
 				if (_inView(self)) {
-					self.src = self.getAttribute('data-liImg');
+					self.src = self.getAttribute('data-lazy-img');
 					store.splice(i, 1);
 				}
 			}
@@ -307,7 +310,7 @@ let MT = {
 		};
 
 		function init(obj) {
-			var nodes = document.querySelectorAll('[data-liImg]');
+			var nodes = document.querySelectorAll('[data-lazy-img]');
 			var opts = obj || {};
 			offset = opts.offset || 0;
 			throttle = opts.throttle || 250;
@@ -330,7 +333,7 @@ let MT = {
 			render: _throttle
 		};
 	},
-	
+
 	/**
      * 动态加载JS，异步
      */

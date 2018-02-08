@@ -200,8 +200,10 @@
 
 			.layui-col-xs6 {
 				img {
-					width: 65%;
-					height: 65%;
+					@media #{$media} and ($media-max-width: $max-width-768) {
+						width: 65%;
+						height: 65%;
+					}
 				}
 			}
 		}

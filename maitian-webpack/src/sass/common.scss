@@ -1,6 +1,9 @@
 @charset "utf-8";
 @import "./variables";
 
+html {
+	overflow: auto;
+}
 html,
 body {
   	font-size: $base-font-size-pc;
@@ -179,4 +182,13 @@ ul {
     text-align: center;
 	font-size: 14px;
 	color: #ffffff;
+}
+
+/** 
+重写layui相关属性
+**/
+.layui-nav-bar, 
+.layui-nav .layui-this:after, 
+.layui-nav-tree .layui-nav-itemed:after {
+	height: 0;
 }

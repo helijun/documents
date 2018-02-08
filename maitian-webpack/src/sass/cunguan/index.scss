@@ -31,6 +31,7 @@
             @media #{$media} and ($media-max-width: $max-width-768) {
                 font-size: torem(24px);
                 text-align: left;
+                padding-bottom: torem(24px);
             }
         }
 
@@ -41,7 +42,7 @@
     .mt-module-advantage {
         height: 600px;
         width: 100%;
-        @include mobile-height-auto(42px);
+        @include mobile-height-auto;
 
         .mt-module-title-pro {
             .element-content{
@@ -103,6 +104,10 @@
                     color: #6e6e6e;
 
                     @include mobile-font-size(24px);
+                    @media #{$media} and ($media-max-width: $max-width-768) {
+                        line-height: torem(34px);
+                        padding-top: torem(24px)
+                    }
                 }
             }
 
@@ -113,6 +118,7 @@
             }
 
             @media #{$media} and ($media-max-width: $max-width-768) {
+                padding: 0 torem(42px);
                 .advantage-list-four,
                 .advantage-list-two {
                     margin-left: torem(13px);
@@ -120,6 +126,10 @@
 
                 .advantage-list-three {
                     margin-left: 0;
+                }
+                .advantage-list-three,
+                .advantage-list-four {
+                    margin-top: torem(20px);
                 }
             }
 

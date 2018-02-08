@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+
+.mt-body-feedback {
+    .module-feedback-mobile {
+        padding: torem(20px);
+    }
+
+    .layui-input-block {
+        margin: torem(20px) 0;
+    }
+
+    .mt-btn-submit {
+        width: 100%;
+        height: torem(90px);
+        line-height: torem(90px);
+        background-color: #5a7298;
+        border-radius: 4px;
+        font-size: torem(36px)
+    }
+
+    textarea {
+        height: torem(360px)
+    }
+}

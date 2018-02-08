@@ -4,7 +4,215 @@
 @import "../function";
 @import "../mixins";
 
-.mt-body-fengkong {
+.mt-body-success {
     @extend .extend-banner;
+    @extend .extend-title;
+
+    .mt-module-why {
+        width: 100%;
+        height: 600px;
+        background-color: #f6f6f6;
+        @include mobile-height-auto(48px);
+
+        .mt-module-title-pro {
+            .element-content{
+                .title{
+                    background-color: #f6f6f6;
+                }
+            }
+        }
+        .el-why-content {
+            font-size: 16px;
+            color: #333333;
+            padding-top: 20px;
+            text-align: center;
+            line-height: 30px;
+            
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                font-size: torem(24px);
+                text-align: left;
+                line-height: torem(40px);
+                display: flex;
+                align-items: center;
+                padding-top: 20px;
+            }
+            .right {
+                margin-top: -50px;
+
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    margin-top: -12px;
+                    padding: torem(42px) 0;
+                }
+            }
+            .left {
+                text-align: left;
+                padding-left: 50px;
+                @media #{$media} and ($media-max-width: $max-width-768) {
+                    padding-left: 0px;
+                    padding-bottom: 20px;
+                }
+            }
+            
+        }
+        
+    }
+
+    .triangle-show {
+        display: inline;
+        @media #{$media} and ($media-max-width: $max-width-768) {
+            display: none;
+        }
+    }
+
+    .el-tab {
+        width:100%; 
+        height:174px;
+    }
+
+    .el-case-pc {
+        height:724px;
+
+        .el-page-btn {
+            width: 122px;
+            height: 100%;
+            background-color: white;
+            float: left;
+            display: flex;
+            align-items: center;
+            position: relative;
     
+            .el-inputBtn-left {
+                position: absolute;
+                left: 0px;
+                border: 0px;
+                display:block;
+                width:73px;
+                height:73px;
+                background:url("../../img/success/case-defaultLeftArrow.png") left no-repeat;
+            }
+            .el-inputBtn-left:hover {
+                background:url("../../img/success/case-selectLeftArrow.png") left no-repeat;
+            }
+    
+            .el-inputBtn-right {
+                position: absolute;
+                right: 0px;
+                border: 0px;
+                display:block;
+                width:73px;
+                height:73px;
+                background:url("../../img/success/case-defaultRightArrow.png") left no-repeat;
+            }
+            .el-inputBtn-right:hover {
+                background:url("../../img/success/case-selectRightArrow.png") left no-repeat;
+            }
+        }
+        .el-page-content {
+            margin: 0 auto;
+            width: 956px;
+            height: 100%;
+            background-color: white;
+            float: left;
+    
+            .el-page-subcontent {
+                font-size: 16px;
+                color: #333333;
+                margin-top:20px;
+                text-align: center;
+                line-height: 30px;
+                width: 100%;
+                background-color: white;
+                .el-content {
+                    margin-top:20px;
+                    .el-content-img {
+                        margin-top:30px;
+                    }
+                }
+                .text-left {
+                    text-align: left;
+                }
+            }
+        }
+    }
+    
+
+    .el-bg-white {
+        background-color: white;
+    }
+
+    .el-show {
+        display: block;
+    }
+    .el-hidden {
+        display: none;
+    }
+
+    .mt-scrollmenu {
+        width: 33.3%;
+        height: 100%;
+        background-color: white;
+        float: left;
+        text-align: center;
+        .el-line {
+            margin-top:99px; 
+            height:1px;
+        }
+    }
+    
+    .mt-case-myItem {
+        width: 32%;
+        height: 51px;
+        margin-top: 80px;
+        padding: 10px;
+		text-align: center;
+        background-color: white;
+        color: #c68547;
+        font-size: 18px;
+        font-weight: 400;
+        border: solid 1px #c68547;
+
+        -webkit-transform: skew(-30deg);
+        -moz-transform: skew(-30deg);
+        -o-transform: skew(-30deg);
+        transform: skew(-30deg);
+    }
+
+    .mt-case-myItem-unselect {
+        width: 32%;
+        height: 51px;
+        margin-top: 80px;
+		text-align: center;
+        background-color: white;
+        color: #c2c2c2;
+        font-size: 18px;
+        font-weight: 400;
+        border: solid 1px #c2c2c2;
+
+        -webkit-transform: skew(-30deg);
+        -moz-transform: skew(-30deg);
+        -o-transform: skew(-30deg);
+        transform: skew(-30deg);
+    }
+
+    .tab-item-content {
+        -webkit-transform: skew(30deg) !important;
+        -moz-transform: skew(30deg) !important;
+        -o-transform: skew(30deg) !important;
+        transform: skew(30deg) !important;
+    }
+
+    .li-align-center {
+        text-align: center;
+    }
+    .item-width {
+        width: 30%;
+    }
+  
+    .layui-tab-brief>.layui-tab-title .layui-this {
+        color: #cca482;
+    }
+    .layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after {
+        border-bottom: 2px solid #cca482;
+    }
+
 }

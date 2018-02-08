@@ -1,4 +1,6 @@
-# 使用webpack构建多页面开发环境
+# 麦甜科技官网、微官网项目
+
+> 使用webpack构建多页面开发环境
 
 ## 使用
 1. 更改npm来源 npm config set registry https://registry.npm.taobao.org  
@@ -13,15 +15,12 @@
 3. 集成jquery
 4. html/js/css引入图片测试
 5. 集成layui
-6. 完善滚屏循环动画
+6. 添加animate.css 滚屏流动加载效果
 
 ## 待完善
-1· 集成layui.js
-2. 添加animate.css 滚屏流动加载效果
+1. 关于jquery插件问题
 
 ## 存在问题
-1. 公共引用部分有待加强（如抽取jquery）
-2. 页面dom先加载，css后渲染（严重）
 
 ## 注
 1. index.html 网页主入口

@@ -12,7 +12,7 @@
         width: 100%;
         height: 375px;
         background-color: #f6f6f6;
-        @include mobile-height-auto(48px);
+        @include mobile-height-auto;
 
         .mt-module-title-pro {
             .element-content{
@@ -45,17 +45,20 @@
                 line-height: torem(34px);
                 display: flex;
                 align-items: center;
-                padding-top: 0;
+                padding: 0 torem(42px);
             }
         }
     }
 
     @extend .extend-business;
+    .mt-module-business {
+        height: auto
+    }
 
     .mt-module-advantage {
         height: 600px;
         width: 100%;
-        @include mobile-height-auto(42px);
+        @include mobile-height-auto;
 
         .mt-module-title-pro {
             .element-content{
@@ -117,6 +120,10 @@
                     color: #6e6e6e;
 
                     @include mobile-font-size(24px);
+                    @media #{$media} and ($media-max-width: $max-width-768) {
+                        line-height: torem(34px);
+                        padding-top: torem(24px)
+                    }
                 }
             }
 
@@ -127,6 +134,7 @@
             }
 
             @media #{$media} and ($media-max-width: $max-width-768) {
+                padding: 0 torem(42px);
                 .advantage-list-four,
                 .advantage-list-three {
                     margin-left: torem(13px);
@@ -134,6 +142,10 @@
 
                 .advantage-list-two {
                     margin-left: 0;
+                }
+                .advantage-list-two,
+                .advantage-list-four {
+                    margin-top: torem(20px);
                 }
             }
 

@@ -9,12 +9,15 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="../../plugin/photoswipe/photoswipe.css">
+    <link rel="stylesheet" href="../../plugin/photoswipe/default-skin/default-skin.css">
     <title>成功案例-麦甜科技-互联网金融系统解决方案专家</title>
   
 </head>
+
 <body>
     #include("../base/header.html")
-     
+
     <div class="mt-body-success">
         <div class="mt-fluid mt-module-banner">
             <img class="layui-hide-xs mt-full-img" src="../../img/success/case-banner.png?v=20171124" alt="">
@@ -22,8 +25,228 @@
                 alt="">
         </div>
         
+        <div class="mt-module-why">
+            <div class="mt-module-title-pro">
+                <div class="element-content">
+                    <p class="title">案例介绍</p>
+                    <p class="solid"></p>
+                </div>
+            </div>
+       
+            <div class="layui-row mt-container">
+                <div class="el-why-content layui-col-xs12 layui-col-sm6 layui-col-md6 layui-col-lg6">
+                    <div class="">
+                        <img class="mt-full-img" src="../../img/success/case-example.jpg" alt="">
+                    </div>
+                </div>
+        
+                <div class="el-why-content layui-col-xs12 layui-col-sm6 layui-col-md6 layui-col-lg6 left">
+                    <div class="left" >
+                        <img class="triangle-show" src="../../img/success/case-rightArraw.png" alt="">
+                        &nbsp;&nbsp;&nbsp;&nbsp;深圳农泰金融服务有限公司是中国农药试剂行业巨头、上市公司诺普信（股票代码：002215）战略投资成立的互联网金融平台，通过金融手段为农业产业链上下游提供资金支持。
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以“金融普惠新三农，丰产丰收好乡村”为使命，农泰金融从农资供应链入口介入，推出经销商贷、零售贷、种植贷、惠农贷、果品贷、果乐金等多款金融产品以及农业产业链金融服务解决方案，助力农业供给侧结构性改革，成为中国三农金融领跑者。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借助麦甜科技的安全强大的网贷系统、风控系统，专业的开发团队，农泰金融已安全运营2年，累计注册用户18.5万，累计交易额45亿，并成功上线平安银行存管系统。
+                        <!-- 深圳农泰金融服务有限公司是中国农药试剂行业巨头、上市公司诺普信（股票代码：002215）战略投资成立的互联网金融平台，通过金融手段为农业产业链上下游提供资金支持。
+                        <p>以“金融普惠新三农，丰产丰收好乡村”为使命，农泰金融从农资供应链入口介入，推出经销商贷、零售贷、种植贷、惠农贷、果品贷、果乐金等多款金融产品以及农业产业链金融服务解决方案，助力农业供给侧结构性改革，成为中国三农金融领跑者。</p>
+                        <p>借助麦甜科技的安全强大的网贷系统、风控系统，专业的开发团队，农泰金融已安全运营2年，累计注册用户18.4万，累计交易额43.4亿，并成功上线平安银行存管系统。</p> -->
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+
+        <!-- PC上的样式 -->
+        <div class="layui-container layui-hide-xs el-tab">
+            <div class="mt-scrollmenu" ><div class="el-line"><hr /></div></div>
+
+            <div class="mt-scrollmenu">
+                <button id="b-cunguan" class="mt-case-myItem" name="存管系统" onclick="btnClick('cunguan')">
+                    <p class="tab-item-content">存管系统</p>
+                </button>
+                <button id="b-wangdai" class="mt-case-myItem-unselect" name="网贷系统" onclick="btnClick('wangdai')">
+                    <p class="tab-item-content">网贷系统</p>
+                </button>
+                <button id="b-fengkong" class="mt-case-myItem-unselect" name="风控系统" onclick="btnClick('fengkong')">
+                    <p class="tab-item-content">风控系统</p>
+                </button>
+            </div>
+
+            <div class="mt-scrollmenu" ><div class="el-line"><hr /></div></div>
+        </div>
+
+        <div class="layui-hide-xs layui-row mt-container el-case-pc">
+            <div class="layui-hide-xs el-page-btn" >
+                <input name="" type="button" class="el-inputBtn-left" onclick="changePage('left')">
+            </div>
+
+            <div class="layui-hide-xs el-page-content mt-container">
+                <div class="mt-container  el-page-subcontent el-show" id="cunguan">
+                    <div class="el-content text-left">
+                        <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                        2017年8-10月，麦甜科技协助农泰金融快速完成银行存管系统（平安银行）的开发、测试、联调、数据迁移，顺利完成新旧系统切换，平稳运行，使农泰金融在合规之路上更进一步。
+                    </div>
+                    <div class="el-content">
+                        <img class="mt-full-img el-content-img" src="../../img/success/case-cunguan-large.png" alt="">
+                    </div>
+                </div>
+
+                <div class="mt-container  el-page-subcontent el-hidden" id="wangdai">
+                    <div class="el-content text-left">
+                        <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                        麦甜科技网贷系统为农泰金融提供会员管理、标的管理、交易管理、财务管理、内容管理、活动管理、数据管理等模块，协助农泰金融顺利开展网贷业务。
+                    </div>
+                    <div class="el-content">
+                        <img class="mt-full-img el-content-img" src="../../img/success/case-wangdai-large.png" alt="">
+                    </div>
+                </div>
+
+                <div class="mt-container  el-page-subcontent el-hidden" id="fengkong">
+                    <div class="el-content text-left">
+                        <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                        风控系统为农泰金融提供54个风控项目指标，协助农泰金融完成风控评估、业务决策、促成农泰金融撮合交易5400笔，平台0坏账。
+                    </div>
+                    <div class="el-content">
+                        <img class="mt-full-img el-content-img" src="../../img/success/case-fengkong-large.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-hide-xs el-page-btn">
+                <input name="" type="button" class="el-inputBtn-right" onclick="changePage('right')">
+            </div>
+        </div>
+
+
+        <!-- <div class="layui-hide-xs el-page-btn" >
+            <input name="" type="button" class="el-inputBtn-left" onclick="changePage('left')">
+        </div>
+
+        <div class="layui-hide-xs el-page-content mt-container" >
+            <div class="mt-container  el-page-subcontent el-show" id="cunguan">
+                <div class="el-content">
+                    <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                    2017年8-10月，麦甜科技协助农泰金融快速完成银行存管系统（平安银行）的开发、测试、联调、数据迁移，顺利完成新旧系统切换，平稳运行，使农泰金融在合规之路上更进一步。
+                </div>
+                <div class="el-content">
+                    <img class="mt-full-img el-content-img" src="../../img/success/case-cunguan-large.png" alt="">
+                </div>
+            </div>
+
+            <div class="mt-container  el-page-subcontent el-hidden" id="wangdai">
+                <div class="el-content">
+                    <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                    麦甜科技网贷系统为农泰金融提供会员管理、标的管理、交易管理、财务管理、内容管理、活动管理、数据管理、等模块，协助农泰金融顺利开展网贷业务。
+                </div>
+                <div class="el-content">
+                    <img class="mt-full-img el-content-img" src="../../img/success/case-wangdai-large.png" alt="">
+                </div>
+            </div>
+
+            <div class="mt-container  el-page-subcontent el-hidden" id="fengkong">
+                <div class="el-content">
+                    <img class="triangle-show" src="../../img/success/case-downArrow.png" alt="">
+                    风控系统为农泰金融提供54个风控项目指标，协助农泰金融完成风控评估、业务决策、促成农泰金融撮合交易5400笔，平台0坏账。
+                </div>
+                <div class="el-content">
+                    <img class="mt-full-img el-content-img" src="../../img/success/case-fengkong-large.png" alt="">
+                </div>
+            </div>
+        </div> -->
+    
+        <!-- <div class="layui-hide-xs el-page-btn">
+            <input name="" type="button" class="el-inputBtn-right" onclick="changePage('right')">
+        </div> -->
+
+
+        <!-- 手机上的样式 -->
+        <div class="layui-container layui-hide-lg layui-hide-md layui-hide-sm">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title li-align-center">
+                    <li class="item-width layui-this" lay-id="1">存管系统</li>
+                    <li class="item-width" lay-id="2">网贷系统</li>
+                    <li class="item-width" lay-id="3">风控系统</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="mt-container mt-module-why el-bg-white" id="cunguan">
+                            <div class="el-why-content ">
+                                2017年8-10月，麦甜科技协助农泰金融快速完成银行存管系统（平安银行）的开发、测试、联调、数据迁移，顺利完成新旧系统切换，平稳运行，使农泰金融在合规之路上更进一步。
+                            </div>
+                            
+                            <div class="el-why-content">
+                                <img class="mt-full-img" src="../../img/success/case-cunguan-small.png" data-big-img="img/success/case-cunguan-large.png" data-width="955" data-height="522" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="mt-container mt-module-why el-bg-white" id="wangdai">
+                            <div class="el-why-content">
+                                麦甜科技网贷系统为农泰金融提供会员管理、标的管理、交易管理、财务管理、内容管理、活动管理、数据管理、等模块，协助农泰金融顺利开展网贷业务。
+                            </div>
+                            
+                            <div class="el-why-contente">
+                                <img class="mt-full-img" src="../../img/success/case-wangdai-small.jpg" data-big-img="img/success/case-wangdai-large.png" data-width="955" data-height="520" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="mt-container mt-module-why el-bg-white" id="fengkong">
+                            <div class="el-why-content">
+                                风控系统为农泰金融提供54个风控项目指标，协助农泰金融完成风控评估、业务决策、促成农泰金融撮合交易5400笔，平台0坏账。
+                            </div>
+                                
+                            <div class="el-why-content">
+                                <img class="mt-full-img" src="../../img/success/case-fengkong-small.jpg" data-big-img="img/success/case-fengkong-large.png" data-width="954" data-height="522" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     #include("../base/footer.html")
+    #include("../base/photoswipe.html")
+    <script src="../../plugin/photoswipe/photoswipe.min.js"></script>
+    <script src="../../plugin/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script>
+        var currentItem = "cunguan";
+        var pageArray = ["cunguan", "wangdai", "fengkong"];
+        var btnArray = ["b-cunguan", "b-wangdai", "b-fengkong"];
+        function btnClick(params) {
+            for (let i = 0; i < pageArray.length; i++) {
+                const element = pageArray[i];
+                if (element == params) {
+                    document.getElementById(element).style.display = "block";
+                    document.getElementById(btnArray[i]).className = "mt-case-myItem";
+                    currentItem = element;
+                }else {
+                    document.getElementById(element).style.display = "none";
+                    document.getElementById(btnArray[i]).className = "mt-case-myItem-unselect";
+                }
+            }
+            return;
+        }
+   
+        function changePage(params) {
+            var index = pageArray.indexOf(currentItem);
+            if (params == 'left') {
+                if (index >= 1) {
+                    index--;
+                    var title = pageArray[index];
+                    btnClick(title);
+                }
+            }else if (params == 'right') {
+                if (index <= 1) {
+                    index++;
+                    var title = pageArray[index];
+                    btnClick(title);
+                }
+            }
+          
+        }
+    </script>
 </body>
 </html>

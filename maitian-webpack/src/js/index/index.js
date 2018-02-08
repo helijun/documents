@@ -46,21 +46,45 @@ layui.use('form', function () {
             MT.isIe(layer);
             MT.selectNav();
             MT.toggleMobileNav();
+
+            //图片懒加载
+            MT.imgLazy().init();
         },
 
         //验证表单
         formValidate: function () {
             form.verify({
+                wantKnow: function (value, item) { //value：表单的值、item：表单的DOM对象，macaddress 对应form 里lay-filter
+                    if(!value){
+                        return '请选择您想了解的业务'
+                    }
+                },
+                username: function (value, item) { 
+                    if(!value){
+                        return '请输入您的姓名';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '姓名不能为数字';
+                    }
+                },
+                mobile: function (value, item) {
+                    if (!value) {
+                        return '请输入11位手机号码'
+                    }
+
+                },
+                remark: function (value, item) {
+
+                }
             })
         },
-
-        save: () => {
+        save: (data) => {
             $.ajax({
                 url: ajaxHost + "/userWonder/addInfo.do",
-                data: $('#callmeForm').serialize(),
+                data: data,
                 type: 'post',
                 beforeSend: () => {
-                    layer.msg('请稍后..');
+                    layui.layer.load(2, { time: 10 * 1000 });
                 },
                 success: (json) => {
                     if (0 == json) {
@@ -80,7 +104,7 @@ layui.use('form', function () {
         watch: () => {
 
             form.on('submit(formCallme)', function (data) {
-                maitianIndex.save();
+                maitianIndex.save(data.field);
                 return false;
             });
         }

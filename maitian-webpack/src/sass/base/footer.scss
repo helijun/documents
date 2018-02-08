@@ -6,15 +6,19 @@
 		height: 228px;
 		background-color: #f6f6f6;
 		overflow: hidden;
-		.layui-col-xs4 {
+		.layui-col-xs3 {
 			text-align: left;
-			padding: 45px 12%;
+			padding-top: 4%;
+			padding-left: 12%;
 			line-height: 38px;
 			strong {
 				font-size: 16px;
 			}
 			a {
 				display: block;
+			}
+			p {
+				font-size: 12px;
 			}
 		}
 	}

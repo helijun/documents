@@ -75,10 +75,10 @@
 			dd {
 				height: torem(88px);
 				line-height: torem(88px);
-
-				&:nth-of-type(even) {
+				border-bottom: 1px solid white;
+				/**&:nth-of-type(even) {
 					border-bottom: 1px solid white;
-				}
+				}**/
 			}
 		}
 	}

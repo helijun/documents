@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>意见反馈</title>
+  
+</head>
+<body class="mt-body-feedback">
+    #include("../base/header.html")
+    <form class="layui-form module-feedback-mobile" id="callmeForm" method="POST">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <select name="wantKnow" lay-verify="wantKnow">
+                    <option value>请选择你想了解的业务</option>
+                    <option value="0">银行存管系统</option>
+                    <option value="1">网贷系统</option>
+                    <option value="2">风控系统</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="text" name="username" maxlength="20" lay-verify="username" placeholder="请输入您的姓名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="tel" name="mobile" maxlength="11" lay-verify="mobile|phone|number" placeholder="请输入11位手机号码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    
+        <div class="layui-form-item layui-form-text">
+            <div class="layui-input-block">
+                <textarea name="remark" maxlength="400" rowspan="6" placeholder="请在这里留言，我们会尽快回复您！" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <p class="layui-btn mt-btn-submit" id="formCallme" lay-submit lay-filter="formCallme">提交</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

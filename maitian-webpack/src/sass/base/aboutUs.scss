@@ -160,6 +160,7 @@
 
                 @media #{$media} and ($media-max-width: $max-width-768) {
                   margin-left: 5px;
+                  margin-top: torem(10px);
                   width: torem(60px);
                 }
               }
@@ -223,12 +224,24 @@
                   }
 
                 }
+
+                img {
+                  @media #{$media} and ($media-max-width: $max-width-768) {
+                     vertical-align: baseline !important;
+                  }
+                }
               }
             }
 
           }
 
 
+        }
+
+        .space-bottom {
+          @media #{$media} and ($media-max-width: $max-width-768) {
+            height: torem(42px);
+          }
         }
       }
     }
@@ -317,6 +330,7 @@
 
                 @media #{$media} and ($media-max-width: $max-width-768) {
                   margin-left: 5px;
+                  margin-top: torem(10px);
                   width: torem(60px);
                 }
               }
@@ -409,7 +423,7 @@
 
     .space-bottom {
       @media #{$media} and ($media-max-width: $max-width-768) {
-        height: torem(68px);
+        height: torem(95px);
       }
     }
 

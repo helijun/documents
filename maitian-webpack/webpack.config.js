@@ -29,11 +29,12 @@ let $cunguanIndex = 'js/cunguan/index';
 let $wangdaiIndex = 'js/wangdai/index';
 let $fengkongIndex = 'js/fengkong/index';
 let $successCase = 'js/success/case';
+let $feedbackMobile = 'js/feedback/mobile';
 let $layui = 'plugin/layui/layui';
 let $layuiForm = 'plugin/layui/lay/modules/form';
+let $layuiElement = 'plugin/layui/lay/modules/element';
 let $layuiLayer = 'plugin/layui/lay/modules/layer';
 let $layuiJquery = 'plugin/layui/lay/modules/jquery';
-
 let entryArray = [
 		$common, 
 		$header, 
@@ -44,8 +45,10 @@ let entryArray = [
 		$wangdaiIndex,
 		$fengkongIndex,
 		$successCase,
+		$feedbackMobile,
 		$layui, 
 		$layuiForm, 
+		$layuiElement,
 		$layuiLayer, 
 		$layuiJquery
 	];
@@ -63,7 +66,7 @@ let config = {
 		publicPath: '/maitian/'
 	},
 	devServer: {
-		host: '192.168.1.104',
+		host: '192.168.1.103',
 		port: 1118,
 		inline: true, //可以监控js变化
 		hot: true, //热启动
@@ -123,19 +126,31 @@ let plugins = [
 ];
 
 //满足通用的chunks页面模板数组
-let commonPage = [$header, $footer, $aboutUs, $cunguanIndex, $wangdaiIndex, $fengkongIndex, $successCase];
+let commonPage = [
+	$header, 
+	$footer, 
+	$aboutUs, 
+	$cunguanIndex, 
+	$wangdaiIndex, 
+	$fengkongIndex, 
+	$successCase,
+	$feedbackMobile
+];
 
 commonPage.forEach((v) => {
-	let chunks = [$common, v];
+	let chunks = [];
 	if(
 		v === $cunguanIndex ||
 		v === $aboutUs || 
 		v === $wangdaiIndex ||
 		v === $fengkongIndex ||
-		v === $successCase
+		v === $successCase || 
+		v === $feedbackMobile
 	){
 		chunks.push($layui)
 	}
+	chunks.push($common)
+	chunks.push(v)
 
 	plugins.push(
 		new HtmlWebpackPlugin({
