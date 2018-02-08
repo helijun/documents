@@ -1,0 +1,291 @@
+.component-ced-index {
+    background-color: #01030a;
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 100px;
+    
+    @media screen and (min-width: 320px) and (max-width: 768px) {
+        padding-bottom: 20px;
+    }
+    
+    .module-ced-mobile {
+        padding: 0 25px;
+        margin-top: -30px;
+    }
+
+    .module-ced-introduce {
+        margin-top: -32.5%;
+        text-align: center;
+        p {
+            background: url('../../img/ced/ced-introduce.png') no-repeat;
+            background-size: cover;
+            width: 957px;
+            height: 272px;
+            font-size: 18px;
+            line-height: 36px;
+            color: #e7e6e6;
+            padding: 60px 66px;
+            display: inline-block;
+            text-align: left;
+        }
+    }
+
+    .module-ced-feature {
+        margin-top: 86px;
+        text-align: center;
+    }
+    .module-ced-feature-mobile {
+        margin-top: 35px;
+    }
+
+    .module-ced-what {
+        position: relative;
+        text-align: center;
+        margin-top: 86px;
+        padding-bottom: 166px;
+        z-index: 998;
+        background: url('../../img/ced/right-light.jpg') no-repeat right top;
+
+        .el-ced-what {
+            display: inline-block;
+            width: 957px;
+            height: 321px;
+            background: url('../../img/ced/what.png') no-repeat;
+            background-size: cover;
+
+            .el-title {
+                margin-top: 66px;
+                font-size: 18px;
+                line-height: 36px;
+                color: #e7e6e6;
+            }
+            .el-sub-title {
+                font-size: 21px;
+                line-height: 36px;
+                color: #fcdf71;
+                display: inline-block;
+                padding: 4px 8px;
+                border-radius: 5px;
+                border: solid 1px #ffffff;
+                margin-top: 45px;
+            }
+            .el-content {
+                font-size: 18px;
+                margin-top: 14px;
+                line-height: 24px;
+                color: #e7e6e6;
+                text-align: center;
+            }
+        }
+    }
+
+    .module-ced-how {
+        text-align: center;
+        background: url('../../img/ced/left-light.jpg') no-repeat;
+        position: relative;
+        z-index: 999;
+        margin-top: -65px;
+        .el-ced-how {
+            display: inline-block;
+            width: 854px;
+
+            .table-title {
+                text-align: left;
+                font-size: 21px;
+                line-height: 36px;
+                margin-top: 36px;
+                color: #e7e6e6;
+            }
+            .table-sub-title {
+                text-align: left;
+                font-size: 18px;
+                color: #e7e6e6;
+            }
+
+            .el-table {
+                width: 100%;
+                margin-top: 34px;
+                text-align: center;
+
+                thead {
+                    background-color: #fcdf71;
+                    
+                    td {
+                        height: 40px;
+                        font-size: 21px;
+                        line-height: 36px;
+                        color: #332308;
+                    }
+                }
+                tbody {
+                    tr {
+                        height: 50px;
+                        border-bottom: 1px solid #acacac;
+
+                        td {
+                            font-size: 18px;
+                            line-height: 50px;
+                            color: #e7e6e6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .module-ced-suitable {
+        text-align: center;
+        margin-top: 86px;
+
+        .el-ced-suitable {
+            display: inline-block;
+            width: 854px;
+            height: 526px;
+            background: url('../../img/ced/suitable.png') no-repeat;
+            background-size: cover;
+
+            img {
+                margin-top: 63px;
+            }
+            .li-col-100 {
+                img {
+                    margin-top: 23px;
+                }
+            }
+            .el-content {
+                font-size: 18px;
+                line-height: 24px;
+                color: #e7e6e6;
+
+                span {
+                    font-size: 21px;
+                    line-height: 36px;
+                    color: #fcdf71;
+                }
+
+            }
+        }
+    }
+    .module-ced-suitable-mobile {
+        margin-top: 32px;
+        padding: 0 25px;
+    }
+    .module-buy {
+        margin-top: 66px;
+        text-align: center;
+        .el-buy {
+            display: inline-block;
+            width: 854px;
+            .el-title {
+                font-size: 18px;
+                line-height: 24px;
+                color: #e7e6e6;
+            }
+            .el-goto-buy {
+                background: url('../../img/ced/goto-buy.png') no-repeat;
+                background-size: cover;
+                width: 275px;
+                height: 80px;
+                line-height: 80px;
+                display: inline-block;
+                margin-top: 20px;
+                text-align: center;
+                font-size: 32px;
+                color: #e7e6e6;
+                cursor: pointer;
+
+                &:hover {
+                    color: #FFF7F7;
+                }
+            }
+            .el-tips {
+                font-size: 14px;
+                margin-top: 6px;
+                color: #8d8d8d;
+            }
+        }
+    }
+
+    .module-footer {
+        background: url('../../img/ced/footer.jpg') no-repeat;
+        background-size: 100% 100%;
+        min-height: 727px;
+
+        @media screen and (min-width: 320px) and (max-width: 768px) {
+            min-height: 200px;
+            background: url('../../img/ced/footer-mobile.jpg') no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+	.mobile-hide {
+        display: none;
+    }
+
+    .component-ced-index {
+        .module-ced-how {
+            margin-top: 20px;
+            background: none;
+
+            .el-ced-how {
+                width: 100%;
+                padding: 0 25px;
+            }
+            .el-table {
+                margin-top: 10px !important;
+            }
+            .table-title {
+                font-size: 15px !important;
+                margin-top: 0px !important;
+            }
+            .table-sub-title {
+                font-size: 12px !important;
+            }
+
+            thead {
+                    td {
+                        font-size: 12px !important;
+                    }
+                }
+                tbody {
+                    tr {
+                        td {
+                            font-size: 12px !important;
+                        }
+                    }
+                }
+        }
+
+        .module-buy {
+            margin-top: 16px;
+        }
+        .el-buy {
+            width: 100% !important;
+            
+            .el-title {
+                font-size: 12px !important;
+            }
+
+            .el-goto-buy {
+                width: 150px !important;
+                height: 42px !important;
+                line-height: 42px !important;
+                background-size: 100% 100%;
+                font-size: 16px !important;
+                margin-top: 6px !important;
+            }
+            .el-tips {
+                font-size: 12px;
+                margin-top: 4px;
+                color: #8d8d8d;
+            }
+        }
+        
+    }
+}
+@media screen and (min-width: 768px) {
+	.pc-hide {
+        display: none;
+    }
+}

@@ -20,6 +20,11 @@ let ViewInfoConfig = {
         header: {
             title: '打响第一枪',
         }
+    },
+    CedIndex: {
+        header: {
+            title: '车e贷震撼来袭',
+        }
     }
 }
 export default ViewInfoConfig;

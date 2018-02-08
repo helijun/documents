@@ -22,6 +22,7 @@ module.exports = {
     },
     devServer: {
         inline: true,
+        host: '192.168.1.104',
         port: 2018
     },
     module: {

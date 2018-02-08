@@ -107,6 +107,14 @@ const rootRoute = {
                         cb(null, require(PAGE_BASIC_PATH + "botany/two"));
                     })
                 }
+            },
+            {
+                path: 'cedIndex',
+                getComponent(nextState, cb) {
+                    require.ensure([], (require) => {
+                        cb(null, require(PAGE_BASIC_PATH + "ced/index"));
+                    })
+                }
             }
         ]
     }]
