@@ -437,28 +437,22 @@ return function () {
                                 '<p class="hs-align-center">尚未保存，确定返回吗？</p>',
                                 function (index) {
                                     layui.layer.close(index);
-                                    require(['js/meeting/list'], function (meetingList) {
-                                        meetingList();
-                                    })
+                                    router.to('meeting-list')
                                 }
                             );
                         } else {
-                            require(['js/meeting/list'], function (meetingList) {
-                                meetingList();
-                            })
+                            router.to('meeting-list')
                         }
                     })
                     .off('click', '.element-goback')
                     .on('click', '.element-goback', function () {//返回会议列表
-                        require(['js/meeting/list'], function (meetingList) {
-                            meetingList();
-                        })
+                        router.to('meeting-list')
                     })
                     .off('click', '.element-detail')
                     .on('click', '.element-detail', function () {//查看会议详情
                         var meetingid = $(this).attr('data-meetingid');
-                        require(['js/meeting/detail'], function (detail) {
-                            detail(meetingid);
+                        router.to('meeting-detail', {
+                            meetingid: meetingid
                         })
                     })
                     .on('click', '.element-step-list', function () {//步骤条点击

@@ -1,16 +1,12 @@
 define([
     'jquery',
     'common', 
-    'js/meeting/add-meeting',
-    'js/meeting/detail',
     'dateFormat',
     'layuiAll',
     'css!css/meeting/list'
 ], function(
     $, 
     HSKJ,
-    addMeeting,
-    meetingDetail,
     dateFormat
 ){
 return function() {
@@ -99,19 +95,25 @@ return function() {
                     if (layEvent === 'push') { //推送
                         self.meetingPushAllSysnAjax(data.meetingid);
                     } else if (layEvent === 'detail') { //会议详情
-                        meetingDetail(data.meetingid);
+                        //meetingDetail(data.meetingid);
+                        router.to('meeting-detail', {
+                            meetingid: data.meetingid
+                        });
                     } else if (layEvent === 'list') { //参会名单
-                        require(['js/meeting/join-list'], function (joinList){
-                            joinList(data.meetingid, data.holdtimestart);
-                        })
+                        router.to('meeting-join-list', {
+                            meetingid: data.meetingid,
+                            holdtimestart: data.holdtimestart
+                        });
                     } else if (layEvent === 'edit') { //编辑
                         if (data.employees > 0){
                             layui.layer.msg('已有人报名会议，无法编辑')
                             return;
                         }
-                        require(['js/meeting/edit-meeting'], function (editMeeting) {
-                            editMeeting(data);
-                        })
+
+                        //这里数据量太大，使用隐式传参，不支持单独刷新页面
+                        router.setMessage(data);
+                        router.to('meeting-edit');
+
                     } else if (layEvent === 'qr') { //二维码点击
                         HSKJ.loadingShow();
                         
@@ -140,8 +142,11 @@ return function() {
                     }
                 });
 
-                $(document).on('click', '#addMeeting', function () {
-                    addMeeting()
+                $(document)
+                .off('click', '#addMeeting')
+                .on('click', '#addMeeting', function () {
+                    //addMeeting()
+                    router.to('meeting-add');
                 })
             }
         }

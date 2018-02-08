@@ -359,6 +359,9 @@ ul {
   padding: 0;
   list-style: none; }
 
+a {
+  cursor: pointer; }
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #f8fafb inset;
   -webkit-text-fill-color: #000; }

@@ -15,6 +15,8 @@ require.config({
     baseUrl: ENV.PAGE,
     paths: {
         jquery: 'plugin/jquery/jquery-3.1.0.min',
+        router: 'plugin/spa/router',
+        routerConfig: 'router.config',
         cookie: 'plugin/jquery/jquery.cookie',
         layui: 'plugin/layui/layui',
         layuiAll: 'plugin/layui/layui.all',
@@ -29,6 +31,14 @@ require.config({
     shim: {
         underscore: {
             exports: '_'
+        },
+        routerConfig: {
+            deps: ['jquery', 'cookie', 'router'],
+            exports: '$'
+        },
+        router: {
+            deps: ['jquery'],
+            exports: '$'
         },
         jqprint: {
             deps: ['jquery'],

@@ -47,7 +47,9 @@
     </div>
 </body>
 
+<script src="../../plugin/jquery/jquery-3.1.0.min.js"></script>
 <script src="../../plugin/requirejs/require.min.js"></script>
+<script src="../../plugin/spa/router.js"></script>
 <script>
     var script = document.createElement("script"),
         head = document.head || document.getElementsByTagName('head')[0];
@@ -81,7 +83,7 @@
                             success: function (json) {
                                 if (json && json.code == 0) {
                                     HSKJ.setUserInfo(json.data, function () {
-                                        HSKJ.openPage('../../index.html');
+                                        HSKJ.openPage('../../index.html#' + HSKJ.getUrlParameter('beforeUrl'));
                                     });
                                 } else {
                                     layui.layer.msg(json.message)

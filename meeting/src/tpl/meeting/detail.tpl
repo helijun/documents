@@ -1,7 +1,7 @@
 <div class="module-meeting-detail">
     <div class="hs-align-right element-header layui-form">
         <div class="layui-inline hs-float-left element-title">
-            <a href="#" id="gobackMeetingList">会议列表</a>
+            <a href="#meeting-list">会议列表</a>
             <span>/ 会议详情</span>
         </div>
     
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="layui-form-item hs-align-center">
-                    <button class="layui-btn element-goback" lay-submit="" lay-filter="">返回</button>
+                    <button class="layui-btn module-go-back" lay-submit="" lay-filter="">返回</button>
                 </div>
             </div>
         </div>

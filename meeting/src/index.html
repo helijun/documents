@@ -21,7 +21,7 @@
         </div>
         <div class="right">
             <span class="welcome-msg"></span>
-            <a href="#" class="module-go-logout logout">[退出]</a>
+            <a class="module-go-logout logout">[退出]</a>
         </div>
     </nav>
 
@@ -37,12 +37,20 @@
             <div id="" class="layui-layer-content layui-layer-loading2"></div><span class="layui-layer-setwin"></span></div>
         </div>
     </article>
+    
+    <script src="./plugin/jquery/jquery-3.1.0.min.js"></script>
     <script src="./plugin/requirejs/require.min.js"></script>
+    <script src="./plugin/spa/router.js"></script>
+    <!-- 错误 -->
+    <script type="text/html" id="errorTpl">
+            异常
+    </script>
+    
     <!-- 左边菜单权限控制 -->
     <script type="text/html" id="navLeftTpl">
          {{#  layui.each(d.list, function(index, item){ }}
             {{#  if(item.show){ }}
-                <li class="nav-list" data-url="{{item.dataUrl}}" data-load="{{item.dataLoad}}">
+                <li class="nav-list" data-controller="{{item.controller}}">
                     <img src="./img/index/{{item.icon}}" alt="">
                     <p>{{item.name}}</p>
                 </li>
@@ -131,7 +139,7 @@
             head = document.head || document.getElementsByTagName('head')[0];
 
         script.type = "text/javascript";
-        script.src = './config.js?ver=' + (new Date()).getTime();
+        script.src = './config.js?v=' + (new Date()).getTime();
 
         head.appendChild(script);
 

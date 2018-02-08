@@ -5,7 +5,7 @@
         <div class="hs-align-right table-search layui-form">
             <div class="layui-inline layui-form-label hs-float-left element-title">
                 {{# if(d.organizationid != null){ }}
-                    <a href="#" id="gobackMeetingStat">会议统计</a>
+                    <a class="module-go-back" id="gobackMeetingStat">会议统计</a>
                       / 会议列表
                 {{# }else{ }}    
                     会议列表

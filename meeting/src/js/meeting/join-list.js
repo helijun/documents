@@ -9,8 +9,10 @@ define([
     HSKJ,
     dateFormat
 ) {
-return function (meetingid, holdtimestart) {
+return function () {
     window.dateFormat = dateFormat;
+    var meetingid = router.getParameter('meetingid');
+    var holdtimestart = router.getParameter('holdtimestart');
     HSKJ.ready(function () {
         var joinList = {
             init: function () {
@@ -22,7 +24,6 @@ return function (meetingid, holdtimestart) {
             },
             renderHtml: function () {
                 var self = this;
-
 
                 HSKJ.renderTpl(
                     '.module-container',
@@ -235,9 +236,7 @@ return function (meetingid, holdtimestart) {
                 .off('click', '#gobackMeetingList')
                 .on('click', '#gobackMeetingList', function () {//返回会议列表
                     //TOOD 是否提示正在编辑，谨慎退出
-                    require(['js/meeting/list'], function (meetingList) {
-                        meetingList();
-                    })
+                    router.to('meeting-list')
                 })
                 .off('click', '#addGuest')
                 .on('click', '#addGuest', function () {
@@ -256,16 +255,18 @@ return function (meetingid, holdtimestart) {
                 .off('click', '#addVip')
                 .on('click', '#addVip', function () {
                     layui.layer.closeAll();//关闭全部弹框
-                    require(['js/meeting/add-vip'], function (addVip){
-                        addVip(meetingid, holdtimestart);
-                    })
+                    router.to('meeting-add-vip', {
+                        meetingid: meetingid,
+                        holdtimestart: holdtimestart
+                    });
                 })
                 .off('click', '#addNormal')
                 .on('click', '#addNormal', function () {
-                    layui.layer.closeAll();//关闭全部弹框
-                    require(['js/meeting/add-normal'], function (addNormal) {
-                        addNormal(meetingid, holdtimestart);
-                    })
+                    layui.layer.closeAll();
+                    router.to('meeting-add-normal',{
+                        meetingid: meetingid,
+                        holdtimestart: holdtimestart
+                    });
                 })
             }
         }

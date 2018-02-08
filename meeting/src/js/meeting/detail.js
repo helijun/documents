@@ -8,7 +8,8 @@ define([
     $, 
     HSKJ
 ){
-return function (meetingid) {
+return function () {
+    var meetingid = router.getParameter('meetingid');
     HSKJ.ready(function () {
         var meetingDetail = {
             init: function () {
@@ -58,14 +59,7 @@ return function (meetingid) {
             },
             
             wactch: function () {
-
-                $(document)
-                .off('click', '#gobackMeetingList')
-                .on('click', '#gobackMeetingList,.element-goback', function () {//返回会议列表
-                    require(['js/meeting/list'], function (meetingList) {
-                        meetingList();
-                    })
-                })
+                
             }
         }
         meetingDetail.init();

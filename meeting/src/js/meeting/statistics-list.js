@@ -10,7 +10,8 @@ define([
     _,
     HSKJ
 ) {
-    return function (organizationid) {
+    return function () {
+        var organizationid = router.getParameter('organizationid');
         HSKJ.ready(function () {
             var roleid = HSKJ.getUserInfo('roleid');
             var meetingStat = {
@@ -119,11 +120,6 @@ define([
                     });
 
                     $(document)
-                    .on('click', '#gobackMeetingStat', function () {
-                        require(['js/meeting/statistics'], function (meetingStatistic) {
-                            meetingStatistic()
-                        })
-                    })
                     .on('click', '#doSearch', function () {
                         self.reloadTable();
                     })

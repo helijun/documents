@@ -5,18 +5,7 @@
  * Copyright 2006, 2014 Klaus Hartl
  * Released under the MIT license
  */
-(function (factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD (Register as an anonymous module)
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		// Node/CommonJS
-		module.exports = factory(require('jquery'));
-	} else {
-		// Browser globals
-		factory(jQuery);
-	}
-}(function ($) {
+(function ($) {
 
 	var pluses = /\+/g;
 
@@ -44,7 +33,7 @@
 			// If we can't parse the cookie, ignore it, it's unusable.
 			s = decodeURIComponent(s.replace(pluses, ' '));
 			return config.json ? JSON.parse(s) : s;
-		} catch(e) {}
+		} catch (e) { }
 	}
 
 	function read(s, converter) {
@@ -67,9 +56,9 @@
 			return (document.cookie = [
 				encode(key), '=', stringifyCookieValue(value),
 				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path    ? '; path=' + options.path : '',
-				options.domain  ? '; domain=' + options.domain : '',
-				options.secure  ? '; secure' : ''
+				options.path ? '; path=' + options.path : '',
+				options.domain ? '; domain=' + options.domain : '',
+				options.secure ? '; secure' : ''
 			].join(''));
 		}
 
@@ -111,4 +100,4 @@
 		return !$.cookie(key);
 	};
 
-}));
+})(jQuery)

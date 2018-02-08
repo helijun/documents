@@ -8,7 +8,13 @@ define([
     $,
     HSKJ
 ) {
-return function (meetingData) {
+return function () {
+    var meetingData = router.getMessage('all')[0];
+    if (!meetingData){
+        layui.layer.msg('编辑会议不支持刷新页面，请从会议管理重新点击编辑！')
+        return;
+    }
+
     console.log('编辑行带来的数据data', meetingData);
     HSKJ.ready(function () {
         var editMeeting = {
@@ -399,27 +405,21 @@ return function (meetingData) {
                                 '<p class="hs-align-center">正在编辑，确定返回吗？</p>',
                                 function (index) {
                                     layui.layer.close(index);
-                                    require(['js/meeting/list'], function (meetingList) {
-                                        meetingList();
-                                    })
+                                    router.to('meeting-list')
                                 }
                             );
                         }else{
-                            require(['js/meeting/list'], function (meetingList) {
-                                meetingList();
-                            })
+                            router.to('meeting-list')
                         }
                     })
                     .off('click', '.element-goback')
                     .on('click', '.element-goback', function () {//返回会议列表
-                        require(['js/meeting/list'], function (meetingList) {
-                            meetingList();
-                        })
+                        router.to('meeting-list')
                     })
                     .on('click', '.element-detail', function () {//查看会议详情
                         var meetingid = $(this).attr('data-meetingid');
-                        require(['js/meeting/detail'], function (detail) {
-                            detail(meetingid);
+                        router.to('meeting-detail', {
+                            meetingid: meetingid
                         })
                     })
                     .on('click', '.element-step-list', function () {//步骤条点击

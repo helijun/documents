@@ -2,7 +2,7 @@
     <div class="element-container">
         <div class="hs-align-right element-header layui-form">
             <div class="layui-inline layui-form-label hs-float-left element-title">
-                <a href="#" id="gobackMeetingList">会议列表</a>
+                <a id="gobackMeetingList">会议列表</a>
                 <span>/编辑会议</span>
             </div>
                 
@@ -439,8 +439,8 @@
                         <div class="success-meeting-qr"></div>
                     </div>
                     <div class="element-btn">
-                        <a href="#" class="layui-btn element-detail">查看会议详情</a>
-                        <a href="#" class="layui-btn element-goback">返回会议列表</a>
+                        <a class="layui-btn element-detail">查看会议详情</a>
+                        <a class="layui-btn element-goback">返回会议列表</a>
                     </div>
                 </div> 
             </div>

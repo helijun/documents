@@ -72,7 +72,7 @@
   -ms-flex-align: center;
   align-items: center; }
 
-.extend-full-btn, .extend-layer-dialog .layui-layer-btn0, body .layui-layer-btn0, .module-meeting-detail .element-content .element-content-center .element-goback {
+.extend-full-btn, .extend-layer-dialog .layui-layer-btn0, body .layui-layer-btn0, .module-meeting-detail .element-content .element-content-center .module-go-back {
   background-color: #3ddfd5 !important;
   border-color: #3ddfd5 !important; }
 
@@ -246,7 +246,7 @@
   -ms-flex-align: center;
   align-items: center; }
 
-.extend-full-btn, .extend-layer-dialog .layui-layer-btn0, body .layui-layer-btn0, .module-meeting-detail .element-content .element-content-center .element-goback {
+.extend-full-btn, .extend-layer-dialog .layui-layer-btn0, body .layui-layer-btn0, .module-meeting-detail .element-content .element-content-center .module-go-back {
   background-color: #3ddfd5 !important;
   border-color: #3ddfd5 !important; }
 
@@ -576,7 +576,7 @@
     .module-meeting-detail .element-content .element-content-center .element-qr {
       display: block;
       margin-left: 74px; }
-    .module-meeting-detail .element-content .element-content-center .element-goback {
+    .module-meeting-detail .element-content .element-content-center .module-go-back {
       width: 120px;
       height: 40px;
       border-radius: 5px;

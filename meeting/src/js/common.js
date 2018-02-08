@@ -280,16 +280,17 @@
 		 * 去登录页，区分不同角色
 		 */
 		toLoginPage: function(callback){
+			var beforeUrl = location.hash.split('?v=')[0].replace('#','');
 			var roleid = this.getUserInfo('roleid');
 			if (!roleid){
-				this.openPage(ENV.PAGE + 'page/admin/login.html');
+				this.openPage(ENV.PAGE + 'page/admin/login.html', null, beforeUrl);
 			}
 			if (roleid == 1){//管理员
-				this.openPage(ENV.PAGE + 'page/admin/login.html');
+				this.openPage(ENV.PAGE + 'page/admin/login.html', null, beforeUrl);
 			} else if (roleid == 2){ //机构
-				this.openPage(ENV.PAGE + 'page/organization/login.html');
+				this.openPage(ENV.PAGE + 'page/organization/login.html', null, beforeUrl);
 			} else if (roleid == 3){ //会议举办方
-				this.openPage(ENV.PAGE + 'page/sponsor/login.html');
+				this.openPage(ENV.PAGE + 'page/sponsor/login.html', null, beforeUrl);
 			}
 
 			callback && callback();
@@ -308,7 +309,11 @@
 	     * target "_blank" 新窗口打开
 	     * @return {[type]} [description]
 	     */
-	    openPage: function(href,target){
+		openPage: function (href, target, beforeUrl){
+			//TODO 判断url是否包含?
+			if (beforeUrl){
+				href += '?beforeUrl=' + beforeUrl;
+			}
 	    	if (target) {
 	    		window.open(href, target)
 	    	}else{
@@ -413,19 +418,25 @@
 	                self.openPage(404)
 	            }else if(500 == status){
 	                self.openPage(500)
-	            }*/
-			}).on('click', '.tabs-item', function(){
+				}*/
+			})
+			.off('click', '.tabs-item')
+			.on('click', '.tabs-item', function(){
 				$(this).addClass('active').siblings().removeClass('active');
 			})
+			.off('click', '.module-go-back')
 			.on('click', '.module-go-back', function () {//后退
-				window.location.go(-1)
+				history.back()
 			})
+			.off('click', '.module-go-login')
 			.on('click', '.module-go-login', function () {//去登录
 				self.toLoginPage();
 			})
+			.off('click', '.module-go-regist')
 			.on('click', '.module-go-regist', function () {//去注册
 				window.location.href = '/page/base/regist.html'
 			})
+			.off('click', '.module-go-forgot')
 			.on('click', '.module-go-forgot', function () {//忘记密码
 				window.location.href = '/page/base/pwd-find.html'
 			})

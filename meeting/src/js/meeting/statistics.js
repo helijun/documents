@@ -89,8 +89,8 @@ define([
 
                         console.log('当前行数据', data)
                         if (layEvent === 'goMeetingDetail') { //查看详情
-                            require(['js/meeting/statistics-list'], function (meetingStatisticsList){
-                                meetingStatisticsList(data.organizationid)
+                            router.to('meeting-statistics-list', {
+                                organizationid: data.organizationid
                             })
                         } else if (layEvent === 'del') { //删除
                             layer.confirm(

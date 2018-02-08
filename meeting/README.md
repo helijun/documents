@@ -1,9 +1,10 @@
 # 禾思科技-会议签到系统
 
 ## 结构介绍
-- 使用传统jquery+requirejs+template 实现一个轻量组件化的架构
+- 使用传统jquery+requirejs+template 实现一个轻量单页面组件化的架构
 - 构建工具使用gulp
 - 主框架使用layui
+- 集成路由功能，自己编写的路由插件
 - 主页index.html
 - dist 为生产构建后代码存放目录
 - src 为开发所有资源存放目录
@@ -47,6 +48,19 @@ HSKJ.ready(function() { //注意，如果页面不需要登录的，不能使用
         }
         xxx.init();
     })
+```
+### 关于路由
+整体配置详情参看base/index.js
+```
+    /**
+    *   string 页面
+    *   {} 显示参数
+    *   callback js加载完后回调
+    **/
+    router.to(string,{},callback)
+
+    //隐式传参详情见会议编辑页面
+    meeting-edit
 ```
 
 ### 关于ajax请求

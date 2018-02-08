@@ -2,8 +2,8 @@
     <div class="element-container">
         <div class="hs-align-right element-header">
             <div class="layui-inline hs-float-left element-title">
-                <a href="#" id="gobackMeetingList">会议列表</a>
-                <a href="#" id="gobackMeetingJoin">/ 参会名单</a>
+                <a id="gobackMeetingList">会议列表</a>
+                <a id="gobackMeetingJoin">/ 参会名单</a>
                 <span>/ 添加普通嘉宾</span>
             </div>
         </div>

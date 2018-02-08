@@ -10,7 +10,9 @@ define([
     _,
     HSKJ
 ) {
-    return function (meetingid, holdtimestart) {
+    return function () {
+        var meetingid = router.getParameter('meetingid');
+        var holdtimestart = router.getParameter('holdtimestart');
         HSKJ.ready(function () {
             var addVip = {
                 init: function () {
@@ -93,12 +95,14 @@ define([
                     });
 
                     $(document)
+                        .off('click', '#gobackMeetingList')
                         .on('click', '#gobackMeetingList', function () {//返回会议列表
                             //TOOD 是否提示正在编辑，谨慎退出
                             require(['js/meeting/list'], function (meetingList) {
                                 meetingList();
                             })
                         })
+                        .off('click', '#gobackMeetingJoin')
                         .on('click', '#gobackMeetingJoin', function () {//返回会议名单
                             //TOOD 是否提示正在编辑，谨慎退出
                             require(['js/meeting/join-list'], function (joinList) {

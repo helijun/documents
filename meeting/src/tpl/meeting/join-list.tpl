@@ -2,7 +2,7 @@
     <div class="element-container">
         <div class="hs-align-right element-header layui-form">
             <div class="layui-inline hs-float-left element-title">
-                <a href="#" id="gobackMeetingList">会议列表</a>
+                <a id="gobackMeetingList">会议列表</a>
                 <span>/参会名单</span>
             </div>
                 
