@@ -7,7 +7,7 @@
 4. npm run start 启动项目，访问localhost:1821 查看
 
 ## 简要思路
-在页面跳转的时候使用history.pushState(stateObject, title, url)改变url的hash值（如：#....），通常情况是预先配置好的路由key，这个时候会触发window.onpopstate事件，回调函数里执行业务逻辑并最终控制页面的跳转，这样一来就基本达到了路由的能力。同时再配合window.onhashchange事件，当页面后退时触发，进行相关的逻辑控制。
+在页面跳转的时候使用history.pushState(stateObject, title, url)改变url的hash值（如：#....），通常情况是预先配置好的路由key，这个时候会触发window.onhashchange事件，回调函数里执行业务逻辑并最终控制页面的跳转，这样一来就基本达到了路由的能力。同时再配合window.onpopstate事件，当页面后退时触发，进行相关的逻辑控制。
 
 ## 简要实现
 ### API
