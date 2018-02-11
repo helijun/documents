@@ -3,15 +3,94 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>管理系统</title>
-    <link rel="stylesheet" href="./css/all.css?v=v=1518167415121">
-
+    <title>spa jquery.router demo</title>
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
 
-<!-- <script src="./plugin/jquery/jquery-3.1.0.min.js?v=v=1518167415121"></script>
-<script src="./js/all.js?v=v=1518167415121"></script> -->
-<script src="index.js"></script>
+    <a href="#page-test1"> 跳转到page-test1</a> <br>
+    <a href="#page-test2"> 跳转到page-test2</a> <br>
+    <a href="#page-test2-no-role"> 跳转到page-test2-no-role 无权限</a> <br>
+    <a id="gotoPageTest3"> 跳转到page-test3，带参</a> <br>
+    <a id="gotoPageTest4"> 跳转到page-test4，带参，隐式</a> <br>
+
+    <div class="module-container">
+
+    </div>
 </body>
+<script type="text/html" id="errorTpl">
+    出错了
+</script>
+<script src="./plugin/jquery/jquery-3.1.0.min.js"></script>
+<script src="./plugin/router/router.js"></script>
+<script src="./plugin/requirejs/require.min.js"></script>
+<script src="./config.js"></script>
+<script>
+    var roleid = 2;
+    router.config({
+        view: '.module-container', //渲染模板的dom
+        baseUrl: '/', //资源根路径
+        router: {
+            'page-test1': {
+                templateUrl: 'tpl/test/test1.tpl', //模板或页面地址
+                controller: 'js/test/test1.js', //页面对应的js
+                role: [1, 2] //能访问页面的角色id
+            },
+            'page-test2': {
+                templateUrl: 'tpl/test/test2.tpl',
+                controller: 'js/test/test2.js',
+                role: 2
+            },
+            'page-test2-no-role': {
+                templateUrl: 'tpl/test/test2.tpl',
+                controller: 'js/test/test2.js',
+                role: 1
+            },
+            'page-test3': {
+                controller: 'js/test/test3.js',
+                role: 2
+            },
+            'defaults': 'page-test1' //默认路由
+        },
+        errorTplId: '#errorTpl',  //可选的错误模板，用来处理加载html模块异常时展示错误内容
+        enterCallback: function (routeObj) {
+            //回车键后的回调函数，通常可做页面权限控制、数据统计等等
+            console.log('enterCallback')
+            if (!routeObj.url) return;
+            if (typeof routeObj.role == 'object') {
+                var notLook = false;
+                for (var i = 0; i < routeObj.role.length; i++) {
+                    if (routeObj.role[i] == roleid) {
+                        notLook = true;
+                        break;
+                    }
+                }
+                if (!notLook) {
+                    router.isNotLook = false;
+                    alert('无权访问')
+                } else {
+                    router.isNotLook = true;
+                }
+            } else {
+                if (routeObj.role != roleid) {
+                    router.isNotLook = false;
+                    alert('无权访问')
+                } else {
+                    router.isNotLook = true;
+                }
+            }
+        }
+    });
+
+    $(document).on('click', '#gotoPageTest3', function () {
+        router.to('page-test1', {
+            'test1': '我是带过来的参数'
+        })
+    }).on('click', '#gotoPageTest4', function () {
+        router.setParam({
+            'test1': '我是带过来的参数，不显示在url上哦'
+        })
+        router.to('page-test1');
+    })
+</script>
 </html>

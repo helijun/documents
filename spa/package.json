@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "spa",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "gulp live",
     "build": "gulp clean:dist && gulp build"
   },
   "devDependencies": {
