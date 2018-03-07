@@ -1,4 +1,4 @@
-# 基于jquery的spa，集成jquery.router
+# 基于jquery的spa，使用requirejs，集成jquery.router
 
 ## 使用
 1. 访问https://nodejs.org/en/ 安装node环境，建议版本v6 + 
