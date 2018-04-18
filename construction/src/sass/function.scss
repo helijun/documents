@@ -1,0 +1,18 @@
+@charset "utf-8";
+@import "./variables";
+
+//$px为需要转换的字号
+@function torem($px, $base-value: null){
+	@if $base-value == null {
+		$base-value: $rem-base;
+	}
+    @return $px / $base-value * 0.5rem; 
+}
+
+//投电视页面字体转换
+@function pcrem($px, $base-value: null){
+	@if $base-value == null {
+		$base-value: $base-font-size-pc;
+	}
+    @return $px / $base-value * 1rem; 
+}

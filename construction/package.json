@@ -1,0 +1,26 @@
+{
+  "name": "hs-work",
+  "version": "1.0.0",
+  "description": "工地系统",
+  "scripts": {
+    "start": "gulp live",
+    "build": "gulp clean:dist && gulp build"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-header": "^1.8.9",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-mini-css": "0.0.3",
+    "gulp-replace": "^0.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-strip-debug": "^2.0.0",
+    "gulp-uglify": "^3.0.0",
+    "http-proxy-middleware": "^0.17.4",
+    "run-sequence": "^2.1.0"
+  }
+}
