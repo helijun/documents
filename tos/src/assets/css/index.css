@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+html,
+body {
+  padding: 0;
+  margin: 0; }
+
+/** 背景颜色 */
+.yjy-bgcolor-default {
+  background-color: #2BD6BD; }
+
+/** 前景颜色 */
+.yjy-color-default {
+  color: #2BD6BD; }
+
+/** 前景颜色 end */
+.tos-body-header .tos-header {
+  height: 117px;
+  line-height: 117px;
+  /* 手机 */
+  /** iphone5 **/
+  /** iphone6 **/
+  /** iphone6plus **/ }
+  @media screen and (max-width: 768px) {
+    .tos-body-header .tos-header {
+      height: 3.14286rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background-color: #142844; } }
+
+.tos-body-header .tos-logo .tos-logo-mobile {
+  -webkit-transform: scale(0.6);
+  transform: scale(0.6);
+  float: left;
+  margin-left: -16%; }
+
+.tos-body-header .tos-menu-mobile {
+  line-height: 3.14286rem; }
+  .tos-body-header .tos-menu-mobile img {
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end; }
+
+.tos-body-header .tos-menu-content .tos-menu-mask {
+  width: 100%;
+  height: 100%;
+  margin-top: 3.14286rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.tos-body-header .tos-menu-content .tos-menu-list {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  font-size: 1rem;
+  margin-top: 3.14286rem;
+  background-color: white;
+  text-align: center;
+  background-color: #eaeaea;
+  color: #333333; }
+  .tos-body-header .tos-menu-content .tos-menu-list dd {
+    height: 3.14286rem;
+    line-height: 3.14286rem;
+    border-bottom: 1px solid white;
+    /**&:nth-of-type(even) {
+					border-bottom: 1px solid white;
+				}**/ }
+
+.tos-body-header .layui-nav {
+  background-color: white;
+  background-color: transparent; }
+  .tos-body-header .layui-nav .layui-nav-item a {
+    font-size: 14px;
+    color: #333333; }
+  .tos-body-header .layui-nav .layui-nav-item.layui-this a {
+    color: #cca482; }
+  .tos-body-header .layui-nav .layui-nav-item.layui-this:after {
+    height: 2px;
+    background-color: #cca482; }

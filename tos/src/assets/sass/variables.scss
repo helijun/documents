@@ -1,0 +1,35 @@
+/** media start **/
+$media: screen;
+$media-max-width: max-width;
+$max-width-320: 320px;
+$max-width-375: 375px;
+$max-width-414: 414px;
+$max-width-768: 768px;
+$max-width-992: 992px;
+
+$media-min-width: min-width;
+$min-width-320: 320px;
+$min-width-375: 375px;
+$min-width-414: 414px;
+/** media end ---------------------------------------   **/
+
+/** pc base **/
+$plus-font-size-pc: 18px !default;
+$base-font-size-pc: 14px !default;
+$small-font-size-pc: 12px !default;
+$header-height-pc: 117px;
+
+$base-bg-color: #edeff1; //基础背景颜色
+$article-color:#fff; //主内容颜色
+$base-color: #2BD6BD; //全局基础颜色
+$base-disable-color: #c2f9f5;
+$del-color: #ffb11b;
+$href-color: #428bca;
+$nav-height: 60px; //首页导航高度%
+$nav-left-width: 140px;//首页左边导航宽度
+$tabs-item-bottom: 6px; //选项卡下边距
+$module-container-padding: 0px;//首页主体内容边距
+/** pc base end ---------------------------------------   **/
+
+/** mobile base **/
+$rem-base: 14px; //750设计稿
