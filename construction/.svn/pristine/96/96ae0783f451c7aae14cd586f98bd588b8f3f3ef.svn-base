@@ -1,0 +1,126 @@
+define([
+    'jquery',
+    'common', 
+    'dateFormat',
+    'layuiAll',
+    'css!css/project/attendance-manage'
+], function(
+    $, 
+    HSKJ,
+    dateFormat
+){
+return function() {
+    HSKJ.ready(function () {
+        var roleid = HSKJ.getUserInfo('roleid');
+        window.roleid = roleid;
+        console.log('roleid', roleid);
+        var attendanceList = {
+            init: function () {
+                this.renderHtml();
+                this.wactch();
+            },
+
+            data: {
+                
+            },
+
+            renderHtml: function() {
+                var self = this;
+                
+                console.log('dateFormat.utils.getFistDay', dateFormat.utils.getFistDay(-1))
+                console.log('dateFormat.utils.getLastDay', dateFormat.utils.getLastDay(-1))
+                HSKJ.renderTpl('.module-container', 'text!tpl/project/attendance-manage.tpl', { roleid: roleid}, function () {
+                    self.renderTable();//渲染表格
+                    layui.form.render('radio');
+                    layui.laydate.render({ //渲染日期
+                        elem: '#dateRange'
+                        , type: 'date'
+                        , range: '~'
+                        , format: 'yyyy-MM-dd'
+                        , value: dateFormat.utils.getFistDay() + ' ~ ' + dateFormat.utils.getLastDay()
+                        , done: function (value, date) {
+                            self.reloadTable();
+                        }
+                    });
+                })
+            },
+
+            renderTable: function (status){ 
+                var self = this;
+                HSKJ.loadingShow();
+
+                if (!router.getParameter('pid')) {
+                    layui.layer.msg('缺少参数，请返回项目列表重新点击考勤记录')
+                    return;
+                }
+
+                var cols = [
+                    { field: 'name', title: '姓名' }
+                    , { field: 'sex', title: '性别' }
+                    , { field: 'idcard', title: '身份证号码', sort: true }
+                    , { field: 'enterprise', title: '所在企业' }
+                    , { field: 'belongclass', title: '班组' }
+                    , { field: 'worktype', title: '工种' }
+                    , { field: 'totalsum', title: '总工时' }
+                    , { field: 'normaldays', title: '正常天数' }
+                    , { field: 'errordays', title: '异常天数' }
+                ];
+
+                HSKJ.renderTable({
+                    url: ENV.API + 'system/attendance/query',
+                    id: 'attendanceListTable',
+                    elem: '#tableContent'
+                    , where: {
+                        currentproject: router.getParameter('pid'),
+                        startdate: $('#dateRange').val().split(' ~ ')[0] || dateFormat.utils.getFistDay(),
+                        enddate: $('#dateRange').val().split(' ~ ')[1] || dateFormat.utils.getLastDay()
+                    }
+                    , cols: cols
+                    , done: function (res, curr, count) {
+                        if (roleid != 1) {
+                            
+                        }
+                    }
+                })
+            },
+
+            reloadTable: function(){
+                layui.table.reload('attendanceListTable', {
+                    where: { 
+                        name: $("#keyword").val(),
+                        startdate: $('#dateRange').val().split(' ~ ')[0] || dateFormat.utils.getFistDay(),
+                        enddate: $('#dateRange').val().split(' ~ ')[1] || dateFormat.utils.getLastDay()
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            },
+
+            wactch: function () {
+                var self = this; 
+
+                layui.form.on('radio(monthRadio)', function (data) {
+                    var str = dateFormat.utils.getFistDay() + ' ~ ' + dateFormat.utils.getLastDay()
+                    if (data.value == '上月'){
+                        str = dateFormat.utils.getFistDay(-1) + ' ~ ' + dateFormat.utils.getLastDay(-1)
+                    }
+                    console.log('日期', str)
+                    $('#dateRange').val(str)
+                });  
+
+                $(document)
+                .off('click', '#doExport')
+                .on('click', '#doExport', function () {//导出
+                    layui.layer.msg('导出TODO')
+                })
+                .off('click', '#doSearch')
+                .on('click', '#doSearch', function () {
+                    self.reloadTable();
+                })
+            }
+        }
+        attendanceList.init();
+    })
+}}
+)

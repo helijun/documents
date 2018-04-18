@@ -1,0 +1,48 @@
+<div class="module-discern-record">
+    <div class="table-container">
+        <div class="hs-align-right table-search layui-form">
+            <div class="layui-inline hs-float-left element-title">
+                <a class="m-hover-href" href="#project-list" title="返回项目列表">项目列表/ </a>
+                <span href="">{{d.pname}}/ </span>
+                <span>
+                    <cite>识别记录</cite>
+                </span>
+            </div>
+                
+            <div class="layui-input-inline">
+                <label class="layui-form-label">识别方式：</label>
+                <div class="layui-input-inline">
+                    <select name="shibie-type" lay-filter="shibieType">
+                        <option value="1" selected="">人脸识别</option>
+                        <option value="2">身份证识别</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline module-input-border">
+                    <input type="text" id="keyword" name="title" lay-verify="title" autocomplete="off" placeholder="请输入需要查找的姓名" class="layui-input">
+                    <button class="layui-btn" lay-submit="" lay-filter="" id="doSearch">
+                         <i class="icon-search-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据表的内容部分 -->
+        <div class="table-content">
+            <table class="layui-hide" id="tableContent" lay-filter="userListTable" ></table>
+        </div>
+    </div>
+
+    <!-- 注销弹出确认框 -->
+    <div class="layui-hide" id="delDialog">
+        你确定要注销此账号吗？
+    </div>
+
+</div>
+
+<!-- 表单操作部分 -->
+<script type="text/html" id="tableEdit">
+    <a class="hs-color-base" lay-event="edit">重置密码</a>
+    <a class="hs-color-base" lay-event="del">注销</a>
+</script>

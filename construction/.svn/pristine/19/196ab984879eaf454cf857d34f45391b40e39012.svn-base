@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>项目监控</title><link rel="shortcut icon" href="../favicon.ico"><script src="../js/info/no-compatible.js"></script><link rel="stylesheet" href="../plugin/layui/css/layui.css"><link rel="stylesheet" href="../css/page/project.css"></head><body class="page-project"><header><div class="el-logo"><img src="../img/page/logo.png" alt=""></div><div class="el-title">大坦沙2标项目</div><div class="el-time"><div class="el-time-hms">10:30:00</div><div class="el-time-date"><p class="el-time-day">星期三</p><p class="el-time-ymd">2018年3月12日</p></div></div></header><article></article></body><script type="text/html" id="mainTpl"><!-- 在场人数情况 -->
+    <div class="m-count">
+        <div class="m-common-title">
+            <i class="icon-count"></i>
+            <em>在场人数情况</em>
+        </div>
+        <div class="el-list el-one">
+            <p class="el-list-value">{{d.curCount}}</p>
+            <p class="el-list-subtitle">当前在场人数</p>
+        </div>
+        <div class="el-list el-two">
+            <p class="el-list-value">{{d.tempCount}}</p>
+            <p class="el-list-subtitle">临时卡人数</p>
+        </div>
+        <div class="el-list el-three">
+            <p class="el-list-value">{{d.entryCount}}</p>
+            <p class="el-list-subtitle">今日进场人次</p>
+        </div>
+        <div class="el-list el-four">
+            <p class="el-list-value">{{d.outCount}}</p>
+            <p class="el-list-subtitle">今日出场人次</p>
+        </div>
+    </div>
+
+    <!-- 参与单位/工种 -->
+    <div class="m-org">
+        <div class="m-common-title">
+            <i class="icon-org"></i>
+            <em>参与单位/工种</em>
+        </div>
+        <div class="el-content">
+            <div class="el-danwei">
+                <div class="el-title">
+                    <span>参与单位</span>
+                    <span>在场人数(人)</span>
+                </div>
+                <div class="el-content-list">
+                    {{#  layui.each(d.enterpriseList, function(index, item){ }}
+                        <div class="el-list">
+                            <span>{{item.name}}</span>
+                            <span><strong>{{item.inworkcount}}</strong>/{{item.totalcount}}</span>
+                        </div>
+                    {{#  }) }}
+                </div>
+            </div>
+            <div class="el-gongzhong">
+                <div class="el-title">
+                    <span>工种</span>
+                    <span>在场人数(人)</span>
+                </div>
+                <div class="el-content-list">
+                    {{#  layui.each(d.worktypeList, function(index, item){ }}
+                        <div class="el-list">
+                            <span>{{item.name}}</span>
+                            <span><strong>{{item.inworkcount}}</strong>/{{item.totalcount}}</span>
+                        </div>
+                    {{#  }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 人员进出信息 -->
+    <div class="m-ontime">
+        <div class="m-common-title">
+            <i class="icon-member"></i>
+            <em>人员进出信息</em>
+        </div>
+        <div class="el-content">
+            <div class="el-detail">
+                <!--<div class="m-no-data">暂无数据</div> -->
+                <div class="el-name-status">
+                    <div class="el-name">刘大伟</div>
+                    <div class="el-status">
+                        <i class="icon-success-solid"></i>
+                        <em>允许通过-<strong>离开</strong> </em>
+                    </div>
+                </div>
+                <p class="el-title">人员信息</p>
+                <div class="el-info">
+                    <div class="el-info-detail">
+                        <p class="el-info-list">劳务企业：上海中广</p>
+                        <p class="el-info-list"><i>班</i>组：深圳市南山生态科技园班组</p>
+                        <p class="el-info-list"><i>工</i>种：职员</p>
+                        <p class="el-info-list">通过时间：2018/02/01 08:30:00</p>
+                        <p class="el-info-list">通过地点：2工地生态科技园2区北门</p>
+                    </div>
+                    <div class="el-info-pic"></div>
+                </div>
+            </div>
+            <div class="el-photo">
+                <p class="el-title">现场抓拍</p>
+                <div class="el-pic"></div>
+            </div>
+        </div>
+    </div></script><script src="../plugin/requirejs/require.min.js"></script><script>var script=document.createElement("script"),head=document.head||document.getElementsByTagName("head")[0];script.type="text/javascript",script.src="../config.js?ver="+(new Date).getTime(),head.appendChild(script),script.onload=script.onreadystatechange=function(){require(["js/page/project"])}</script></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>ZeroClipboard（复制功能）</title>
+</head>
+<body>
+	<label for="cardid">卡号：</label>
+	<input type="text" name="cardid" id="cardid" value="123456789" readonly="readonly" />
+	<button id="copycardid">点击复制卡号</button>
+</body>
+</html>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script type="text/javascript">
+$(function(){
+	init();
+});
+function init() {
+	var clip = new ZeroClipboard.Client(); // 新建一个对象
+	clip.setHandCursor( true );
+	clip.setText($('#cardid').val()); // 设置要复制的文本。
+	clip.addEventListener( "mouseUp", function(client) {
+		alert("复制卡号成功！");
+	});
+	// 注册一个 button，参数为 id。点击这个 button 就会复制。
+	//这个 button 不一定要求是一个 input 按钮，也可以是其他 DOM 元素。
+	clip.glue("copycardid"); // 和上一句位置不可调换
+}
+</script>

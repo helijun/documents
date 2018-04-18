@@ -1,0 +1,18 @@
+<div class="module-attendance-mannage">
+    <div class="table-container">
+        <!-- 表格查询头部 -->
+        <div class="hs-align-right table-search layui-form">
+            <div class="layui-inline hs-float-left element-title">
+                <span href="">项目列表/ </span>
+                <span href="">{{d.pname}}/ </span>
+                <span>
+                    <cite>授权管理</cite>
+                </span>
+            </div>
+        </div>
+
+        <div class="table-content">
+            <table class="layui-hide" id="tableContent" lay-filter="authorizeListTable" ></table>
+        </div>
+    </div>
+</div>

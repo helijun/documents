@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+.module-run-index {
+	height: 100%;
+	overflow-y: auto;
+
+	.module-title {
+		text-align: center;
+		font-size: 30px;
+		line-height: 50px;
+	}
+	.module-sub-title {
+		text-align: center;
+		font-size: 20px;
+		line-height: 30px;
+		color: #999;
+	}
+}

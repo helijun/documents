@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+@import "../variables";
+@import "../function";
+@import "../mixins";
+@import "../icon";
+
+body {
+	@extend .extend-layer-date;
+	@extend .extend-layer-dialog;
+}
+.module-attendance-mannage {
+	@extend .extend-article;
+	
+	.table-container {
+		background-color: #f8fafb;
+		border-radius: 5px;
+
+		.table-search {
+			background-color: #ffffff;
+			height: 78px;
+			margin-bottom: 8px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			position: relative;
+			padding: 21px 25px;
+
+			.element-title {
+				margin-top: 8px;
+				padding-left: 0;
+			}
+
+			.layui-form-label {
+				width: auto;
+				font-size: 14px;
+				line-height: 18px;
+				letter-spacing: 0px;
+				color: #6e7b7d;
+			}
+
+			.layui-select-title {
+				width: 130px;
+			}
+
+			cite {
+				font-style: normal;
+				font-size: 18px !important;
+			}
+
+			.module-input-border {
+				background-color: #f4f5f6;
+				border-radius: 17px;
+				display: flex;
+				width: 226px;
+				margin: 0 18px;
+
+				input {
+					background-color: #f4f5f6;
+					border: none;
+					border-radius: 17px;
+				}
+				button {
+					background-color: #5fbdff;
+					border-radius: 0;
+					border-top-right-radius: 17px;
+					border-bottom-right-radius: 17px;
+				}
+			}
+		}
+
+		.table-content {
+			background-color: #ffffff;
+			height: 100%;
+			padding: 18px 26px;
+			
+			.element-count-data {
+				font-size: 12px;
+				line-height: 18px;
+				color: #6e7b7d;
+			}
+			
+			.element-authorize-add {
+				@extend .extend-add;
+			}
+
+			@extend .extend-layer-laypage;
+		}
+	}
+}
+
+.module-authorize-add-dialog {
+	.layui-sp-select {
+		padding: 0 !important;
+		width: 145px;
+
+		&:nth-child(3){
+			margin-right: 0 !important;
+		}
+	}
+	.layui-form {
+		padding: 10px 80px;
+
+		.layui-form-label {
+			width: 100px;
+		}
+		.layui-input-block {
+			margin-left: 120px;
+		}
+		.layui-layer-btn0 {
+			width: 120px;
+			height: 40px;
+			box-shadow: 0px 5px 6px 0px 
+				rgba(179, 221, 218, 0.35);
+			border-radius: 5px;
+		}
+		.element-submit,
+		.element-submit-org {
+			@extend .extend-full-btn;
+			margin-top: 10px;
+			height: 40px;
+			width: 120px;
+		}
+	}
+	.layui-input, .layui-textarea {
+		//width: 97%;
+	}
+}

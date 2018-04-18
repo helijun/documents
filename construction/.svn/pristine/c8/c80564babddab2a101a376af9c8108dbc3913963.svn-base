@@ -1,0 +1,124 @@
+/** v1.0 by helijun **/ 
+define([
+    'jquery',
+    'common', 
+    'dateFormat',
+    'layuiAll',
+    'css!css/project/authorize-manage'
+], function(
+    $, 
+    HSKJ,
+    dateFormat
+){
+return function() {
+    HSKJ.ready(function () {
+        var roleid = HSKJ.getUserInfo('roleid');
+        
+        var authorizeList = {
+            init: function () {
+                this.renderHtml();
+                this.wactch();
+            },
+
+            data: {
+                
+            },
+
+            renderHtml: function() {
+                var self = this;
+                
+                HSKJ.renderTpl('.module-container', 'text!tpl/project/authorize-manage.tpl', { pname: router.getParameter('pname')}, function () {
+                    self.renderTable();//渲染表格
+                })
+            },
+
+            renderTable: function (status){ 
+                var self = this;
+                HSKJ.loadingShow();
+
+                if (!router.getParameter('pid')) {
+                    layui.layer.msg('缺少参数，请返回项目列表重新点击授权管理')
+                    return;
+                }
+
+                var cols = [
+                    { field: 'name', title: '名称' }
+                    , { field: 'employeetypes', title: '人员类型' }
+                    , { field: 'devicelist', title: '授权设备'}
+                    , { field: 'workarea', title: '所属区域' }
+                    , { title: '开门时段', templet: '<div>{{d.starttime}}~{{d.endtime}}</div>'  }
+                    , { field: 'createtime', title: '授权时间' }
+                    , { width: 150, title: '操作', templet:'<div><div class="hs-tools"><a lay-event="edit">编辑</a><a lay-event="del">删除</a></div></div>' }
+                ];
+
+                HSKJ.renderTable({
+                    url: ENV.API + 'system/author/query',
+                    id: 'authorizeListTable',
+                    elem: '#tableContent'
+                    , where: {
+                        projectid: router.getParameter('pid'),
+                    }
+                    , cols: cols
+                    , done: function (res, curr, count) {
+                        
+                    }
+                })
+            },
+
+            delAuthorizeAjax: function(id, callback){
+                HSKJ.POST({
+                    url: 'system/author/delete',
+                    data: {
+                        authorizationgroupid: id
+                    },
+                    beforeSend: function () {
+                        HSKJ.loadingShow();
+                    },
+                    success: function (json) {
+                        if (json && json.code == 0) {
+                            callback && callback();
+                        } else {
+                            layui.layer.msg(json.message)
+                        }
+                    }
+                })
+            },
+
+            wactch: function () {
+                var self = this; 
+
+                layui.table.on('tool(authorizeListTable)', function (obj) { 
+                    var data = obj.data; 
+                    var layEvent = obj.event;
+                    void 0;
+                    if(layEvent === 'edit'){
+                        layui.layer.msg('TODO')
+                    } else if(layEvent === 'del'){
+                        var content = '<p class="hs-align-center">你确定要删除此授权组吗？</p>';
+                        layer.confirm(
+                            content,
+                            function (index) {
+                                self.delAuthorizeAjax(data.authorizationgroupid, function () {
+                                    layui.layer.msg('删除成功', { icon: 1 }, function () {
+                                        layui.layer.closeAll()
+                                        obj.del();
+                                    })
+                                })
+                            }
+                        );
+                    }
+                })
+
+                $(document)
+                .off('click', '#addAuthorize')
+                .on('click', '#addAuthorize', function () {//添加授权
+                    require(['js/project/authorize-add'], function (addAuthorize) {
+                        addAuthorize(roleid, self);
+                    })
+                })
+            }
+        }
+        authorizeList.init();
+    })
+}}
+)
