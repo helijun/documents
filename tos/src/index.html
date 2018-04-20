@@ -9,256 +9,69 @@
 </head>
 
 <body>
-	<header class="tos-body-header">
+	<div class="tos-body-header">
 		<div class="tos-container layui-header tos-header">
 			<div class="layui-logo tos-logo">
-				<a href="./index.html">
+				<a href="/maitian/index.html">
 					<img class="layui-hide-xs" src="../../img/logo/logo-new.png" />
 					<img class="layui-hide-lg layui-hide-sm layui-hide-md tos-full-img tos-logo-mobile" src="../../img/logo/logo-mobile-new.png" />
 				</a>
 			</div>
-			<!-- TOS Chain         SDAG          Transaction & POS          Advantage          Ecosystem          Team          Timeline          White Paper          Backers          Contact us      -->
+			
 			<ul class="layui-nav layui-layout-right layui-hide-xs" lay-filter="">
 				<li class="layui-nav-item index-page">
-					<a class="nav-href" href="#TOSCHAIN">TOS Chain</a>
+					<a class="nav-href" href="/maitian/index.html">首页</a>
 				</li>
 				<li class="layui-nav-item">
-					<a class="nav-href" href="#SDAG">SDAG</a>
+					<a class="nav-href" href="/maitian/page/cunguan/index.html">银行存管系统</a>
 				</li>
 				<li class="layui-nav-item">
-					<a class="nav-href" href="#TP">Transaction & POS</a>
+					<a class="nav-href" href="/maitian/page/wangdai/index.html">网贷系统</a>
 				</li>
 				<li class="layui-nav-item">
-					<a class="nav-href" href="#Advantage">Advantage</a>
+					<a class="nav-href" href="/maitian/page/fengkong/index.html">风控系统</a>
 				</li>
 				<li class="layui-nav-item">
-					<a class="nav-href" href="#Ecosystem">Ecosystem</a>
+					<a class="nav-href" href="/maitian/page/success/case.html">成功案例</a>
 				</li>
 				<li class="layui-nav-item">
-					<a class="nav-href" href="#Team">Team</a>
-				</li>
-				<li class="layui-nav-item">
-					<a class="nav-href" href="#Timeline">Timeline</a>
-				</li>
-				<li class="layui-nav-item">
-					<a class="nav-href" href="#WP">White Paper</a>
-				</li>
-				<li class="layui-nav-item">
-					<a class="nav-href" href="#Backers">Backers</a>
-				</li>
-				<li class="layui-nav-item">
-					<a class="nav-href" href="#CU">Contact us</a>
+					<a class="nav-href" href="/maitian/page/base/aboutUs.html">关于我们</a>
 				</li>
 			</ul>
-		</div>
-	</header>
-
-	<article class="tos-body-article">
-		<div class="module-common-title" id="TOSCHAIN">
-			<span>TOS chain</span>
-		</div>    
-
-		<div class="tos-container layui-row tos-chain">
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">Hierarchical block network</div>
-				<div class="element-description">
-					Support hierarchical network block, the entire network block data for separation, reduce network node data redundancy.
-				</div>
-			</div>
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">Ordinary transaction data free</div>
-				<div class="element-description">
-					Ordinary data, free transactions, through the end of the block network transaction consensus mechanism to record data, reduce user costs.
-				</div>
-			</div>
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">High value transaction data charges</div>
-				<div class="element-description">
-					High-value data, using POS consensus mechanisms to write data to higher-level block networks, high-level security, requires payment.
-				</div>
-			</div>
-		</div>
-
-		<div class="module-common-title" id="SDAG">
-			<span>What is SDAG technology</span>                                               
-		</div>   
-		<div class="tos-container layui-row tos-technology">
-			<div class="element-bg"></div>
-			<div class="element-description">
-				SDAG(Super directed acyclic graph) based on existing DAG technology to construct a hierarchical chain entanglement network. Each level of blockchain network stores the corresponding data, similar to the country -> Province -> City -> County -> District, each administrative center to manage the data, between provinces and between countries and countries, each other Care about each other's data. Separation of the entire network of block data, each block network only care about their own needs of the block data, you can reduce a large amount of data redundancy.
-			</div>
-		</div> 
-				
-		<div class="module-common-title" id="TP">
-			<span>Why support both Transaction proof of transaction and POS proof of ownership?</span>                                               
-		</div>   
-		<div class="tos-container layui-row tos-ownership">
-			<div class="layui-row">
-				<div class="layui-col-xs1">
-					<div class="element-img"></div>
-				</div>
-				<div class="layui-col-xs11">
-					<div class="element-title">Support for free transactions and fees transactions</div>
-					<div class="element-description">Free trade, record common data, do not need transaction costs, and IoT devices produce massive data scenarios fit. Charged transactions apply to high value data transactions in the Internet of Things. Record data in the high-level block network, better liquidity and higher security.</div>
-				</div>
-			</div>
-			
-			<div class="layui-row">
-				<div class="layui-col-xs1">
-					<div class="element-img"></div>
-				</div>
-				<div class="layui-col-xs11">
-					<div class="element-title">Has unlimited branch network capacity</div>
-					<div class="element-description">An algorithmic mechanism monitors the economic value of the block network. When the economic value of the network reaches a certain threshold, it will automatically trigger the next new block verification needs charging. At this moment, if the user chooses to continue to charge the network transaction in this level block, if the user wants to continue to use the free service, the network system will branch a new sub-block network from the current block network and write the new transaction Sub-block network, reaching unlimited branch block network capabilities.</div>
-				</div>
-			</div>
-			
-			<div class="layui-row">
-				<div class="layui-col-xs1">
-					<div class="element-img"></div>
-				</div>
-				<div class="layui-col-xs11">
-					<div class="element-title">Password economics balance</div>
-					<div class="element-description">The combination of free transactions and paid transactions can form a relationship of mutual checks and balances. Form a hierarchy of data distribution by charging and freeing. Free transaction data is only stored in the lower level or the end level block network, the charge transaction is stored in the high level block network, the higher the transaction fee, the higher the storage network level. This avoids junk data blocking high-level block networks and also reduces the amount of data in high-level block networks.</div>
-				</div>
-			</div>
-		</div> 
 	
-		<div class="module-common-title" id="Advantage">
-			<span>Advantage</span>                                               
-		</div>   
-		<div class="tos-container layui-row tos-advantage">
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">Reducing the cost of the Internet of things</div>
-				<div class="element-description">
-					Block chain technology provides a point to point direct interconnection way for data transfer. The whole Internet of things solution does not need to introduce large data centers for data synchronization and management control, thereby reducing the operation cost of the Internet of things.
-				</div>
-			</div>
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">Big Data Management</div>
-				<div class="element-description">
-					As far as large data analysis and mining are concerned, the application of blockchain expands the scale and richness of the data. The technology of block chain makes the quality of data get unprecedented trust. It ensures the correctness of data analysis and data mining, and realizes the prediction, analysis and action of big data. It will become the cornerstone of the digital economic era.
-				</div>
-			</div>
-			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
-				<div class="element-title">Security and Transparency</div>
-				<div class="element-description">
-					Blockchain relies on discrete decentralized computer clusters to run, and its fair consensus mechanism to ensure the security of the network, you can view the history of transactions, to ensure the transparency of information.
-				</div>
+			<div class="layui-layout-right layui-hide-lg layui-hide-sm layui-hide-md tos-menu-mobile">
+				<img src="../../img/icon/menu.png" alt="">
 			</div>
 		</div>
+	
+		<div class="layui-hide-lg layui-hide-sm layui-hide-md tos-menu-content layui-hide">
+			<dl class="tos-menu-list">
+				<dd>
+					<a class="nav-href" href="/maitian/index.html">首页</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/cunguan/index.html">银行存管系统</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/wangdai/index.html">网贷系统</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/fengkong/index.html">风控系统</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/success/case.html">成功案例</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/base/aboutUs.html">关于我们</a>
+				</dd>
+				<dd>
+					<a class="nav-href" href="/maitian/page/feedback/mobile.html">联系我们</a>
+				</dd>
+			</dl>
+			<div class="tos-menu-mask"></div>
+		</div>
+	</div>
 
-		<div class="module-common-title" id="Team">
-			<span>Team</span>                                               
-		</div> 
-		<div class="tos-container tos-team">
-			<div class="layui-row">
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Jeffers Kieron Matthew Foundation Chairman</div>
-						<div class="element-description element-special">Features: Pan-entertainment devices, not often online; have power, light POS mining.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Stephen Wu CEO</div>
-						<div class="element-description">HongKong Sun Hung Kai Group Independent Investment Fund manager.<br>Infinity Service USA Inc. Greater China COO.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Navy Tao CTO</div>
-						<div class="element-description">Once a senior engineer of the Tencent Inc.<br>Once served as the general architect of the HUAWEI heart community mobile terminal project.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Ray Hua COO</div>
-						<div class="element-description">Angel investors, blockchain enthusiasts, large community sponsors, co-founders of blockchain amateurs, sponsors and co-founders of alliance business schools.</div>
-					</div>
-				</div>
-			</div>
-			<div class="layui-row">
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Daniel Hornstein CFO</div>
-						<div class="element-description">Securities Investment Institute Consultant, Chartered Institute of Securities, Manari Ltd. London Chairman.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Tony Lee Chief Architect</div>
-						<div class="element-description">HongKong Sun Hung Kai Group Independent Investment Fund manager.<br>Infinity Service USA Inc. Greater China COO.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Timothy Shi Chief Product Officer</div>
-						<div class="element-description element-special">Once a senior development engineer of Huawei key projects. Once a Sinosafe Insurance Client Architect and Nongtai financial client project leader.</div>
-					</div>
-				</div>
-				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
-						<div class="element-title">Diego Cresta Technical adviser</div>
-						<div class="element-description element-special">American Institute of Financial Management Professional Consultant.  Academician of the American Life Insurance Training Institute.American Institute of Finance and Chartered Financial Advisor, Malaysian Insurance Institute.</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="module-common-title" id="">
-			<span>History and time axis</span>                                               
-		</div> 
-		
-		<div class="module-common-title" id="WP">
-			<span>White Paper</span>                                               
-		</div>
-		<div class="tos-container layui-row tos-white-paper">
-			<div class="layui-col-xs6 element-left">
-				<div class="element-content"></div>
-			</div>
-			<div class="layui-col-xs6 element-right">
-				<div class="element-content"></div>
-			</div>
-		</div>
-	</article>
-	<footer class="tos-body-footer">
-		<div class="tos-container tos-footer">
-			<div class="contact-us">
-				<ul class="layui-nav layui-hide-xs">
-					<li class="layui-nav-item">
-						<a class="nav-href" href="/maitian/index.html">Github</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="/maitian/page/cunguan/index.html">WeChat</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="/maitian/page/cunguan/index.html">Twitter</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="/maitian/page/cunguan/index.html">E-mail</a>
-					</li>
-				</ul>
-			</div>
-			<div class="all-right">
-				TOS Foundation, All right reserved.
-			</div>
-		</div>
-	</footer>
 	<script src="./plugin/layui/layui.all.js"></script>
 </body>
 </html>

@@ -33,223 +33,80 @@ body {
   color: #2BD6BD; }
 
 /** 前景颜色 end */
-.tos-container {
-  width: 1200px;
-  margin: 0 auto; }
-
-.tos-body-header {
-  background-color: #000000; }
-  .tos-body-header .tos-header {
-    height: 96px;
-    line-height: 96px;
-    font-family: MicrosoftYaHei;
-    font-size: 14px;
-    color: #ffffff;
-    /* 手机 */
-    /** iphone5 **/
-    /** iphone6 **/
-    /** iphone6plus **/ }
-    @media screen and (max-width: 768px) {
-      .tos-body-header .tos-header {
-        height: 3.14286rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        background-color: #142844; } }
-  .tos-body-header .tos-logo .tos-logo-mobile {
-    -webkit-transform: scale(0.6);
-    transform: scale(0.6);
-    float: left;
-    margin-left: -16%; }
-  .tos-body-header .tos-menu-mobile {
-    line-height: 3.14286rem; }
-    .tos-body-header .tos-menu-mobile img {
-      -webkit-transform: scale(0.6);
-      transform: scale(0.6);
+.tos-body-header .tos-header {
+  height: 117px;
+  line-height: 117px;
+  /* 手机 */
+  /** iphone5 **/
+  /** iphone6 **/
+  /** iphone6plus **/ }
+  @media screen and (max-width: 768px) {
+    .tos-body-header .tos-header {
+      height: 3.14286rem;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-pack: end;
-      -ms-flex-pack: end;
-      justify-content: flex-end; }
-  .tos-body-header .tos-menu-content .tos-menu-mask {
-    width: 100%;
-    height: 100%;
-    margin-top: 3.14286rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 998;
-    background-color: rgba(0, 0, 0, 0.7); }
-  .tos-body-header .tos-menu-content .tos-menu-list {
-    z-index: 999;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    right: 0;
-    font-size: 1rem;
-    margin-top: 3.14286rem;
-    background-color: white;
-    text-align: center;
-    background-color: #eaeaea;
-    color: #333333; }
-    .tos-body-header .tos-menu-content .tos-menu-list dd {
-      height: 3.14286rem;
-      line-height: 3.14286rem;
-      border-bottom: 1px solid white;
-      /**&:nth-of-type(even) {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background-color: #142844; } }
+
+.tos-body-header .tos-logo .tos-logo-mobile {
+  -webkit-transform: scale(0.6);
+  transform: scale(0.6);
+  float: left;
+  margin-left: -16%; }
+
+.tos-body-header .tos-menu-mobile {
+  line-height: 3.14286rem; }
+  .tos-body-header .tos-menu-mobile img {
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end; }
+
+.tos-body-header .tos-menu-content .tos-menu-mask {
+  width: 100%;
+  height: 100%;
+  margin-top: 3.14286rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.tos-body-header .tos-menu-content .tos-menu-list {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  font-size: 1rem;
+  margin-top: 3.14286rem;
+  background-color: white;
+  text-align: center;
+  background-color: #eaeaea;
+  color: #333333; }
+  .tos-body-header .tos-menu-content .tos-menu-list dd {
+    height: 3.14286rem;
+    line-height: 3.14286rem;
+    border-bottom: 1px solid white;
+    /**&:nth-of-type(even) {
 					border-bottom: 1px solid white;
 				}**/ }
-  .tos-body-header .layui-nav {
-    background-color: white;
-    background-color: transparent; }
-    .tos-body-header .layui-nav .layui-nav-item a {
-      font-size: 14px;
-      color: #fff; }
-    .tos-body-header .layui-nav .layui-nav-item.layui-this a {
-      color: #cca482; }
-    .tos-body-header .layui-nav .layui-nav-item.layui-this:after {
-      height: 2px;
-      background-color: #cca482; }
 
-.module-common-title {
-  text-align: center;
-  padding: 2.5rem 0 3.21429rem 0; }
-  .module-common-title span {
-    margin: 0 auto;
-    display: inline-block;
-    max-width: 66.14286rem;
-    font-size: 2.57143rem;
-    line-height: 2.57143rem;
-    color: #fff;
-    padding-bottom: 0.71429rem;
-    border-bottom: 2px solid #fff; }
-
-.tos-body-article {
-  background-color: #171719;
-  height: auto; }
-  .tos-body-article .tos-chain, .tos-body-article .tos-advantage {
-    text-align: center;
-    height: 14.85714rem; }
-    .tos-body-article .tos-chain .element-icon, .tos-body-article .tos-advantage .element-icon {
-      width: 68px;
-      height: 68px;
-      background-color: #757580;
-      margin: 0 auto;
-      margin-bottom: 2rem; }
-    .tos-body-article .tos-chain .element-title, .tos-body-article .tos-advantage .element-title {
-      font-size: 1.28571rem;
-      color: #fff;
-      margin-bottom: 1.71429rem; }
-    .tos-body-article .tos-chain .element-description, .tos-body-article .tos-advantage .element-description {
-      font-size: 1rem;
-      line-height: 1.71429rem;
-      color: #49494d; }
-    .tos-body-article .tos-chain .layui-col-xs4, .tos-body-article .tos-advantage .layui-col-xs4 {
-      padding: 0 0.71429rem; }
-  .tos-body-article .tos-technology .element-bg {
-    margin: 0 auto;
-    width: 960px;
-    height: 320px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff)), -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(#ffffff, #ffffff);
-    background-blend-mode: normal,  normal; }
-  .tos-body-article .tos-technology .element-description {
-    margin-top: 1.42857rem;
-    line-height: 1.71429rem;
+.tos-body-header .layui-nav {
+  background-color: white;
+  background-color: transparent; }
+  .tos-body-header .layui-nav .layui-nav-item a {
     font-size: 14px;
-    color: #49494d; }
-  .tos-body-article .tos-ownership .layui-row {
-    margin-bottom: 1.42857rem; }
-  .tos-body-article .tos-ownership .element-img {
-    width: 100px;
-    height: 100px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#757580), to(#757580)), -webkit-gradient(linear, left top, left bottom, from(#757580), to(#757580));
-    background-image: linear-gradient(#757580, #757580), linear-gradient(#757580, #757580);
-    background-blend-mode: normal,  normal; }
-  .tos-body-article .tos-ownership .element-title {
-    font-size: 1.28571rem;
-    color: #fff;
-    margin-top: 0.14286rem;
-    margin-bottom: 0.71429rem;
-    padding-left: 1.42857rem; }
-  .tos-body-article .tos-ownership .element-description {
-    color: #49494d;
-    line-height: 1.28571rem;
-    padding-left: 1.42857rem; }
-  .tos-body-article .tos-advantage {
-    height: 25.21429rem !important; }
-  .tos-body-article .tos-team {
-    margin-bottom: 1.07143rem; }
-    .tos-body-article .tos-team .layui-row {
-      height: 34.28571rem; }
-      .tos-body-article .tos-team .layui-row .layui-col-xs3 {
-        padding: 0.57143rem;
-        height: 34.28571rem; }
-        .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content {
-          height: 30rem;
-          background-image: -webkit-gradient(linear, left top, left bottom, from(#46464d), to(#46464d)), -webkit-gradient(linear, left top, left bottom, from(#46464d), to(#46464d));
-          background-image: linear-gradient(#46464d, #46464d), linear-gradient(#46464d, #46464d);
-          background-blend-mode: normal,  normal;
-          text-align: center;
-          padding: 1.42857rem; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-header {
-            margin: 0 auto;
-            width: 188px;
-            height: 188px;
-            background-color: #ffffff;
-            border-radius: 50%; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-title {
-            font-size: 1.28571rem;
-            line-height: 1.57143rem;
-            color: #fff;
-            margin-top: 1.42857rem; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
-            font-size: 14px;
-            line-height: 1.42857rem;
-            margin-top: 2.85714rem;
-            color: #ababb3;
-            font-weight: 600; }
-            .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
-              margin-top: 1.42857rem !important; }
-  .tos-body-article .tos-white-paper {
-    padding: 1.07143rem 0 3.92857rem 0; }
-    .tos-body-article .tos-white-paper .element-left .element-content {
-      float: right;
-      margin-right: 0.85714rem; }
-    .tos-body-article .tos-white-paper .element-right .element-content {
-      margin-left: 0.85714rem; }
-    .tos-body-article .tos-white-paper .element-content {
-      width: 300px;
-      height: 88px;
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#e9e9f2), to(#e9e9f2)), -webkit-gradient(linear, left top, left bottom, from(#e9e9f2), to(#e9e9f2));
-      background-image: linear-gradient(#e9e9f2, #e9e9f2), linear-gradient(#e9e9f2, #e9e9f2);
-      background-blend-mode: normal,  normal; }
-
-.tos-body-footer {
-  background-color: #000000;
-  height: 106px; }
-  .tos-body-footer .tos-footer {
-    width: 37.35714rem;
-    margin: 0 auto;
-    text-align: center; }
-    .tos-body-footer .tos-footer .layui-nav {
-      background-color: #000000; }
-      .tos-body-footer .tos-footer .layui-nav a {
-        color: #7a7a80; }
-        .tos-body-footer .tos-footer .layui-nav a:hover {
-          color: #fff; }
-    .tos-body-footer .tos-footer .layui-nav-bar {
-      display: none; }
-    .tos-body-footer .tos-footer .all-right {
-      height: 1.07143rem;
-      font-size: 14px;
-      color: #49494d; }
-
-/** 改造layui样式 **/
-.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
-  background-color: #fff;
-  height: 2px; }
+    color: #333333; }
+  .tos-body-header .layui-nav .layui-nav-item.layui-this a {
+    color: #cca482; }
+  .tos-body-header .layui-nav .layui-nav-item.layui-this:after {
+    height: 2px;
+    background-color: #cca482; }

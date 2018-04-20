@@ -8,10 +8,3 @@
 	}
     @return $px / $base-value * 0.5rem; 
 }
-
-@function pcrem($px, $base-value: null){
-	@if $base-value == null {
-		$base-value: $base-font-size-pc;
-	}
-    @return $px / $base-value * 1rem; 
-}
