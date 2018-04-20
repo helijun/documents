@@ -184,7 +184,7 @@
                     <div class="layui-input-inline">
                         <select name="status" id="status" lay-filter="status">
                             <option value="1">在职</option>
-                            <option value="0">在职</option>
+                            <option value="0">离职</option>
                         </select>
                     </div>
                 </div>

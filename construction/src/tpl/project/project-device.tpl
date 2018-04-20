@@ -26,7 +26,7 @@
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
                     <select name="deviceStatus" lay-filter="deviceStatus">
-                        <option value="">请选择</option>
+                        <option value="">全部</option>
                         <option value="1">使用中</option>
                         <option value="2">故障</option>
                         <option value="3">闲置</option>

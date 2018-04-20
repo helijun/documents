@@ -20,7 +20,7 @@
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
                     <select name="userStatus" lay-filter="userStatus">
-                        <option value="">请选择</option>
+                        <option value="">全部</option>
                         <option value="0">离职</option>
                         <option value="1">在职</option>
                     </select>

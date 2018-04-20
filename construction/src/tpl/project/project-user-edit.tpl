@@ -180,7 +180,7 @@
                     <div class="layui-input-inline">
                         <select name="status" id="status" lay-filter="status">
                             <option value="1" {{d.userData.status == 1?' selected':''}}>在职</option>
-                            <option value="0" {{d.userData.status == 0?' selected':''}}>在职</option>
+                            <option value="0" {{d.userData.status == 0?' selected':''}}>离职</option>
                         </select>
                     </div>
                 </div>

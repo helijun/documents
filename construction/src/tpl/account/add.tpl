@@ -4,10 +4,10 @@
         <div class="layui-form-item">
             <label class="layui-form-label">
                 <em class="hs-require-tips">*</em>
-                账号
+                机构
             </label>
             <div class="layui-input-block">
-                <input type="text" id="name" name="name" lay-verify="name|required" autocomplete="off" placeholder="请输入账号名称"
+                <input type="text" id="name" name="name" lay-verify="name|required" autocomplete="off" placeholder="请输入机构名称"
                     class="layui-input">
             </div>
         </div>

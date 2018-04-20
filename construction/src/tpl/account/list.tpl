@@ -9,7 +9,7 @@
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
                     <select name="organizationStatus" lay-filter="organizationStatus">
-                        <option value="">请选择</option>
+                        <option value="">全部</option>
                         <option value="1">正常</option>
                         <option value="2">注销</option>
                     </select>
@@ -18,7 +18,7 @@
             
             <div class="layui-inline">
                 <div class="layui-input-inline module-input-border">
-                    <input type="text" id="keyword" name="keyword" lay-verify="title" autocomplete="off" placeholder="请输入账号名称搜索" class="layui-input">
+                    <input type="text" id="keyword" name="keyword" lay-verify="title" autocomplete="off" placeholder="请输入机构名称搜索" class="layui-input">
                     <button class="layui-btn" lay-submit="" lay-filter="" id="doSearch">
                         <i class="icon-search-white"></i>
                     </button>
