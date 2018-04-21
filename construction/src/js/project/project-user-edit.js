@@ -124,73 +124,81 @@ define([
                     })
                 },
 
-                loadProvince: function () {
+                loadProvince: function() {
                     var self = this;
                     var proHtml = '';
+                    var currentCityCode = 440000;
+                    var currentAreaCode = 440300;
                     for (var i = 0; i < areaData.length; i++) {
-                        if (areaData[i].type == 1) {
-                            if (areaData[i].code == 440000) {
+                        if (areaData[i].type == 1){
+                            if (areaData[i].name == userData.province){
+                                currentCityCode = areaData[i].code;
                                 proHtml += '<option value="' + areaData[i].code + '" selected >' + areaData[i].name + '</option>';
-                            } else {
+                            }else{
                                 proHtml += '<option value="' + areaData[i].code + '" >' + areaData[i].name + '</option>';
                             }
-
+                            if(areaData[i].parentCode = currentCityCode){
+                                currentAreaCode = areaData[i].code;
+                            }
+                            
                         }
                     }
                     //初始化省数据
                     $('select[name=province]').html(proHtml);
                     layui.form.render('select', 'provinceFilter');
-                    self.loadCity(440000);
-                    self.loadArea(440300);
-
+                    self.loadCity(currentCityCode);
+                    
                     layui.form.on('select(province)', function (data) {
                         $('select[name=city]').html('<option value="">请选择市</option>');
                         $('select[name=area]').html('<option value="">请选择县/区</option>');
                         data.value && self.loadCity(data.value, 1);
                     });
                 },
-
-                loadCity: function (id, flag) {
+    
+                loadCity: function(id, flag) {
                     var self = this;
                     var cityHtml = '';
+                    var currentCityCode = 440300;
                     var cityArray = [];
                     for (var i = 0; i < areaData.length; i++) {
                         if (areaData[i].type == 2 && areaData[i].parentCode == id) {
                             cityArray.push(areaData[i]);
-                            if (areaData[i].code == 440300) {
+                            if (areaData[i].name == userData.city) {
+                                currentCityCode = areaData[i].code;
                                 cityHtml += '<option value="' + areaData[i].code + '" selected >' + areaData[i].name + '</option>';
                             } else {
                                 cityHtml += '<option value="' + areaData[i].code + '" >' + areaData[i].name + '</option>';
                             }
                         }
                     }
+                    if(flag == 1){
+                        currentCityCode = cityArray[0].code;
+                    }
                     $('select[name=city]').html(cityHtml);
                     layui.form.render('select', 'cityFilter');
-                    if (flag == 1) {
-                        console.log('cityArray', cityArray)
-                        if (id == 440000) {
-                            self.loadArea(440300);
-                        } else {
-                            self.loadArea(cityArray[0].code);
-                        }
-                    }
+                    self.loadArea(currentCityCode);
                     layui.form.on('select(city)', function (data) {
                         $('select[name=area]').html('<option value="">请选择县/区</option>');
                         data.value && self.loadArea(data.value);
                     });
                 },
-
-                loadArea: function (id) {
+                
+                loadArea: function(id){
                     var areaHtml = '';
                     for (var i = 0; i < areaData.length; i++) {
                         if (areaData[i].type == 3 && areaData[i].parentCode == id) {
-                            areaHtml += '<option value="' + areaData[i].code + '">' + areaData[i].name + '</option>';
+                            if (areaData[i].name == userData.district) {
+                                areaHtml += '<option value="' + areaData[i].code + '" selected>' + areaData[i].name + '</option>';
+                            } else {
+                                areaHtml += '<option value="' + areaData[i].code + '">' + areaData[i].name + '</option>';
+                            }
+                            
                         }
                     }
                     $('select[name=area]').html(areaHtml);
                     layui.form.render('select', 'areaFilter');
                     layui.form.on('select(area)', function (data) {
-
+                        
                     });
                 },
 

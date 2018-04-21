@@ -1,8 +1,8 @@
 <div class="module-user-edit layui-form">
     <div class="hs-align-right table-search ">
         <div class="layui-inline hs-float-left element-title">
-            <a class="m-hover-href" href="#project-list" title="返回项目列表">项目列表/ </a>
-            <span>{{d.pname}}/ </span>
+            <a class="m-hover-href" href="#project-list" title="返回项目列表">项目列表</a>
+            <span>/ {{d.pname}} / </span>
             <a class="m-hover-href" href="#project-user?pname={{d.pname}}&pid={{d.pid}}" title="人员列表">人员列表/ </a>
             <span>
                 <cite>编辑人员</cite>

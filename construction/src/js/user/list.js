@@ -38,10 +38,15 @@ define([
                 renderTable: function () {
                     var self = this;
 
+                    var url = ENV.API + 'system/project/employee/query';
+                    if(roleid != 1) {
+                        url += '?organizationid=' + HSKJ.getUserInfo('organizationid');
+                    }
                     HSKJ.renderTable({
-                        url: ENV.API + 'system/project/employee/query?organizationid=' + HSKJ.getUserInfo('organizationid'),
+                        url: url,
                         id: 'userListTable',
                         elem: '#tableContent'
+                        , limit: 8
                         , cols: [ //标题栏
                             , { title: '照片', templet: '<div><div class="element-user-face" lay-event="largeImg"><img src="{{d.facepath}}"/></div></div>' }
                             , { title: '姓名', templet: '<div><p class="hs-point hs-color-base" lay-event="detail">{{d.name}}</p></div>' }

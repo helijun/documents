@@ -28,7 +28,11 @@ return function() {
                     pname: router.getParameter('pname')
                 }, function () {
                     self.renderTable();//渲染表格
-                    layui.form.render('select');
+                    if (roleid == 1){
+                        self.getOrgListAjax()
+                    }else{
+                        layui.form.render('select');
+                    }
                     layui.laydate.render({ //渲染日期
                         elem: '#activationDate'
                         , type: 'date'
@@ -90,6 +94,31 @@ return function() {
                     success: function (json) {
                         if (json && json.code == 0) {
                             callback && callback();
+                        } else {
+                            layui.layer.msg(json.message)
+                        }
+                    }
+                })
+            },
+
+            //获取机构列表
+            getOrgListAjax: function () {
+                var self = this;
+                HSKJ.GET({
+                    url: 'system/organization/query',
+                    beforeSend: function () {
+                        HSKJ.loadingShow();
+                    },
+                    success: function (json) {
+                        if (json && json.code == 0) {
+                            var organizationListHtml = '<option value="">请选择或输入所属机构</option>';
+                            $(json.data).each(function (k, v) {
+                                organizationListHtml += '<option value="' + v.organizationid + '">' + v.name + '</option>'
+                            })
+                            console.log('organizationListHtml', organizationListHtml)
+                            $('select[name=organizationList]').html(organizationListHtml);
+                            console.log($('select[name=organizationList]').html())
+                            layui.form.render('select');
                         } else {
                             layui.layer.msg(json.message)
                         }

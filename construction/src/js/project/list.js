@@ -109,7 +109,7 @@ return function() {
 
             reloadTable: function (organizationid){
                 if(roleid == 1){
-                    organizationid = $('select[name=organizationid]').val()
+                    organizationid = $('select[name=organizationList]').val()
                 }
 
                 layui.table.reload('projectListTable', {

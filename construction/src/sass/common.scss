@@ -97,10 +97,10 @@ input:-webkit-autofill {
 	cursor: pointer;
 }
 .m-hover-href {
-	color: #000;
-	&:hover {
+	color: $base-color;
+	/*&:hover {
 		color: $base-color;
-	}
+	}*/
 }
 .hs-none {
 	display: none !important;

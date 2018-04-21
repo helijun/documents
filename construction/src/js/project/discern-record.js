@@ -61,7 +61,7 @@ return function() {
                 ];
 
                 HSKJ.renderTable({
-                    url: ENV.API + 'system/record/query',
+                    url: ENV.API + 'system/record/query?projectid=' + router.getParameter('pid'),
                     id: 'discernRecordTable',
                     elem: '#tableContent'
                     , cols: cols

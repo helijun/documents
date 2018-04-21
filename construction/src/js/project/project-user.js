@@ -32,22 +32,27 @@ define([
                 renderTable: function () {
                     var self = this;
 
+                    var cols = [ //标题栏
+                        , { title: '照片', templet: '<div><div class="element-user-face" lay-event="largeImg"><img src="{{d.facepath}}"/></div></div>' }
+                        , { title: '姓名', templet: '<div><p class="hs-point hs-color-base" lay-event="detail">{{ d.name || ""}}</p></div>' }
+                        , { field: 'enterprise', title: '劳务企业 ' }
+                        , { field: 'worktype', title: '工种' }
+                        , { field: 'belongclass', title: '班组' }
+                        , { field: 'active', title: '在职状态', templet: '<div><p >{{ d.status == 0? "离职":"在职"}}</p></div>' }
+                        , { title: '已工作时间（h）', templet: '<div>{{d.totalattendancehours || 0}}</div>'}
+                        , { field: 'enterprojecttime', title: '加入项目时间' }
+                    ]
+
+                    if(roleid != 1){
+                        cols.push({ width: 150, title: '操作', templet:'<div><div class="hs-tools"><a lay-event="edit">编辑</a><a lay-event="del">删除</a></div></div>' })
+                    }
+                    
                     HSKJ.renderTable({
                         url: ENV.API + 'system/project/employee/query?currentproject=' + router.getParameter('pid'),
                         id: 'userListTable',
                         elem: '#tableContent',
                         align: 'left'
-                        , cols: [ //标题栏
-                            , { title: '照片', templet: '<div><div class="element-user-face" lay-event="largeImg"><img src="{{d.facepath}}"/></div></div>' }
-                            , { title: '姓名', templet: '<div><p class="hs-point hs-color-base" lay-event="detail">{{ d.name || ""}}</p></div>' }
-                            , { field: 'enterprise', title: '劳务企业 ' }
-                            , { field: 'worktype', title: '工种' }
-                            , { field: 'belongclass', title: '班组' }
-                            , { field: 'active', title: '在职状态', templet: '<div><p >{{ d.status == 0? "离职":"在职"}}</p></div>' }
-                            , { title: '已工作时间（h）', templet: '<div>{{d.totalattendancehours || 0}}</div>'}
-                            , { field: 'enterprojecttime', title: '加入项目时间' }
-                            , { width: 150, title: '操作', templet:'<div><div class="hs-tools"><a lay-event="edit">编辑</a><a lay-event="del">删除</a></div></div>' }
-                        ]
+                        , cols: cols
                         , done: function () {
                             $('.element-user-list').hover(function () {
                                 $(this).find('a').removeClass('hs-none')

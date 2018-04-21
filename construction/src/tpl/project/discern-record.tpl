@@ -3,9 +3,8 @@
         <!-- 表格查询头部 -->
         <div class="hs-align-right table-search layui-form">
             <div class="layui-inline hs-float-left element-title">
-                <span href="">项目管理/ </span>
-                <a class="m-hover-href" href="#project-list" title="返回项目列表">项目列表/ </a>
-                <span href="">{{d.pname}}/ </span>
+                <a class="m-hover-href" href="#project-list" title="返回项目列表">项目列表</a>
+                <span href="">/ {{d.pname}} / </span>
                 <span>
                     <cite>识别记录</cite>
                 </span>
