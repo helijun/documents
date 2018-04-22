@@ -1,0 +1,371 @@
+@charset "utf-8";
+@import "./variables";
+@import "./function";
+@import "./mixins";
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/** 背景颜色 */
+.yjy-bgcolor-default {
+    background-color: $base-color;
+}
+/** 前景颜色 */
+.yjy-color-default {
+    color: $base-color;
+}
+/** 前景颜色 end */
+
+.tos-container {
+	width: $base-width-pc;
+    margin: 0 auto;
+}
+
+//页头
+.tos-body-header {
+	background-color: #000000;
+	.tos-header {
+		height: $header-height-pc;
+		line-height: $header-height-pc;
+		font-family: MicrosoftYaHei;
+		font-size: 14px;
+		color: #ffffff;
+
+		/* 手机 */
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			height: torem(88px);
+			display: flex;
+			align-items: center;
+			background-color: #142844;
+		}
+		/** iphone5 **/
+		@media #{$media} and ($media-min-width: $min-width-320) {
+			
+		}
+
+		/** iphone6 **/
+		@media #{$media} and ($media-min-width: $min-width-375) {
+			
+		}
+
+		/** iphone6plus **/
+		@media #{$media} and ($media-min-width: $min-width-414) {
+			
+		}
+	}
+
+	.tos-logo {
+		.tos-logo-mobile {
+			transform: scale(.6);
+			float: left;
+			margin-left: -16%;
+		}
+	}
+
+	.tos-menu-mobile {
+		line-height: torem(88px);
+		img {
+			transform: scale(.6);
+			display: flex;
+    		justify-content: flex-end;
+		}
+	}
+
+	.tos-menu-content {
+		.tos-menu-mask {
+			width: 100%;
+			height: 100%;
+			margin-top: torem(88px);
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 998;
+			background-color: rgba(0,0,0,.7);
+		}
+
+		.tos-menu-list {
+			z-index: 999;
+			position: absolute;
+			width: 100%;
+			top: 0;
+			right: 0;
+			font-size: torem(28px);
+			margin-top: torem(88px);
+			background-color: white;
+			text-align: center;
+			background-color: #eaeaea;
+			color: #333333;
+
+			dd {
+				height: torem(88px);
+				line-height: torem(88px);
+				border-bottom: 1px solid white;
+				/**&:nth-of-type(even) {
+					border-bottom: 1px solid white;
+				}**/
+			}
+		}
+	}
+
+	.layui-nav {
+		background-color: white;
+		background-color: transparent;
+
+		.layui-nav-item {
+			a {
+				font-size: $base-font-size-pc;
+				color: $article-color;
+			}
+			
+			&.layui-this {
+				a {
+					color: #cca482;
+				}
+
+				&:after {
+					height: 2px;
+					background-color: #cca482;
+				}
+				
+			}
+		}
+		
+	}
+}
+//通用的标题
+.module-common-title {
+	text-align: center;
+	padding: pcrem(35px) 0 pcrem(45px) 0;
+
+	span {
+		margin: 0 auto;
+		display: inline-block;
+		max-width: pcrem(926px);
+		font-size: pcrem(36px);
+		line-height: pcrem(36px);
+		color: $article-color;
+		padding-bottom: pcrem(10px);
+		border-bottom: 2px solid $article-color;
+		&::before {
+			
+		}
+		&::after {
+			
+		}
+	}
+}
+
+//主内容区
+.tos-body-article {
+	background-color: $article-bg-color;
+	height: auto;
+
+	.tos-chain {
+		text-align: center;
+		height: pcrem(208px);
+		.element-icon {
+			width: 68px;
+			height: 68px;
+			background-color: #757580;
+			margin: 0 auto;
+			margin-bottom: pcrem(28px);
+		}
+		.element-title {
+			font-size: pcrem(18px);
+			color: $article-color;
+			margin-bottom: pcrem(24px);
+		}
+		.element-description {
+			font-size: pcrem(14px);
+			line-height: pcrem(24px);
+			color: $gray-color;
+		}
+		.layui-col-xs4 {
+			padding: 0 pcrem(10px);
+		}
+	}
+
+	.tos-technology {
+		.element-bg {
+			margin: 0 auto;
+			width: 960px;
+			height: 320px;
+			background-image: linear-gradient(
+				#ffffff, 
+				#ffffff), 
+			linear-gradient(
+				#ffffff, 
+				#ffffff);
+			background-blend-mode: normal, 
+				normal;
+		}
+		.element-description {
+			margin-top: pcrem(20px);
+			line-height: pcrem(24px);
+			font-size: $base-font-size-pc;
+			color: $gray-color;
+		}
+	}
+
+	.tos-ownership {
+		.layui-row {
+			margin-bottom: pcrem(20px);
+		}
+
+		.element-img {
+			width: 100px;
+			height: 100px;
+			background-image: linear-gradient(
+				#757580, 
+				#757580), 
+			linear-gradient(
+				#757580, 
+				#757580);
+			background-blend-mode: normal, 
+				normal;
+		}
+		
+		.element-title {
+			font-size: pcrem(18px);
+			color: $article-color;
+			margin-top: pcrem(2px);
+			margin-bottom: pcrem(10px);
+			padding-left: pcrem(20px);
+
+		}
+		.element-description {
+			color: #49494d;
+			line-height: pcrem(18px);
+			padding-left: pcrem(20px);
+		}
+	}
+
+	.tos-advantage {
+		@extend .tos-chain;
+		height: pcrem(353px) !important;
+	}
+
+	.tos-team {
+		margin-bottom: pcrem(15px);
+		.layui-row {
+			height: pcrem(480px);
+			
+			.layui-col-xs3 {
+				padding: pcrem(8px);
+				height: pcrem(480px);
+				.element-content {
+					height: pcrem(420px);
+
+					background-image: linear-gradient(
+						#46464d, 
+						#46464d), 
+					linear-gradient(
+						#46464d, 
+						#46464d);
+					background-blend-mode: normal, 
+						normal;
+					text-align: center;
+					padding: pcrem(20px);
+
+					.element-header {
+						margin: 0 auto;
+						width: 188px;
+						height: 188px;
+						background-color: #ffffff;
+						border-radius: 50%;
+					}
+
+					.element-title {
+						font-size: pcrem(18px);
+						line-height: pcrem(22px);
+						color: $article-color;
+						margin-top: pcrem(20px);
+					}
+
+					.element-description {
+						font-size: $base-font-size-pc;
+						line-height: pcrem(20px);
+						margin-top: pcrem(40px);
+						color: #ababb3;
+						font-weight: 600;
+
+						&.element-special {
+							margin-top: pcrem(20px) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.tos-white-paper {
+		padding: pcrem(15px) 0 pcrem(55px) 0;
+
+		.element-left {
+
+			.element-content {
+				float: right;
+				margin-right: pcrem(12px);
+			}
+		}
+
+		.element-right {
+			.element-content {
+				margin-left: pcrem(12px);
+			}
+		}
+
+		.element-content {
+			width: 300px;
+			height: 88px;
+			background-image: linear-gradient(
+				#e9e9f2, 
+				#e9e9f2), 
+			linear-gradient(
+				#e9e9f2, 
+				#e9e9f2);
+			background-blend-mode: normal, 
+				normal;
+		}
+	}
+}
+
+//页脚
+.tos-body-footer {
+	background-color: #000000;
+	height: $footer-height-pc;
+	.tos-footer {
+		width: pcrem(523px);
+		margin: 0 auto;
+		text-align: center;
+
+		.layui-nav {
+			background-color: #000000;
+			a {
+				color: #7a7a80;
+
+				&:hover {
+					color: $article-color;
+				}
+			}
+		}
+		.layui-nav-bar {
+			display: none;
+		}
+
+		.all-right {
+			height: pcrem(15px);
+			font-size: $base-font-size-pc;
+			color: #49494d;
+		}
+	}
+}
+
+/** 改造layui样式 **/
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+	background-color: $article-color;
+	height: 2px;
+}

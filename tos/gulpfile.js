@@ -121,38 +121,42 @@ gulp.task('copyJs', function () {
     .pipe(gulp.dest(path.build))
 });
 
-var i18nFile = {
-    'en': '/en/index.html',
-    'zh': '/zh/index.html',
-    'zh-tw': '/zh-tw/index.html'
-}
-gulp.task('copyHtml-en', function () {
+
+
+gulp.task('copyHtml', function () {
     gulp.src(path.dev + '/index.html')
-    .pipe(rename(i18nFile['en']))
-    .pipe(gulp.dest(path.build))
+        .pipe(gulp.dest(path.build))
+    /*del([
+        path.build + '/index.html'
+    ], function(){
+        
+    });*/
 })
-gulp.task('copyHtml-zh', function () {
-    gulp.src(path.dev + '/index.html')
-    .pipe(rename(i18nFile['zh']))
-    .pipe(gulp.dest(path.build))
+
+gulp.task('moveHtml-zh', function () {
+    gulp.src(path.build + '/index.html')
+    .pipe(replace("./", "../"))
+    .pipe(gulp.dest(path.build + '/zh'))
 })
-gulp.task('copyHtml-zh-tw', function () {
-    gulp.src(path.dev + '/index.html')
-    .pipe(rename(i18nFile['zh-tw']))
-    .pipe(gulp.dest(path.build))
+gulp.task('moveHtml-zh-tw', function () {
+    gulp.src(path.build + '/index.html')
+    .pipe(replace("./", "../"))
+    .pipe(gulp.dest(path.build + '/zh-tw'))
 })
+
+
 let i18n = require(path.dev + '/assets/i18n/i18n.js');
-let i18nArrEN = ['copyHtml-en'];
-let i18nArrZH = ['copyHtml-zh'];
-let i18nArrZHTW = ['copyHtml-zh-tw'];
+let i18nArrEN = ['copyHtml'];
+let i18nArrZH = ['copyHtml'];
+let i18nArrZHTW = ['copyHtml'];
 
 for (const key in i18n) {
     i18nArrEN.push(key);
     gulp.task(key, function () {
-        return gulp.src(path.build + i18nFile['en'])
+        return gulp.src(path.build + '/index.html')
                 .pipe(cheerio(function ($) {
                     let $el = $("*[data-i18n="+ key +"]");
-                    $el.html(i18n[key]['zh-tw']);
+                    $el.html(i18n[key]['en']);
                     console.log($el.html())
                 }))
                 .pipe(gulp.dest(path.build))
@@ -160,26 +164,45 @@ for (const key in i18n) {
 }
 
 for (const key in i18n) {
-    i18nArr.push(key);
+    i18nArrZH.push(key);
     gulp.task(key, function () {
-        return gulp.src(path.build + '/index-zh-tw.html')
+        return gulp.src(path.build + '/index.html')
                 .pipe(cheerio(function ($) {
                     let $el = $("*[data-i18n="+ key +"]");
-                    $el.html(i18n[key]['zh-tw']);
+                    $el.html(i18n[key]['zh']);
+                    console.log('key', key)
+                    console.log('value', i18n[key]['zh'])
                     console.log($el.html())
                 }))
                 .pipe(gulp.dest(path.build))
     });
 }
+i18nArrZH.push('moveHtml-zh');
 
-gulp.task('i18n', function(done) {
+for (const key in i18n) {
+    i18nArrZHTW.push(key + '-zh-tw');
+    gulp.task(key + '-zh-tw', function () {
+        return gulp.src(path.build + '/index.html')
+                .pipe(cheerio(function ($) {
+                    let $el = $("*[data-i18n="+ key +"]");
+                    $el.html(i18n[key]['zh-tw']);
+                    console.log('key', key)
+                    console.log('value', i18n[key]['zh-tw'])
+                    console.log($el.html())
+                }))
+                .pipe(gulp.dest(path.build))
+    });
+}
+i18nArrZHTW.push('moveHtml-zh-tw');
+
+gulp.task('i18n:zh-tw', function(done) {
     condition = false;
 
     function doCallback(fn,args){    
         fn.apply(this, args);  
     } 
-    i18nArr.push(done);
-    doCallback(runSequence, i18nArr)
+    i18nArrZHTW.push(done);
+    doCallback(runSequence, i18nArrZHTW)
 })
 
 gulp.task('i18n:zh', function(done) {
@@ -188,8 +211,9 @@ gulp.task('i18n:zh', function(done) {
     function doCallback(fn,args){    
         fn.apply(this, args);  
     } 
-    i18nArr.push(done);
-    doCallback(runSequence, i18nArr)
+    i18nArrZH.push(done);
+    console.log('i18n:zh', i18nArrZH)
+    doCallback(runSequence, i18nArrZH)
 })
 
 gulp.task('i18n:en', function(done) {
@@ -202,43 +226,12 @@ gulp.task('i18n:en', function(done) {
     doCallback(runSequence, i18nArr)
 })
 
-//i18n输出
-gulp.task('i18n2', function () {
-    let i18n = require(path.dev + '/assets/i18n/i18n.js');
-    gulp.src(path.dev + '/index.html')
-        .pipe(rename('index-zh-tw.html'))
+//复制src
+gulp.task('copySrc',function(){
+    gulp.src([
+              path.dev + '/src/assets/**.*', '!/src/assets/sass/**.*','!index.html'
+         ])
         .pipe(gulp.dest(path.build))
-
-    console.log('Please wait a moment.');
-
-    setTimeout(function(){
-        for (const key in i18n) {
-            gulp.src(path.build + '/index-zh-tw.html')
-                .pipe(cheerio(function ($) {
-                    let $el = $("*[data-i18n="+ key +"]");
-                    $el.html(i18n[key].en);
-                    console.log($el.html())
-                }))
-                .pipe(gulp.dest(path.build))
-        }
-    }, 2500)
-});
-
-//复制并压缩图片
-gulp.task('copyImage',function(){
-    gulp.src([
-              path.dev + '/images/**/**.*'
-         ])
-        //.pipe(imageMin({progressive: true}))
-        .pipe(gulp.dest(path.build + '/images'))
-})
-
-//复制字体文件
-gulp.task('copyFont',function(){
-    gulp.src([
-              path.dev + '/fonts/**/**.*'
-         ])
-        .pipe(gulp.dest(path.build + '/fonts'))
 })
 
 //先删除原来的dist
@@ -252,14 +245,7 @@ gulp.task('clean:dist', function (cb) {
 gulp.task('build', function(done) {
     condition = false;
     runSequence(//按顺序运行
-        ['revJs'],
-        ['revCss'],
-        ['revHtml'],
-        ['copyImage'],
-        ['copyJs'],
-        ['replace'],
-        ['copyCss'],
-        ['copyFont'],
+        'copySrc',
         done);
 })
 
