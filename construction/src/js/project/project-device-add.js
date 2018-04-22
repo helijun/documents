@@ -41,7 +41,6 @@ define([
                 },
 
                 formVerify: function(){
-                    return; //TODO
                     layui.form.verify({
                         deviceid: function (value, item) { //value：表单的值、item：表单的DOM对象，macaddress 对应form 里lay-filter
                             if (/^[\u4e00-\u9fa5],{0,}$/.test(value)) {

@@ -38,7 +38,7 @@ define([
                         , { field: 'enterprise', title: '劳务企业 ' }
                         , { field: 'worktype', title: '工种' }
                         , { field: 'belongclass', title: '班组' }
-                        , { field: 'active', title: '在职状态', templet: '<div><p >{{ d.status == 0? "离职":"在职"}}</p></div>' }
+                        , { field: 'active', title: '在职状态', templet: '<div><p >{{ d.inservicestate == 0? "离职":"在职"}}</p></div>' }
                         , { title: '已工作时间（h）', templet: '<div>{{d.totalattendancehours || 0}}</div>'}
                         , { field: 'enterprojecttime', title: '加入项目时间' }
                     ]

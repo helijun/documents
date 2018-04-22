@@ -29,6 +29,7 @@ require.config({
         lrz: 'plugin/lrz/lrz.bundle',
         jqweui: 'plugin/jqweui/js/jquery-weui.min',
         dateFormat: 'plugin/util/dateFormat',
+        formUtil: 'plugin/util/formUtil'
     },
     shim: {
         underscore: {
@@ -52,6 +53,10 @@ require.config({
         },
         common: {
             deps: ['jquery', 'cookie'],
+            exports: '$'
+        },
+        formUtil: {
+            deps: ['jquery'],
             exports: '$'
         },
         jqweui: {

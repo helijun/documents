@@ -72,8 +72,8 @@ return function() {
                 ];
 
                 if (roleid != 1){
-                    projectNameHtml.push('<a class="layui-icon hs-none" lay-event="edit" title="编辑">&#xe642;</a>');
-                    projectNameHtml.push('<a class="layui-icon hs-none" lay-event="del" title="删除">&#xe640;</a>');
+                    projectNameHtml.push('<a class="layui-icon hs-none" lay-event="edit" data-status={{d.status}} title="编辑">&#xe642;</a>');
+                    projectNameHtml.push('<a class="layui-icon hs-none" lay-event="del" data-status={{d.status}} title="删除">&#xe640;</a>');
                 }
                 projectNameHtml.push('</div>');
 
@@ -99,7 +99,13 @@ return function() {
                     , cols: cols
                     , done: function(){
                         $('.element-project-list').hover(function () {
-                            $(this).find('a').removeClass('hs-none')
+                            if(
+                                $(this).children('.layui-icon').attr('data-status') != 3
+                            ){
+                                $(this).find('a').removeClass('hs-none')
+                            }else{
+                                $(this).find('a[title=删除]').removeClass('hs-none')
+                            }
                         }, function () {
                             $(this).find('a').addClass('hs-none')
                         })

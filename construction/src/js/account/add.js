@@ -47,24 +47,7 @@ return function (roleid, parentJs) {
 
             formVerify: function(){
                 layui.form.verify({
-                    macaddress: function (value, item) { //value：表单的值、item：表单的DOM对象，macaddress 对应form 里lay-filter
-                        //if (/^\d+\d+\d$/.test(value)) {
-                        //    return 'Mac地址不能全为数字';
-                        //}
-                        if (/^[\u4e00-\u9fa5],{0,}$/.test(value)) {
-                            return 'Mac地址不能为中文';
-                        }
-                        //if (/^[^%&',;=?$\x22]+/.test(value)) {
-                        //    return 'Mac地址不能有特殊字符';
-                        //}
-
-                        //([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}
-                        // /^[A-F0-9]{2}(-[A-F0-9]{2}){5}$|^[A-F0-9]{2}(:[A-F0-9]{2}){5}$/
-                        if (!new RegExp("^([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}$").test(value)) {
-                            return 'Mac地址格式不正确';
-                        }
-                        
-                    }
+                    
                 });   
             },
 

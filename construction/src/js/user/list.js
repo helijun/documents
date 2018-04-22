@@ -38,6 +38,8 @@ define([
                 renderTable: function () {
                     var self = this;
 
+                    //inservicestate：在职状态（1：在职；0：离职）
+                    //status：当前工作状态（1：工作中，0：空闲）
                     var url = ENV.API + 'system/project/employee/query';
                     if(roleid != 1) {
                         url += '?organizationid=' + HSKJ.getUserInfo('organizationid');

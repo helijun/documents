@@ -12,7 +12,6 @@ define([
 return function() {
     HSKJ.ready(function () {
         var roleid = HSKJ.getUserInfo('roleid');
-        window.roleid = roleid;
         console.log('roleid', roleid);
         var attendanceList = {
             init: function () {
@@ -27,9 +26,26 @@ return function() {
             renderHtml: function() {
                 var self = this;
                 
-                HSKJ.renderTpl('.module-container', 'text!tpl/project/attendance-manage.tpl', { pname: router.getParameter('pname')}, function () {
+                HSKJ.renderTpl('.module-container', 'text!tpl/project/attendance-manage.tpl', { 
+                    pname: router.getParameter('pname'),
+                    roleid: roleid
+                }, function () {
                     self.renderTable();//渲染表格
                     layui.form.render('radio');
+                    
+                    //获取劳务企业
+                    HSKJ.getSystemparameter('enterprise', function(data){
+                        console.log('劳务企业', data)
+                        var html = '<option>全部</option>';
+                        $(data[0].list).each(function(k, v){
+                            console.log('v', v)
+                            html += '<option value="'+ v.value +'">'+ v.title +'</option>'
+                        })
+                        $('#enterprise').html(html);
+                        layui.form.render('select');
+                    })
+
+                    //enterprise
                     layui.laydate.render({ //渲染日期
                         elem: '#dateRange'
                         , type: 'date'
@@ -84,6 +100,7 @@ return function() {
                 layui.table.reload('attendanceListTable', {
                     where: { 
                         name: $("#keyword").val(),
+                        enterprise: $('select[name=enterprise] option:selected').html() == '全部'? '': $('select[name=enterprise] option:selected').html(),
                         startdate: $('#dateRange').val().split(' ~ ')[0] || dateFormat.utils.getFistDay(),
                         enddate: $('#dateRange').val().split(' ~ ')[1] || dateFormat.utils.getLastDay()
                     }

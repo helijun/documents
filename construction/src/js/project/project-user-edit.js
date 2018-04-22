@@ -44,6 +44,7 @@ define([
                         pid: router.getParameter('pid'),
                         userData: userData
                     }, function () {
+                        self.formVerify();
                         layui.form.render('select');
 
                         layui.laydate.render({ //渲染安全教育日期
@@ -122,6 +123,16 @@ define([
                         //加载省份
                         self.loadProvince();
                     })
+                },
+
+                formVerify: function(){
+                    layui.form.verify({
+                        idcard: function (value, item) { //value：表单的值、item：表单的DOM对象，macaddress 对应form 里lay-filter
+                            if(!formUtil.IdentityCodeValid(value)){
+                                return '身份证号码不正确';
+                            }
+                        }
+                    });   
                 },
 
                 loadProvince: function() {
@@ -210,10 +221,19 @@ define([
                         //employeeid: userData.employeeid,
                         datanumber: userData.datanumber,
                         organizationid: HSKJ.getUserInfo('organizationid'),
-                        facedata: '['+ self.data.facedata[0].toString() + ']',
-                        facepath: self.data.facepath,
-                        currentproject: router.getParameter('pid')
+                        currentproject: router.getParameter('pid'),
+                        district: $('select[name=area] option:selected').html(), 
+                        city: $('select[name=city] option:selected').html(),
+                        province: $('select[name=province] option:selected').html(),
                     }
+
+                    if(self.data.facedata){
+                        json.facedata = '['+ self.data.facedata[0].toString() + ']';
+                    }
+                    if(self.data.facepath){
+                        json.facepath = self.data.facepath;
+                    }
+
                     HSKJ.POST({
                         url: 'system/project/employee/update',
                         data: Object.assign(data.field, json),

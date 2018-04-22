@@ -1,12 +1,14 @@
 define([
     'jquery',
     'common',
+    'formUtil',
     'layuiAll',
     'area',
     'css!css/project/project-user-add'
 ], function (
     $,
-    HSKJ
+    HSKJ,
+    formUtil
 ) {     
     var roleid = HSKJ.getUserInfo('roleid');
 
@@ -31,8 +33,9 @@ define([
                         pname: router.getParameter('pname'),
                         pid: router.getParameter('pid'),
                     }, function () {
+                        self.formVerify();
                         layui.form.render('select');
-
+                        
                         layui.laydate.render({ //渲染安全教育日期
                             elem: '#secureeducationdate'
                             , type: 'date'
@@ -104,6 +107,16 @@ define([
                         //加载省份
                         self.loadProvince();
                     })
+                },
+
+                formVerify: function(){
+                    layui.form.verify({
+                        idcard: function (value, item) { //value：表单的值、item：表单的DOM对象，macaddress 对应form 里lay-filter
+                            if(!formUtil.IdentityCodeValid(value)){
+                                return '身份证号码不正确';
+                            }
+                        }
+                    });   
                 },
 
                 loadProvince: function () {
@@ -186,6 +199,9 @@ define([
                         facepath: self.data.facepath,
                         // enterprojecttime: '2018-02-01',
                         // inservicestate: 1,
+                        district: $('select[name=area] option:selected').html(), 
+                        city: $('select[name=city] option:selected').html(),
+                        province: $('select[name=province] option:selected').html(),
                         currentproject: router.getParameter('pid')
                     }
                     HSKJ.POST({
