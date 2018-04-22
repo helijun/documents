@@ -1,4 +1,4 @@
-# 禾思科技-会议签到系统
+# construction
 
 ## 结构介绍
 - 使用传统jquery+requirejs+template 实现一个轻量单页面组件化的架构
