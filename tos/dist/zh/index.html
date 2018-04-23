@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
+	<meta charset="UTF-8">
 	<title>TOS</title>
 	<link rel="icon" type="image/x-icon" href="">
 	<link rel="stylesheet" href="../plugin/layui/css/layui.css">
@@ -11,7 +12,7 @@
 <body>
 	<div class="module-first-prtSc">
 		<header class="tos-body-header">
-			<div class="tos-container layui-header tos-header">
+			<div class="layui-header tos-header">
 				<div class="layui-logo tos-logo">
 					<a href="../index.html">
 						<img class="layui-hide-xs" src=".../.../img/logo/logo-new.png">
@@ -196,7 +197,7 @@
 					<div class="element-content">
 						<div class="element-header"></div>
 						<div class="element-title" data-i18n="architect">李球 首席架构师</div>
-						<div class="element-description" data-i18n="architectintro">曾任平安金融科技高级工程师。<br>曾任华为心声社区移动端项目经理。</div>
+						<div class="element-description element-special" data-i18n="architectintro">曾任平安金融科技高级工程师。<br>曾任华为心声社区移动端项目经理。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
@@ -251,8 +252,6 @@
 					<li class="layui-nav-item">
 						<a class="nav-href" href="">Facebook</a>
 					</li>
-				</ul>
-				<ul class="layui-nav layui-hide-xs">
 					<li class="layui-nav-item">
 						<a class="nav-href" href="">Telegram</a>
 					</li>
@@ -292,39 +291,4 @@
 		});        
 	</script>
 </body>
-</html> class="layui-nav-item">
-						<a class="nav-href" href="">Instagram</a>
-					
-					<li class="layui-nav-item">
-						<a class="nav-href" href="">youtube</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="">Medium</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="">Reddit</a>
-					</li>
-				
-			
-			<div class="all-right">
-				TOS Foundation, All right reserved.
-			</div>
-		
-	
-	<script src="../plugin/layui/layui.all.js"></script>
-	<script>
-		layui.form.render('select');
-		layui.form.on('select(changeLanguage)', function(data){
-			//console.log(data.elem[0].getAttribute('data-href'));
-			var href = '';
-			if(data.elem.value == 'English'){
-				href = '../index.html';
-			}else if(data.elem.value == '简体中文'){
-				href = '../zh/index.html';
-			}else if(data.elem.value == '繁体中文'){
-				href = '../zh-tw/index.html';
-			}
-			window.location.href = href;
-		});        
-	</script>
-
+</html>

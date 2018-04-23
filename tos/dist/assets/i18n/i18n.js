@@ -1,5 +1,5 @@
 module.exports = {
-  "toschain":{ //命名不能重复，不能含有 - 等特殊字符
+  "toschain":{ //命名不能重复，不能含有 - & 等特殊字符
     "zh": "TOS",//简体中文
     "zh-tw": "TOS",//繁体中文
     "en": "TOS"//英文

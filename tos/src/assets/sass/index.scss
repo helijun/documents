@@ -6,7 +6,8 @@
 html,
 body {
     padding: 0;
-    margin: 0;
+	margin: 0;
+	font-size: 14px;
 }
 
 /** 背景颜色 */
@@ -21,7 +22,11 @@ body {
 
 .tos-container {
 	width: $base-width-pc;
-    margin: 0 auto;
+	margin: 0 auto;
+	
+	@media #{$media} and ($media-max-width: $max-width-1366) {
+		width: pcrem(970px) !important;
+	}
 }
 
 //首屏
@@ -43,12 +48,20 @@ body {
 			line-height: pcrem(100px);
 			letter-spacing: 2px;
 			color: #ffffff;
+
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				font-size: pcrem(30px);
+			}
 		}
 		.element-sub-title {
 			font-family: MicrosoftYaHei-Bold;
 			font-size: pcrem(16px);
 			letter-spacing: 1px;
 			color: #ffffff;
+
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				font-size: pcrem(14px);
+			}
 		}
 	}
 }
@@ -70,6 +83,11 @@ body {
 		font-family: MicrosoftYaHei;
 		font-size: 14px;
 		color: #ffffff;
+
+		@media #{$media} and ($media-max-width: $max-width-1366) {
+			height: pcrem(84px);
+			line-height: pcrem(84px);
+		}
 
 		.layui-layout-right {
 			top: pcrem(16px);
@@ -180,7 +198,7 @@ body {
 //通用的标题
 .module-common-title {
 	text-align: center;
-	padding: pcrem(35px) 0 pcrem(45px) 0;
+	padding: pcrem(80px) 0 pcrem(45px) 0;
 
 	span {
 		margin: 0 auto;
@@ -191,6 +209,10 @@ body {
 		color: $title-color;
 		padding-bottom: pcrem(10px);
 		border-bottom: 2px solid $title-color;
+
+		@media #{$media} and ($media-max-width: $max-width-1366) {
+			font-size: pcrem(32px);
+		}
 		&::before {
 			
 		}
@@ -201,6 +223,7 @@ body {
 }
 
 .elment-special-title {
+	padding: pcrem(40px) 0 pcrem(45px) 0;
 	span {
 		color: #c5d4e2;
 		border-bottom: 2px solid #c5d4e2;
@@ -226,6 +249,10 @@ body {
 			font-size: pcrem(18px);
 			color: $blod-color;
 			margin-bottom: pcrem(24px);
+
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				font-size: pcrem(16px);
+			}
 		}
 		.element-description {
 			font-size: pcrem(14px);
@@ -277,11 +304,19 @@ body {
 			margin-bottom: pcrem(10px);
 			padding-left: pcrem(20px);
 
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				padding-left: pcrem(40px);
+				padding-top: pcrem(10px);
+			}
 		}
 		.element-description {
 			color: #49494d;
 			line-height: pcrem(18px);
 			padding-left: pcrem(20px);
+
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				padding-left: pcrem(40px);
+			}
 		}
 	}
 
@@ -328,13 +363,24 @@ body {
 
 					.element-description {
 						font-size: $base-font-size-pc;
+
+						@media #{$media} and ($media-max-width: $max-width-1366) {
+							line-height: pcrem(17px);
+						}
+
 						line-height: pcrem(20px);
 						margin-top: pcrem(40px);
 						color: #ababb3;
 						font-weight: 600;
 
+						@media #{$media} and ($media-max-width: $max-width-1366) {
+							margin-top: pcrem(20px) !important;
+						}
 						&.element-special {
 							margin-top: pcrem(20px) !important;
+							@media #{$media} and ($media-max-width: $max-width-1366) {
+								margin-top: pcrem(10px) !important;
+							}
 						}
 					}
 				}
@@ -378,8 +424,17 @@ body {
 .tos-body-footer {
 	background-color: #000000;
 	height: $footer-height-pc;
+	.contact-us {
+		padding-top: pcrem(20px);
+
+		@media #{$media} and ($media-max-width: $max-width-1366) {
+			padding-top: 0;
+		}
+	}
+	@media #{$media} and ($media-max-width: $max-width-1366) {
+		height: pcrem(60px);
+	}
 	.tos-footer {
-		width: pcrem(623px);
 		margin: 0 auto;
 		text-align: center;
 
@@ -391,6 +446,9 @@ body {
 			a {
 				color: #7a7a80;
 				font-size: pcrem(18px);
+				@media #{$media} and ($media-max-width: $max-width-1366) {
+					font-size: pcrem(14px);
+				}
 
 				&:hover {
 					color: $article-color;
@@ -402,6 +460,9 @@ body {
 		}
 
 		.all-right {
+			@media #{$media} and ($media-max-width: $max-width-1366) {
+				font-size: pcrem(12px);
+			}
 			height: pcrem(15px);
 			font-size: $base-font-size-pc;
 			color: #49494d;

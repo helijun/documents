@@ -136,14 +136,15 @@ gulp.task('copyHtml', function () {
 gulp.task('moveHtml-zh', function () {
     gulp.src(path.build + '/index.html')
     .pipe(replace("./", "../"))
+    .pipe(replace('lang="en"', 'lang="zh-CN"'))
     .pipe(gulp.dest(path.build + '/zh'))
 })
 gulp.task('moveHtml-zh-tw', function () {
     gulp.src(path.build + '/index.html')
     .pipe(replace("./", "../"))
+    .pipe(replace('lang="en"', 'lang="zh-cmn-Hant"'))
     .pipe(gulp.dest(path.build + '/zh-tw'))
 })
-
 
 let i18n = require(path.dev + '/assets/i18n/i18n.js');
 let i18nArrEN = ['copyHtml'];

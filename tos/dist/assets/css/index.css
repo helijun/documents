@@ -22,7 +22,8 @@
 html,
 body {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  font-size: 14px; }
 
 /** 背景颜色 */
 .yjy-bgcolor-default {
@@ -36,6 +37,9 @@ body {
 .tos-container {
   width: 1200px;
   margin: 0 auto; }
+  @media screen and (max-width: 1366px) {
+    .tos-container {
+      width: 69.28571rem !important; } }
 
 .module-first-prtSc {
   height: 100vh;
@@ -54,11 +58,17 @@ body {
       line-height: 7.14286rem;
       letter-spacing: 2px;
       color: #ffffff; }
+      @media screen and (max-width: 1366px) {
+        .module-first-prtSc .module-slogan .element-title {
+          font-size: 2.14286rem; } }
     .module-first-prtSc .module-slogan .element-sub-title {
       font-family: MicrosoftYaHei-Bold;
       font-size: 1.14286rem;
       letter-spacing: 1px;
       color: #ffffff; }
+      @media screen and (max-width: 1366px) {
+        .module-first-prtSc .module-slogan .element-sub-title {
+          font-size: 1rem; } }
 
 .module-color-change {
   background: #020c21;
@@ -80,6 +90,10 @@ body {
     /** iphone5 **/
     /** iphone6 **/
     /** iphone6plus **/ }
+    @media screen and (max-width: 1366px) {
+      .tos-body-header .tos-header {
+        height: 6rem;
+        line-height: 6rem; } }
     .tos-body-header .tos-header .layui-layout-right {
       top: 1.14286rem;
       line-height: 2.14286rem;
@@ -142,7 +156,7 @@ body {
 
 .module-common-title {
   text-align: center;
-  padding: 2.5rem 0 3.21429rem 0; }
+  padding: 5.71429rem 0 3.21429rem 0; }
   .module-common-title span {
     margin: 0 auto;
     display: inline-block;
@@ -152,10 +166,15 @@ body {
     color: #0c3c6c;
     padding-bottom: 0.71429rem;
     border-bottom: 2px solid #0c3c6c; }
+    @media screen and (max-width: 1366px) {
+      .module-common-title span {
+        font-size: 2.28571rem; } }
 
-.elment-special-title span {
-  color: #c5d4e2;
-  border-bottom: 2px solid #c5d4e2; }
+.elment-special-title {
+  padding: 2.85714rem 0 3.21429rem 0; }
+  .elment-special-title span {
+    color: #c5d4e2;
+    border-bottom: 2px solid #c5d4e2; }
 
 .tos-body-article {
   background-color: #f2f2f2;
@@ -173,6 +192,9 @@ body {
       font-size: 1.28571rem;
       color: #1a1a1a;
       margin-bottom: 1.71429rem; }
+      @media screen and (max-width: 1366px) {
+        .tos-body-article .tos-chain .element-title, .tos-body-article .tos-advantage .element-title {
+          font-size: 1.14286rem; } }
     .tos-body-article .tos-chain .element-description, .tos-body-article .tos-advantage .element-description {
       font-size: 1rem;
       line-height: 1.71429rem;
@@ -203,10 +225,17 @@ body {
     margin-top: 0.14286rem;
     margin-bottom: 0.71429rem;
     padding-left: 1.42857rem; }
+    @media screen and (max-width: 1366px) {
+      .tos-body-article .tos-ownership .element-title {
+        padding-left: 2.85714rem;
+        padding-top: 0.71429rem; } }
   .tos-body-article .tos-ownership .element-description {
     color: #49494d;
     line-height: 1.28571rem;
     padding-left: 1.42857rem; }
+    @media screen and (max-width: 1366px) {
+      .tos-body-article .tos-ownership .element-description {
+        padding-left: 2.85714rem; } }
   .tos-body-article .tos-advantage {
     height: 25.21429rem !important; }
   .tos-body-article .tos-team {
@@ -240,8 +269,17 @@ body {
             margin-top: 2.85714rem;
             color: #ababb3;
             font-weight: 600; }
+            @media screen and (max-width: 1366px) {
+              .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
+                line-height: 1.21429rem; } }
+            @media screen and (max-width: 1366px) {
+              .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
+                margin-top: 1.42857rem !important; } }
             .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
               margin-top: 1.42857rem !important; }
+              @media screen and (max-width: 1366px) {
+                .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
+                  margin-top: 0.71429rem !important; } }
   .tos-body-article .tos-white-paper {
     padding: 1.07143rem 0 3.92857rem 0; }
     .tos-body-article .tos-white-paper .element-left .element-content {
@@ -259,8 +297,15 @@ body {
 .tos-body-footer {
   background-color: #000000;
   height: 106px; }
+  .tos-body-footer .contact-us {
+    padding-top: 1.42857rem; }
+    @media screen and (max-width: 1366px) {
+      .tos-body-footer .contact-us {
+        padding-top: 0; } }
+  @media screen and (max-width: 1366px) {
+    .tos-body-footer {
+      height: 4.28571rem; } }
   .tos-body-footer .tos-footer {
-    width: 44.5rem;
     margin: 0 auto;
     text-align: center; }
     .tos-body-footer .tos-footer .layui-nav {
@@ -270,6 +315,9 @@ body {
       .tos-body-footer .tos-footer .layui-nav a {
         color: #7a7a80;
         font-size: 1.28571rem; }
+        @media screen and (max-width: 1366px) {
+          .tos-body-footer .tos-footer .layui-nav a {
+            font-size: 1rem; } }
         .tos-body-footer .tos-footer .layui-nav a:hover {
           color: #fff; }
     .tos-body-footer .tos-footer .layui-nav-bar {
@@ -278,6 +326,9 @@ body {
       height: 1.07143rem;
       font-size: 14px;
       color: #49494d; }
+      @media screen and (max-width: 1366px) {
+        .tos-body-footer .tos-footer .all-right {
+          font-size: 0.85714rem; } }
 
 /** 改造layui样式 **/
 .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
