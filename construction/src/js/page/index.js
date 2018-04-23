@@ -19,17 +19,18 @@ require([
             init: function () {
                 this.checkPrtSc();
                 this.getAttendanceAjax();
+                this.getOutlineAllAjax();
                 this.getProjectsAjax();
                 this.renderDate();
                 this.renderPie();
-                this.renderMap();
                 this.setInterval();
                 this.wactch();
             },
 
             data: {
-                startdate: dateFormat.utils.getFistDay(-1),
-                enddate: dateFormat.utils.getLastDay(-1)
+                startdate: dateFormat.utils.modified(new Date(), 30, '-'),
+                enddate: dateFormat.utils.modified(new Date(), 1, '-'),
+                mapData: []
             },
 
             renderHtml: function (data) {
@@ -47,7 +48,18 @@ require([
                     },
                     success: function (json) {
                         if (json && json.code == 0) {
-                            $('#projectList').html(layui.laytpl(projectListTpl.innerHTML).render(json.data || {}))
+                            $('#projectList').html(layui.laytpl(projectListTpl.innerHTML).render(json.data || {}));
+                            for(var item in json.data){
+                                self.data.mapData.push({
+                                    name: json.data[item].name,
+                                    value: [
+                                        Math.floor(json.data[item].longitude * 100) / 100,
+                                        Math.floor(json.data[item].latitude * 100) / 100,
+                                        json.data[item].employeeCount * 10
+                                    ]
+                                })
+                            }
+                            self.renderMap();
                         } else {
                             layui.layer.msg(json.message)
                         }
@@ -58,7 +70,6 @@ require([
             //获取考勤统计（下边）
             getAttendanceAjax: function(){
                 var self = this;
-
                 
                 HSKJ.POST({
                     url: 'system/hq/outline/attendance',
@@ -76,6 +87,22 @@ require([
                             $('#month').val(new Date().getMonth());
                             //TODO 
                             self.renderCategory(json.data);
+                        } else {
+                            layui.layer.msg(json.message)
+                        }
+                    }
+                })
+            },
+
+            //获取总项目数（左上）
+            getOutlineAllAjax: function(){
+                var self = this;
+                
+                HSKJ.POST({
+                    url: 'system/hq/outline/all',
+                    success: function (json) {
+                        if (json && json.code == 0) {
+                            $('#employeeTotal').html(json.data.employeeTotal);
                         } else {
                             layui.layer.msg(json.message)
                         }
@@ -184,7 +211,7 @@ require([
 
             //地图散点图
             renderMap: function(){
-
+                var self = this;
                 var data = glMapData;
                 var convertData = function (data) {
                     var res = [];
@@ -200,6 +227,11 @@ require([
                     return res;
                 };
 
+                console.log(convertData(data));
+                console.log('mapData', self.data.mapData);
+                console.log(convertData(data.sort(function (a, b) {
+                    return b.value - a.value;
+                }).slice(0, 6)))
                 var option = {
                     title: {
                         text: '总项目分布情况',
@@ -215,7 +247,7 @@ require([
                         orient: 'vertical',
                         y: 'bottom',
                         x: 'left',
-                        data: ['pm2.5', 'Top 5'],
+                        data: ['所有项目', '人员Top 5'],
                         textStyle: {
                             color: '#49596b'
                         }
@@ -240,10 +272,10 @@ require([
                     },
                     series: [
                         {
-                            name: 'pm2.5',
+                            name: '所有项目',
                             type: 'scatter',
                             coordinateSystem: 'geo',
-                            data: convertData(data),
+                            data: self.data.mapData,
                             symbolSize: function (val) {
                                 return val[2] / 10;
                             },
@@ -264,12 +296,12 @@ require([
                             }
                         },
                         {
-                            name: 'Top 5',
+                            name: '人员Top 5',
                             type: 'effectScatter',
                             coordinateSystem: 'geo',
-                            data: convertData(data.sort(function (a, b) {
+                            data: self.data.mapData.sort(function (a, b) {
                                 return b.value - a.value;
-                            }).slice(0, 6)),
+                            }).slice(0, 6),
                             symbolSize: function (val) {
                                 return val[2] / 10;
                             },
