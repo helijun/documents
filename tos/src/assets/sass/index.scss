@@ -24,7 +24,7 @@ body {
 	width: $base-width-pc;
 	margin: 0 auto;
 	
-	@media #{$media} and ($media-max-width: $max-width-1366) {
+	@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440){
 		width: pcrem(970px) !important;
 	}
 }
@@ -49,7 +49,7 @@ body {
 			letter-spacing: 2px;
 			color: #ffffff;
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(30px);
 			}
 		}
@@ -59,7 +59,7 @@ body {
 			letter-spacing: 1px;
 			color: #ffffff;
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(14px);
 			}
 		}
@@ -84,7 +84,7 @@ body {
 		font-size: 14px;
 		color: #ffffff;
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			height: pcrem(84px);
 			line-height: pcrem(84px);
 		}
@@ -137,27 +137,6 @@ body {
 				}
 			}
 		}
-		/* 手机 */
-		@media #{$media} and ($media-max-width: $max-width-768) {
-			height: torem(88px);
-			display: flex;
-			align-items: center;
-			background-color: #142844;
-		}
-		/** iphone5 **/
-		@media #{$media} and ($media-min-width: $min-width-320) {
-			
-		}
-
-		/** iphone6 **/
-		@media #{$media} and ($media-min-width: $min-width-375) {
-			
-		}
-
-		/** iphone6plus **/
-		@media #{$media} and ($media-min-width: $min-width-414) {
-			
-		}
 	}
 
 	.tos-logo {
@@ -177,7 +156,11 @@ body {
 				font-size: $base-font-size-pc;
 				color: $article-color;
 				line-height: pcrem(30px);
-				margin-bottom: pcrem(15px);
+				margin-bottom: pcrem(25px);
+
+				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+					margin-bottom: pcrem(15px);
+				}
 			}
 			
 			&.layui-this {
@@ -210,7 +193,7 @@ body {
 		padding-bottom: pcrem(10px);
 		border-bottom: 2px solid $title-color;
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			font-size: pcrem(32px);
 		}
 		&::before {
@@ -250,7 +233,7 @@ body {
 			color: $blod-color;
 			margin-bottom: pcrem(24px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(16px);
 			}
 		}
@@ -304,7 +287,7 @@ body {
 			margin-bottom: pcrem(10px);
 			padding-left: pcrem(20px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				padding-left: pcrem(40px);
 				padding-top: pcrem(10px);
 			}
@@ -314,7 +297,7 @@ body {
 			line-height: pcrem(18px);
 			padding-left: pcrem(20px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				padding-left: pcrem(40px);
 			}
 		}
@@ -364,7 +347,7 @@ body {
 					.element-description {
 						font-size: $base-font-size-pc;
 
-						@media #{$media} and ($media-max-width: $max-width-1366) {
+						@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 							line-height: pcrem(17px);
 						}
 
@@ -373,12 +356,12 @@ body {
 						color: #ababb3;
 						font-weight: 600;
 
-						@media #{$media} and ($media-max-width: $max-width-1366) {
+						@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 							margin-top: pcrem(20px) !important;
 						}
 						&.element-special {
 							margin-top: pcrem(20px) !important;
-							@media #{$media} and ($media-max-width: $max-width-1366) {
+							@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 								margin-top: pcrem(10px) !important;
 							}
 						}
@@ -427,11 +410,11 @@ body {
 	.contact-us {
 		padding-top: pcrem(20px);
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			padding-top: 0;
 		}
 	}
-	@media #{$media} and ($media-max-width: $max-width-1366) {
+	@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 		height: pcrem(60px);
 	}
 	.tos-footer {
@@ -446,7 +429,7 @@ body {
 			a {
 				color: #7a7a80;
 				font-size: pcrem(18px);
-				@media #{$media} and ($media-max-width: $max-width-1366) {
+				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 					font-size: pcrem(14px);
 				}
 
@@ -460,7 +443,7 @@ body {
 		}
 
 		.all-right {
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(12px);
 			}
 			height: pcrem(15px);

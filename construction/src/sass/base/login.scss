@@ -7,6 +7,16 @@
 html,
 body {
 	height: 100%;
+	background-image: linear-gradient(-40deg, 
+		#41b7fe 34%, 
+		#50d9f6 100%), 
+	linear-gradient(0deg, 
+		#000000 0%, 
+		#ffffff 100%);
+	background-blend-mode: normal, 
+		normal;
+	box-shadow: 0px 5px 10px 0px 
+		rgba(56, 173, 255, 0.2);
 }
 
 input:-webkit-autofill {
@@ -16,7 +26,6 @@ input:-webkit-autofill {
 .page-login {
 	max-width: 100%;
     height: 100%;
-    background: url(../../img/base/bg.png) no-repeat;
 	background-size: cover;
 	display: flex;
     justify-content: center;
@@ -29,76 +38,83 @@ input:-webkit-autofill {
 		border-radius: 24px;
 	}
 	.module-login-box {
-		height: 600px;
-		width: 1094px;
-		background: url(../../img/base/login-box.png) no-repeat;
+		width: 430px;
+		height: 440px;
+		background: url(../../img/base/login-left.png) no-repeat;
+		margin-right: 110px;
+	}
+	.element-content {
+		padding: 58px;
+		background-color: #ffffff;
+		border-radius: 10px;
 
-		.element-content {
-			height: 320px;
-			padding: 130px 170px 130px 570px;
+		.element-title {
+			line-height: 18px;
+			text-align: center;
 
-			.element-title {
+			.element-login-title {
+				font-size: 24px;
 				line-height: 18px;
+				color: #333333;
+				margin-right: 20px;
+			}
+			.element-login {
+				font-size: 24px;
+				color: #41b7fe;
+			}
+			.element-regist {
+				float: right;
+				font-size: 18px;
+				line-height: 18px;
+				color: #6e7b7d;
 
-				.element-login {
-					font-size: 30px;
-					color: $base-color;
-				}
-				.element-regist {
-					float: right;
-					font-size: 18px;
-					line-height: 18px;
-					color: #6e7b7d;
-
-					i {
-						width: 18px;
-						height: 18px;
-						background: url(../../img/base/goto.png) no-repeat;
-					}
+				i {
+					width: 18px;
+					height: 18px;
+					background: url(../../img/base/goto.png) no-repeat;
 				}
 			}
+		}
 
-			.layui-form {
-				padding-top: 50px;
+		.layui-form {
+			padding-top: 50px;
 
-				.module-input-border {
-				    display: flex;
-					align-items: center;
-					margin-bottom: 12px;
-					padding: 0 22px;
-				}
-
-				.element-remember {
-
-				}
-				.element-forgot {
-					color: #6e7b7d;
-					float: right;
-					text-decoration: underline;
-					text-align: right;
-					cursor: pointer;
-					visibility: hidden;
-				}
-
-				button {
-					width: 351px;
-					height: 50px;
-					margin-top: 13px;
-					background-image: linear-gradient(
-						#5fbdff, 
-						#5fbdff), 
-					linear-gradient(
-						#5fbdff, 
-						#5fbdff);
-					background-blend-mode: normal, 
-						normal;
-					box-shadow: 0px 5px 10px 0px 
-						rgba(61, 223, 213, 0.35);
-					border-radius: 24px;
-					font-size: 18px;
-				}
+			.module-input-border {
+				display: flex;
+				align-items: center;
+				margin-bottom: 12px;
+				padding: 0 22px;
 			}
-			
+
+			.element-remember {
+
+			}
+			.element-forgot {
+				color: #6e7b7d;
+				float: right;
+				text-decoration: underline;
+				text-align: right;
+				cursor: pointer;
+				visibility: hidden;
+			}
+
+			button {
+				width: 351px;
+				height: 50px;
+				margin-top: 13px;
+				background-image: linear-gradient(-85deg, 
+					#41b7fe 34%, 
+					#50d9f6 100%), 
+				linear-gradient(0deg, 
+					#000000 0%, 
+					#ffffff 100%);
+				background-blend-mode: normal, 
+					normal;
+				box-shadow: 0px 5px 10px 0px 
+					rgba(56, 173, 255, 0.2);
+				border-radius: 10px;
+				font-size: 18px;
+			}
 		}
 	}
 
@@ -110,7 +126,9 @@ input:-webkit-autofill {
     	background-color: $base-color;
 	}
 	.layui-input {
-		border: none !important;
+		border-top: none !important;
+		border-right: none !important;
+		border-left: none !important;
 		background-color: #f8fafb;
 	}
 }

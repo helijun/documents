@@ -13,34 +13,34 @@
 
 <body>
     <div class="page-login">
-        <div class="module-login-box">
-            <div class="element-content">
-                <div class="element-title">
-                    <span class="element-login">登录</span>
-                    <!-- <a class="element-regist module-go-regist" href="#">注册
-                        <img src="../../img/icon/icon-goto.png" alt="">
-                    </a> -->
+        <div class="module-login-box"></div>
+        <div class="element-content">
+            <div class="element-title">
+                <span class="element-login-title">智慧工地管理系统</span>
+                <span class="element-login">登录</span>
+                <!-- <a class="element-regist module-go-regist" href="#">注册
+                    <img src="../../img/icon/icon-goto.png" alt="">
+                </a> -->
+            </div>
+            <div class="layui-form">
+                <div class="module-input-border">
+                    <img src="../../img/icon/icon-user.png" alt="">
+                    <input type="tel" name="username" lay-verify="required" placeholder="请输入用户账号" autocomplete="off" class="layui-input" maxlength="11">
                 </div>
-                <div class="layui-form">
-                    <div class="module-input-border">
-                        <img src="../../img/icon/icon-user.png" alt="">
-                        <input type="tel" name="username" lay-verify="required" placeholder="请输入用户账号" autocomplete="off" class="layui-input" maxlength="11">
-                    </div>
-                    <div class="module-input-border">
-                        <img src="../../img/icon/icon-pwd.png" alt="">
-                        <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
-                    </div>
+                <div class="module-input-border">
+                    <img src="../../img/icon/icon-pwd.png" alt="">
+                    <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                </div>
 
-                    <div class="layui-form-item ">
-                        <div class="layui-input-inline element-remember">
-                            <input type="checkbox" name="isRemember" lay-skin="primary" title="记住密码" checked="">
-                        </div>
-                        <a class="layui-form-label element-forgot module-go-forgot">忘记密码？</a>
+                <div class="layui-form-item ">
+                    <div class="layui-input-inline element-remember">
+                        <input type="checkbox" name="isRemember" lay-skin="primary" title="记住密码" checked="">
                     </div>
-                    
-                    <div class="layui-form-item">
-                        <button class="layui-btn" lay-submit="doLogin" lay-filter="doLogin" id="doLogin">登录</button>
-                    </div>
+                    <a class="layui-form-label element-forgot module-go-forgot">忘记密码？</a>
+                </div>
+                
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit="doLogin" lay-filter="doLogin" id="doLogin">登录</button>
                 </div>
             </div>
         </div>

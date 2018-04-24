@@ -1,24 +1,4 @@
 @charset "UTF-8";
-/** media start **/
-/** media end ---------------------------------------   **/
-/** pc base **/
-/** pc base end ---------------------------------------   **/
-/** mobile base **/
-/** media start **/
-/** media end ---------------------------------------   **/
-/** pc base **/
-/** pc base end ---------------------------------------   **/
-/** mobile base **/
-/** media start **/
-/** media end ---------------------------------------   **/
-/** pc base **/
-/** pc base end ---------------------------------------   **/
-/** mobile base **/
-/** media start **/
-/** media end ---------------------------------------   **/
-/** pc base **/
-/** pc base end ---------------------------------------   **/
-/** mobile base **/
 html,
 body {
   padding: 0;
@@ -37,7 +17,7 @@ body {
 .tos-container {
   width: 1200px;
   margin: 0 auto; }
-  @media screen and (max-width: 1366px) {
+  @media screen and (min-width: 1200px) and (max-width: 1440px) {
     .tos-container {
       width: 69.28571rem !important; } }
 
@@ -58,7 +38,7 @@ body {
       line-height: 7.14286rem;
       letter-spacing: 2px;
       color: #ffffff; }
-      @media screen and (max-width: 1366px) {
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .module-first-prtSc .module-slogan .element-title {
           font-size: 2.14286rem; } }
     .module-first-prtSc .module-slogan .element-sub-title {
@@ -66,7 +46,7 @@ body {
       font-size: 1.14286rem;
       letter-spacing: 1px;
       color: #ffffff; }
-      @media screen and (max-width: 1366px) {
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .module-first-prtSc .module-slogan .element-sub-title {
           font-size: 1rem; } }
 
@@ -85,12 +65,8 @@ body {
     line-height: 96px;
     font-family: MicrosoftYaHei;
     font-size: 14px;
-    color: #ffffff;
-    /* 手机 */
-    /** iphone5 **/
-    /** iphone6 **/
-    /** iphone6plus **/ }
-    @media screen and (max-width: 1366px) {
+    color: #ffffff; }
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-header .tos-header {
         height: 6rem;
         line-height: 6rem; } }
@@ -125,16 +101,6 @@ body {
         background-color: #5a7292 !important; }
       .tos-body-header .tos-header .module-change-language .layui-input-inline .layui-form-select dl dd:hover {
         background-color: #5a7292 !important; }
-    @media screen and (max-width: 768px) {
-      .tos-body-header .tos-header {
-        height: 3.14286rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        background-color: #142844; } }
   .tos-body-header .tos-logo .tos-logo-mobile {
     -webkit-transform: scale(0.6);
     transform: scale(0.6);
@@ -147,7 +113,10 @@ body {
       font-size: 14px;
       color: #fff;
       line-height: 2.14286rem;
-      margin-bottom: 1.07143rem; }
+      margin-bottom: 1.78571rem; }
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
+        .tos-body-header .layui-nav .layui-nav-item a {
+          margin-bottom: 1.07143rem; } }
     .tos-body-header .layui-nav .layui-nav-item.layui-this a {
       color: #cca482; }
     .tos-body-header .layui-nav .layui-nav-item.layui-this:after {
@@ -166,7 +135,7 @@ body {
     color: #0c3c6c;
     padding-bottom: 0.71429rem;
     border-bottom: 2px solid #0c3c6c; }
-    @media screen and (max-width: 1366px) {
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .module-common-title span {
         font-size: 2.28571rem; } }
 
@@ -192,7 +161,7 @@ body {
       font-size: 1.28571rem;
       color: #1a1a1a;
       margin-bottom: 1.71429rem; }
-      @media screen and (max-width: 1366px) {
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-article .tos-chain .element-title, .tos-body-article .tos-advantage .element-title {
           font-size: 1.14286rem; } }
     .tos-body-article .tos-chain .element-description, .tos-body-article .tos-advantage .element-description {
@@ -225,7 +194,7 @@ body {
     margin-top: 0.14286rem;
     margin-bottom: 0.71429rem;
     padding-left: 1.42857rem; }
-    @media screen and (max-width: 1366px) {
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-article .tos-ownership .element-title {
         padding-left: 2.85714rem;
         padding-top: 0.71429rem; } }
@@ -233,7 +202,7 @@ body {
     color: #49494d;
     line-height: 1.28571rem;
     padding-left: 1.42857rem; }
-    @media screen and (max-width: 1366px) {
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-article .tos-ownership .element-description {
         padding-left: 2.85714rem; } }
   .tos-body-article .tos-advantage {
@@ -269,15 +238,15 @@ body {
             margin-top: 2.85714rem;
             color: #ababb3;
             font-weight: 600; }
-            @media screen and (max-width: 1366px) {
+            @media screen and (min-width: 1200px) and (max-width: 1440px) {
               .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
                 line-height: 1.21429rem; } }
-            @media screen and (max-width: 1366px) {
+            @media screen and (min-width: 1200px) and (max-width: 1440px) {
               .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
                 margin-top: 1.42857rem !important; } }
             .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
               margin-top: 1.42857rem !important; }
-              @media screen and (max-width: 1366px) {
+              @media screen and (min-width: 1200px) and (max-width: 1440px) {
                 .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
                   margin-top: 0.71429rem !important; } }
   .tos-body-article .tos-white-paper {
@@ -299,10 +268,10 @@ body {
   height: 106px; }
   .tos-body-footer .contact-us {
     padding-top: 1.42857rem; }
-    @media screen and (max-width: 1366px) {
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-footer .contact-us {
         padding-top: 0; } }
-  @media screen and (max-width: 1366px) {
+  @media screen and (min-width: 1200px) and (max-width: 1440px) {
     .tos-body-footer {
       height: 4.28571rem; } }
   .tos-body-footer .tos-footer {
@@ -315,7 +284,7 @@ body {
       .tos-body-footer .tos-footer .layui-nav a {
         color: #7a7a80;
         font-size: 1.28571rem; }
-        @media screen and (max-width: 1366px) {
+        @media screen and (min-width: 1200px) and (max-width: 1440px) {
           .tos-body-footer .tos-footer .layui-nav a {
             font-size: 1rem; } }
         .tos-body-footer .tos-footer .layui-nav a:hover {
@@ -326,7 +295,7 @@ body {
       height: 1.07143rem;
       font-size: 14px;
       color: #49494d; }
-      @media screen and (max-width: 1366px) {
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-footer .tos-footer .all-right {
           font-size: 0.85714rem; } }
 
