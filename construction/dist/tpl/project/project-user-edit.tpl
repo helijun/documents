@@ -107,7 +107,7 @@
                     </div>
                     <br/>
                     <div class="layui-input-block">
-                        <input type="text" id="address" name="address" class="layui-input" lay-verify="address|required" placeholder="请输入家庭详细地址" value="测试地址">
+                        <input type="text" id="address" name="address" class="layui-input" lay-verify="address|required" placeholder="请输入家庭详细地址" value="{{d.shortaddress || ''}}">
                     </div>
                 </div>
 

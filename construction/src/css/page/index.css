@@ -710,7 +710,9 @@ body {
             .page-index article .m-count .m-total-user .el-content .el-right .el-value {
               font-size: 3.42857rem;
               line-height: 3.42857rem;
-              color: #ffffff; }
+              color: #ffffff;
+              text-align: left;
+              margin-left: 1.42857rem; }
             .page-index article .m-count .m-total-user .el-content .el-right p {
               font-size: 1.14286rem;
               color: #8493ad;

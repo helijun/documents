@@ -8,7 +8,7 @@
             </label>
             <div class="layui-input-block">
                 <input type="text" id="name" name="name" lay-verify="name|required" autocomplete="off" placeholder="请输入机构名称"
-                    class="layui-input" value={{d.username}} readonly>
+                    class="layui-input" value={{d.name}} readonly>
             </div>
         </div>
     
