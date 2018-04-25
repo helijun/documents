@@ -1,4 +1,24 @@
 @charset "UTF-8";
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
+/** media start **/
+/** media end ---------------------------------------   **/
+/** pc base **/
+/** pc base end ---------------------------------------   **/
+/** mobile base **/
 html,
 body {
   padding: 0;
@@ -14,6 +34,11 @@ body {
   color: #2BD6BD; }
 
 /** 前景颜色 end */
+/** 通用属性 **/
+.tos-full-img {
+  width: 100%;
+  height: 100%; }
+
 .tos-container {
   width: 1200px;
   margin: 0 auto; }
@@ -30,25 +55,27 @@ body {
   background: -moz-linear-gradient(top, #010b1f, #020c21);
   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#010b1f), to(#020c21)); }
   .module-first-prtSc .module-slogan {
-    padding-left: 10vw;
-    padding-top: 20vh; }
+    padding-top: 26vh;
+    z-index: 999; }
     .module-first-prtSc .module-slogan .element-title {
-      font-family: Swiss721BT-Bold,MicrosoftYaHei-Bold;
-      font-size: 2.42857rem;
-      line-height: 7.14286rem;
+      font-size: 3.85714rem;
+      line-height: 11.42857rem;
       letter-spacing: 2px;
-      color: #ffffff; }
+      color: #ffffff;
+      font-weight: 600; }
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .module-first-prtSc .module-slogan .element-title {
-          font-size: 2.14286rem; } }
+          font-size: 2.85714rem;
+          line-height: 7.14286rem; } }
     .module-first-prtSc .module-slogan .element-sub-title {
       font-family: MicrosoftYaHei-Bold;
-      font-size: 1.14286rem;
+      font-size: 1.42857rem;
       letter-spacing: 1px;
-      color: #ffffff; }
+      color: #ffffff;
+      font-weight: 600; }
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .module-first-prtSc .module-slogan .element-sub-title {
-          font-size: 1rem; } }
+          font-size: 1.14286rem; } }
 
 .module-color-change {
   background: #020c21;
@@ -106,6 +133,18 @@ body {
     transform: scale(0.6);
     float: left;
     margin-left: -16%; }
+  .tos-body-header .tos-logo a {
+    display: inline-block;
+    margin-left: 2.85714rem; }
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
+      .tos-body-header .tos-logo a {
+        height: 6rem;
+        line-height: 6rem;
+        width: 4.92857rem; } }
+    .tos-body-header .tos-logo a img {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 4px; }
   .tos-body-header .layui-nav {
     background-color: white;
     background-color: transparent; }
@@ -125,7 +164,7 @@ body {
 
 .module-common-title {
   text-align: center;
-  padding: 5.71429rem 0 3.21429rem 0; }
+  padding: 8.57143rem 0 3.21429rem 0; }
   .module-common-title span {
     margin: 0 auto;
     display: inline-block;
@@ -146,15 +185,27 @@ body {
     border-bottom: 2px solid #c5d4e2; }
 
 .tos-body-article {
+  position: relative;
   background-color: #f2f2f2;
   height: auto; }
+  .tos-body-article .module-first-img {
+    position: absolute;
+    top: 45vh;
+    right: 15vw;
+    -webkit-transform: scale(1.34);
+    transform: scale(1.34); }
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
+      .tos-body-article .module-first-img {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        top: 30vh;
+        right: 8vw; } }
   .tos-body-article .tos-chain, .tos-body-article .tos-advantage {
     text-align: center;
     height: 14.85714rem; }
     .tos-body-article .tos-chain .element-icon, .tos-body-article .tos-advantage .element-icon {
       width: 68px;
       height: 68px;
-      background-color: #5a7292;
       margin: 0 auto;
       margin-bottom: 2rem; }
     .tos-body-article .tos-chain .element-title, .tos-body-article .tos-advantage .element-title {
@@ -173,8 +224,10 @@ body {
   .tos-body-article .tos-technology .element-bg {
     margin: 0 auto;
     width: 960px;
-    height: 320px;
-    background-color: #01010b; }
+    height: 320px; }
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
+      .tos-body-article .tos-technology .element-bg {
+        width: 776px; } }
   .tos-body-article .tos-technology .element-description {
     margin-top: 1.42857rem;
     line-height: 1.71429rem;
@@ -184,10 +237,7 @@ body {
     margin-bottom: 1.42857rem; }
   .tos-body-article .tos-ownership .element-img {
     width: 100px;
-    height: 100px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#5a7292), to(#5a7292)), -webkit-gradient(linear, left top, left bottom, from(#5a7292), to(#5a7292));
-    background-image: linear-gradient(#5a7292, #5a7292), linear-gradient(#5a7292, #5a7292);
-    background-blend-mode: normal,  normal; }
+    height: 100px; }
   .tos-body-article .tos-ownership .element-title {
     font-size: 1.28571rem;
     color: #1a1a1a;
@@ -216,17 +266,17 @@ body {
         height: 34.28571rem; }
         .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content {
           height: 30rem;
-          background-image: -webkit-gradient(linear, left top, left bottom, from(#0c2136), to(#0c2136)), -webkit-gradient(linear, left top, left bottom, from(#0c2136), to(#0c2136));
-          background-image: linear-gradient(#0c2136, #0c2136), linear-gradient(#0c2136, #0c2136);
-          background-blend-mode: normal,  normal;
+          background-color: #425c81;
           text-align: center;
           padding: 1.42857rem; }
+          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content.sp-2n {
+            background-color: #637da0; }
           .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-header {
             margin: 0 auto;
             width: 188px;
-            height: 188px;
-            background-color: #ffffff;
-            border-radius: 50%; }
+            height: 188px; }
+            .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-header img {
+              border-radius: 50%; }
           .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-title {
             font-size: 1.28571rem;
             line-height: 1.57143rem;
@@ -261,7 +311,23 @@ body {
       height: 88px;
       background-image: -webkit-gradient(linear, left top, left bottom, from(#0c2136), to(#0c2136)), -webkit-gradient(linear, left top, left bottom, from(#0c2136), to(#0c2136));
       background-image: linear-gradient(#0c2136, #0c2136), linear-gradient(#0c2136, #0c2136);
-      background-blend-mode: normal,  normal; }
+      background-blend-mode: normal,  normal;
+      text-align: center; }
+      .tos-body-article .tos-white-paper .element-content .element-title {
+        padding-top: 1.42857rem;
+        font-size: 1.71429rem;
+        color: #ffffff;
+        text-align: right;
+        padding-right: 1.42857rem; }
+      .tos-body-article .tos-white-paper .element-content .element-description {
+        font-size: 1.14286rem;
+        color: #ffffff;
+        text-align: right;
+        padding-right: 1.42857rem; }
+      .tos-body-article .tos-white-paper .element-content .element-img {
+        cursor: pointer;
+        padding-top: 1.42857rem;
+        padding-right: 1.42857rem; }
 
 .tos-body-footer {
   background-color: #000000;

@@ -218,13 +218,8 @@ gulp.task('i18n:zh', function(done) {
 })
 
 gulp.task('i18n:en', function(done) {
-    condition = false;
-
-    function doCallback(fn,args){    
-        fn.apply(this, args);  
-    } 
-    i18nArr.push(done);
-    doCallback(runSequence, i18nArr)
+    gulp.src(path.dev + '/index.html')
+        .pipe(gulp.dest(path.build))
 })
 
 //复制src
@@ -246,7 +241,8 @@ gulp.task('clean:dist', function (cb) {
 gulp.task('build', function(done) {
     condition = false;
     runSequence(//按顺序运行
-        'copySrc',
+        ['clean:dist'],
+        ['copySrc'],
         done);
 })
 

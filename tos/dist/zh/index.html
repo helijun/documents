@@ -10,66 +10,67 @@
 </head>
 
 <body>
-	<div class="module-first-prtSc">
-		<header class="tos-body-header">
-			<div class="layui-header tos-header">
-				<div class="layui-logo tos-logo">
-					<a href="../index.html">
-						<img class="layui-hide-xs" src=".../.../img/logo/logo-new.png">
-						<img class="layui-hide-lg layui-hide-sm layui-hide-md tos-full-img tos-logo-mobile" src=".../.../img/logo/logo-mobile-new.png">
-					</a>
-				</div>
-				<div class="layui-form module-change-language layui-hide-xs">
-					<div class="layui-form-item">
-						<label class="layui-form-label">welcome to TOS | </label>
-						<div class="layui-input-inline">
-							<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage">
-								<option vaule="2">简体中文</option>
-								<option vaule="3">繁体中文</option>
-								<option vaule="1">English</option>
-							</select>
+	<article class="tos-body-article">
+		<div class="module-first-img">
+			<img src="../assets/img/banner_01.png" alt="" class="tos-full-img">
+		</div>
+		<div class="module-first-prtSc">
+			<header class="tos-body-header">
+				<div class="layui-header tos-header">
+					<div class="layui-logo tos-logo">
+						<a href="../index.html">
+							<img class="tos-full-img" src="../assets/img/logo.png">
+						</a>
+					</div>
+					<div class="layui-form module-change-language">
+						<div class="layui-form-item">
+							<label class="layui-form-label" data-i18n="welcome">欢迎来到TOS</label>
+							<div class="layui-input-inline">
+								<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage">
+									
+									<option vaule="2">简体中文</option>
+									<option vaule="3">繁体中文</option><option vaule="1">English</option>
+								</select>
+							</div>
 						</div>
 					</div>
+					<ul class="layui-nav layui-layout-right layui-hide-xs" lay-filter="">
+						<li class="layui-nav-item index-page">
+							<a class="nav-href" href="#TOSCHAIN" data-i18n="toschain">TOS</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#SDAG" data-i18n="sdag">SDAG</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#TP">Transaction & POS</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Advantage" data-i18n="advantage">优势</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Ecosystem" data-i18n="ecosystem">生态圈</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Team" data-i18n="team">团队</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Timeline" data-i18n="timeline">时间轴</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Whitepaper" data-i18n="whitepaper">白皮书</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="nav-href" href="#Contactus" data-i18n="contactus">联系我们</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="layui-nav layui-layout-right layui-hide-xs" lay-filter="">
-					<li class="layui-nav-item index-page">
-						<a class="nav-href" href="#TOSCHAIN" data-i18n="toschain">TOS</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#SDAG" data-i18n="sdag">SDAG</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#TP">Transaction & POS</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Advantage" data-i18n="advantage">优势</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Ecosystem" data-i18n="ecosystem">生态圈</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Team" data-i18n="team">团队</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Timeline" data-i18n="timeline">时间轴</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Whitepaper" data-i18n="whitepaper">白皮书</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="#Contactus" data-i18n="contactus">联系我们</a>
-					</li>
-				</ul>
+			</header>
+	
+			<div class="tos-container module-slogan">
+				<div class="element-title">ThingsOperatingSystem</div>
+				<div class="element-sub-title" data-i18n="sdagdesc">基于SDAG的去中心化分层区块网络技术</div>
 			</div>
-		</header>
-
-		<div class="tos-container module-slogan">
-			<div class="element-title">ThingsOperatingSystem</div>
-			<div class="element-sub-title" data-i18n="sdagdesc">基于SDAG的去中心化分层区块网络技术</div>
 		</div>
-	</div>
-
-	<article class="tos-body-article">
 		<div class="module-color-change">
 			<div class="module-common-title elment-special-title" id="TOSCHAIN">
 				<span data-i18n="toschain">TOS</span>
@@ -77,17 +78,23 @@
 	
 			<div class="tos-container layui-row tos-chain">
 				<div class="layui-col-xs4">
-					<div class="element-icon"></div>
+					<div class="element-icon">
+						<img src="../assets/img/icon_01.png" alt="" class="tos-full-img">
+					</div>
 					<div class="element-title" data-i18n="blocknetwork">分层区块网络</div>
 					<div class="element-description" data-i18n="blocknetworkcontent">支持分层区块网络，全网区块数据作分离，减少网络节点数据冗余。</div>
 				</div>
 				<div class="layui-col-xs4">
-					<div class="element-icon"></div>
+					<div class="element-icon">
+						<img src="../assets/img/icon_02.png" alt="" class="tos-full-img">
+					</div>
 					<div class="element-title" data-i18n="datafree">普通交易数据免费</div>
 					<div class="element-description" data-i18n="datafreecontent">普通数据，交易免费，通过末层区块网络中Transaction共识机制记录数据，减少用户开销成本。</div>
 				</div>
 				<div class="layui-col-xs4">
-					<div class="element-icon"></div>
+					<div class="element-icon">
+						<img src="../assets/img/icon_03.png" alt="" class="tos-full-img">
+					</div>
 					<div class="element-title" data-i18n="datacharges">高价值交易数据收费</div>
 					<div class="element-description" data-i18n="datachargescontent">高价值数据，使用POS共识机制把数据写入更高级别的区块网络，高级别安全保障，需要付费。</div>
 				</div>
@@ -98,7 +105,9 @@
 			</div>   
 		</div>
 		<div class="tos-container layui-row tos-technology">
-			<div class="element-bg"></div>
+			<div class="element-bg">
+				<img src="../assets/img/179060926918847189.png" alt="" class="tos-full-img">
+			</div>
 			<div class="element-description" data-i18n="Whatissdagcontent">SDAG超级有向无环图(Super directed acyclic graph)，基于现有的DAG技术，构建区块链分层纠缠网络。每个层级的区块链网络存储对应的数据，类似国家->省->市->县->区，每个行政中心各自管理数据，省与省之间，国家与国家之间，互不关心对方的数据。把全网的区块数据作分离，每个区块网络只关心各自需要的区块数据，就可以减少大量的数据冗余。</div>
 		</div> 
 				
@@ -108,7 +117,9 @@
 		<div class="tos-container layui-row tos-ownership">
 			<div class="layui-row">
 				<div class="layui-col-xs1">
-					<div class="element-img"></div>
+					<div class="element-img">
+						<img src="../assets/img/icon_04.png" alt="" class="tos-full-img">
+					</div>
 				</div>
 				<div class="layui-col-xs11">
 					<div class="element-title" data-i18n="freetransactions">支持免费交易与收费交易</div>
@@ -118,7 +129,9 @@
 			
 			<div class="layui-row">
 				<div class="layui-col-xs1">
-					<div class="element-img"></div>
+					<div class="element-img">
+						<img src="../assets/img/icon_05.png" alt="" class="tos-full-img">
+					</div>
 				</div>
 				<div class="layui-col-xs11">
 					<div class="element-title" data-i18n="branchnetwork">拥有无限分支区块网络能力</div>
@@ -128,7 +141,9 @@
 			
 			<div class="layui-row">
 				<div class="layui-col-xs1">
-					<div class="element-img"></div>
+					<div class="element-img">
+						<img src="../assets/img/icon_06.png" alt="" class="tos-full-img">
+					</div>
 				</div>
 				<div class="layui-col-xs11">
 					<div class="element-title" data-i18n="balance">密码经济学平衡</div>
@@ -142,20 +157,33 @@
 		</div>   
 		<div class="tos-container layui-row tos-advantage">
 			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
+				<div class="element-icon">
+					<img src="../assets/img/icon_07.png" alt="" class="tos-full-img">
+				</div>
 				<div class="element-title" data-i18n="internetofthings">降低物联网成本</div>
 				<div class="element-description" data-i18n="internetofthingscontent">区块链技术为物联网提供了点对点直接互联的方式进行数据传输,整个物联网解决方案不需要引入大型数据中心进行数据同步和管理控制,由此降低物联网的运营成本。</div>
 			</div>
 			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
+				<div class="element-icon">
+					<img src="../assets/img/icon_08.png" alt="" class="tos-full-img">
+				</div>
 				<div class="element-title" data-i18n="bigdatamanagement">大数据管理</div>
 				<div class="element-description" data-i18n="bigdatamanagementcontent">在大数据的分析挖掘方面，区块链的运用扩大了数据的规模和丰富性，使得数据的质量获得前所未有的信任倍数，保证了数据分析结果的正确性和数据挖掘的效果，能实现大数据的预测分析落实为行动,它将是数字经济时代的基石。</div>
 			</div>
 			<div class="layui-col-xs4">
-				<div class="element-icon"></div>
+				<div class="element-icon">
+					<img src="../assets/img/icon_09.png" alt="" class="tos-full-img">
+				</div>
 				<div class="element-title" data-i18n="securitytransparency">安全性和透明性</div>
 				<div class="element-description" data-i18n="securitytransparencycontent">区块链依赖离散的去中心化计算机集群来运行，其公平的共识机制保证网络的安全性，可查看历史交易保证信息的透明性。</div>
 			</div>
+		</div>
+
+		<div class="module-common-title" id="Ecosystem">
+			<span data-i18n="ecosystem">生态圈</span>                                               
+		</div>   
+		<div class="tos-container layui-row tos-ecosystem">
+			<div class="layui-col-xs12" data-i18n="ecosystemImg"><img src="../assets/img/advantage_cn.png" class="tos-full-img"></div>
 		</div>
 
 		<div class="module-common-title" id="Team">
@@ -165,28 +193,36 @@
 			<div class="layui-row">
 				<div class="layui-col-xs3">
 					<div class="element-content">
-						<div class="element-header"></div>
+						<div class="element-header">
+							<img src="../assets/img/team01.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="chairman">Jeffers Kieron Matthew 基金会主席</div>
-						<div class="element-description element-special" data-i18n="smartdevicefeature">特点：泛娱乐设备，不常联网在线；有算力，可轻量POS挖矿。</div>
+						<div class="element-description element-special" data-i18n="chairmanintro">证券投资学院（SII）顾问，特许证券研究所所长，英国金融行为管理局主任，伦敦Manari有限公司董事长。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
+					<div class="element-content sp-2n">
+						<div class="element-header">
+							<img src="../assets/img/team02.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="ceo">吴相庆 CEO</div>
 						<div class="element-description" data-i18n="ceointro">曾任香港新鸿基金集团独立投资部基金经理。<br>曾任Infinity Service USA Inc.大中华区COO。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
 					<div class="element-content">
-						<div class="element-header"></div>
+						<div class="element-header">
+							<img src="../assets/img/team03.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="cto">陶海军 CTO</div>
 						<div class="element-description" data-i18n="ctofeature">曾任腾讯公司高级工程师。<br>曾任华为心声社区项目总架构师。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
+					<div class="element-content sp-2n">
+						<div class="element-header">
+							<img src="../assets/img/team04.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="cfo">Daniel Hornstein  CFO</div>
 						<div class="element-description" data-i18n="cfointro">Bayz Sdn停车有限公司首席执行官/财务顾问。<br>Taniwha Sdn有限公司总监/财务顾问。<br>荷兰皇家大使馆（吉隆坡）顾问。</div>
 					</div>
@@ -195,21 +231,27 @@
 			<div class="layui-row">
 				<div class="layui-col-xs3">
 					<div class="element-content">
-						<div class="element-header"></div>
+						<div class="element-header">
+							<img src="../assets/img/team05.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="architect">李球 首席架构师</div>
 						<div class="element-description element-special" data-i18n="architectintro">曾任平安金融科技高级工程师。<br>曾任华为心声社区移动端项目经理。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
-					<div class="element-content">
-						<div class="element-header"></div>
+					<div class="element-content sp-2n">
+						<div class="element-header">
+							<img src="../assets/img/team06.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="produceofficer">石梦星 首席产品官</div>
 						<div class="element-description element-special" data-i18n="produceofficerintro">曾任农泰金融项目研发经理。<br>曾任华安保险客户端项目总架构师。<br>曾任华为重点项目高级开发工程师。</div>
 					</div>
 				</div>
 				<div class="layui-col-xs3">
 					<div class="element-content">
-						<div class="element-header"></div>
+						<div class="element-header">
+							<img src="../assets/img/team07.png" alt="" class="tos-full-img">
+						</div>
 						<div class="element-title" data-i18n="technicaldiego">Diego Cresta 技术顾问</div>
 						<div class="element-description element-special" data-i18n="technicaldiegointro">美国财务管理学院专业顾问，美国寿险训练学院院士（LUTCF），美国金融学院和马来西亚保险学院特许财务顾问。</div>
 					</div>
@@ -220,16 +262,35 @@
 		<div class="module-common-title" id="Timeline">
 			<span data-i18n="timeline">时间轴</span>                                               
 		</div> 
+		<div class="tos-container layui-row tos-timeline">
+			<div class="layui-col-xs12" data-i18n="timelineImg"><img src="../assets/img/history_cn.png" class="tos-full-img"></div>
+		</div>
 		
 		<div class="module-common-title" id="Whitepaper">
 			<span data-i18n="whitepaper">白皮书</span>                                               
 		</div>
 		<div class="tos-container layui-row tos-white-paper">
 			<div class="layui-col-xs6 element-left">
-				<div class="element-content"></div>
+				<div class="element-content layui-row">
+					<div class="layui-col-xs8">
+						<p class="element-title" data-i18n="whitepaper">白皮书</p>
+						<p class="element-description" data-i18n="simplifiedchinese">简体中文</p>
+					</div>
+					<a class="layui-col-xs4" href="../assets/pdf/tos_whitepaper_cn.pdf" target="_blank">
+						<img class="element-img" src="../assets/img/down-icon.png" alt="">
+					</a>
+				</div>
 			</div>
 			<div class="layui-col-xs6 element-right">
-				<div class="element-content"></div>
+				<div class="element-content layui-row">
+					<div class="layui-col-xs8">
+						<p class="element-title" data-i18n="whitepaper">白皮书</p>
+						<p class="element-description" data-i18n="english">英文</p>
+					</div>
+					<a class="layui-col-xs4" href="../assets/pdf/tos_whitepaper_en.pdf" target="_blank">
+						<img class="element-img" src="../assets/img/down-icon.png" alt="">
+					</a>
+				</div>
 			</div>
 		</div>
 	</article>
@@ -238,34 +299,32 @@
 			<div class="contact-us">
 				<ul class="layui-nav layui-hide-xs">
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">Github</a>
+						<a class="nav-href" href="https://github.com/TOSIO">Github</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">WeChat</a>
+						<a class="nav-href" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDY5NzAzMQ==&amp;scene=110#wechat_redirect">WeChat</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">Twitter</a>
+						<a class="nav-href" href="https://twitter.com/TOSCommuniy">Twitter</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">E-mail</a>
+						<a class="nav-href" href="mailto:foundation@toschain.org">E-mail</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">Facebook</a>
+						<a class="nav-href" href="https://www.facebook.com/TOSChain-223477698392972/?modal=admin_todo_tour">Facebook</a>
+					</li>
+					<li class="layui-nav-item" data-i18n="telegram"><a class="nav-href" href="https://t.me/TOSChainOfficial">Telegram</a></li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.instagram.com/TOSChain/">Instagram</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">Telegram</a>
+						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">youtube</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">Instagram</a>
+						<a class="nav-href" href="https://medium.com/@TOSChain">Medium</a>
 					</li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="">youtube</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="">Medium</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="">Reddit</a>
+						<a class="nav-href" href="https://www.reddit.com/user/TOSChain/">Reddit</a>
 					</li>
 				</ul>
 			</div>

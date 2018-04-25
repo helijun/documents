@@ -4,6 +4,11 @@ module.exports = {
     "zh-tw": "TOS",//繁体中文
     "en": "TOS"//英文
   },
+  "welcome": {
+    "zh": "欢迎来到TOS",
+    "zh-tw": "歡迎來到TOS",
+    "en": "welcome to TOS"
+  },
   "sdag":{
     "zh": "SDAG",
     "zh-tw": "SDAG",
@@ -361,7 +366,7 @@ module.exports = {
   },
   "simplifiedchinese":{
     "zh": "简体中文",
-    "zh-tw": "簡體中文",
+    "zh-tw": "简体中文",//"zh-tw": "簡體中文",
     "en": "simplified chinese"
   },
   "traditionalchinese":{
@@ -373,6 +378,21 @@ module.exports = {
     "zh": "英文",
     "zh-tw": "英文",
     "en": "English"
+  },
+  "telegram": {
+    "zh": '<a class="nav-href" href="https://t.me/TOSChainOfficial">Telegram</a>',
+    "zh-tw": '<a class="nav-href" href="https://t.me/TOSChainOfficial">Telegram</a>',
+    "en": '<a class="nav-href" href="https://t.me/TOSChainOfficialEN">Telegram</a>'
+  },
+  "timelineImg": {
+    "zh": "<img src='./assets/img/history_cn.png' class='tos-full-img'>",
+    "zh-tw": "<img src='./assets/img/history_hk.png' class='tos-full-img'>",
+    "en": "<img src='./assets/img/history_en.png' class='tos-full-img'>"
+  },
+  "ecosystemImg": {
+    "zh": "<img src='./assets/img/advantage_cn.png' class='tos-full-img'>",
+    "zh-tw": "<img src='./assets/img/advantage_hk.png' class='tos-full-img'>",
+    "en": "<img src='./assets/img/advantage_en.png' class='tos-full-img'>"
   }
 
 }

@@ -20,11 +20,17 @@ body {
 }
 /** 前景颜色 end */
 
+/** 通用属性 **/
+.tos-full-img {
+	width: 100%;
+	height: 100%;
+}
+
 .tos-container {
 	width: $base-width-pc;
 	margin: 0 auto;
 	
-	@media #{$media} and ($media-max-width: $max-width-1366) {
+	@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440){
 		width: pcrem(970px) !important;
 	}
 }
@@ -40,27 +46,29 @@ body {
 	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#010b1f), to(#020c21));
 	
 	.module-slogan {
-		padding-left: 10vw;
-		padding-top: 20vh;
+		padding-top: 26vh;
+		z-index: 999;
 		.element-title {
-			font-family: Swiss721BT-Bold,MicrosoftYaHei-Bold;
-			font-size: pcrem(34px);
-			line-height: pcrem(100px);
+			font-size: pcrem(54px);
+			line-height: pcrem(160px);
 			letter-spacing: 2px;
 			color: #ffffff;
+			font-weight: 600;
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
-				font-size: pcrem(30px);
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+				font-size: pcrem(40px);
+				line-height: pcrem(100px);
 			}
 		}
 		.element-sub-title {
 			font-family: MicrosoftYaHei-Bold;
-			font-size: pcrem(16px);
+			font-size: pcrem(20px);
 			letter-spacing: 1px;
 			color: #ffffff;
+			font-weight: 600;
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
-				font-size: pcrem(14px);
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+				font-size: pcrem(16px);
 			}
 		}
 	}
@@ -84,7 +92,7 @@ body {
 		font-size: 14px;
 		color: #ffffff;
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			height: pcrem(84px);
 			line-height: pcrem(84px);
 		}
@@ -137,27 +145,6 @@ body {
 				}
 			}
 		}
-		/* 手机 */
-		@media #{$media} and ($media-max-width: $max-width-768) {
-			height: torem(88px);
-			display: flex;
-			align-items: center;
-			background-color: #142844;
-		}
-		/** iphone5 **/
-		@media #{$media} and ($media-min-width: $min-width-320) {
-			
-		}
-
-		/** iphone6 **/
-		@media #{$media} and ($media-min-width: $min-width-375) {
-			
-		}
-
-		/** iphone6plus **/
-		@media #{$media} and ($media-min-width: $min-width-414) {
-			
-		}
 	}
 
 	.tos-logo {
@@ -165,6 +152,20 @@ body {
 			transform: scale(.6);
 			float: left;
 			margin-left: -16%;
+		}
+		a {
+			display: inline-block;
+			margin-left: pcrem(40px);
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+				height: pcrem(84px);
+				line-height: pcrem(84px);
+				width: pcrem(69px);
+			}
+
+			img {
+				box-sizing: border-box;
+				padding: 4px;
+			}
 		}
 	}
 	
@@ -177,7 +178,11 @@ body {
 				font-size: $base-font-size-pc;
 				color: $article-color;
 				line-height: pcrem(30px);
-				margin-bottom: pcrem(15px);
+				margin-bottom: pcrem(25px);
+
+				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+					margin-bottom: pcrem(15px);
+				}
 			}
 			
 			&.layui-this {
@@ -198,7 +203,7 @@ body {
 //通用的标题
 .module-common-title {
 	text-align: center;
-	padding: pcrem(80px) 0 pcrem(45px) 0;
+	padding: pcrem(120px) 0 pcrem(45px) 0;
 
 	span {
 		margin: 0 auto;
@@ -210,7 +215,7 @@ body {
 		padding-bottom: pcrem(10px);
 		border-bottom: 2px solid $title-color;
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			font-size: pcrem(32px);
 		}
 		&::before {
@@ -232,8 +237,22 @@ body {
 
 //主内容区
 .tos-body-article {
+	position: relative;
 	background-color: $article-bg-color;
 	height: auto;
+
+	.module-first-img {
+		position: absolute;
+		top: 45vh;
+		right: 15vw;
+		transform: scale(1.34);
+
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+			transform: scale(1);
+			top: 30vh;
+			right: 8vw;
+		}
+	}
 
 	.tos-chain {
 		text-align: center;
@@ -241,7 +260,6 @@ body {
 		.element-icon {
 			width: 68px;
 			height: 68px;
-			background-color: #5a7292;
 			margin: 0 auto;
 			margin-bottom: pcrem(28px);
 		}
@@ -250,7 +268,7 @@ body {
 			color: $blod-color;
 			margin-bottom: pcrem(24px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(16px);
 			}
 		}
@@ -269,7 +287,10 @@ body {
 			margin: 0 auto;
 			width: 960px;
 			height: 320px;
-			background-color: #01010b;
+
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
+				width: 776px;
+			}
 		}
 		.element-description {
 			margin-top: pcrem(20px);
@@ -287,14 +308,6 @@ body {
 		.element-img {
 			width: 100px;
 			height: 100px;
-			background-image: linear-gradient(
-				#5a7292, 
-				#5a7292), 
-			linear-gradient(
-				#5a7292, 
-				#5a7292);
-			background-blend-mode: normal, 
-				normal;
 		}
 		
 		.element-title {
@@ -304,7 +317,7 @@ body {
 			margin-bottom: pcrem(10px);
 			padding-left: pcrem(20px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				padding-left: pcrem(40px);
 				padding-top: pcrem(10px);
 			}
@@ -314,7 +327,7 @@ body {
 			line-height: pcrem(18px);
 			padding-left: pcrem(20px);
 
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				padding-left: pcrem(40px);
 			}
 		}
@@ -335,14 +348,19 @@ body {
 				height: pcrem(480px);
 				.element-content {
 					height: pcrem(420px);
-					background-image: linear-gradient(
-						#0c2136, 
-						#0c2136), 
-					linear-gradient(
-						#0c2136, 
-						#0c2136);
-					background-blend-mode: normal, 
-						normal;
+					background-color: #425c81; 
+
+					&.sp-2n{
+						background-color: #637da0; 
+					}
+					// background-image: linear-gradient(
+					// 	#425c81, 
+					// 	#637da0), 
+					// linear-gradient(
+					// 	#425c81, 
+					// 	#637da0);
+					// background-blend-mode: normal, 
+					// 	normal;
 					text-align: center;
 					padding: pcrem(20px);
 
@@ -350,8 +368,10 @@ body {
 						margin: 0 auto;
 						width: 188px;
 						height: 188px;
-						background-color: #ffffff;
-						border-radius: 50%;
+						
+						img {
+							border-radius: 50%;
+						}
 					}
 
 					.element-title {
@@ -364,7 +384,7 @@ body {
 					.element-description {
 						font-size: $base-font-size-pc;
 
-						@media #{$media} and ($media-max-width: $max-width-1366) {
+						@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 							line-height: pcrem(17px);
 						}
 
@@ -373,12 +393,12 @@ body {
 						color: #ababb3;
 						font-weight: 600;
 
-						@media #{$media} and ($media-max-width: $max-width-1366) {
+						@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 							margin-top: pcrem(20px) !important;
 						}
 						&.element-special {
 							margin-top: pcrem(20px) !important;
-							@media #{$media} and ($media-max-width: $max-width-1366) {
+							@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 								margin-top: pcrem(10px) !important;
 							}
 						}
@@ -416,6 +436,27 @@ body {
 				#0c2136);
 			background-blend-mode: normal, 
 				normal;
+			text-align: center;
+			
+
+			.element-title {
+				padding-top: pcrem(20px);
+				font-size: pcrem(24px);
+				color: #ffffff;
+				text-align: right;
+				padding-right: pcrem(20px); 
+			}
+			.element-description {
+				font-size: pcrem(16px);
+				color: #ffffff;
+				text-align: right;
+				padding-right: pcrem(20px); 
+			}
+			.element-img {
+				cursor: pointer;
+				padding-top: pcrem(20px);
+				padding-right: pcrem(20px); 
+			}	
 		}
 	}
 }
@@ -427,11 +468,11 @@ body {
 	.contact-us {
 		padding-top: pcrem(20px);
 
-		@media #{$media} and ($media-max-width: $max-width-1366) {
+		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			padding-top: 0;
 		}
 	}
-	@media #{$media} and ($media-max-width: $max-width-1366) {
+	@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 		height: pcrem(60px);
 	}
 	.tos-footer {
@@ -446,7 +487,7 @@ body {
 			a {
 				color: #7a7a80;
 				font-size: pcrem(18px);
-				@media #{$media} and ($media-max-width: $max-width-1366) {
+				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 					font-size: pcrem(14px);
 				}
 
@@ -460,7 +501,7 @@ body {
 		}
 
 		.all-right {
-			@media #{$media} and ($media-max-width: $max-width-1366) {
+			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(12px);
 			}
 			height: pcrem(15px);
