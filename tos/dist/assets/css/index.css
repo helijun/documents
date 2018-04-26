@@ -126,6 +126,9 @@ body {
         margin: 0 !important; }
       .tos-body-header .tos-header .module-change-language .layui-input-inline .layui-select-title {
         width: 6.42857rem; }
+		.tos-body-header .tos-header .layui-nav .layui-nav-item a {
+			padding: 0 15px;
+		}
       .tos-body-header .tos-header .module-change-language .layui-input-inline .layui-form-select dl dd.layui-this {
         background-color: #5a7292 !important; }
       .tos-body-header .tos-header .module-change-language .layui-input-inline .layui-form-select dl dd:hover {
@@ -136,8 +139,7 @@ body {
     float: left;
     margin-left: -16%; }
   .tos-body-header .tos-logo a {
-    display: inline-block;
-    margin-left: 2.85714rem; }
+    display: inline-block; }
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-header .tos-logo a {
         height: 6rem;

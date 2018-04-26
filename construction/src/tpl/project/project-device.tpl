@@ -10,7 +10,7 @@
                 </span>
             </div>
              
-            {{#  if(d.roleid == 1){ }}
+            {{#  if(d.roleid == -1){ }}
             <div class="layui-inline">
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-inline">
