@@ -39,6 +39,9 @@ body {
   width: 100%;
   height: 100%; }
 
+.tos-col-padding {
+  padding: 0 2.85714rem; }
+
 .tos-container {
   width: 1200px;
   margin: 0 auto; }
@@ -108,7 +111,6 @@ body {
       .tos-body-header .tos-header .module-change-language .layui-form-label {
         font-family: MicrosoftYaHei;
         font-size: 0.85714rem;
-        color: #49494d;
         width: 8.57143rem; }
         .tos-body-header .tos-header .module-change-language .layui-form-label .layui-nav .layui-nav-item {
           line-height: 30px; }
@@ -164,7 +166,7 @@ body {
 
 .module-common-title {
   text-align: center;
-  padding: 8.57143rem 0 3.21429rem 0; }
+  padding: 14.28571rem 0 3.21429rem 0; }
   .module-common-title span {
     margin: 0 auto;
     display: inline-block;
@@ -172,8 +174,7 @@ body {
     font-size: 2.57143rem;
     line-height: 2.57143rem;
     color: #0c3c6c;
-    padding-bottom: 0.71429rem;
-    border-bottom: 2px solid #0c3c6c; }
+    padding-bottom: 0.71429rem; }
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .module-common-title span {
         font-size: 2.28571rem; } }
@@ -181,8 +182,7 @@ body {
 .elment-special-title {
   padding: 2.85714rem 0 3.21429rem 0; }
   .elment-special-title span {
-    color: #c5d4e2;
-    border-bottom: 2px solid #c5d4e2; }
+    color: #c5d4e2; }
 
 .tos-body-article {
   position: relative;
@@ -219,8 +219,11 @@ body {
       font-size: 1rem;
       line-height: 1.71429rem;
       color: #49494d; }
+      @media screen and (min-width: 1200px) and (max-width: 1440px) {
+        .tos-body-article .tos-chain .element-description, .tos-body-article .tos-advantage .element-description {
+          font-size: 0.92857rem; } }
     .tos-body-article .tos-chain .layui-col-xs4, .tos-body-article .tos-advantage .layui-col-xs4 {
-      padding: 0 0.71429rem; }
+      padding: 0 2.85714rem; }
   .tos-body-article .tos-technology .element-bg {
     margin: 0 auto;
     width: 960px;
@@ -233,6 +236,9 @@ body {
     line-height: 1.71429rem;
     font-size: 14px;
     color: #49494d; }
+    @media screen and (min-width: 1200px) and (max-width: 1440px) {
+      .tos-body-article .tos-technology .element-description {
+        font-size: 0.92857rem; } }
   .tos-body-article .tos-ownership .layui-row {
     margin-bottom: 1.42857rem; }
   .tos-body-article .tos-ownership .element-img {
@@ -254,7 +260,8 @@ body {
     padding-left: 1.42857rem; }
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-article .tos-ownership .element-description {
-        padding-left: 2.85714rem; } }
+        padding-left: 2.85714rem;
+        font-size: 0.92857rem; } }
   .tos-body-article .tos-advantage {
     height: 25.21429rem !important; }
   .tos-body-article .tos-team {
@@ -293,7 +300,8 @@ body {
                 line-height: 1.21429rem; } }
             @media screen and (min-width: 1200px) and (max-width: 1440px) {
               .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
-                margin-top: 1.42857rem !important; } }
+                margin-top: 1.42857rem !important;
+                font-size: 0.92857rem; } }
             .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
               margin-top: 1.42857rem !important; }
               @media screen and (min-width: 1200px) and (max-width: 1440px) {
@@ -319,11 +327,18 @@ body {
         color: #ffffff;
         text-align: right;
         padding-right: 1.42857rem; }
+        @media screen and (min-width: 1200px) and (max-width: 1440px) {
+          .tos-body-article .tos-white-paper .element-content .element-title {
+            font-size: 1.42857rem;
+            padding-top: 1.71429rem; } }
       .tos-body-article .tos-white-paper .element-content .element-description {
         font-size: 1.14286rem;
         color: #ffffff;
         text-align: right;
         padding-right: 1.42857rem; }
+        @media screen and (min-width: 1200px) and (max-width: 1440px) {
+          .tos-body-article .tos-white-paper .element-content .element-description {
+            font-size: 1rem; } }
       .tos-body-article .tos-white-paper .element-content .element-img {
         cursor: pointer;
         padding-top: 1.42857rem;
@@ -331,7 +346,7 @@ body {
 
 .tos-body-footer {
   background-color: #000000;
-  height: 106px; }
+  height: 126px; }
   .tos-body-footer .contact-us {
     padding-top: 1.42857rem; }
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
@@ -339,14 +354,16 @@ body {
         padding-top: 0; } }
   @media screen and (min-width: 1200px) and (max-width: 1440px) {
     .tos-body-footer {
-      height: 4.28571rem; } }
+      height: 6.42857rem; } }
   .tos-body-footer .tos-footer {
     margin: 0 auto;
     text-align: center; }
+    .tos-body-footer .tos-footer .layui-nav .layui-this:after, .tos-body-footer .tos-footer .layui-nav-bar, .tos-body-footer .tos-footer .layui-nav-tree .layui-nav-itemed:after {
+      height: 0; }
     .tos-body-footer .tos-footer .layui-nav {
       background-color: #000000; }
       .tos-body-footer .tos-footer .layui-nav .layui-nav-item {
-        line-height: 2.5rem; }
+        line-height: 4.64286rem; }
       .tos-body-footer .tos-footer .layui-nav a {
         color: #7a7a80;
         font-size: 1.28571rem; }
@@ -355,12 +372,23 @@ body {
             font-size: 1rem; } }
         .tos-body-footer .tos-footer .layui-nav a:hover {
           color: #fff; }
+        .tos-body-footer .tos-footer .layui-nav a img {
+          -webkit-transition: all 0.5s;
+          transition: all 0.5s; }
+          .tos-body-footer .tos-footer .layui-nav a img.sp-icon {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+          .tos-body-footer .tos-footer .layui-nav a img:hover {
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3); }
     .tos-body-footer .tos-footer .layui-nav-bar {
       display: none; }
     .tos-body-footer .tos-footer .all-right {
       height: 1.07143rem;
       font-size: 14px;
-      color: #49494d; }
+      color: #7a7a80; }
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-footer .tos-footer .all-right {
           font-size: 0.85714rem; } }

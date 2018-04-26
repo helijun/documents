@@ -12,3 +12,10 @@
 1. 简体中文页面：html lang=zh-cmn-Hans
 2. 繁体中文页面：html lang=zh-cmn-Hant
 3. 英语页面：html lang=en
+
+## 构建步骤
+1. gulp clean:dist
+2. gulp copySrc
+3. gulp i18n:zh-tw 执行两遍
+4. gulp i18n:zh 执行两遍
+5. gulp i18n:en 已上执行两遍后再执行一遍

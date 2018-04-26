@@ -218,16 +218,14 @@ gulp.task('i18n:zh', function(done) {
 })
 
 gulp.task('i18n:en', function(done) {
-    gulp.src(path.dev + '/index.html')
+    return gulp.src(path.dev + '/index.html')
         .pipe(gulp.dest(path.build))
 })
 
 //复制src
 gulp.task('copySrc',function(){
-    gulp.src([
-              path.dev + '/src/assets/**.*', '!/src/assets/sass/**.*','!index.html'
-         ])
-        .pipe(gulp.dest(path.build))
+    return gulp.src(path.dev + '/src/assets/**/**.*')
+        .pipe(gulp.dest(path.build + '/assets'))
 })
 
 //先删除原来的dist
