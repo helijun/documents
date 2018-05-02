@@ -1,24 +1,35 @@
 @charset "UTF-8";
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
+@media screen and (max-width: 768px) {
+  .extends-mobile-common-wh, html,
+  body, .tos-body-article {
+    width: 100%;
+    height: auto;
+    font-size: 11px !important; } }
+
 html,
 body {
   padding: 0;
@@ -44,10 +55,16 @@ body {
 
 .tos-container {
   width: 1200px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0 auto; }
   @media screen and (min-width: 1200px) and (max-width: 1440px) {
     .tos-container {
       width: 69.28571rem !important; } }
+  @media screen and (max-width: 768px) {
+    .tos-container {
+      width: 100%;
+      padding: 0 0.85714rem; } }
 
 .module-first-prtSc {
   height: 100vh;
@@ -60,6 +77,12 @@ body {
   .module-first-prtSc .module-slogan {
     padding-top: 26vh;
     z-index: 999; }
+    @media screen and (max-width: 768px) {
+      .module-first-prtSc .module-slogan {
+        padding-top: 62vh;
+        padding-left: 0.71429rem;
+        padding-right: 0.71429rem;
+        width: 100%; } }
     .module-first-prtSc .module-slogan .element-title {
       font-size: 3.85714rem;
       line-height: 11.42857rem;
@@ -70,6 +93,10 @@ body {
         .module-first-prtSc .module-slogan .element-title {
           font-size: 2.85714rem;
           line-height: 7.14286rem; } }
+      @media screen and (max-width: 768px) {
+        .module-first-prtSc .module-slogan .element-title {
+          font-size: 1.78571rem;
+          line-height: 2.28571rem; } }
     .module-first-prtSc .module-slogan .element-sub-title {
       font-family: MicrosoftYaHei-Bold;
       font-size: 1.42857rem;
@@ -79,6 +106,9 @@ body {
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .module-first-prtSc .module-slogan .element-sub-title {
           font-size: 1.14286rem; } }
+      @media screen and (max-width: 768px) {
+        .module-first-prtSc .module-slogan .element-sub-title {
+          font-size: 0.71429rem; } }
 
 .module-color-change {
   background: #020c21;
@@ -100,6 +130,10 @@ body {
       .tos-body-header .tos-header {
         height: 6rem;
         line-height: 6rem; } }
+    @media screen and (max-width: 768px) {
+      .tos-body-header .tos-header {
+        line-height: 3.92857rem;
+        height: 3.92857rem; } }
     .tos-body-header .tos-header .layui-layout-right {
       top: 1.14286rem;
       line-height: 2.14286rem;
@@ -136,25 +170,36 @@ body {
     float: left;
     margin-left: -16%; }
   .tos-body-header .tos-logo a {
-    display: inline-block;
-    margin-left: 2.85714rem; }
+    display: inline-block; }
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-header .tos-logo a {
         height: 6rem;
         line-height: 6rem;
         width: 4.92857rem; } }
+    @media screen and (max-width: 768px) {
+      .tos-body-header .tos-logo a {
+        margin-left: 0;
+        height: 2.5rem;
+        width: 2.07143rem;
+        float: left; } }
     .tos-body-header .tos-logo a img {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       padding: 4px; }
+      @media screen and (max-width: 768px) {
+        .tos-body-header .tos-logo a img {
+          padding: 0; } }
   .tos-body-header .layui-nav {
     background-color: white;
-    background-color: transparent; }
+    background-color: transparent;
+    padding: 0 8px;
+    text-align: right; }
     .tos-body-header .layui-nav .layui-nav-item a {
       font-size: 14px;
       color: #fff;
       line-height: 2.14286rem;
-      margin-bottom: 1.78571rem; }
+      margin-bottom: 1.78571rem;
+      padding: 0 16px; }
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-header .layui-nav .layui-nav-item a {
           margin-bottom: 1.07143rem; } }
@@ -163,10 +208,19 @@ body {
     .tos-body-header .layui-nav .layui-nav-item.layui-this:after {
       height: 2px;
       background-color: #cca482; }
+  .tos-body-header .module-mobile-menu {
+    float: right; }
 
 .module-common-title {
   text-align: center;
   padding: 14.28571rem 0 3.21429rem 0; }
+  @media screen and (max-width: 768px) {
+    .module-common-title {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100%;
+      padding: 2.85714rem 2.85714rem; } }
   .module-common-title span {
     margin: 0 auto;
     display: inline-block;
@@ -178,6 +232,10 @@ body {
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .module-common-title span {
         font-size: 2.28571rem; } }
+    @media screen and (max-width: 768px) {
+      .module-common-title span {
+        font-size: 2rem !important;
+        max-width: 100%; } }
 
 .elment-special-title {
   padding: 2.85714rem 0 3.21429rem 0; }
@@ -187,7 +245,9 @@ body {
 .tos-body-article {
   position: relative;
   background-color: #f2f2f2;
-  height: auto; }
+  height: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
   .tos-body-article .module-first-img {
     position: absolute;
     top: 45vh;
@@ -200,6 +260,12 @@ body {
         transform: scale(1);
         top: 30vh;
         right: 8vw; } }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .module-first-img {
+        right: 0vw;
+        top: 25vh;
+        -webkit-transform: scale(1);
+        transform: scale(1); } }
   .tos-body-article .tos-chain, .tos-body-article .tos-advantage {
     text-align: center;
     height: 14.85714rem; }
@@ -208,6 +274,11 @@ body {
       height: 68px;
       margin: 0 auto;
       margin-bottom: 2rem; }
+      @media screen and (max-width: 768px) {
+        .tos-body-article .tos-chain .element-icon, .tos-body-article .tos-advantage .element-icon {
+          width: 3.07143rem;
+          height: 2.67857rem;
+          margin-bottom: 1.28571rem; } }
     .tos-body-article .tos-chain .element-title, .tos-body-article .tos-advantage .element-title {
       font-size: 1.28571rem;
       color: #1a1a1a;
@@ -222,8 +293,17 @@ body {
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-article .tos-chain .element-description, .tos-body-article .tos-advantage .element-description {
           font-size: 0.92857rem; } }
-    .tos-body-article .tos-chain .layui-col-xs4, .tos-body-article .tos-advantage .layui-col-xs4 {
+    .tos-body-article .tos-chain .layui-col-md4, .tos-body-article .tos-advantage .layui-col-md4 {
       padding: 0 2.85714rem; }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .tos-chain .layui-col-xs12, .tos-body-article .tos-advantage .layui-col-xs12 {
+        background-color: #f2f2f2;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+        margin-bottom: 0.85714rem;
+        padding: 1.21429rem 0.71429rem; } }
   .tos-body-article .tos-technology .element-bg {
     margin: 0 auto;
     width: 960px;
@@ -231,6 +311,10 @@ body {
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-article .tos-technology .element-bg {
         width: 776px; } }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .tos-technology .element-bg {
+        width: 100%;
+        height: auto; } }
   .tos-body-article .tos-technology .element-description {
     margin-top: 1.42857rem;
     line-height: 1.71429rem;
@@ -239,8 +323,14 @@ body {
     @media screen and (min-width: 1200px) and (max-width: 1440px) {
       .tos-body-article .tos-technology .element-description {
         font-size: 0.92857rem; } }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .tos-technology .element-description {
+        text-align: justify; } }
   .tos-body-article .tos-ownership .layui-row {
     margin-bottom: 1.42857rem; }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .tos-ownership .layui-row {
+        margin-bottom: 0.14286rem; } }
   .tos-body-article .tos-ownership .element-img {
     width: 100px;
     height: 100px; }
@@ -262,58 +352,128 @@ body {
       .tos-body-article .tos-ownership .element-description {
         padding-left: 2.85714rem;
         font-size: 0.92857rem; } }
+  @media screen and (max-width: 768px) {
+    .tos-body-article .tos-ownership .layui-col-xs12 {
+      text-align: center;
+      background-color: #d6e1eb; }
+      .tos-body-article .tos-ownership .layui-col-xs12 .element-img {
+        margin: 0 auto;
+        width: 3.92857rem;
+        height: 3.92857rem;
+        padding: 0.71429rem 0; }
+      .tos-body-article .tos-ownership .layui-col-xs12 .element-title {
+        font-weight: 600;
+        padding: 0; }
+      .tos-body-article .tos-ownership .layui-col-xs12 .element-description {
+        text-align: justify;
+        padding: 0.71429rem; } }
   .tos-body-article .tos-advantage {
     height: 25.21429rem !important; }
   .tos-body-article .tos-team {
     margin-bottom: 1.07143rem; }
     .tos-body-article .tos-team .layui-row {
       height: 34.28571rem; }
-      .tos-body-article .tos-team .layui-row .layui-col-xs3 {
+      .tos-body-article .tos-team .layui-row .layui-col-md3,
+      .tos-body-article .tos-team .layui-row .layui-col-xs12 {
         padding: 0.57143rem;
         height: 34.28571rem; }
-        .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content {
+        @media screen and (max-width: 768px) {
+          .tos-body-article .tos-team .layui-row .layui-col-md3,
+          .tos-body-article .tos-team .layui-row .layui-col-xs12 {
+            height: auto;
+            padding: 0; } }
+        .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content,
+        .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content {
           height: 30rem;
           background-color: #425c81;
           text-align: center;
           padding: 1.42857rem; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content.sp-2n {
+          @media screen and (max-width: 768px) {
+            .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content,
+            .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content {
+              height: auto;
+              min-height: 3.75rem !important; } }
+          .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content.sp-2n,
+          .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content.sp-2n {
             background-color: #637da0; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-header {
+          .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-header,
+          .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-header {
             margin: 0 auto;
             width: 188px;
             height: 188px; }
-            .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-header img {
+            @media screen and (max-width: 768px) {
+              .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-header,
+              .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-header {
+                float: left;
+                width: 6.71429rem;
+                height: 6.71429rem; } }
+            .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-header img,
+            .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-header img {
               border-radius: 50%; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-title {
+          .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-title,
+          .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-title {
             font-size: 1.28571rem;
             line-height: 1.57143rem;
             color: #fff;
             margin-top: 1.42857rem; }
-          .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
+            @media screen and (max-width: 768px) {
+              .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-title,
+              .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-title {
+                margin-left: 7.42857rem;
+                text-align: left;
+                margin-top: 0;
+                font-weight: 500; } }
+          .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description,
+          .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description {
             font-size: 14px;
             line-height: 1.42857rem;
             margin-top: 2.85714rem;
             color: #ababb3;
             font-weight: 600; }
             @media screen and (min-width: 1200px) and (max-width: 1440px) {
-              .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
+              .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description,
+              .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description {
                 line-height: 1.21429rem; } }
             @media screen and (min-width: 1200px) and (max-width: 1440px) {
-              .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description {
+              .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description,
+              .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description {
                 margin-top: 1.42857rem !important;
                 font-size: 0.92857rem; } }
-            .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
+            .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description.element-special,
+            .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description.element-special {
               margin-top: 1.42857rem !important; }
               @media screen and (min-width: 1200px) and (max-width: 1440px) {
-                .tos-body-article .tos-team .layui-row .layui-col-xs3 .element-content .element-description.element-special {
+                .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description.element-special,
+                .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description.element-special {
                   margin-top: 0.71429rem !important; } }
+              @media screen and (max-width: 768px) {
+                .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description.element-special,
+                .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description.element-special {
+                  margin-top: 0 !important; } }
+            @media screen and (max-width: 768px) {
+              .tos-body-article .tos-team .layui-row .layui-col-md3 .element-content .element-description,
+              .tos-body-article .tos-team .layui-row .layui-col-xs12 .element-content .element-description {
+                margin-left: 7.42857rem;
+                text-align: left;
+                margin-top: 0;
+                font-weight: 500;
+                min-height: 4.46429rem; } }
   .tos-body-article .tos-white-paper {
     padding: 1.07143rem 0 3.92857rem 0; }
+    @media screen and (max-width: 768px) {
+      .tos-body-article .tos-white-paper {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 0.85714rem 3.92857rem 0.85714rem;
+        margin-right: 0.85714rem; } }
     .tos-body-article .tos-white-paper .element-left .element-content {
       float: right;
       margin-right: 0.85714rem; }
     .tos-body-article .tos-white-paper .element-right .element-content {
       margin-left: 0.85714rem; }
+      @media screen and (max-width: 768px) {
+        .tos-body-article .tos-white-paper .element-right .element-content {
+          margin-left: 2px; } }
     .tos-body-article .tos-white-paper .element-content {
       width: 300px;
       height: 88px;
@@ -321,6 +481,10 @@ body {
       background-image: linear-gradient(#0c2136, #0c2136), linear-gradient(#0c2136, #0c2136);
       background-blend-mode: normal,  normal;
       text-align: center; }
+      @media screen and (max-width: 768px) {
+        .tos-body-article .tos-white-paper .element-content {
+          width: 100%;
+          margin-right: 0 !important; } }
       .tos-body-article .tos-white-paper .element-content .element-title {
         padding-top: 1.42857rem;
         font-size: 1.71429rem;
@@ -331,6 +495,10 @@ body {
           .tos-body-article .tos-white-paper .element-content .element-title {
             font-size: 1.42857rem;
             padding-top: 1.71429rem; } }
+        @media screen and (max-width: 768px) {
+          .tos-body-article .tos-white-paper .element-content .element-title {
+            font-size: 1.35714rem;
+            padding-top: 1.42857rem; } }
       .tos-body-article .tos-white-paper .element-content .element-description {
         font-size: 1.14286rem;
         color: #ffffff;
@@ -343,6 +511,10 @@ body {
         cursor: pointer;
         padding-top: 1.42857rem;
         padding-right: 1.42857rem; }
+        @media screen and (max-width: 768px) {
+          .tos-body-article .tos-white-paper .element-content .element-img {
+            -webkit-transform: scale(0.8);
+            transform: scale(0.8); } }
 
 .tos-body-footer {
   background-color: #000000;
@@ -358,10 +530,16 @@ body {
   .tos-body-footer .tos-footer {
     margin: 0 auto;
     text-align: center; }
+    @media screen and (max-width: 768px) {
+      .tos-body-footer .tos-footer.tos-container {
+        padding: 0; } }
     .tos-body-footer .tos-footer .layui-nav .layui-this:after, .tos-body-footer .tos-footer .layui-nav-bar, .tos-body-footer .tos-footer .layui-nav-tree .layui-nav-itemed:after {
       height: 0; }
     .tos-body-footer .tos-footer .layui-nav {
       background-color: #000000; }
+      @media screen and (max-width: 768px) {
+        .tos-body-footer .tos-footer .layui-nav {
+          padding: 0 14px; } }
       .tos-body-footer .tos-footer .layui-nav .layui-nav-item {
         line-height: 4.64286rem; }
       .tos-body-footer .tos-footer .layui-nav a {
@@ -392,6 +570,12 @@ body {
       @media screen and (min-width: 1200px) and (max-width: 1440px) {
         .tos-body-footer .tos-footer .all-right {
           font-size: 0.85714rem; } }
+      @media screen and (max-width: 768px) {
+        .tos-body-footer .tos-footer .all-right {
+          background-color: #000000;
+          height: auto;
+          font-size: 1rem;
+          padding-bottom: 0.71429rem; } }
 
 /** 改造layui样式 **/
 .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {

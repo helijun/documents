@@ -15,7 +15,7 @@
 
 ## 构建步骤
 1. gulp clean:dist
-2. gulp copySrc
+2. gulp copySrc 没有作用的话需要手动复制
 3. gulp i18n:zh-tw 执行两遍
 4. gulp i18n:zh 执行两遍
 5. gulp i18n:en 已上执行两遍后再执行一遍

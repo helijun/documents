@@ -389,6 +389,11 @@ module.exports = {
     "zh-tw": "<img src='./assets/img/history_hk.png' class='tos-full-img'>",
     "en": "<img src='./assets/img/history_en.png' class='tos-full-img'>"
   },
+  "timelineMobileImg": {
+    "zh": "<img src='./assets/img/phone_history_cn.png' class='tos-full-img'>",
+    "zh-tw": "<img src='./assets/img/phone_history_hk.png' class='tos-full-img'>",
+    "en": "<img src='./assets/img/phone_history_en.png' class='tos-full-img'>"
+  },
   "ecosystemImg": {
     "zh": "<img src='./assets/img/advantage_cn.png' class='tos-full-img'>",
     "zh-tw": "<img src='./assets/img/advantage_hk.png' class='tos-full-img'>",

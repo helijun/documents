@@ -1,10 +1,17 @@
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
 /** media start **/
 /** media end ---------------------------------------   **/
+/** mobile base **/
 /** pc base **/
 /** pc base end ---------------------------------------   **/
 /** mobile base **/
+@media screen and (max-width: 768px) {
+  .extends-mobile-common-wh {
+    width: 100%;
+    height: auto;
+    font-size: 11px !important; } }

@@ -1,3 +1,11 @@
 @charset "utf-8";
 @import "./variables";
 @import "./function";
+
+.extends-mobile-common-wh {
+    @media #{$media} and ($media-max-width: $max-width-768) {
+        width: 100%;
+        height: auto;
+        font-size: 11px !important;
+	}
+}

@@ -8,6 +8,8 @@ body {
     padding: 0;
 	margin: 0;
 	font-size: 14px;
+
+	@extend .extends-mobile-common-wh;
 }
 
 /** 背景颜色 */
@@ -31,10 +33,16 @@ body {
 
 .tos-container {
 	width: $base-width-pc;
+	box-sizing: border-box;
 	margin: 0 auto;
 	
 	@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440){
 		width: pcrem(970px) !important;
+	}
+
+	@media #{$media} and ($media-max-width: $max-width-768) {
+		width: 100%;
+		padding: 0 torem(24px);
 	}
 }
 
@@ -50,6 +58,13 @@ body {
 	
 	.module-slogan {
 		padding-top: 26vh;
+
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			padding-top: 62vh;
+			padding-left: torem(20px);
+			padding-right: torem(20px);
+			width: 100%;
+		}
 		z-index: 999;
 		.element-title {
 			font-size: pcrem(54px);
@@ -62,6 +77,11 @@ body {
 				font-size: pcrem(40px);
 				line-height: pcrem(100px);
 			}
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				font-size: torem(50px);
+				line-height: torem(64px);
+			}
 		}
 		.element-sub-title {
 			font-family: MicrosoftYaHei-Bold;
@@ -72,6 +92,10 @@ body {
 
 			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(16px);
+			}
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				font-size: torem(20px);
 			}
 		}
 	}
@@ -98,6 +122,11 @@ body {
 		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			height: pcrem(84px);
 			line-height: pcrem(84px);
+		}
+
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			line-height: torem($header-height-mobile);
+			height: torem($header-height-mobile);
 		}
 
 		.layui-layout-right {
@@ -157,16 +186,26 @@ body {
 		}
 		a {
 			display: inline-block;
-			margin-left: pcrem(40px);
 			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				height: pcrem(84px);
 				line-height: pcrem(84px);
 				width: pcrem(69px);
 			}
 
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				margin-left: 0;
+				height: torem(70px);
+				width: torem(58px);
+				float: left;
+			}
+
 			img {
 				box-sizing: border-box;
 				padding: 4px;
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					padding: 0;
+				}
 			}
 		}
 	}
@@ -174,6 +213,8 @@ body {
 	.layui-nav {
 		background-color: white;
 		background-color: transparent;
+		padding: 0 8px;
+		text-align: right;
 
 		.layui-nav-item {
 			a {
@@ -181,6 +222,7 @@ body {
 				color: $article-color;
 				line-height: pcrem(30px);
 				margin-bottom: pcrem(25px);
+				padding: 0 16px;
 
 				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 					margin-bottom: pcrem(15px);
@@ -199,13 +241,24 @@ body {
 				
 			}
 		}
-		
+	}
+
+	.module-mobile-menu {
+		float: right;
 	}
 }
+
 //通用的标题
 .module-common-title {
 	text-align: center;
 	padding: pcrem(200px) 0 pcrem(45px) 0;
+
+	@media #{$media} and ($media-max-width: $max-width-768) {
+		box-sizing: border-box;
+		display: inline-block;
+		width: 100%;
+		padding: torem(80px) torem(80px);
+	}
 
 	span {
 		margin: 0 auto;
@@ -218,6 +271,10 @@ body {
 
 		@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 			font-size: pcrem(32px);
+		}
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			font-size: torem(56px) !important;
+			max-width: 100%;
 		}
 		&::before {
 			
@@ -240,7 +297,9 @@ body {
 	position: relative;
 	background-color: $article-bg-color;
 	height: auto;
+	box-sizing: border-box;
 
+	@extend .extends-mobile-common-wh;
 	.module-first-img {
 		position: absolute;
 		top: 45vh;
@@ -252,6 +311,12 @@ body {
 			top: 30vh;
 			right: 8vw;
 		}
+
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			right: 0vw;
+			top: 25vh;
+			transform: scale(1);
+		}
 	}
 
 	.tos-chain {
@@ -262,6 +327,12 @@ body {
 			height: 68px;
 			margin: 0 auto;
 			margin-bottom: pcrem(28px);
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				width: torem(86px);
+				height: torem(75px);
+				margin-bottom: pcrem(18px);
+			}
 		}
 		.element-title {
 			font-size: pcrem(18px);
@@ -280,8 +351,18 @@ body {
 			line-height: pcrem(24px);
 			color: $gray-color;
 		}
-		.layui-col-xs4 {
+		.layui-col-md4 {
 			padding: 0 pcrem(40px);
+		}
+
+		.layui-col-xs12 {
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				background-color: #f2f2f2;
+				box-sizing: border-box;
+				box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+				margin-bottom: torem(24px);
+				padding: torem(34px) torem(20px);
+			}
 		}
 	}
 
@@ -294,6 +375,11 @@ body {
 			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				width: 776px;
 			}
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				width: 100%;
+				height: auto;
+			}
 		}
 		.element-description {
 			margin-top: pcrem(20px);
@@ -303,12 +389,20 @@ body {
 			@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 				font-size: pcrem(13px);
 			}
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				text-align: justify;
+			}
 		}
 	}
 
 	.tos-ownership {
 		.layui-row {
 			margin-bottom: pcrem(20px);
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				margin-bottom: pcrem(2px);
+			}
 		}
 
 		.element-img {
@@ -338,6 +432,29 @@ body {
 				font-size: pcrem(13px);
 			}
 		}
+
+		.layui-col-xs12 {
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				text-align: center;
+				background-color: #d6e1eb;
+				
+				.element-img {
+					margin: 0 auto;
+					width: torem(110px);
+					height: torem(110px);
+					padding: torem(20px) 0;
+				}
+
+				.element-title {
+					font-weight: 600;
+					padding: 0;
+				}
+				.element-description {
+					text-align: justify;
+					padding: torem(20px);
+				}
+			}
+		}
 	}
 
 	.tos-advantage {
@@ -350,12 +467,24 @@ body {
 		.layui-row {
 			height: pcrem(480px);
 			
-			.layui-col-xs3 {
+			.layui-col-md3,
+			.layui-col-xs12 {
 				padding: pcrem(8px);
 				height: pcrem(480px);
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					height: auto;
+					padding: 0;
+				}
+
 				.element-content {
 					height: pcrem(420px);
 					background-color: #425c81; 
+
+					@media #{$media} and ($media-max-width: $max-width-768) {
+						height: auto;
+						min-height: torem(105px) !important;
+					}
 
 					&.sp-2n{
 						background-color: #637da0; 
@@ -376,6 +505,12 @@ body {
 						width: 188px;
 						height: 188px;
 						
+						@media #{$media} and ($media-max-width: $max-width-768) {
+							float: left;
+							width: torem(188px);
+							height: torem(188px);
+						}
+
 						img {
 							border-radius: 50%;
 						}
@@ -386,6 +521,14 @@ body {
 						line-height: pcrem(22px);
 						color: $article-color;
 						margin-top: pcrem(20px);
+
+						@media #{$media} and ($media-max-width: $max-width-768) {
+							margin-left: torem(208px);
+							text-align: left;
+							margin-top: 0;
+							font-weight: 500;
+						}
+
 					}
 
 					.element-description {
@@ -409,6 +552,17 @@ body {
 							@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 								margin-top: pcrem(10px) !important;
 							}
+							@media #{$media} and ($media-max-width: $max-width-768) {
+								margin-top: 0 !important;
+							}
+						}
+
+						@media #{$media} and ($media-max-width: $max-width-768) {
+							margin-left: torem(208px);
+							text-align: left;
+							margin-top: 0;
+							font-weight: 500;
+							min-height: torem(125px);
 						}
 					}
 				}
@@ -418,6 +572,12 @@ body {
 
 	.tos-white-paper {
 		padding: pcrem(15px) 0 pcrem(55px) 0;
+
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			box-sizing: border-box;
+			padding: 0 torem(24px) pcrem(55px) torem(24px);
+			margin-right: torem(24px);
+		}
 
 		.element-left {
 
@@ -430,6 +590,10 @@ body {
 		.element-right {
 			.element-content {
 				margin-left: pcrem(12px);
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					margin-left: 2px;
+				}
 			}
 		}
 
@@ -446,6 +610,11 @@ body {
 				normal;
 			text-align: center;
 
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				width: 100%;
+				margin-right: 0 !important;
+			}
+
 			.element-title {
 				padding-top: pcrem(20px);
 				font-size: pcrem(24px);
@@ -456,6 +625,11 @@ body {
 				@media #{$media} and ($media-min-width: $min-width-1200) and ($media-max-width: $max-width-1440) {
 					font-size: pcrem(20px);
 					padding-top: pcrem(24px);
+				}
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					font-size: torem(38px);
+					padding-top: torem(40px);
 				}
 			}
 			.element-description {
@@ -471,6 +645,10 @@ body {
 				cursor: pointer;
 				padding-top: pcrem(20px);
 				padding-right: pcrem(20px); 
+
+				@media #{$media} and ($media-max-width: $max-width-768) {
+					transform: scale(0.8);
+				}
 			}	
 		}
 	}
@@ -494,11 +672,22 @@ body {
 		margin: 0 auto;
 		text-align: center;
 
+		@media #{$media} and ($media-max-width: $max-width-768) {
+			&.tos-container {
+				padding: 0;
+			}
+		}
+
 		.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
 			height: 0;
 		}
 		.layui-nav {
 			background-color: #000000;
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				padding: 0 14px;
+			}
+
 			.layui-nav-item {
 				line-height: pcrem(65px);
 			}
@@ -537,6 +726,13 @@ body {
 			height: pcrem(15px);
 			font-size: $base-font-size-pc;
 			color: #7a7a80;
+
+			@media #{$media} and ($media-max-width: $max-width-768) {
+				background-color: #000000;
+				height: auto;
+				font-size: 1rem;
+				padding-bottom: torem(20px);
+			}
 		}
 	}
 }
