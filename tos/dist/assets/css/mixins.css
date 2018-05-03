@@ -15,3 +15,7 @@
     width: 100%;
     height: auto;
     font-size: 11px !important; } }
+
+.extends-mobile-fuild {
+  float: left;
+  margin: 0 -0.35714rem; }

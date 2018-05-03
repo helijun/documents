@@ -12,9 +12,58 @@
 </head>
 
 <body>
+	<div class="module-mobile-nav layui-hide-sm layui-hide-md layui-hide-lg" style="margin-left: 999px;">
+		<div class="module-colse-nav">
+			<img src="./assets/img/2.png" alt="" class="tos-full-img" id="mobileNavClose">
+		</div>
+		<ul class="layui-nav" lay-filter="">
+			<li class="layui-nav-item index-page">
+				<a class="nav-href" href="#TOSCHAIN" data-i18n="toschain">TOS</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#SDAG" data-i18n="sdag">SDAG</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#TP">Transaction & POS</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Advantage" data-i18n="advantage">Advantage</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Ecosystem" data-i18n="ecosystem">Ecosystem</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Team" data-i18n="team">Team</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Timeline" data-i18n="timeline">Timeline</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Whitepaper" data-i18n="whitepaper">White Paper</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Contactus" data-i18n="contactus">Contact us</a>
+			</li>
+		</ul>
+		<div class="module-mobile-change-language">
+			<p data-i18n="welcome">welcome to TOS</p>
+			<ul class="layui-nav" lay-filter="">
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="./index.html">English</a>
+				</li>
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="./zh/index.html">简体中文</a>
+				</li>
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="./zh-tw/index.html">繁体中文</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<article class="tos-body-article">
 		<div class="module-first-img">
-			<img src="./assets/img/banner_01.png" alt="" class="tos-full-img">
+			<img src="./assets/img/banner.png" alt="" class="tos-full-img">
 		</div>
 		<div class="module-first-prtSc">
 			<header class="tos-body-header">
@@ -28,7 +77,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" data-i18n="welcome">welcome to TOS | </label>
 							<div class="layui-input-inline">
-								<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage">
+								<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage" data-i18n="changeLanguage">
 									<option vaule="1">English</option>
 									<option vaule="2">简体中文</option>
 									<option vaule="3">繁体中文</option>
@@ -65,12 +114,13 @@
 							<a class="nav-href" href="#Contactus" data-i18n="contactus">Contact us</a>
 						</li>
 					</ul>
+
 					<div class="layui-hide-lg layui-hide-sm layui-hide-md module-mobile-menu">
-						icon
+						<img class="tos-full-img" src="./assets/img/1.png" id="mobileNavImg"/>
 					</div>
 				</div>
 			</header>
-	
+
 			<div class="tos-container module-slogan">
 				<div class="element-title">ThingsOperatingSystem</div>
 				<div class="element-sub-title" data-i18n="sdagdesc">Decentralized layered block network Technology based on SDAG</div>
@@ -79,8 +129,8 @@
 		<div class="module-color-change">
 			<div class="module-common-title elment-special-title" id="TOSCHAIN">
 				<span data-i18n="toschain">TOS</span>
-			</div>    
-	
+			</div>
+
 			<div class="tos-container layui-row tos-chain">
 				<div class="layui-col-xs12 layui-col-md4">
 					<div class="element-icon">
@@ -97,7 +147,8 @@
 					</div>
 					<div class="element-title" data-i18n="datafree">Ordinary transaction data free</div>
 					<div class="element-description" data-i18n="datafreecontent">
-						Ordinary data, free transactions, through the end of the block network transaction consensus mechanism to record data, reduce user costs.
+						Ordinary data, free transactions, through the end of the block network transaction consensus mechanism to record data, reduce
+						user costs.
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md4">
@@ -106,27 +157,32 @@
 					</div>
 					<div class="element-title" data-i18n="datacharges">High value transaction data charges</div>
 					<div class="element-description" data-i18n="datachargescontent">
-						High-value data, using POS consensus mechanisms to write data to higher-level block networks, high-level security, requires payment.
+						High-value data, using POS consensus mechanisms to write data to higher-level block networks, high-level security, requires
+						payment.
 					</div>
 				</div>
 			</div>
-	
+
 			<div class="module-common-title" id="SDAG">
-				<span data-i18n="Whatissdag">What is SDAG technology</span>                                               
-			</div>   
+				<span data-i18n="Whatissdag">What is SDAG technology</span>
+			</div>
 		</div>
 		<div class="tos-container layui-row tos-technology">
 			<div class="element-bg">
 				<img src="./assets/img/179060926918847189.png" alt="" class="tos-full-img">
 			</div>
 			<div class="element-description" data-i18n="Whatissdagcontent">
-				SDAG(Super directed acyclic graph) based on existing DAG technology to construct a hierarchical chain entanglement network. Each level of blockchain network stores the corresponding data, similar to the country -> Province -> City -> County -> District, each administrative center to manage the data, between provinces and between countries and countries, each other Care about each other's data. Separation of the entire network of block data, each block network only care about their own needs of the block data, you can reduce a large amount of data redundancy.
+				SDAG(Super directed acyclic graph) based on existing DAG technology to construct a hierarchical chain entanglement network.
+				Each level of blockchain network stores the corresponding data, similar to the country -> Province -> City -> County
+				-> District, each administrative center to manage the data, between provinces and between countries and countries, each
+				other Care about each other's data. Separation of the entire network of block data, each block network only care about
+				their own needs of the block data, you can reduce a large amount of data redundancy.
 			</div>
-		</div> 
-				
+		</div>
+
 		<div class="module-common-title" id="TP">
-			<span data-i18n="supportpos-transaction">Why support both Transaction proof of transaction and POS proof of ownership?</span>                                               
-		</div>   
+			<span data-i18n="supportpos-transaction">Why support both Transaction proof of transaction and POS proof of ownership?</span>
+		</div>
 		<div class="tos-container layui-row tos-ownership">
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
@@ -136,10 +192,12 @@
 				</div>
 				<div class="layui-col-xs12 layui-col-md11">
 					<div class="element-title" data-i18n="freetransactions">Support for free transactions and fees transactions</div>
-					<div class="element-description" data-i18n="freetransactionscontent">Free trade, record common data, do not need transaction costs, and IoT devices produce massive data scenarios fit. Charged transactions apply to high value data transactions in the Internet of Things. Record data in the high-level block network, better liquidity and higher security.</div>
+					<div class="element-description" data-i18n="freetransactionscontent">Free trade, record common data, do not need transaction costs, and IoT devices produce massive data scenarios fit. Charged
+						transactions apply to high value data transactions in the Internet of Things. Record data in the high-level block network,
+						better liquidity and higher security.</div>
 				</div>
 			</div>
-			
+
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
 					<div class="element-img">
@@ -148,10 +206,14 @@
 				</div>
 				<div class="layui-col-xs12 layui-col-md11">
 					<div class="element-title" data-i18n="branchnetwork">Has unlimited branch network capacity</div>
-					<div class="element-description" data-i18n="branchnetworkcontent">An algorithmic mechanism monitors the economic value of the block network. When the economic value of the network reaches a certain threshold, it will automatically trigger the next new block verification needs charging. At this moment, if the user chooses to continue to charge the network transaction in this level block, if the user wants to continue to use the free service, the network system will branch a new sub-block network from the current block network and write the new transaction Sub-block network, reaching unlimited branch block network capabilities.</div>
+					<div class="element-description" data-i18n="branchnetworkcontent">An algorithmic mechanism monitors the economic value of the block network. When the economic value of the network reaches
+						a certain threshold, it will automatically trigger the next new block verification needs charging. At this moment,
+						if the user chooses to continue to charge the network transaction in this level block, if the user wants to continue
+						to use the free service, the network system will branch a new sub-block network from the current block network and
+						write the new transaction Sub-block network, reaching unlimited branch block network capabilities.</div>
 				</div>
 			</div>
-			
+
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
 					<div class="element-img">
@@ -160,14 +222,18 @@
 				</div>
 				<div class="layui-col-xs12 layui-col-md11">
 					<div class="element-title" data-i18n="balance">Password economics balance</div>
-					<div class="element-description" data-i18n="balancecontent">The combination of free transactions and paid transactions can form a relationship of mutual checks and balances. Form a hierarchy of data distribution by charging and freeing. Free transaction data is only stored in the lower level or the end level block network, the charge transaction is stored in the high level block network, the higher the transaction fee, the higher the storage network level. This avoids junk data blocking high-level block networks and also reduces the amount of data in high-level block networks.</div>
+					<div class="element-description" data-i18n="balancecontent">The combination of free transactions and paid transactions can form a relationship of mutual checks and balances. Form
+						a hierarchy of data distribution by charging and freeing. Free transaction data is only stored in the lower level or
+						the end level block network, the charge transaction is stored in the high level block network, the higher the transaction
+						fee, the higher the storage network level. This avoids junk data blocking high-level block networks and also reduces
+						the amount of data in high-level block networks.</div>
 				</div>
 			</div>
-		</div> 
-	
+		</div>
+
 		<div class="module-common-title" id="Advantage">
-			<span data-i18n="advantage">Advantage</span>                                               
-		</div>   
+			<span data-i18n="advantage">Advantage</span>
+		</div>
 		<div class="tos-container layui-row tos-advantage">
 			<div class="layui-col-xs12 layui-col-md4">
 				<div class="element-icon">
@@ -175,7 +241,9 @@
 				</div>
 				<div class="element-title" data-i18n="internetofthings">Reducing the cost of the Internet of things</div>
 				<div class="element-description" data-i18n="internetofthingscontent">
-					Block chain technology provides a point to point direct interconnection way for data transfer. The whole Internet of things solution does not need to introduce large data centers for data synchronization and management control, thereby reducing the operation cost of the Internet of things.
+					Block chain technology provides a point to point direct interconnection way for data transfer. The whole Internet of things
+					solution does not need to introduce large data centers for data synchronization and management control, thereby reducing
+					the operation cost of the Internet of things.
 				</div>
 			</div>
 			<div class="layui-col-xs12 layui-col-md4">
@@ -184,32 +252,69 @@
 				</div>
 				<div class="element-title" data-i18n="bigdatamanagement">Big Data Management</div>
 				<div class="element-description" data-i18n="bigdatamanagementcontent">
-					As far as large data analysis and mining are concerned, the application of blockchain expands the scale and richness of the data. The technology of block chain makes the quality of data get unprecedented trust. It ensures the correctness of data analysis and data mining, and realizes the prediction, analysis and action of big data. It will become the cornerstone of the digital economic era.
+					As far as large data analysis and mining are concerned, the application of blockchain expands the scale and richness of the
+					data. The technology of block chain makes the quality of data get unprecedented trust. It ensures the correctness of
+					data analysis and data mining, and realizes the prediction, analysis and action of big data. It will become the cornerstone
+					of the digital economic era.
 				</div>
 			</div>
-			<div class="layui-col-xs12 layui-col-md4"> 
+			<div class="layui-col-xs12 layui-col-md4">
 				<div class="element-icon">
 					<img src="./assets/img/icon_09.png" alt="" class="tos-full-img">
 				</div>
 				<div class="element-title" data-i18n="securitytransparency">Security and Transparency</div>
 				<div class="element-description" data-i18n="securitytransparencycontent">
-					Blockchain relies on discrete decentralized computer clusters to run, and its fair consensus mechanism to ensure the security of the network, you can view the history of transactions, to ensure the transparency of information.
+					Blockchain relies on discrete decentralized computer clusters to run, and its fair consensus mechanism to ensure the security
+					of the network, you can view the history of transactions, to ensure the transparency of information.
 				</div>
 			</div>
 		</div>
 
 		<div class="module-common-title" id="Ecosystem">
-			<span data-i18n="ecosystem">TOS chain ecosystem</span>                                               
-		</div>   
+			<span data-i18n="ecosystem">TOS chain ecosystem</span>
+		</div>
 		<div class="tos-container layui-row tos-ecosystem">
-			<div class="layui-col-xs12" data-i18n="ecosystemImg">
-				<img src="./assets/img/advantage_en.png" class="tos-full-img">	
+			<div class="layui-col-md12 layui-hide-xs" data-i18n="ecosystemImg">
+				<img src="./assets/img/advantage_en.png" class="tos-full-img">
+			</div>
+			<div class="layui-hide-md layui-hide-sm layui-hide-lg" data-i18n="ecosystemMobileImg">
+				<img src="./assets/img/phone_advantage_en.png" class="tos-full-img">
+			</div>
+			<div class="layui-hide-md layui-hide-sm layui-hide-lg layui-row">
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="tv">TV</div>
+					<div class="element-sub-title" data-i18n="lightnode">Smart home device, a light node in the network.</div>
+					<div class="element-description" data-i18n="smartdevicefeature">
+						Features: Pan-entertainment devices, not often online; have power, light POS mining.
+					</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="refrigerator">Refrigerator</div>
+					<div class="element-sub-title" data-i18n="networknodes">Smart home devices, network nodes.</div>
+					<div class="element-description" data-i18n="networknodesfeature">
+						Features: online throughout the day, reporting data and communications.
+					</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="computerserver">Computer server</div>
+					<div class="element-sub-title" data-i18n="minersnode">Network nodes, miners role.</div>
+					<div class="element-description" data-i18n="minersnodefeature">
+						Features: All-day networking online, powerful computing power, mining profits through the POS.
+					</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="phone">Phone</div>
+					<div class="element-sub-title" data-i18n="appnode">Network nodes, participate in network interaction.</div>
+					<div class="element-description" data-i18n="appnodefeature">
+						Features: Belongs to the application layer, responsible for interacting with smart devices, good user experience.
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="module-common-title" id="Team">
-			<span data-i18n="team">Team</span>                                               
-		</div> 
+			<span data-i18n="team">Team</span>
+		</div>
 		<div class="tos-container tos-team">
 			<div class="layui-row">
 				<div class="llayui-col-xs12 layui-col-md3 layui-col-md3">
@@ -218,7 +323,9 @@
 							<img src="./assets/img/team01.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="chairman">Jeffers Kieron Matthew Foundation Chairman</div>
-						<div class="element-description element-special" data-i18n="chairmanintro">Securities Investment Institute Consultant.<br>Chartered Institute of Securities.<br>Director of the UK Financial Conduct Authority.</div>
+						<div class="element-description element-special" data-i18n="chairmanintro">Securities Investment Institute Consultant.
+							<br>Chartered Institute of Securities.
+							<br>Director of the UK Financial Conduct Authority.</div>
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md3">
@@ -227,7 +334,8 @@
 							<img src="./assets/img/team02.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="ceo">Stephen Wu CEO</div>
-						<div class="element-description" data-i18n="ceointro">HongKong Sun Hung Kai Group Independent Investment Fund manager.<br>Infinity Service USA Inc. Greater China COO.</div>
+						<div class="element-description" data-i18n="ceointro">HongKong Sun Hung Kai Group Independent Investment Fund manager.
+							<br>Infinity Service USA Inc. Greater China COO.</div>
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md3">
@@ -236,7 +344,8 @@
 							<img src="./assets/img/team03.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="cto">Navy Tao CTO</div>
-						<div class="element-description" data-i18n="ctofeature">Once a senior engineer of the Tencent Inc.<br>Once served as the general architect of the HUAWEI heart community mobile terminal project.</div>
+						<div class="element-description" data-i18n="ctofeature">Once a senior engineer of the Tencent Inc.
+							<br>Once served as the general architect of the HUAWEI heart community mobile terminal project.</div>
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md3">
@@ -256,7 +365,8 @@
 							<img src="./assets/img/team05.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="architect">Tony Lee Chief Architect</div>
-						<div class="element-description element-special" data-i18n="architectintro">HongKong Sun Hung Kai Group Independent Investment Fund manager.<br>Infinity Service USA Inc. Greater China COO.</div>
+						<div class="element-description element-special" data-i18n="architectintro">HongKong Sun Hung Kai Group Independent Investment Fund manager.
+							<br>Infinity Service USA Inc. Greater China COO.</div>
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md3">
@@ -265,7 +375,8 @@
 							<img src="./assets/img/team06.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="produceofficer">Timothy Shi Chief Product Officer</div>
-						<div class="element-description element-special" data-i18n="produceofficerintro">Once a senior development engineer of Huawei key projects. Once a Sinosafe Insurance Client Architect and Nongtai financial client project leader.</div>
+						<div class="element-description element-special" data-i18n="produceofficerintro">Once a senior development engineer of Huawei key projects. Once a Sinosafe Insurance Client Architect and Nongtai financial
+							client project leader.</div>
 					</div>
 				</div>
 				<div class="layui-col-xs12 layui-col-md3">
@@ -274,26 +385,27 @@
 							<img src="./assets/img/team07.png" alt="" class="tos-full-img">
 						</div>
 						<div class="element-title" data-i18n="technicaldiego">Diego Cresta Technical adviser</div>
-						<div class="element-description element-special" data-i18n="technicaldiegointro">American Institute of Financial Management Professional Consultant.  Academician of the American Life Insurance Training Institute.American Institute of Finance and Chartered Financial Advisor, Malaysian Insurance Institute.</div>
+						<div class="element-description element-special" data-i18n="technicaldiegointro">American Institute of Financial Management Professional Consultant. Academician of the American Life Insurance Training
+							Institute.American Institute of Finance and Chartered Financial Advisor, Malaysian Insurance Institute.</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="module-common-title" id="Timeline">
-			<span data-i18n="timeline">Timeline</span>                                               
-		</div> 
+			<span data-i18n="timeline">Timeline</span>
+		</div>
 		<div class="tos-container layui-row tos-timeline">
 			<div class="layui-col-xs12 layui-hide-xs" data-i18n="timelineImg">
-				<img src="./assets/img/history_en.png" class="tos-full-img">	
+				<img src="./assets/img/history_en.png" class="tos-full-img">
 			</div>
 			<div class="layui-col-xs12 layui-hide-md layui-hide-lg  layui-hide-sm" data-i18n="timelineMobileImg">
-				<img src="./assets/img/phone_history_en.png" class="tos-full-img">	
+				<img src="./assets/img/phone_history_en.png" class="tos-full-img">
 			</div>
 		</div>
-		
+
 		<div class="module-common-title" id="Whitepaper">
-			<span data-i18n="whitepaper">White Paper</span>                                               
+			<span data-i18n="whitepaper">White Paper</span>
 		</div>
 		<div class="tos-container layui-row tos-white-paper">
 			<a class="layui-col-xs6 element-left" href="./assets/pdf/tos_whitepaper_cn.pdf" target="_blank">
@@ -349,19 +461,9 @@
 							<img src="./assets/img/icon_facebook.png" alt="">
 						</a>
 					</li>
-					<li class="layui-nav-item" data-i18n="telegram">
+					<li class="layui-nav-item">
 						<a class="nav-href" href="https://t.me/TOSChainOfficialEN">
 							<img src="./assets/img/icon_telegram.png" alt="">
-						</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="https://www.instagram.com/TOSChain/">
-							<img src="./assets/img/icon_instagram.png" alt="">
-						</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">
-							<img src="./assets/img/icon_youtube.png" alt="">
 						</a>
 					</li>
 					<li class="layui-nav-item">
@@ -374,6 +476,16 @@
 							<img src="./assets/img/icon_reddit.png" alt="">
 						</a>
 					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">
+							<img src="./assets/img/icon_youtube.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.instagram.com/TOSChain/">
+							<img src="./assets/img/icon_instagram.png" alt="">
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="all-right">
@@ -381,21 +493,57 @@
 			</div>
 		</div>
 	</footer>
+	<script src="./plugin/jquery/jquery-3.1.0.min.js"></script>
+	<script src="./plugin/jquery/fastclick.js"></script>
 	<script src="./plugin/layui/layui.all.js"></script>
 	<script>
-		layui.form.render('select');
-		layui.form.on('select(changeLanguage)', function(data){
-			//console.log(data.elem[0].getAttribute('data-href'));
-			var href = '';
-			if(data.elem.value == 'English'){
-				href = './index.html';
-			}else if(data.elem.value == '简体中文'){
-				href = './zh/index.html';
-			}else if(data.elem.value == '繁体中文'){
-				href = './zh-tw/index.html';
+		window.onresize = init;
+		init();
+		function init(){
+			if(window.innerWidth <= 768){
+				FastClick.attach(document.body);
+
+				function showMobileNav() {
+					$('.module-mobile-nav').css('margin-left', 0)
+				}
+				function closeMobileNav() {
+					$('.module-mobile-nav').css('margin-left', '999px')
+				}
+
+				$('#mobileNavClose').on('click', function () {
+					closeMobileNav();
+				});
+
+				$('#mobileNavImg').on('click', function () {
+					showMobileNav();
+				});
+
+				$('.module-mobile-nav').on('click', 'a', function () {
+					closeMobileNav();
+				})
+
+				$('a').on('click', function (e) {
+					var el = $(this);
+					var link = el.attr('href');
+					window.location.href = link;
+				})
+
+			}else{
+				layui.form.render('select');
+				layui.form.on('select(changeLanguage)', function (data) {
+					var href = '';
+					if (data.elem.value == 'English') {
+						href = './index.html';
+					} else if (data.elem.value == '简体中文') {
+						href = './zh/index.html';
+					} else if (data.elem.value == '繁体中文') {
+						href = './zh-tw/index.html';
+					}
+					window.location.href = href;
+				});
 			}
-			window.location.href = href;
-		});        
+		}
 	</script>
 </body>
+
 </html>

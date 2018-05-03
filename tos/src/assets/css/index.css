@@ -30,6 +30,10 @@
     height: auto;
     font-size: 11px !important; } }
 
+.extends-mobile-fuild {
+  float: left;
+  margin: 0 -0.35714rem; }
+
 html,
 body {
   padding: 0;
@@ -46,6 +50,9 @@ body {
 
 /** 前景颜色 end */
 /** 通用属性 **/
+.tos-hide {
+  display: none; }
+
 .tos-full-img {
   width: 100%;
   height: 100%; }
@@ -118,6 +125,50 @@ body {
   background: -moz-linear-gradient(top, #020c21, #f2f2f2);
   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#020c21), to(#f2f2f2)); }
 
+.module-mobile-nav {
+  position: fixed;
+  z-index: 99999;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background: black;
+  top: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s; }
+  .module-mobile-nav .module-colse-nav {
+    margin: 2.14286rem 4.28571rem;
+    height: 2.14286rem;
+    width: 2.14286rem; }
+  .module-mobile-nav .layui-this:after, .module-mobile-nav .layui-nav-bar, .module-mobile-nav .layui-nav-tree .layui-nav-itemed:after {
+    height: 0 !important; }
+  .module-mobile-nav .layui-nav {
+    top: 2.85714rem;
+    left: 1.42857rem;
+    background-color: black; }
+    .module-mobile-nav .layui-nav .layui-nav-item {
+      line-height: 3.17857rem; }
+    .module-mobile-nav .layui-nav .layui-nav-itemed::after {
+      height: 0; }
+    .module-mobile-nav .layui-nav li {
+      display: block; }
+    .module-mobile-nav .layui-nav a {
+      display: inline-block; }
+  .module-mobile-nav .module-mobile-change-language {
+    margin-top: 6.42857rem;
+    margin-left: 5rem;
+    width: 10.71429rem;
+    border-top: 1px solid white;
+    padding-bottom: 0.71429rem; }
+    .module-mobile-nav .module-mobile-change-language p {
+      margin-top: 1.42857rem;
+      color: rgba(255, 255, 255, 0.7); }
+    .module-mobile-nav .module-mobile-change-language .layui-nav {
+      padding: 0;
+      left: 0;
+      top: 0.71429rem; }
+      .module-mobile-nav .module-mobile-change-language .layui-nav a {
+        padding: 0; }
+
 .tos-body-header {
   background-color: #000000; }
   .tos-body-header .tos-header {
@@ -133,7 +184,14 @@ body {
     @media screen and (max-width: 768px) {
       .tos-body-header .tos-header {
         line-height: 3.92857rem;
-        height: 3.92857rem; } }
+        height: 3.92857rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: black;
+        -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1); } }
     .tos-body-header .tos-header .layui-layout-right {
       top: 1.14286rem;
       line-height: 2.14286rem;
@@ -209,7 +267,11 @@ body {
       height: 2px;
       background-color: #cca482; }
   .tos-body-header .module-mobile-menu {
-    float: right; }
+    float: right;
+    width: 1.64286rem;
+    height: 1.32143rem; }
+    .tos-body-header .module-mobile-menu img {
+      padding: 0.14286rem; }
 
 .module-common-title {
   text-align: center;
@@ -220,7 +282,7 @@ body {
       box-sizing: border-box;
       display: inline-block;
       width: 100%;
-      padding: 2.85714rem 2.85714rem; } }
+      padding: 4.28571rem 2.85714rem 2.85714rem 2.85714rem; } }
   .module-common-title span {
     margin: 0 auto;
     display: inline-block;
@@ -369,6 +431,21 @@ body {
         padding: 0.71429rem; } }
   .tos-body-article .tos-advantage {
     height: 25.21429rem !important; }
+  .tos-body-article .tos-ecosystem .module-mobile-list {
+    padding: 1.35714rem 0.53571rem 0 0.53571rem; }
+    .tos-body-article .tos-ecosystem .module-mobile-list .element-title {
+      font-size: 1.42857rem;
+      color: #1a1a1a; }
+    .tos-body-article .tos-ecosystem .module-mobile-list .element-sub-title {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.28571rem;
+      color: #5a7292; }
+    .tos-body-article .tos-ecosystem .module-mobile-list .element-description {
+      margin-top: 0.64286rem;
+      font-size: 1rem;
+      line-height: 1.28571rem;
+      color: #555555; }
   .tos-body-article .tos-team {
     margin-bottom: 1.07143rem; }
     .tos-body-article .tos-team .layui-row {
@@ -484,6 +561,7 @@ body {
       @media screen and (max-width: 768px) {
         .tos-body-article .tos-white-paper .element-content {
           width: 100%;
+          height: 5.64286rem;
           margin-right: 0 !important; } }
       .tos-body-article .tos-white-paper .element-content .element-title {
         padding-top: 1.42857rem;
@@ -542,6 +620,10 @@ body {
           padding: 0 14px; } }
       .tos-body-footer .tos-footer .layui-nav .layui-nav-item {
         line-height: 4.64286rem; }
+        @media screen and (max-width: 768px) {
+          .tos-body-footer .tos-footer .layui-nav .layui-nav-item {
+            width: 25%;
+            display: inline-block; } }
       .tos-body-footer .tos-footer .layui-nav a {
         color: #7a7a80;
         font-size: 1.28571rem; }

@@ -12,9 +12,58 @@
 </head>
 
 <body>
+	<div class="module-mobile-nav layui-hide-sm layui-hide-md layui-hide-lg" style="margin-left: 999px;">
+		<div class="module-colse-nav">
+			<img src="../assets/img/2.png" alt="" class="tos-full-img" id="mobileNavClose">
+		</div>
+		<ul class="layui-nav" lay-filter="">
+			<li class="layui-nav-item index-page">
+				<a class="nav-href" href="#TOSCHAIN" data-i18n="toschain">TOS</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#SDAG" data-i18n="sdag">SDAG</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#TP">Transaction &amp; POS</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Advantage" data-i18n="advantage">&#x512A;&#x52E2;</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Ecosystem" data-i18n="ecosystem">&#x751F;&#x614B;&#x5708;</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Team" data-i18n="team">&#x5718;&#x968A;</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Timeline" data-i18n="timeline">&#x6642;&#x9593;&#x8EF8;</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Whitepaper" data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</a>
+			</li>
+			<li class="layui-nav-item">
+				<a class="nav-href" href="#Contactus" data-i18n="contactus">&#x806F;&#x7E6B;&#x6211;&#x5011;</a>
+			</li>
+		</ul>
+		<div class="module-mobile-change-language">
+			<p data-i18n="welcome">&#x6B61;&#x8FCE;&#x4F86;&#x5230;TOS</p>
+			<ul class="layui-nav" lay-filter="">
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="../index.html">English</a>
+				</li>
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="../zh/index.html">&#x7B80;&#x4F53;&#x4E2D;&#x6587;</a>
+				</li>
+				<li class="layui-nav-item index-page">
+					<a class="nav-href" href="../zh-tw/index.html">&#x7E41;&#x4F53;&#x4E2D;&#x6587;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<article class="tos-body-article">
 		<div class="module-first-img">
-			<img src="../assets/img/banner_01.png" alt="" class="tos-full-img">
+			<img src="../assets/img/banner.png" alt="" class="tos-full-img">
 		</div>
 		<div class="module-first-prtSc">
 			<header class="tos-body-header">
@@ -28,9 +77,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" data-i18n="welcome">&#x6B61;&#x8FCE;&#x4F86;&#x5230;TOS</label>
 							<div class="layui-input-inline">
-								<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage">
-									<option vaule="3">&#x7E41;&#x4F53;&#x4E2D;&#x6587;</option><option vaule="2">&#x7B80;&#x4F53;&#x4E2D;&#x6587;</option><option vaule="1">English</option>
-								</select>
+								<select id="changeLanguage" name="changeLanguage" lay-filter="changeLanguage" data-i18n="changeLanguage"><option vaule="3">&#x7E41;&#x4F53;&#x4E2D;&#x6587;</option><option vaule="2">&#x7B80;&#x4F53;&#x4E2D;&#x6587;</option><option vaule="1">English</option></select>
 							</div>
 						</div>
 					</div>
@@ -63,12 +110,13 @@
 							<a class="nav-href" href="#Contactus" data-i18n="contactus">&#x806F;&#x7E6B;&#x6211;&#x5011;</a>
 						</li>
 					</ul>
+
 					<div class="layui-hide-lg layui-hide-sm layui-hide-md module-mobile-menu">
-						icon
+						<img class="tos-full-img" src="../assets/img/1.png" id="mobileNavImg">
 					</div>
 				</div>
 			</header>
-	
+
 			<div class="tos-container module-slogan">
 				<div class="element-title">ThingsOperatingSystem</div>
 				<div class="element-sub-title" data-i18n="sdagdesc">&#x57FA;&#x65BC;SDAG&#x7684;&#x53BB;&#x4E2D;&#x5FC3;&#x5316;&#x5206;&#x5C64;&#x5340;&#x584A;&#x7DB2;&#x8DEF;&#x6280;&#x8853;</div>
@@ -77,8 +125,8 @@
 		<div class="module-color-change">
 			<div class="module-common-title elment-special-title" id="TOSCHAIN">
 				<span data-i18n="toschain">TOS</span>
-			</div>    
-	
+			</div>
+
 			<div class="tos-container layui-row tos-chain">
 				<div class="layui-col-xs12 layui-col-md4">
 					<div class="element-icon">
@@ -102,21 +150,21 @@
 					<div class="element-description" data-i18n="datachargescontent">&#x9AD8;&#x50F9;&#x503C;&#x6578;&#x64DA;&#xFF0C;&#x4F7F;&#x7528;POS&#x5171;&#x8B58;&#x6A5F;&#x5236;&#x628A;&#x6578;&#x64DA;&#x5BEB;&#x5165;&#x66F4;&#x9AD8;&#x7D1A;&#x5225;&#x7684;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x9AD8;&#x7D1A;&#x5225;&#x5B89;&#x5168;&#x4FDD;&#x969C;&#xFF0C;&#x9700;&#x8981;&#x4ED8;&#x8CBB;&#x3002;</div>
 				</div>
 			</div>
-	
+
 			<div class="module-common-title" id="SDAG">
-				<span data-i18n="Whatissdag">&#x4EC0;&#x9EBC;&#x662F;SDAG&#x79D1;&#x6280;&#xFF1F;</span>                                               
-			</div>   
+				<span data-i18n="Whatissdag">&#x4EC0;&#x9EBC;&#x662F;SDAG&#x79D1;&#x6280;&#xFF1F;</span>
+			</div>
 		</div>
 		<div class="tos-container layui-row tos-technology">
 			<div class="element-bg">
 				<img src="../assets/img/179060926918847189.png" alt="" class="tos-full-img">
 			</div>
 			<div class="element-description" data-i18n="Whatissdagcontent">SDAG&#x8D85;&#x7D1A;&#x6709;&#x5411;&#x7121;&#x74B0;&#x5716;&#xFF08;Super directed acyclic graph&#xFF09;&#xFF0C;&#x57FA;&#x65BC;&#x73FE;&#x6709;&#x7684;DAG&#x79D1;&#x6280;&#xFF0C;&#x69CB;&#x5EFA;&#x5340;&#x584A;&#x93C8;&#x5206;&#x5C64;&#x7CFE;&#x7E8F;&#x7DB2;&#x7D61;&#x3002;&#x6BCF;&#x500B;&#x5C64;&#x7D1A;&#x7684;&#x5340;&#x584A;&#x93C8;&#x7DB2;&#x8DEF;&#x5B58;&#x5132;&#x5C0D;&#x61C9;&#x7684;&#x6578;&#x64DA;&#xFF0C;&#x985E;&#x4F3C;&#x570B;&#x5BB6;-&gt;&#x7701;-&gt;&#x5E02;-&gt;&#x7E23;-&gt;&#x5340;&#xFF0C;&#x6BCF;&#x500B;&#x884C;&#x653F;&#x4E2D;&#x5FC3;&#x5404;&#x81EA;&#x7BA1;&#x7406;&#x6578;&#x64DA;&#xFF0C;&#x7701;&#x8207;&#x7701;&#x4E4B;&#x9593;&#xFF0C;&#x570B;&#x5BB6;&#x8207;&#x570B;&#x5BB6;&#x4E4B;&#x9593;&#xFF0C;&#x4E92;&#x4E0D;&#x95DC;&#x5FC3;&#x5C0D;&#x65B9;&#x7684;&#x6578;&#x64DA;&#x3002;&#x628A;&#x5168;&#x7DB2;&#x7684;&#x5340;&#x584A;&#x6578;&#x64DA;&#x4F5C;&#x5206;&#x96E2;&#xFF0C;&#x6BCF;&#x500B;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x53EA;&#x95DC;&#x5FC3;&#x5404;&#x81EA;&#x9700;&#x8981;&#x7684;&#x5340;&#x584A;&#x6578;&#x64DA;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x5927;&#x91CF;&#x7684;&#x6578;&#x64DA;&#x5197;&#x9918;&#x3002;</div>
-		</div> 
-				
+		</div>
+
 		<div class="module-common-title" id="TP">
-			<span data-i18n="supportpos-transaction">&#x70BA;&#x4EC0;&#x9EBC;&#x540C;&#x6642;&#x652F;&#x6301;Transaction&#x4EA4;&#x6613;&#x8B49;&#x660E;&#x8207;POS&#x6B0A;&#x76CA;&#x8B49;&#x660E;</span>                                               
-		</div>   
+			<span data-i18n="supportpos-transaction">&#x70BA;&#x4EC0;&#x9EBC;&#x540C;&#x6642;&#x652F;&#x6301;Transaction&#x4EA4;&#x6613;&#x8B49;&#x660E;&#x8207;POS&#x6B0A;&#x76CA;&#x8B49;&#x660E;</span>
+		</div>
 		<div class="tos-container layui-row tos-ownership">
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
@@ -129,7 +177,7 @@
 					<div class="element-description" data-i18n="freetransactionscontent">&#x514D;&#x8CBB;&#x4EA4;&#x6613;&#xFF0C;&#x8A18;&#x9304;&#x666E;&#x901A;&#x6578;&#x64DA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4EA4;&#x6613;&#x6210;&#x672C;&#xFF0C;&#x8207;&#x7269;&#x806F;&#x7DB2;&#x8A2D;&#x5099;&#x7522;&#x751F;&#x6D77;&#x91CF;&#x6578;&#x64DA;&#x5834;&#x666F;&#x5951;&#x5408;&#x3002;&#x6536;&#x8CBB;&#x4EA4;&#x6613;&#xFF0C;&#x9069;&#x7528;&#x65BC;&#x7269;&#x806F;&#x7DB2;&#x4E2D;&#x9AD8;&#x50F9;&#x503C;&#x6578;&#x64DA;&#x4EA4;&#x6613;&#x3002;&#x8A18;&#x9304;&#x5728;&#x9AD8;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x7684;&#x6578;&#x64DA;&#xFF0C;&#x6D41;&#x901A;&#x6027;&#x66F4;&#x597D;&#xFF0C;&#x5B89;&#x5168;&#x4FDD;&#x969C;&#x66F4;&#x9AD8;&#x3002;</div>
 				</div>
 			</div>
-			
+
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
 					<div class="element-img">
@@ -141,7 +189,7 @@
 					<div class="element-description" data-i18n="branchnetworkcontent">&#x4E00;&#x500B;&#x7B97;&#x704B;&#x6A5F;&#x5236;&#x76E3;&#x63A7;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x7684;&#x7D93;&#x6FDF;&#x50F9;&#x503C;&#x3002;&#x7576;&#x7DB2;&#x7D61;&#x7684;&#x7D93;&#x6FDF;&#x50F9;&#x503C;&#x9054;&#x5230;&#x67D0;&#x500B;&#x95BE;&#x503C;&#xFF0C;&#x6703;&#x81EA;&#x52D5;&#x89F8;&#x767C;&#x4E0B;&#x4E00;&#x500B;&#x65B0;&#x5340;&#x584A;&#x9A57;&#x8B49;&#x9700;&#x8981;&#x6536;&#x8CBB;&#x3002;&#x6B64;&#x6642;&#xFF0C;&#x82E5;&#x7528;&#x6236;&#x9078;&#x64C7;&#x7E7C;&#x7E8C;&#x5728;&#x6B64;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x4EA4;&#x6613;&#x9700;&#x8981;&#x6536;&#x53D6;&#x8CBB;&#x7528;&#xFF0C;&#x82E5;&#x7528;&#x6236;&#x60F3;&#x7E7C;&#x7E8C;&#x4F7F;&#x7528;&#x514D;&#x8CBB;&#x670D;&#x52D9;&#xFF0C;&#x7DB2;&#x8DEF;&#x7CFB;&#x7D71;&#x6703;&#x5F9E;&#x7576;&#x524D;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x5206;&#x652F;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x5B50;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x4E26;&#x628A;&#x65B0;&#x7684;&#x4EA4;&#x6613;&#x5BEB;&#x5165;&#x5B50;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x9054;&#x5230;&#x7121;&#x9650;&#x5206;&#x652F;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x80FD;&#x529B;&#x3002;</div>
 				</div>
 			</div>
-			
+
 			<div class="layui-row">
 				<div class="layui-col-xs12 layui-col-md1">
 					<div class="element-img">
@@ -153,11 +201,11 @@
 					<div class="element-description" data-i18n="balancecontent">&#x514D;&#x8CBB;&#x4EA4;&#x6613;&#x8207;&#x6536;&#x8CBB;&#x4EA4;&#x6613;&#x7D50;&#x5408;&#xFF0C;&#x53EF;&#x5F62;&#x6210;&#x76F8;&#x4E92;&#x5236;&#x8861;&#x95DC;&#x4FC2;&#x3002;&#x901A;&#x904E;&#x6536;&#x8CBB;&#x8207;&#x514D;&#x8CBB;&#x5F62;&#x6210;&#x4E00;&#x500B;&#x6578;&#x64DA;&#x5206;&#x914D;&#x7684;&#x7B49;&#x7D1A;&#x5236;&#x5EA6;&#x3002;&#x514D;&#x8CBB;&#x4EA4;&#x6613;&#x6578;&#x64DA;&#x53EA;&#x5B58;&#x5132;&#x5728;&#x4F4E;&#x5C64;&#x7D1A;&#x6216;&#x672B;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x6536;&#x8CBB;&#x4EA4;&#x6613;&#x5B58;&#x5132;&#x5728;&#x9AD8;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x4EA4;&#x6613;&#x8CBB;&#x7528;&#x8D8A;&#x9AD8;&#x5B58;&#x5132;&#x7684;&#x7DB2;&#x7D61;&#x5C64;&#x7D1A;&#x8D8A;&#x9AD8;&#x3002;&#x9019;&#x6A23;&#x907F;&#x514D;&#x5783;&#x573E;&#x6578;&#x64DA;&#x963B;&#x585E;&#x9AD8;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x9AD8;&#x5C64;&#x7D1A;&#x5340;&#x584A;&#x7DB2;&#x7D61;&#x7684;&#x6578;&#x64DA;&#x91CF;&#x3002;</div>
 				</div>
 			</div>
-		</div> 
-	
+		</div>
+
 		<div class="module-common-title" id="Advantage">
-			<span data-i18n="advantage">&#x512A;&#x52E2;</span>                                               
-		</div>   
+			<span data-i18n="advantage">&#x512A;&#x52E2;</span>
+		</div>
 		<div class="tos-container layui-row tos-advantage">
 			<div class="layui-col-xs12 layui-col-md4">
 				<div class="element-icon">
@@ -173,7 +221,7 @@
 				<div class="element-title" data-i18n="bigdatamanagement">&#x5927;&#x6578;&#x64DA;&#x7BA1;&#x7406;</div>
 				<div class="element-description" data-i18n="bigdatamanagementcontent">&#x5728;&#x5927;&#x6578;&#x64DA;&#x7684;&#x5206;&#x6790;&#x6316;&#x6398;&#x65B9;&#x9762;&#xFF0C;&#x5340;&#x584A;&#x93C8;&#x7684;&#x904B;&#x7528;&#x64F4;&#x5927;&#x4E86;&#x6578;&#x64DA;&#x7684;&#x898F;&#x6A21;&#x548C;&#x8C50;&#x5BCC;&#x6027;&#xFF0C;&#x4F7F;&#x5F97;&#x6578;&#x64DA;&#x7684;&#x8CEA;&#x91CF;&#x7372;&#x5F97;&#x524D;&#x6240;&#x672A;&#x6709;&#x7684;&#x4FE1;&#x4EFB;&#x500D;&#x6578;&#xFF0C;&#x4FDD;&#x8B49;&#x4E86;&#x8CC7;&#x6599;&#x5206;&#x6790;&#x7D50;&#x679C;&#x7684;&#x6B63;&#x78BA;&#x6027;&#x548C;&#x8CC7;&#x6599;&#x6316;&#x6398;&#x7684;&#x6548;&#x679C;&#xFF0C;&#x80FD;&#x5BE6;&#x73FE;&#x5927;&#x6578;&#x64DA;&#x7684;&#x9810;&#x6E2C;&#x5206;&#x6790;&#x843D;&#x5BE6;&#x70BA;&#x884C;&#x52D5;&#xFF0C;&#x5B83;&#x5C07;&#x662F;&#x6578;&#x5B57;&#x7D93;&#x6FDF;&#x6642;&#x4EE3;&#x7684;&#x57FA;&#x77F3;&#x3002;</div>
 			</div>
-			<div class="layui-col-xs12 layui-col-md4"> 
+			<div class="layui-col-xs12 layui-col-md4">
 				<div class="element-icon">
 					<img src="../assets/img/icon_09.png" alt="" class="tos-full-img">
 				</div>
@@ -183,15 +231,38 @@
 		</div>
 
 		<div class="module-common-title" id="Ecosystem">
-			<span data-i18n="ecosystem">&#x751F;&#x614B;&#x5708;</span>                                               
-		</div>   
+			<span data-i18n="ecosystem">&#x751F;&#x614B;&#x5708;</span>
+		</div>
 		<div class="tos-container layui-row tos-ecosystem">
-			<div class="layui-col-xs12" data-i18n="ecosystemImg"><img src="../assets/img/advantage_hk.png" class="tos-full-img"></div>
+			<div class="layui-col-md12 layui-hide-xs" data-i18n="ecosystemImg"><img src="../assets/img/advantage_hk.png" class="tos-full-img"></div>
+			<div class="layui-hide-md layui-hide-sm layui-hide-lg" data-i18n="ecosystemMobileImg"><img src="../assets/img/phone_advantage_hk.png" class="tos-full-img"></div>
+			<div class="layui-hide-md layui-hide-sm layui-hide-lg layui-row">
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="tv">&#x96FB;&#x8996;</div>
+					<div class="element-sub-title" data-i18n="lightnode">&#x667A;&#x80FD;&#x5BB6;&#x5C45;&#x8A2D;&#x5099;&#xFF0C;&#x70BA;&#x7DB2;&#x7D61;&#x4E2D;&#x8F15;&#x7BC0;&#x9EDE;&#x3002;</div>
+					<div class="element-description" data-i18n="smartdevicefeature">&#x7279;&#x9EDE;&#xFF1A;&#x6CDB;&#x5A1B;&#x6A02;&#x8A2D;&#x5099;&#xFF0C;&#x4E0D;&#x5E38;&#x806F;&#x7DB2;&#x7DDA;&#x4E0A;&#xFF1B;&#x6709;&#x7B97;&#x529B;&#xFF0C;&#x53EF;&#x8F15;&#x91CF;POS&#x6316;&#x7926;&#x3002;</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="refrigerator">&#x51B0;&#x67DC;</div>
+					<div class="element-sub-title" data-i18n="networknodes">&#x667A;&#x80FD;&#x5BB6;&#x5C45;&#x8A2D;&#x5099;&#xFF0C;&#x7DB2;&#x7D61;&#x4E2D;&#x5168;&#x7BC0;&#x9EDE;&#x3002;</div>
+					<div class="element-description" data-i18n="networknodesfeature">&#x7279;&#x9EDE;&#xFF1A;&#x5168;&#x5929;&#x806F;&#x7DB2;&#x7DDA;&#x4E0A;&#xFF0C;&#x4E0A;&#x5831;&#x6578;&#x64DA;&#x53CA;&#x901A;&#x4FE1;&#x3002;</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="computerserver">&#x96FB;&#x8166;&#x670D;&#x52D9;&#x5668;</div>
+					<div class="element-sub-title" data-i18n="minersnode">&#x7DB2;&#x7D61;&#x4E2D;&#x91CD;&#x7BC0;&#x9EDE;&#xFF0C;&#x7926;&#x5DE5;&#x89D2;&#x8272;&#x3002;</div>
+					<div class="element-description" data-i18n="minersnodefeature">&#x7279;&#x9EDE;&#xFF1A;&#x5168;&#x5929;&#x806F;&#x7DB2;&#x7DDA;&#x4E0A;&#xFF0C;&#x5F3A;&#x5927;&#x7684;&#x904B;&#x7B97;&#x80FD;&#x529B;&#xFF0C;&#x901A;&#x904E;POS&#x6316;&#x7926;&#x7372;&#x5F97;&#x6536;&#x76CA;&#x3002;</div>
+				</div>
+				<div class="layui-col-xs6 module-mobile-list">
+					<div class="element-title" data-i18n="phone">&#x624B;&#x6A5F;</div>
+					<div class="element-sub-title" data-i18n="appnode">&#x7DB2;&#x7D61;&#x4E2D;&#x61C9;&#x7528;&#x7BC0;&#x9EDE;&#xFF0C;&#x53C3;&#x8207;&#x7DB2;&#x7D61;&#x4E92;&#x52D5;&#x3002;</div>
+					<div class="element-description" data-i18n="appnodefeature">&#x7279;&#x9EDE;&#xFF1A;&#x5C6C;&#x65BC;&#x61C9;&#x7528;&#x5C64;&#xFF0C;&#x8CA0;&#x8CAC;&#x8207;&#x667A;&#x6167;&#x8A2D;&#x5099;&#x4E92;&#x52D5;&#xFF0C;&#x826F;&#x597D;&#x7684;&#x7528;&#x6236;&#x9AD4;&#x9A57;&#x3002;</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="module-common-title" id="Team">
-			<span data-i18n="team">&#x5718;&#x968A;</span>                                               
-		</div> 
+			<span data-i18n="team">&#x5718;&#x968A;</span>
+		</div>
 		<div class="tos-container tos-team">
 			<div class="layui-row">
 				<div class="llayui-col-xs12 layui-col-md3 layui-col-md3">
@@ -261,17 +332,17 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="module-common-title" id="Timeline">
-			<span data-i18n="timeline">&#x6642;&#x9593;&#x8EF8;</span>                                               
-		</div> 
+			<span data-i18n="timeline">&#x6642;&#x9593;&#x8EF8;</span>
+		</div>
 		<div class="tos-container layui-row tos-timeline">
 			<div class="layui-col-xs12 layui-hide-xs" data-i18n="timelineImg"><img src="../assets/img/history_hk.png" class="tos-full-img"></div>
 			<div class="layui-col-xs12 layui-hide-md layui-hide-lg  layui-hide-sm" data-i18n="timelineMobileImg"><img src="../assets/img/phone_history_hk.png" class="tos-full-img"></div>
 		</div>
-		
+
 		<div class="module-common-title" id="Whitepaper">
-			<span data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</span>                                               
+			<span data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</span>
 		</div>
 		<div class="tos-container layui-row tos-white-paper">
 			<a class="layui-col-xs6 element-left" href="../assets/pdf/tos_whitepaper_cn.pdf" target="_blank">
@@ -327,15 +398,9 @@
 							<img src="../assets/img/icon_facebook.png" alt="">
 						</a>
 					</li>
-					<li class="layui-nav-item" data-i18n="telegram"><a class="nav-href" href="https://t.me/TOSChainOfficial">Telegram</a></li>
 					<li class="layui-nav-item">
-						<a class="nav-href" href="https://www.instagram.com/TOSChain/">
-							<img src="../assets/img/icon_instagram.png" alt="">
-						</a>
-					</li>
-					<li class="layui-nav-item">
-						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">
-							<img src="../assets/img/icon_youtube.png" alt="">
+						<a class="nav-href" href="https://t.me/TOSChainOfficialEN">
+							<img src="../assets/img/icon_telegram.png" alt="">
 						</a>
 					</li>
 					<li class="layui-nav-item">
@@ -348,6 +413,16 @@
 							<img src="../assets/img/icon_reddit.png" alt="">
 						</a>
 					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">
+							<img src="../assets/img/icon_youtube.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.instagram.com/TOSChain/">
+							<img src="../assets/img/icon_instagram.png" alt="">
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="all-right">
@@ -355,21 +430,213 @@
 			</div>
 		</div>
 	</footer>
+	<script src="../plugin/jquery/jquery-3.1.0.min.js"></script>
+	<script src="../plugin/jquery/fastclick.js"></script>
 	<script src="../plugin/layui/layui.all.js"></script>
 	<script>
-		layui.form.render('select');
-		layui.form.on('select(changeLanguage)', function(data){
-			//console.log(data.elem[0].getAttribute('data-href'));
-			var href = '';
-			if(data.elem.value == 'English'){
-				href = '../index.html';
-			}else if(data.elem.value == '简体中文'){
-				href = '../zh/index.html';
-			}else if(data.elem.value == '繁体中文'){
-				href = '../zh-tw/index.html';
+		window.onresize = init;
+		init();
+		function init(){
+			if(window.innerWidth <= 768){
+				FastClick.attach(document.body);
+
+				function showMobileNav() {
+					$('.module-mobile-nav').css('margin-left', 0)
+				}
+				function closeMobileNav() {
+					$('.module-mobile-nav').css('margin-left', '999px')
+				}
+
+				$('#mobileNavClose').on('click', function () {
+					closeMobileNav();
+				});
+
+				$('#mobileNavImg').on('click', function () {
+					showMobileNav();
+				});
+
+				$('.module-mobile-nav').on('click', 'a', function () {
+					closeMobileNav();
+				})
+
+				$('a').on('click', function (e) {
+					var el = $(this);
+					var link = el.attr('href');
+					window.location.href = link;
+				})
+
+			}else{
+				layui.form.render('select');
+				layui.form.on('select(changeLanguage)', function (data) {
+					var href = '';
+					if (data.elem.value == 'English') {
+						href = '../index.html';
+					} else if (data.elem.value == '简体中文') {
+						href = '../zh/index.html';
+					} else if (data.elem.value == '繁体中文') {
+						href = '../zh-tw/index.html';
+					}
+					window.location.href = href;
+				});
 			}
-			window.location.href = href;
-		});        
+		}
 	</script>
 </body>
-</html>
+
+</html>echnicaldiego&quot;&gt;Diego Cresta &#x6280;&#x8853;&#x9867;&#x554F;
+						<div class="element-description element-special" data-i18n="technicaldiegointro">&#x7F8E;&#x570B;&#x8CA1;&#x52D9;&#x7BA1;&#x7406;&#x5B78;&#x9662;&#x5C08;&#x696D;&#x9867;&#x554F;&#xFF0C;&#x7F8E;&#x570B;&#x58FD;&#x96AA;&#x8A13;&#x7DF4;&#x5B78;&#x9662;&#x9662;&#x58EB;&#xFF08;LUTCF&#xFF09;&#xFF0C;&#x7F8E;&#x570B;&#x91D1;&#x878D;&#x5B78;&#x9662;&#x548C;&#x99AC;&#x4F86;&#x897F;&#x4E9E;&#x4FDD;&#x96AA;&#x5B78;&#x9662;&#x7279;&#x8A31;&#x8CA1;&#x52D9;&#x9867;&#x554F;&#x3002;</div>
+					
+				
+			
+		
+
+		<div class="module-common-title" id="Timeline">
+			<span data-i18n="timeline">&#x6642;&#x9593;&#x8EF8;</span>
+		</div>
+		<div class="tos-container layui-row tos-timeline">
+			<div class="layui-col-xs12 layui-hide-xs" data-i18n="timelineImg"><img src="../assets/img/history_hk.png" class="tos-full-img"></div>
+			<div class="layui-col-xs12 layui-hide-md layui-hide-lg  layui-hide-sm" data-i18n="timelineMobileImg"><img src="../assets/img/phone_history_hk.png" class="tos-full-img"></div>
+		</div>
+
+		<div class="module-common-title" id="Whitepaper">
+			<span data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</span>
+		</div>
+		<div class="tos-container layui-row tos-white-paper">
+			<a class="layui-col-xs6 element-left" href="../assets/pdf/tos_whitepaper_cn.pdf" target="_blank">
+				<div class="element-content layui-row">
+					<div class="layui-col-xs8">
+						<p class="element-title" data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</p>
+						<p class="element-description" data-i18n="simplifiedchinese">&#x7B80;&#x4F53;&#x4E2D;&#x6587;</p>
+					</div>
+					<div class="layui-col-xs4" href="../assets/pdf/tos_whitepaper_cn.pdf" target="_blank">
+						<img class="element-img" src="../assets/img/down-icon.png" alt="">
+					</div>
+				</div>
+			</a>
+			<a class="layui-col-xs6 element-right" href="../assets/pdf/tos_whitepaper_en.pdf" target="_blank">
+				<div class="element-content layui-row">
+					<div class="layui-col-xs8">
+						<p class="element-title" data-i18n="whitepaper">&#x767D;&#x76AE;&#x66F8;</p>
+						<p class="element-description" data-i18n="english">&#x82F1;&#x6587;</p>
+					</div>
+					<div class="layui-col-xs4">
+						<img class="element-img" src="../assets/img/down-icon.png" alt="">
+					</div>
+				</div>
+			</a>
+		</div>
+	
+	<footer class="tos-body-footer" id="Contactus">
+		<div class="tos-container tos-footer">
+			<div class="contact-us">
+				<ul class="layui-nav">
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://github.com/TOSIO">
+							<img class="sp-icon" src="../assets/img/icon_github.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDY5NzAzMQ==&amp;scene=110#wechat_redirect">
+							<img class="sp-icon" src="../assets/img/icon_weixin.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://twitter.com/TOSCommuniy">
+							<img src="../assets/img/icon_twitter.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="mailto:foundation@toschain.org">
+							<img src="../assets/img/icon_maill.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.facebook.com/TOSChain-223477698392972/?modal=admin_todo_tour">
+							<img src="../assets/img/icon_facebook.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://t.me/TOSChainOfficialEN">
+							<img src="../assets/img/icon_telegram.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://medium.com/@TOSChain">
+							<img src="../assets/img/icon_medium.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.reddit.com/user/TOSChain/">
+							<img src="../assets/img/icon_reddit.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.youtube.com/channel/UCndQ58buwAEpHb98W8cEHjw?disable_polymer=true">
+							<img src="../assets/img/icon_youtube.png" alt="">
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a class="nav-href" href="https://www.instagram.com/TOSChain/">
+							<img src="../assets/img/icon_instagram.png" alt="">
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="all-right">
+				TOS Foundation, All right reserved.
+			</div>
+		</div>
+	</footer>
+	<script src="../plugin/jquery/jquery-3.1.0.min.js"></script>
+	<script src="../plugin/jquery/fastclick.js"></script>
+	<script src="../plugin/layui/layui.all.js"></script>
+	<script>
+		window.onresize = init;
+		init();
+		function init(){
+			if(window.innerWidth <= 768){
+				FastClick.attach(document.body);
+
+				function showMobileNav() {
+					$('.module-mobile-nav').css('margin-left', 0)
+				}
+				function closeMobileNav() {
+					$('.module-mobile-nav').css('margin-left', '999px')
+				}
+
+				$('#mobileNavClose').on('click', function () {
+					closeMobileNav();
+				});
+
+				$('#mobileNavImg').on('click', function () {
+					showMobileNav();
+				});
+
+				$('.module-mobile-nav').on('click', 'a', function () {
+					closeMobileNav();
+				})
+
+				$('a').on('click', function (e) {
+					var el = $(this);
+					var link = el.attr('href');
+					window.location.href = link;
+				})
+
+			}else{
+				layui.form.render('select');
+				layui.form.on('select(changeLanguage)', function (data) {
+					var href = '';
+					if (data.elem.value == 'English') {
+						href = '../index.html';
+					} else if (data.elem.value == '简体中文') {
+						href = '../zh/index.html';
+					} else if (data.elem.value == '繁体中文') {
+						href = '../zh-tw/index.html';
+					}
+					window.location.href = href;
+				});
+			}
+		}
+	</script>
+
+

@@ -398,6 +398,16 @@ module.exports = {
     "zh": "<img src='./assets/img/advantage_cn.png' class='tos-full-img'>",
     "zh-tw": "<img src='./assets/img/advantage_hk.png' class='tos-full-img'>",
     "en": "<img src='./assets/img/advantage_en.png' class='tos-full-img'>"
+  },
+  "ecosystemMobileImg": {
+    "zh": "<img src='./assets/img/phone_advantage_cn.png' class='tos-full-img'>",
+    "zh-tw": "<img src='./assets/img/phone_advantage_hk.png' class='tos-full-img'>",
+    "en": "<img src='./assets/img/phone_advantage_en.png' class='tos-full-img'>"
+  },
+  "changeLanguage": {
+    "zh": '<option vaule="2">简体中文</option><option vaule="3">繁体中文</option><option vaule="1">English</option>',
+    "zh-tw": '<option vaule="3">繁体中文</option><option vaule="2">简体中文</option><option vaule="1">English</option>',
+    "en": '<option vaule="1">English</option><option vaule="2">简体中文</option><option vaule="3">繁体中文</option>',
   }
 
 }
