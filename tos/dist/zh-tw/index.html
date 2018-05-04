@@ -604,22 +604,27 @@
 					$('.module-mobile-nav').css('margin-left', '999px')
 				}
 
-				$('#mobileNavClose').on('click', function () {
+				$('#mobileNavClose').off().on('click', function () {
 					closeMobileNav();
 				});
 
-				$('#mobileNavImg').on('click', function () {
+				$('#mobileNavImg').off().on('click', function () {
 					showMobileNav();
 				});
 
-				$('.module-mobile-nav').on('click', 'a', function () {
+				$('.module-mobile-nav').off().on('click', 'a', function () {
 					closeMobileNav();
 				})
 
-				$('a').on('click', function (e) {
+				$('a').off().on('click', function (e) {
 					var el = $(this);
 					var link = el.attr('href');
+					
+					closeMobileNav();
+					
 					window.location.href = link;
+					
+					return false;
 				})
 
 			}else{
