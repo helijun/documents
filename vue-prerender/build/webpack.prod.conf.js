@@ -9,8 +9,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var routerConfig = require('../src/router/config')
 
 var env = config.build.env
+
+let routerArray = routerConfig.routes.map((element, index) => {
+  return element.path
+})
+console.log('this.routerArray', ['/', ...routerArray]);
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -35,7 +41,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       // 生成文件的路径，此处与webpack打包地址一致
       path.join(config.build.assetsRoot),
       // 配置要做预渲染的路由，只支持h5 history方式
-      [ '/', '/test', '/Hello']
+      ['/', ...routerArray]
     ),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

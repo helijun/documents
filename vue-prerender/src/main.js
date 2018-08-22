@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
+Vue.$router = router
 
 Vue.mixin({
   data () {

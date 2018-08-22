@@ -9,6 +9,6 @@
 7. start 一个完整的JAVA项目，并持续集成开发
 8. blog 个人博客源码
 9. subject react项目源码，包含完整的开发生产构建等
-10. maitian-webpack webpack构建多页面开发环境，用在传统的jquery项目
+10. maitian-webpack webpack构建多页面开发环境，结合传统的jquery项目
 11. spa 基于jquery的spa，集成requirejs，自己封装改造的jquery.router
 12. vuepress 测试vuepress构建文档的使用

@@ -1,6 +1,4 @@
-# 麦甜科技官网、微官网项目
-
-> 使用webpack构建多页面开发环境
+# 使用webpack构建多页面开发环境
 
 ## 使用
 1. 更改npm来源 npm config set registry https://registry.npm.taobao.org  

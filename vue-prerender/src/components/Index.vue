@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/test">/test hello</router-link>
+    <router-link to="/test">/test</router-link>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -30,6 +30,13 @@ export default {
     }
   },
   async created () {
+    console.log('this.$router', this.$router)
+
+    let routerArray = this.$router.options.routes.map((element, index) => {
+      return element.path
+    })
+    console.log('this.routerArray', routerArray);
+
     console.log('dataReady', this.dataReady)
 
     await this.testPromise()
