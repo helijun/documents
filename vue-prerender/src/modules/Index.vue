@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-min-height>
     <h1>{{ msg }}</h1>
     <router-link to="/test">/test hello</router-link>
     <h2>Essential Links</h2>
@@ -39,6 +39,9 @@ export default {
     await Promise.all([this.testPromise(), this.testPromise2()])
     console.log('await Promise all')
     
+  },
+  onBack () {
+    console.log('在index onback')
   },
   methods: {
     testPromise() {
