@@ -6,9 +6,11 @@
 4. util 后台常用的JAVA工具类
 5. weixin 结合个人的见解对微信开发知识点的总结
 6. xingwen 一个极简版小程序的demo，截止小程序上线后5天左右的版本
-7. start 一个完整的JAVA项目，并持续集成开发
-8. blog 个人博客源码
-9. subject react项目源码，包含完整的开发生产构建等
+7. start 一个完整的JAVA SpringMVC项目，曾想持续集成开发，后来未果。
+8. blog 早期个人博客demo源码
+9. subject react+flux项目源码，包含完整的开发生产构建等
 10. maitian-webpack webpack构建多页面开发环境，结合传统的jquery项目
 11. spa 基于jquery的spa，集成requirejs，自己封装改造的jquery.router
 12. vuepress 测试vuepress构建文档的使用
+13. vue-manage 一个基于vue的中后台系统极简版
+14. vue-prerender 测试vue的预渲染，并集成一些功能
