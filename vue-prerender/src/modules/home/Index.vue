@@ -125,7 +125,7 @@ export default {
 }
 
 .bg-one {
-    background-image: url('https://codyhouse.co/demo/alternate-fixed-scroll-background/img/cd-background-1.jpg');
+    background-image: url('../../assets/img/home/home1.jpg');
 }
 .bg-two {
     background-image: url('https://codyhouse.co/demo/alternate-fixed-scroll-background/img/cd-background-2.jpg');
@@ -142,7 +142,7 @@ export default {
     /*height: 500px;*/
 }
 .bg-attachment{
-    background:url("../../assets/logo.png") center center no-repeat;
+    background:url("../../assets/img/home/home1.jpg") center center no-repeat;
     background-size: 750px 1356px;
     background-attachment:fixed;
 }

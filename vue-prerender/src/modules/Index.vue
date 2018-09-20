@@ -18,7 +18,19 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+
+    <div class="rellax">
+  I’m that default chill speed of "-2"
+</div>
+<div class="rellax" data-rellax-speed="7">
+  I’m super fast!!
+</div>
+<div class="rellax" data-rellax-speed="-4">
+  I’m extra slow and smooth
+</div>
   </div>
+
+
 </template>
 
 <script>
@@ -38,10 +50,14 @@ export default {
 
     await Promise.all([this.testPromise(), this.testPromise2()])
     console.log('await Promise all')
-    
+
   },
   onBack () {
     console.log('在index onback')
+  },
+  mounted() {
+
+      var rellax = new Rellax(document.getElementByClass('.rellax'));
   },
   methods: {
     testPromise() {

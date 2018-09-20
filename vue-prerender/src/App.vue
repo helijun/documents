@@ -26,4 +26,9 @@ html,body {
   margin: 0;
   min-height: 100%;
 }
+h1, h2 {
+  margin: 0;
+  padding: 0;
+}
+
 </style>
