@@ -33,6 +33,7 @@ let routers = [
   }
 ]
 
+console.log('RoutersConfig', [...fromConfigRouters, ...routers]);
 export default new Router({
   mode: 'history',
   routes: [...fromConfigRouters, ...routers]

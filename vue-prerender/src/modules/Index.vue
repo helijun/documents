@@ -1,7 +1,7 @@
 <template>
   <div class="hello" v-min-height>
     <h1>{{ msg }}</h1>
-    <router-link to="/test">/test hello</router-link>
+    <router-link to="/test">/test hello1</router-link>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
