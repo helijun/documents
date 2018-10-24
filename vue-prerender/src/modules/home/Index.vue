@@ -2,7 +2,7 @@
     <div>
 	      <div class="li-common-loading" ref="loading" v-show="loading"></div>
 
-        <div class="">
+        <div class="animated fadeInDown">
           何立军
         </div>
     </div>
@@ -14,10 +14,10 @@ require("@/assets/lib/bodymovin/bodymovin.min.js")
 
 
 export default {
-    name: 'blog-list',
+    name: 'home-index',
     data () {
         return {
-            msg: 'blog list',
+            msg: 'home-index',
             loading: false
         }
     },
@@ -49,6 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/css/animate/animate.css';
 
 .li-common-loading {
   position: fixed;
