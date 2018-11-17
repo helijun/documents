@@ -1,2 +1,7 @@
 @charset "UTF-8";
 @import '../font/iconfont.css';
+
+a:-webkit-any-link {
+    font-style: normal;
+    text-decoration: none;
+}
