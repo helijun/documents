@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>© 2016 - 2018 by helijun</p>
+        <p>&copy; 2016 - 2018 by helijun</p>
     </footer>
 </template>
 

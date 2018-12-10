@@ -17,15 +17,25 @@
             
             <section class="bike-about">
                 <div class="about-content">
-                    <div class="about-col-40">
+                    <div class="about-col-10">
                         <el-popover
-                            ref="popover"
+                            ref="popoverWx"
                             placement="top"
                             width="200"
                             trigger="hover">
-                            <img src="" alt="">
+                            <img class="bike-img-full" src="~@/assets/img/home/WX20181128-224630@2x.png" alt="">
+                            <p class="bike-width-full bike-align-center">添加好友请备注来源</p>
                         </el-popover>
-                        <el-button :class="['iconfont', 'icon-iconweixin']" v-popover:popover></el-button>
+                        <el-button :class="['iconfont', 'icon-iconweixin']" v-popover:popoverWx></el-button>
+                    </div>
+                    <div class="about-col-10">
+                        <el-button :class="['iconfont', 'icon-github']" @click="handleIconClick('https://github.com/helijun')" title="点击跳转github" v-popover:popoverJian></el-button>
+                    </div>
+                    <div class="about-col-10">
+                        <el-button :class="['iconfont', 'icon-jian']" @click="handleIconClick('https://www.jianshu.com/u/ebb97922b992')" title="点击跳转简书" v-popover:popoverJian></el-button>
+                    </div>
+                    <div class="about-col-10">
+                        <el-button :class="['iconfont', 'icon-boke3']" @click="handleIconClick('http://www.cnblogs.com/liliangel')"  title="点击跳转博客园" v-popover:popoverJian></el-button>
                     </div>
                      
                     <div class="about-col-60">
@@ -130,7 +140,9 @@ export default {
       }, 5000)
     },
     methods: {
-
+        handleIconClick(url) {
+            window.open(url);
+        }
     }
 }
 </script>
@@ -142,6 +154,7 @@ export default {
     margin: 0 auto !important;
     width: 1200px !important;
 }
+
 .page-home-index {
     box-sizing: border-box;
     overflow-x: hidden;
@@ -220,14 +233,17 @@ export default {
             .about-content {
                 @extend .common-width;
                 display: flex;
+                width: 100%;
                 align-items: center;
                 min-height: 200px;
 
-                .about-col-40 {
-                    width: 40%;
+                .about-col-10 {
+                    width: 10%;
                     text-align: right;
 
-                    i {
+                    button {
+                        border: none;
+                        background: transparent;
                         font-size: 35px;
                         margin-right: 40px;
                         cursor: pointer;
@@ -253,16 +269,18 @@ export default {
                 .about-col-60 {
                     width: 60%;
                     text-align: left;
-                    padding-left: 10%;
+                    padding-left: 20%;
 
                     .title {
                         font-size: 140%;
                         font-weight: 600;
+                        color: white;
                     }
                     .sub-title {
                         margin-top: 1.6rem;
                         color: 666;
                         width: 68%;
+                        font-size: 13px;
                     }
                 }
             }

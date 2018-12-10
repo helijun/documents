@@ -5,3 +5,16 @@ a:-webkit-any-link {
     font-style: normal;
     text-decoration: none;
 }
+
+.bike-img-full {
+    width: 100%;
+    height: auto;
+    content: normal !important;
+}
+.bike-width-full {
+    width: 100%;
+}
+.bike-align-center {
+    display: inline-block;
+    text-align: center;
+}

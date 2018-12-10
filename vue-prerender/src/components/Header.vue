@@ -3,7 +3,7 @@
         <a class="bike-title" href="//www.twobike.cn">微人类</a>
         <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1">
-                <a href="#">首页</a>
+                <a href="//www.twobike.com">首页</a>
             </el-menu-item>
             <el-menu-item index="2">
                 <a href="./blogs/index.html" target="_blank">博客</a>
@@ -108,14 +108,45 @@ export default {
         background-color: transparent;
         
     }
-    .el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-        background-color: transparent;
+
+    .el-menu--horizontal {
+        li {
+            color: #fff;
+
+            &:hover {
+                color: #e4e7ed !important; 
+            }
+        }
     }
+    /deep/ .el-menu--horizontal>.el-submenu .el-submenu__title {
+        color: #fff;
+        border: 0;
+
+        &:hover {
+            color: #e4e7ed;
+            background-color: transparent !important;
+        }
+    }
+    .el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
+        background-color: transparent !important;
+    }
+
     .el-menu--horizontal>.el-menu-item.is-active {
         color: #fff;
         border: 0;
     }
-    .el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-        background-color: transparent;
+    .el-submenu__title {
+        background-color: transparent !important;
+        &:hover {
+            background-color: transparent !important;
+        }
+    }
+    .el-menu--popup {
+        a {
+            color: #666;
+            &:hover {
+                color: #999;
+            }
+        }
     }
 </style>
