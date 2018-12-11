@@ -1,6 +1,7 @@
 <template>
     <div class="page-home-index">
         <div class="home-top-bg"></div>
+        <H-header :headerOpacity="headerOpacity"></H-header>
         <scroller
             :on-refresh="refresh"
             :on-infinite="onInfinite"
@@ -15,7 +16,6 @@
                 <span class="up-tip">放开我</span>
                 <span class="refresh-tip">拉不动我吧，哈哈哈哈哈哈哈哈哈</span>
             </template>
-            <H-header></H-header>
             <article>
                 <section class="bike-banner">
                     <h1 class="get-title">不是在写代码，就是在骑行的路上</h1>
@@ -82,6 +82,7 @@ export default {
     name: 'home-index',
     data () {
         return {
+            headerOpacity: '0',
             listData: [
                 {
                     title: '技术博客',
@@ -173,7 +174,7 @@ export default {
         },
         refresh(cb) {
             setTimeout(() => {
-                this.headerOpacity = 1;
+                this.headerOpacity = 0;
                 cb && cb(0)
             }, 1000)
         },
@@ -183,7 +184,9 @@ export default {
         onPulling(top) {
             console.log('距离顶部的像素点', top);
             if(top && top > 0){
-                this.headerOpacity = 1 - top/100;
+                //this.headerOpacity = 1 - top/100;
+            }else{
+                this.headerOpacity = 0;
             }
         },
         onScroll(e) {
@@ -191,7 +194,7 @@ export default {
             console.log('scrollTop', scrollTop);
             this.floatimgRightPx = scrollTop + 300 + "px";
             if (scrollTop <= 100) {
-                this.headerRgba = scrollTop / 100;
+                this.headerOpacity = scrollTop / 300;
                 //this.activeHeight = "40vh";
             } else {
                 this.headerRgba = 1;
@@ -217,7 +220,7 @@ export default {
 }
 
 .home-top-bg {
-    position: relative;
+    position: fixed;
     background: #1E5B94 !important;
     height: 50vh;
     width: 100vw;
