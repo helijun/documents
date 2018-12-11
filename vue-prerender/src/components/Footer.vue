@@ -10,14 +10,14 @@ export default {
     name: 'footer',
     data () {
         return {
-            
+
         }
     },
     created () {
 
     },
     mounted () {
-      
+
     },
     methods: {
 
@@ -26,8 +26,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/common.css';
-    
+    @import '~@/assets/css/index.scss';
+
     footer {
         display: block;
         background: #2d3e50;
@@ -37,6 +37,10 @@ export default {
             padding: 15px 0;
             width: 1200px;
             text-align: center;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                width: 100vw !important;
+            }
         }
     }
 </style>

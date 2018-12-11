@@ -29,7 +29,7 @@ let routers = [
   {
     path: '/',
     name: 'index',
-    component: require('@/modules/Index')
+    component: require('@/modules/home/Index')
   }
 ]
 

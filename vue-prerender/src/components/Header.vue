@@ -1,7 +1,7 @@
 <template>
     <header>
         <a class="bike-title" href="//www.twobike.cn">微人类</a>
-        <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" mode="horizontal">
             <el-menu-item index="1">
                 <a href="//www.twobike.com">首页</a>
             </el-menu-item>
@@ -45,14 +45,14 @@ export default {
     name: 'header',
     data () {
         return {
-            
+            activeIndex: '1',
         }
     },
     created () {
 
     },
     mounted () {
-      
+
     },
     methods: {
 
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/common.css';
+    @import '~@/assets/css/index.scss';
 
     .common-width {
         margin: 0 auto !important;
@@ -87,6 +87,13 @@ export default {
             color: #f8f8f8;
             font-weight: 600;
             font-size: 20px;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                font-size: torem(26px);
+                position: relative;
+                left: -2.8%;
+                margin-top: torem(-10px);
+            }
         }
         a:focus {
             outline: thin dotted #fff;
@@ -101,12 +108,12 @@ export default {
         }
 
         ul {
-            
+
         }
     }
     .el-menu {
         background-color: transparent;
-        
+
     }
 
     .el-menu--horizontal {
@@ -114,7 +121,7 @@ export default {
             color: #fff;
 
             &:hover {
-                color: #e4e7ed !important; 
+                color: #e4e7ed !important;
             }
         }
     }

@@ -1,0 +1,262 @@
+@charset "utf-8";
+@import "common";
+@import "variables";
+@import "function";
+@import "mixins";
+@import "icon";
+
+* {
+	box-sizing: border-box;
+}
+em {
+	font-style: normal;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	cursor: pointer;
+}
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #f8fafb inset;
+	-webkit-text-fill-color: #000;
+}
+
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	background-color: $base-bg-color;
+}
+
+/** 手机媒体查询 **/
+@media #{$media} and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		background-color: #fff;
+	}
+}
+@media #{$media} and ($media-min-width: $min-width-414) and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base * 1.4 !important;
+	}
+}
+@media #{$media} and ($media-min-width: $min-width-375) and ($media-max-width: $max-width-768) {
+	html,
+	body {
+		font-size: $rem-base * 1.2 !important;
+	}
+}
+@media #{$media} and ($media-max-width: $max-width-320) {
+	html,
+	body {
+		font-size: $rem-base !important;/*设计稿为iphone5*/
+	}
+}
+
+/* input placeholder 文字样式 */
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ccc;
+    font-size: 14px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ccc;
+    font-size: 14px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ccc;
+    font-size: 14px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ccc;
+    font-size: 14px;
+}
+/* input placeholder 文字样式 */
+
+/* 常用属性开始 */
+.he-point {
+	cursor: pointer;
+}
+.he-none {
+	display: none !important;
+}
+.he-all-img {
+	width: 100%;
+	height: 100%;
+}
+.he-full-img {
+	max-width: 100%;
+	height: auto;
+}
+.he-float-left {
+	float: left;
+}
+.he-float-right {
+	float: right;
+}
+.he-align-left {
+	text-align: left;
+}
+.he-align-center {
+	text-align: center;
+}
+.he-align-right {
+	text-align: right;
+}
+.he-pl-10 {
+	padding-left: 10px;
+}
+.he-pl-20 {
+	padding-left: 20px;
+}
+.he-pl-30 {
+	padding-left: 30px;
+}
+.he-pl-40 {
+	padding-left: 40px;
+}
+.he-pl-50 {
+	padding-left: 50px;
+}
+.he-pl-60 {
+	padding-left: 60px;
+}
+.he-pr-10 {
+	padding-right: 10px;
+}
+.he-pr-20 {
+	padding-right: 20px;
+}
+.he-pr-30 {
+	padding-right: 30px;
+}
+
+/* 常用属性结束 */
+
+/** 常用布局 **/
+.he-flex {
+    @extend %flex;
+}
+.he-flex-left-center {
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.he-display-inline {
+	display: inline-block;
+}
+.he-display-block {
+	display: block;
+}
+/** 常用布局 end **/
+
+/** 栅格开始 **/
+[class*="he-col-"] {
+    box-sizing: border-box;
+}
+.he-offset-20 {
+    margin: 0 20px;
+}
+.he-offset-16 {
+    margin: 0 16px;
+}
+.he-offset-10 {
+    margin: 0 10px;
+}
+.he-offset-5 {
+    margin: 0 5px;
+}
+.he-col-auto {
+    width: 100%;
+}
+.he-col-100 {
+    width: 100%;
+}
+.he-col-95 {
+    width: 95%;
+}
+.he-col-95 {
+    width: 95%;
+}
+.he-col-90 {
+    width: 90%;
+}
+.he-col-90 {
+    width: 90%;
+}
+.he-col-85 {
+    width: 85%;
+}
+.he-col-80 {
+    width: 80%;
+}
+.he-col-75 {
+    width: 75%;
+}
+.he-col-70 {
+    width: 70%;
+}
+.he-col-66 {
+    width: 66.66666666666666%;
+}
+.he-col-65 {
+    width: 65%;
+}
+.he-col-60 {
+    width: 60%;
+}
+.he-col-50 {
+    width: 50%;
+}
+.he-col-40 {
+    width: 40%;
+}
+.he-col-30 {
+    width: 30%;
+}
+.he-col-33 {
+    width: 33.333333333333336%;
+}
+.he-col-25 {
+    width: 25%;
+}
+.he-col-20 {
+    width: 20%;
+}
+.he-col-15 {
+    width: 15%;
+}
+.he-col-10 {
+    width: 10%;
+}
+.he-col-5 {
+    width: 5%;
+}
+/** 栅格结束 **/
+
+/** 常用颜色**/
+.he-color-base {
+	color: $base-color;
+
+	&:hover {
+		color: #11d6ca;
+	}
+}
+.he-color-disable {
+	color: $base-disable-color;
+	cursor: not-allowed;
+	&:hover {
+		color: $base-disable-color;
+	}
+}
+.he-color-del {//删除
+	color: $del-color;
+}
+/** 常用颜色 end**/

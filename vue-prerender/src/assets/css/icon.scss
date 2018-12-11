@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+@import "variables";
+
+@mixin img2icon($name: null, $height: null, $width: null) {
+	display: inline-block;
+	background: url('~@/assets/img/icon/'+ $name) no-repeat;
+
+	@if ($height != null) {
+		height: $height;
+	}
+	@if ($width != null) {
+		width: $width;
+	}
+}
+.icon-home {
+	//@include img2icon('icon-home.png', 15px, 15px);
+}
