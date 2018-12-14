@@ -193,8 +193,12 @@ export default {
             let scrollTop = e.target.scrollTop;
             console.log('scrollTop', scrollTop);
             this.floatimgRightPx = scrollTop + 300 + "px";
-            if (scrollTop <= 100) {
-                this.headerOpacity = scrollTop / 300;
+
+
+            if (scrollTop <= 400) {
+                this.headerOpacity = 0;
+            }else if (scrollTop > 400 && scrollTop <= 700) {
+                this.headerOpacity = scrollTop / 500;
                 //this.activeHeight = "40vh";
             } else {
                 this.headerRgba = 1;

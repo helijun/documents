@@ -37,6 +37,20 @@
                     </el-menu-item>
                 </el-submenu>
             </el-menu>
+
+            <div class="mobile-menu" @click="handleMobileMenuClick">
+                <i class="iconfont icon-ego-caidan"></i>
+            </div>
+            <div class="mobile-menu-content" @click="handleMobileMenuClick" v-show="mobileMenuShow">
+                
+            </div>
+            <div class="main" ref="mobileMenuMain">
+                <a href="./book/index.html">1. 个人书单</a>
+                <a href="./video/index.html">2. 电影&电视剧</a>
+                <a href="https://github.com/helijun/react-learn">3. React学习</a>
+                <a href="http://www.twobike.cn/blogs/给你的jQuery项目赋予Router技能吧.html">4. 最新文章</a>
+                <a href="./life/闲置的2017.html">5. 闲置的2017</a>
+            </div>
         </header>
     </div>
 </template>
@@ -48,6 +62,7 @@ export default {
     data () {
         return {
             activeIndex: '1',
+            mobileMenuShow: false
         }
     },
     props: {
@@ -63,7 +78,19 @@ export default {
 
     },
     methods: {
+        handleMobileMenuClick() {
+            this.mobileMenuShow = !this.mobileMenuShow;
+            setTimeout(() => {
+                this.$refs.mobileMenuMain.style.transform = 'translate3d(100%, 0px, 0px)'
 
+                console.log('this.mobileMenuShow',  this.mobileMenuShow)
+                if(!this.mobileMenuShow){
+                    this.$refs.mobileMenuMain.style.transform = 'translate3d(500%, 0px, 0px)'
+                }
+            }, 10)
+
+            
+        }
     }
 }
 </script>
@@ -115,8 +142,63 @@ export default {
         a:hover {
             color: #fff;
         }
+        .el-menu {
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                display: none;
+            }
+        }
         .el-menu.el-menu--horizontal {
             border: 0;
+        }
+
+        .mobile-menu {
+            display: none;
+
+            @media #{$media} and ($media-max-width: $max-width-768) {
+                display: block;
+                width: 100px;
+                position: absolute;
+                left: 28%;
+                top: 14px;
+                color: white;
+            }
+
+            .icon-ego-caidan {
+                font-size: 20px;
+            }
+        }
+
+        .mobile-menu-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 1;
+
+            
+        }
+        .main {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: white;
+            height: 100%;
+            width: 50%;
+            padding: 40px 20px;
+            z-index: 2;
+            transition: all .5s;
+            transform: translate3d(500%, 0px, 0px);
+
+            a {
+                display: block;
+                text-align: left;
+                color: #666;
+                padding-top: 10px;
+            }
         }
 
         ul {
