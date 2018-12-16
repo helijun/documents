@@ -198,7 +198,9 @@ export default {
             if (scrollTop <= 400) {
                 this.headerOpacity = 0;
             }else if (scrollTop > 400 && scrollTop <= 700) {
-                this.headerOpacity = scrollTop / 500;
+                if(scrollTop % 10 == 0){ //防抖节流
+                    this.headerOpacity = scrollTop / 500;
+                }
                 //this.activeHeight = "40vh";
             } else {
                 this.headerRgba = 1;
