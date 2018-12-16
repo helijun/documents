@@ -16,7 +16,7 @@
                     <a href="http://www.xiami.com/collect/162245539" target="_blank">民谣</a>
                 </el-menu-item>
                 <el-menu-item index="4">
-                    <a href="./info/1024.html" target="_blank">骑行</a>
+                    <a href="http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869" target="_blank">骑行</a>
                 </el-menu-item>
                 <el-submenu index="2">
                     <template slot="title">其他</template>

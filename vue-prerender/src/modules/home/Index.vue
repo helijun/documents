@@ -105,7 +105,7 @@ export default {
                 {
                     title: '自行车',
                     icon: 'icon-zixingche',
-                    url: 'https://www.twobike.cn/info/1024.html',
+                    url: 'http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869',
                     content: '开车太快，走路太慢，自行车刚刚好。迎着风，向着朝阳，最好的时光在路上，即刻出发!'
                 }
             ],
