@@ -4,7 +4,7 @@
             <a class="bike-title" href="//www.twobike.cn">微人类</a>
             <el-menu :default-active="activeIndex" mode="horizontal">
                 <el-menu-item index="1">
-                    <a href="//www.twobike.com">首页</a>
+                    <a href="//www.twobike.cn">首页</a>
                 </el-menu-item>
                 <el-menu-item index="2">
                     <a href="./blogs/index.html" target="_blank">博客</a>
