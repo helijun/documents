@@ -1,5 +1,5 @@
 <template>
-    <div class="components-header" :style="{background: `rgba(45,62,80, ${headerOpacity})`}">
+    <div class="components-header" :style="{background: `rgba(45,62,80, ${headerRgba})`, opacity: `${headerOpacity}`}">
         <header>
             <a class="bike-title" href="//www.twobike.cn">微人类</a>
             <el-menu :default-active="activeIndex" mode="horizontal">
@@ -42,7 +42,7 @@
                 <i class="iconfont icon-ego-caidan"></i>
             </div>
             <div class="mobile-menu-content" @click="handleMobileMenuClick" v-show="mobileMenuShow">
-                
+
             </div>
             <div class="main" ref="mobileMenuMain">
                 <a href="./book/index.html">1. 个人书单</a>
@@ -66,10 +66,14 @@ export default {
         }
     },
     props: {
+        headerRgba: {
+            type: Number,
+            default: 0
+        },
         headerOpacity: {
-            type: String,
-            default: '0'
-        }
+            type: Number,
+            default: 1
+        },
     },
     created () {
 
@@ -89,7 +93,7 @@ export default {
                 }
             }, 10)
 
-            
+
         }
     }
 }
@@ -155,7 +159,7 @@ export default {
             display: none;
 
             @media #{$media} and ($media-max-width: $max-width-768) {
-                display: block;
+                display: inherit;
                 width: 100px;
                 position: absolute;
                 left: 28%;
@@ -177,7 +181,7 @@ export default {
             background-color: rgba(0,0,0,0.6);
             z-index: 1;
 
-            
+
         }
         .main {
             position: fixed;

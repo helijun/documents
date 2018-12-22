@@ -1,13 +1,14 @@
 <template>
     <div class="page-home-index">
         <div class="home-top-bg"></div>
-        <H-header :headerOpacity="headerOpacity"></H-header>
+        <H-header :headerRgba="headerRgba" :headerOpacity="headerOpacity"></H-header>
         <scroller
             :on-refresh="refresh"
             :on-infinite="onInfinite"
             :dataList="listData"
-            :offset="100"
-            :bounce="50"
+            :offset="80"
+            :bounce="60"
+            @refreshFinsh="refreshFinsh"
             @onScroll="onScroll"
             @onPulling="onPulling"
         >
@@ -18,8 +19,8 @@
             </template>
             <article>
                 <section class="bike-banner">
-                    <h1 class="get-title">不是在写代码，就是在骑行的路上</h1>
-                    <p>Coding，Riding，Or Reading.</p>
+                    <h1 class="get-title animated fadeInDown">不是在写代码，就是在骑行的路上</h1>
+                    <p class="animated fadeInDown">Coding，Riding，Or Reading.</p>
                 </section>
                 <div class="bike-article">
                     <div class="bike-list" v-for="(item, i) in listData" :key="i" @click="handleUrlClick(item.url)">
@@ -62,11 +63,6 @@
             </article>
             <H-footer></H-footer>
             <div class="li-common-loading" ref="loading" v-show="loading"></div>
-
-            <!-- <div class="animated fadeInDown">
-            何立军
-            </div> -->
-
         </scroller>
     </div>
 </template>
@@ -82,7 +78,8 @@ export default {
     name: 'home-index',
     data () {
         return {
-            headerOpacity: '0',
+            headerRgba: 0,
+            headerOpacity: 1,
             listData: [
                 {
                     title: '技术博客',
@@ -174,7 +171,7 @@ export default {
         },
         refresh(cb) {
             setTimeout(() => {
-                this.headerOpacity = 0;
+                this.headerRgba = 0;
                 cb && cb(0)
             }, 1000)
         },
@@ -184,27 +181,32 @@ export default {
         onPulling(top) {
             console.log('距离顶部的像素点', top);
             if(top && top > 0){
-                //this.headerOpacity = 1 - top/100;
-            }else{
-                this.headerOpacity = 0;
+                this.headerOpacity = 1 - top/100;
             }
         },
+
+        refreshFinsh() {
+            setTimeout(() => {
+                this.headerOpacity = 1;
+            }, 500)
+        },
+
         onScroll(e) {
             let scrollTop = e.target.scrollTop;
-            console.log('scrollTop', scrollTop);
             this.floatimgRightPx = scrollTop + 300 + "px";
 
-
-            if (scrollTop <= 400) {
-                this.headerOpacity = 0;
-            }else if (scrollTop > 400 && scrollTop <= 700) {
-                if(scrollTop % 10 == 0){ //防抖节流
-                    this.headerOpacity = scrollTop / 500;
-                }
+            console.log('scrollTop1', scrollTop);
+            if (scrollTop <= 200) {
+                this.headerRgba = 0;
+            }else if (scrollTop > 200 && scrollTop <= 500) {
+                //if(scrollTop % 5 == 0){ //防抖节流
+                    console.log('scrollTop2---------->>>>>>', scrollTop);
+                    this.headerRgba = scrollTop / 300;
+                //}
                 //this.activeHeight = "40vh";
             } else {
                 this.headerRgba = 1;
-                this.headerOpacity = 1; //解决正在刷新时又上滑透明度不还原问题
+                this.headerRgba = 1; //解决正在刷新时又上滑透明度不还原问题
                 //this.activeHeight = "44px";
             }
         }
@@ -214,8 +216,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '~@/assets/css/index.scss';
-@import '~@/assets/font/iconfont.css';
-@import '~@/assets/css/animate/animate.css';
 .common-width {
     margin: 0 auto !important;
     width: 1200px !important;
