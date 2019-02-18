@@ -28,14 +28,11 @@
               <el-menu-item index="2-2">
                 <a href="./video/index.html" target="_blank">2. 电影&电视剧</a>
               </el-menu-item>
-              <el-menu-item index="2-3">
-                <a href="https://github.com/helijun/react-learn" target="_blank">3. React学习</a>
-              </el-menu-item>
               <el-menu-item index="2-4">
-                <a href="http://www.twobike.cn/blogs/给你的jQuery项目赋予Router技能吧.html" target="_blank">4. 最新文章</a>
+                <a href="https://www.cnblogs.com/liliangel/p/10191690.html" target="_blank">3. 最新文章</a>
               </el-menu-item>
               <el-menu-item index="2-5">
-                <a href="./life/闲置的2017.html" target="_blank">5. 闲置的2017</a>
+                <a href="./life/穷忙的2018.html" target="_blank">4. 穷忙的2018</a>
               </el-menu-item>
             </el-submenu>
           </el-menu>
@@ -66,7 +63,7 @@
           </section>
         </article>
         <footer>
-          <p>© 2016 - 2018 by helijun</p>
+          <p>&copy; 2016 - 2019 by helijun</p>
         </footer>
 	      <div class="li-common-loading" ref="loading" v-show="loading"></div>
 
