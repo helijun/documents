@@ -391,13 +391,13 @@ export default {
 
     .down-tip {
       i {
-        background: url("~@/assets/images/scroller/down-white.png") no-repeat;
+        background: url("~@/assets/img/scroller/down-white.png") no-repeat;
         background-size: 100% 100%;
       }
     }
     .up-tip {
       i {
-        background: url("~@/assets/images/scroller/up-white.png") no-repeat;
+        background: url("~@/assets/img/scroller/up-white.png") no-repeat;
         background-size: 100% 100%;
       }
     }
@@ -406,7 +406,7 @@ export default {
 
       i {
         animation: loadingRotate 0.5s linear infinite;
-        background: url("~@/assets/images/scroller/loading-white.png") no-repeat;
+        background: url("~@/assets/img/scroller/loading-white.png") no-repeat;
         background-size: 100% 100%;
       }
     }
