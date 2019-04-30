@@ -84,7 +84,7 @@ export default {
                 {
                     title: '技术博客',
                     icon: 'icon-xinwen',
-                    url: 'https://www.twobike.cn/blogs/index.html',
+                    url: 'http://www.cnblogs.com/liliangel',
                     content: '技术这条路，必须走到黑，不回头。日常的总结，是点点滴滴的进步。以js为核心，java，linux为辅多元化发展，不做偏安一隅的前端，ITer，请跟随兴趣一路前行。'
                 },
                 {

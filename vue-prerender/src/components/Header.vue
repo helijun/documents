@@ -48,7 +48,7 @@
                 <a href="./book/index.html">1. 个人书单</a>
                 <a href="./video/index.html">2. 电影&电视剧</a>
                 <!-- <a href="https://github.com/helijun/react-learn">3. React学习</a> -->
-                <a href="https://www.cnblogs.com/liliangel/p/10191690.html">3. 最新文章</a>
+                <a href="https://www.cnblogs.com/liliangel/p/10598442.html">3. 最新文章</a>
                 <a href="./life/穷忙的2018.html">4. 穷忙的2018</a>
             </div>
         </header>
