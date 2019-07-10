@@ -3,3 +3,5 @@
 */npm-debug.log
 *.rar
 .DS_Store
+start/.classpath
+start/.project
