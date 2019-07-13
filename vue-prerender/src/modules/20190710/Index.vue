@@ -3,7 +3,8 @@
     <nav class="app-nav no-badge">
       <ul>
         <li>
-          <span @click="navShow = true">回到旧版</span>
+          <!-- <span @click="navShow = true">回到旧版</span> -->
+          <span class="he-point" @click="handleUrlClick('//www.twobike.cn')">回到旧版</span>
           <ul v-show="navShow">
             <li>
               <a href="#/" class="active">
@@ -189,8 +190,8 @@
             <div class="el-books-content">
               <el-row :gutter="40">
                 <el-col :span="6">
-                  <el-collapse accordion>
-                    <el-collapse-item>
+                  <el-collapse v-model="activeNames" accordion>
+                    <el-collapse-item name="1">
                       <template slot="title">2019年</template>
                       <ul>
                         <li>谈美</li>
@@ -253,13 +254,65 @@
                 </el-col>
               </el-row>
               <p
-                class="el-cursor he-align-left"
+                class="he-mt-0 el-cursor he-align-left he-fontsize-xs"
                 @click="handleUrlClick('https://www.twobike.cn/book/index.html#/')"
               >查看更多</p>
             </div>
           </div>
           <div class="el-timeline">
             <div class="el-common-title">看过的电影/电视剧</div>
+            <div class="el-video-content">
+              <el-row :gutter="40">
+                <el-col :span="6">
+                  <el-collapse v-model="activeNames2" accordion>
+                    <el-collapse-item name="2">
+                      <template slot="title">电视剧</template>
+                      <ul>
+                        <li>汉武大帝</li>
+                        <li>老梁的四大名著情商课（听）</li>
+                        <li>雍正王朝</li>
+                        <li>康熙王朝</li>
+                        <li>大明王朝</li>
+                        <li>我在故宫修文物（纪录片）</li>
+                        <li>国家宝藏（综艺）</li>
+                        <li>海棠依旧</li>
+                        <li>天龙八部 胡军版</li>
+                        <li>易中天品三国（听）</li>
+                        <li>笑傲江湖 1996 吕颂贤版</li>
+                        <li>倚天屠龙记 2003 年版</li>
+                        <li>鲍鹏山新说水浒（听）</li>
+                        <li>我的团长我的团</li>
+                      </ul>
+                    </el-collapse-item>
+                  </el-collapse>
+                </el-col>
+                <el-col :span="6">
+                  <el-collapse v-model="activeNames3" accordion>
+                    <el-collapse-item name="3">
+                      <template slot="title">电影</template>
+                      <ul>
+                      <li>2019-05-01 何以为家</li>
+                      <li>2019-03-13 飞驰的人生</li>
+                      <li>2019-02-08 中国合伙人 2</li>
+                      <li>2019-02-07 流浪地球</li>
+                      <li>2019-01-13 大话西游之大神娶亲</li>
+                      <li>2019-01-06 狗十三</li>
+                      <li>2019-01-05 霸王别姬</li>
+                      <li>2019-01-04 海王</li>
+                      <li>2019-01-03 阿拉姜色</li>
+                      <li>2018-12-13 无名之辈</li>
+                      <li>2018-11-16 悲伤逆流成河</li>
+                      <li>2018-11-16 西虹市首富</li>
+                      </ul>
+                    </el-collapse-item>
+                  </el-collapse>
+                </el-col>
+              </el-row>
+              <p
+                class="he-mt-0 el-cursor he-align-left he-fontsize-xs"
+                @click="handleUrlClick('https://www.twobike.cn/video/index.html#/')"
+              >查看更多</p>
+            </div>
           </div>
           <div class="el-timeline">
             <div class="el-common-title">在听的音乐</div>
@@ -281,6 +334,9 @@ export default {
     return {
       navShow: false,
       headerRgba: 0,
+      activeNames: ['1'],
+      activeNames2: ['2'],
+      activeNames3: ['3'],
       headerOpacity: 1,
       activeIndex: "1",
       listData: [
@@ -718,6 +774,7 @@ export default {
 
         .el-books {
           .el-books-content {
+
           }
         }
         /deep/ .el-collapse {
