@@ -184,6 +184,15 @@
           </div>
           <div class="el-timeline">
             <div class="el-common-title">时间轴</div>
+            <el-timeline :reverse="reverse">
+                <el-timeline-item
+                v-for="(activity, index) in activities"
+                :key="index"
+                :timestamp="activity.timestamp"
+                placement="top">
+                {{activity.content}}
+                </el-timeline-item>
+            </el-timeline>
           </div>
           <div class="el-books">
             <div class="el-common-title">我的书单</div>
@@ -314,8 +323,15 @@
               >查看更多</p>
             </div>
           </div>
-          <div class="el-timeline">
+          <div class="el-music">
             <div class="el-common-title">在听的音乐</div>
+            <div class="el-music-content">
+                <iframe frameborder="0" border="1" 
+                        marginwidth="0" marginheight="0" 
+                        width=333 height=77 
+                        src="//music.163.com/outchain/player?type=2&id=33166539&auto=1&height=66">
+                </iframe>
+            </div>
           </div>
           <div class="el-timeline">
             <div class="el-common-title">最新文章</div>
@@ -332,68 +348,84 @@ export default {
   name: "home-index",
   data() {
     return {
-      navShow: false,
-      headerRgba: 0,
-      activeNames: ['1'],
-      activeNames2: ['2'],
-      activeNames3: ['3'],
-      headerOpacity: 1,
-      activeIndex: "1",
-      listData: [
-        {
-          title: "技术博客",
-          icon: "icon-xinwen",
-          url: "http://www.cnblogs.com/liliangel",
-          content:
-            "技术这条路，必须走到黑，不回头。日常的总结，是点点滴滴的进步。以js为核心，java，linux为辅多元化发展，不做偏安一隅的前端，ITer，请跟随兴趣一路前行。"
-        },
-        {
-          title: "感悟",
-          icon: "icon-idea",
-          url: "https://www.twobike.cn/life/index.html",
-          content:
-            "放下对生活的成见，做一个不动声色的人，因为不是所有的鱼都生活在同一片海里。在躁动的青春年纪，那些总以为是迷茫的，不过是某一刻突然安静下来的不知所措而罢，面对复杂，保持欢喜，漫漫余生，满怀期盼。"
-        },
-        {
-          title: "民谣",
-          icon: "icon-music",
-          url: "https://www.xiami.com/collect/162245539",
-          content:
-            "我没有故事，也没有酒，可是我有民谣，虾米音乐--精选集--《民谣中毒》，一起细品民谣，让越来越快的生活节奏放慢几分。"
-        },
-        {
-          title: "自行车",
-          icon: "icon-zixingche",
-          url:
-            "http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869",
-          content:
-            "开车太快，走路太慢，自行车刚刚好。迎着风，向着朝阳，最好的时光在路上，即刻出发!"
-        }
-      ],
-      aboutData: [
-        {
-          icon: "icon-jian",
-          type: "link",
-          link: ""
-        },
-        {
-          icon: "icon-iconweixin",
-          type: "alert",
-          img: ""
-        },
-        {
-          icon: "icon-boke3",
-          type: "alert",
-          img: ""
-        },
-        {
-          icon: "icon-github",
-          type: "link",
-          link: ""
-        }
-      ],
-      msg: "home-index",
-      loading: false
+        navShow: false,
+        headerRgba: 0,
+        activeNames: ['1'],
+        activeNames2: ['2'],
+        activeNames3: ['3'],
+        headerOpacity: 1,
+        activeIndex: "1",
+        reverse: true,
+        activities: [{
+                content: '成为骑行爱好者',
+                size: 'normal',
+                timestamp: '2013-10-xx'
+            }, {
+                content: '来深圳',
+                timestamp: '2015-03-27'
+            },{
+                content: '遇到女朋友',
+                timestamp: '2015-06-24'
+            },{
+                content: '入h5前端坑',
+                timestamp: '2016-06-05',
+                size: 'large',
+                type: 'primary',
+                icon: 'el-icon-more'
+            },{
+                content: '房奴',
+                timestamp: '2017-03-06'
+            }],
+        listData: [
+            {
+                title: "技术博客",
+                icon: "icon-xinwen",
+                url: "http://www.cnblogs.com/liliangel",
+                content: "技术这条路，必须走到黑，不回头。日常的总结，是点点滴滴的进步。以js为核心，java，linux为辅多元化发展，不做偏安一隅的前端，ITer，请跟随兴趣一路前行。"
+            },
+            {
+                title: "感悟",
+                icon: "icon-idea",
+                url: "https://www.twobike.cn/life/index.html",
+                content: "放下对生活的成见，做一个不动声色的人，因为不是所有的鱼都生活在同一片海里。在躁动的青春年纪，那些总以为是迷茫的，不过是某一刻突然安静下来的不知所措而罢，面对复杂，保持欢喜，漫漫余生，满怀期盼。"
+            },
+            {
+                title: "民谣",
+                icon: "icon-music",
+                url: "https://www.xiami.com/collect/162245539",
+                content: "我没有故事，也没有酒，可是我有民谣，虾米音乐--精选集--《民谣中毒》，一起细品民谣，让越来越快的生活节奏放慢几分。"
+            },
+            {
+                title: "自行车",
+                icon: "icon-zixingche",
+                url: "http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869",
+                content: "开车太快，走路太慢，自行车刚刚好。迎着风，向着朝阳，最好的时光在路上，即刻出发!"
+            }
+        ],
+        aboutData: [
+            {
+                icon: "icon-jian",
+                type: "link",
+                link: ""
+            },
+            {
+                icon: "icon-iconweixin",
+                type: "alert",
+                img: ""
+            },
+            {
+                icon: "icon-boke3",
+                type: "alert",
+                img: ""
+            },
+            {
+                icon: "icon-github",
+                type: "link",
+                link: ""
+            }
+        ],
+        msg: "home-index",
+        loading: false
     };
   },
   components: {
@@ -747,7 +779,7 @@ export default {
           color: #4a4a4a;
           font-weight: 500;
           white-space: nowrap;
-          font-size: 24px;
+          font-size: 20px;
           line-height: 40px;
           margin: 20px 0;
           border-bottom: 2px solid;
@@ -774,8 +806,22 @@ export default {
 
         .el-books {
           .el-books-content {
-
           }
+        }
+
+        .el-music {
+            .el-music-content {
+                text-align: left;
+            }
+        }
+        /deep/ .el-timeline {
+            .el-timeline-item__wrapper {
+                text-align: left;
+            }
+            .el-timeline-item__timestamp {
+                color: #e4e7ed;
+            }
+
         }
         /deep/ .el-collapse {
           border: 0;
@@ -792,5 +838,6 @@ export default {
       }
     }
   }
+  
 }
 </style>
