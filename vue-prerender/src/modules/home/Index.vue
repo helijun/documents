@@ -227,8 +227,9 @@ export default {
 
 .home-top-bg {
     position: fixed;
-    background: #1E5B94 !important;
-    height: 50vh;
+    background: #1E5B94;
+    background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
+    height: 30vh;
     width: 100vw;
     z-index: 0;
 }
@@ -252,6 +253,7 @@ export default {
 
         .bike-banner {
             background: #1E5B94;
+            background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
             color: #fff;
             text-align: center;
             padding: 160px 0;
@@ -331,7 +333,8 @@ export default {
             }
         }
         .bike-about {
-            background-color: #0bb59b;
+            background: #0bb59b;
+            background: linear-gradient(to left bottom, #0db19e 0%,hsl(0, 0%, 100%) 100%);
             min-height: 200px;
 
             .about-content {

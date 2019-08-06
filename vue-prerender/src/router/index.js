@@ -30,7 +30,8 @@ let fromConfigRouters = routerConfig.routes.map((item, index) => {
 let routers = [{
     path: '/',
     name: 'index',
-    component: require('@/modules/20190710/Index')
+    //component: require('@/modules/20190710/Index')
+    component: require('@/modules/home/Index')
 }]
 
 console.log('RoutersConfig', [...fromConfigRouters, ...routers]);
