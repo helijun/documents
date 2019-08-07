@@ -121,7 +121,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
+  @media #{$media} and ($media-max-width: $max-width-768) {
+    padding: 0 50px;
+    }
 }
 header {
   @extend .components-header;

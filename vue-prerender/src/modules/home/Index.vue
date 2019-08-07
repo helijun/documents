@@ -281,6 +281,7 @@ export default {
             text-align: left;
             padding-bottom: 40px;
             background-color: #fff;
+            flex-wrap: wrap;
             @extend .common-width;
 
             @media #{$media} and ($media-max-width: $max-width-768) {
@@ -297,7 +298,7 @@ export default {
             }
             .bike-list {
                 padding: 14px 16px;
-                width: 25%;
+                width: 50%;
 
                 @media #{$media} and ($media-max-width: $max-width-768) {
                     width: 100% !important;
@@ -305,14 +306,17 @@ export default {
 
                 .list-content {
                     cursor: pointer;
-                    padding: 0 10px 5px 10px;
+                    padding: 10px 100px;
                     border-radius: 6px;
-
+                    @media #{$media} and ($media-max-width: $max-width-768) {
+                        padding: 10px 16px;
+                    }
                     @media #{$media} and ($media-min-width: $min-width-768) {
                         &:hover {
-                            transform: scale(1.1154);
+                            //transform: scale(1.0154);
                             transition: all 1s;
-                            box-shadow: 10px 10px 10px #CCC;
+                            color: #666;
+                            //box-shadow: 10px 10px 10px #CCC;
                         }
                     }
                     .title {
@@ -333,8 +337,7 @@ export default {
             }
         }
         .bike-about {
-            background: #0bb59b;
-            background: linear-gradient(to left bottom, #0db19e 0%,hsl(0, 0%, 100%) 100%);
+            background: #fff;
             min-height: 200px;
 
             .about-content {
@@ -368,7 +371,7 @@ export default {
                         color: #e67979;
                     }
                     .icon-boke3 {
-                        color: #eaeaff;
+                        color: #00BCD4;
                     }
                     .icon-github {
                         color: black;
@@ -388,12 +391,12 @@ export default {
                     .title {
                         font-size: 140%;
                         font-weight: 600;
-                        color: white;
+                        color: #666;
                     }
                     .sub-title {
                         margin-top: 1.6rem;
                         color: #666;
-                        width: 68%;
+                        width: 77%;
                         font-size: 13px;
 
                         @media #{$media} and ($media-max-width: $max-width-768) {
