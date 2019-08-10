@@ -82,25 +82,25 @@ export default {
             headerOpacity: 1,
             listData: [
                 {
-                    title: '技术博客',
+                    title: '闹心技术',
                     icon: 'icon-xinwen',
                     url: 'http://www.cnblogs.com/liliangel',
                     content: '技术这条路，必须走到黑，不回头。日常的总结，是点点滴滴的进步。以js为核心，java，linux为辅多元化发展，不做偏安一隅的前端，ITer，请跟随兴趣一路前行。'
                 },
                 {
-                    title: '感悟',
+                    title: '随心感悟',
                     icon: 'icon-idea',
                     url: 'https://www.twobike.cn/life/index.html',
                     content: '放下对生活的成见，做一个不动声色的人，因为不是所有的鱼都生活在同一片海里。在躁动的青春年纪，那些总以为是迷茫的，不过是某一刻突然安静下来的不知所措而罢，面对复杂，保持欢喜，漫漫余生，满怀期盼。'
                 },
                 {
-                    title: '民谣',
+                    title: '走心民谣',
                     icon: 'icon-music',
                     url: 'https://www.xiami.com/collect/162245539',
                     content: '我没有故事，也没有酒，可是我有民谣，虾米音乐--精选集--《民谣中毒》，一起细品民谣，让越来越快的生活节奏放慢几分。'
                 },
                 {
-                    title: '自行车',
+                    title: '悦心骑行',
                     icon: 'icon-zixingche',
                     url: 'http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869',
                     content: '开车太快，走路太慢，自行车刚刚好。迎着风，向着朝阳，最好的时光在路上，即刻出发!'

@@ -22,6 +22,9 @@
           <a href="http://www.xiami.com/collect/162245539" target="_blank">民谣</a>
         </el-menu-item>
         <el-menu-item index="6">
+          <a href="./book/index.html" target="_blank">书单</a>
+        </el-menu-item>
+        <el-menu-item index="7">
           <a
             href="http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869"
             target="_blank"
@@ -29,20 +32,17 @@
         </el-menu-item>
         <el-submenu index="7">
           <template slot="title">其他</template>
-          <el-menu-item index="7-1">
-            <a href="./book/index.html" target="_blank">1. 个人书单</a>
-          </el-menu-item>
           <el-menu-item index="7-2">
-            <a href="./video/index.html" target="_blank">2. 电影&电视剧</a>
+            <a href="./video/index.html" target="_blank">1. 电影&电视剧</a>
           </el-menu-item>
           <!-- <el-menu-item index="2-3">
                         <a href="https://github.com/helijun/react-learn" target="_blank">3. React学习</a>
           </el-menu-item>-->
           <el-menu-item index="7-4">
-            <a href="https://www.cnblogs.com/liliangel/p/10191690.html" target="_blank">3. 最新文章</a>
+            <a href="https://www.cnblogs.com/liliangel/p/10191690.html" target="_blank">2. 最新文章</a>
           </el-menu-item>
           <el-menu-item index="7-5">
-            <a href="./life/穷忙的2018.html" target="_blank">4. 穷忙的2018</a>
+            <a href="./life/穷忙的2018.html" target="_blank">3. 穷忙的2018</a>
           </el-menu-item>
         </el-submenu>
       </el-menu>
