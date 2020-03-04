@@ -52,11 +52,12 @@
       </div>
       <div class="mobile-menu-content" @click="handleMobileMenuClick" v-show="mobileMenuShow"></div>
       <div class="main" ref="mobileMenuMain">
-        <a href="./book/index.html">1. 个人书单</a>
-        <a href="./video/index.html">2. 电影&电视剧</a>
+        <a href="https://www.helijun.com.cn/wiki/#/README">2. 个人书单</a>
+        <a href="https://www.helijun.com.cn/wiki/#/book/README">2. 个人书单</a>
+        <a href="https://www.helijun.com.cn/wiki/#/video/README">3. 电影&电视剧</a>
         <!-- <a href="https://github.com/helijun/react-learn">3. React学习</a> -->
-        <a href="https://www.cnblogs.com/liliangel/p/10598442.html">3. 最新文章</a>
-        <a href="./life/穷忙的2018.html">4. 穷忙的2018</a>
+        <a href="https://www.cnblogs.com/liliangel/p/10598442.html">4. 最新文章</a>
+        <a href="https://www.helijun.com.cn/wiki/#/life/2018/跌宕的2019">5. 跌宕的2019</a>
       </div>
     </header>
   </div>
