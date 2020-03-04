@@ -102,7 +102,7 @@ export default {
                 {
                     title: '悦心骑行',
                     icon: 'icon-zixingche',
-                    url: 'http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869',
+                    url: 'http://tieba.baidu.com/p/3279735352?pid=57042307869',
                     content: '开车太快，走路太慢，自行车刚刚好。迎着风，向着朝阳，最好的时光在路上，即刻出发!'
                 }
             ],
@@ -227,8 +227,8 @@ export default {
 
 .home-top-bg {
     position: fixed;
-    background: #1E5B94;
-    background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
+    // background: #1E5B94;
+    // background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
     height: 30vh;
     width: 100vw;
     z-index: 0;
@@ -237,11 +237,11 @@ export default {
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: #fff;
+    // background-color: #fff;
     z-index: 1;
 
     /deep/ .pull-refresh {
-        background: #1E5B94 !important;
+        // background: #1E5B94 !important;
         color: #fff;
     }
     .header-space {
@@ -252,8 +252,8 @@ export default {
         position: relative;
 
         .bike-banner {
-            background: #1E5B94;
-            background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
+            // background: #1E5B94;
+            // background: linear-gradient(to left bottom, #3F51B5 0%,hsl(171, 89%, 38%) 100%);
             color: #fff;
             text-align: center;
             padding: 160px 0;
@@ -280,7 +280,7 @@ export default {
             display: flex;
             text-align: left;
             padding-bottom: 40px;
-            background-color: #fff;
+            // background-color: #fff;
             flex-wrap: wrap;
             @extend .common-width;
 
@@ -337,7 +337,7 @@ export default {
             }
         }
         .bike-about {
-            background: #fff;
+            // background: #fff;
             min-height: 200px;
 
             .about-content {

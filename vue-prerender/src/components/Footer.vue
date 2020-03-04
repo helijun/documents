@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>&copy; 2016 - 2019 by helijun</p>
+        <p>&copy; 2016 - 2020 粤ICP备19145585号</p>
     </footer>
 </template>
 
@@ -30,7 +30,7 @@ export default {
 
     footer {
         display: block;
-        background: #2d3e50;
+        background: #202529;
         p {
             color: #7f8c8d;
             margin: 0 auto;
