@@ -4,13 +4,13 @@
     :style="{background: `rgba(45,62,80, ${headerRgba})`, opacity: `${headerOpacity}`}"
   >
     <header>
-      <a class="bike-title" href="//www.twobike.cn">微人类</a>
+      <a class="bike-title" href="//www.helijun.com.cn">微人类</a>
       <el-menu :default-active="activeIndex" mode="horizontal">
         <!-- <el-menu-item index="1">
-          <a href="//www.twobike.cn">首页</a>
+          <a href="//www.helijun.com.cn">首页</a>
         </el-menu-item>-->
         <el-menu-item index="2">
-          <a href="//www.twobike.cn/wiki" target="_blank">wiki</a>
+          <a href="//www.helijun.com.cn/wiki" target="_blank">wiki</a>
         </el-menu-item>
         <el-menu-item index="5">
           <a href="http://www.xiami.com/collect/162245539" target="_blank">民谣</a>

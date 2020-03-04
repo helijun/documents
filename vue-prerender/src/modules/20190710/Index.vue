@@ -4,7 +4,7 @@
       <ul>
         <li>
           <!-- <span @click="navShow = true">回到旧版</span> -->
-          <span class="he-point" @click="handleUrlClick('//www.twobike.cn')">回到旧版</span>
+          <span class="he-point" @click="handleUrlClick('//www.helijun.com.cn')">回到旧版</span>
           <ul v-show="navShow">
             <li>
               <a href="#/" class="active">
@@ -77,7 +77,7 @@
           <!-- 混混噩噩的生活不值得过。/睡什么睡，起来嗨！ -->
         </ul>
         <p>
-          <a href="https://www.twobike.cn/" target="_blank">GitHub</a>
+          <a href="https://www.helijun.com.cn/" target="_blank">GitHub</a>
           <a href="#/?id=pageTwo">Getting Started</a>
         </p>
       </div>
@@ -135,7 +135,7 @@
               <el-col :span="12">
                 <div
                   class="grid-content bg-purple"
-                  @click="handleUrlClick('https://www.twobike.cn/life/index.html#/')"
+                  @click="handleUrlClick('https://www.helijun.com.cn/life/index.html#/')"
                 >
                   <div class="el-title">
                     <i :class="['iconfont', 'icon-xinwen']"></i>
@@ -264,7 +264,7 @@
               </el-row>
               <p
                 class="he-mt-0 el-cursor he-align-left he-fontsize-xs"
-                @click="handleUrlClick('https://www.twobike.cn/book/index.html#/')"
+                @click="handleUrlClick('https://www.helijun.com.cn/book/index.html#/')"
               >查看更多</p>
             </div>
           </div>
@@ -319,7 +319,7 @@
               </el-row>
               <p
                 class="he-mt-0 el-cursor he-align-left he-fontsize-xs"
-                @click="handleUrlClick('https://www.twobike.cn/video/index.html#/')"
+                @click="handleUrlClick('https://www.helijun.com.cn/video/index.html#/')"
               >查看更多</p>
             </div>
           </div>
@@ -386,7 +386,7 @@ export default {
             {
                 title: "感悟",
                 icon: "icon-idea",
-                url: "https://www.twobike.cn/life/index.html",
+                url: "https://www.helijun.com.cn/life/index.html",
                 content: "放下对生活的成见，做一个不动声色的人，因为不是所有的鱼都生活在同一片海里。在躁动的青春年纪，那些总以为是迷茫的，不过是某一刻突然安静下来的不知所措而罢，面对复杂，保持欢喜，漫漫余生，满怀期盼。"
             },
             {

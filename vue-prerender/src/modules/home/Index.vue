@@ -90,7 +90,7 @@ export default {
                 {
                     title: '随心感悟',
                     icon: 'icon-idea',
-                    url: 'https://www.twobike.cn/life/index.html',
+                    url: 'https://www.helijun.com.cn/life/index.html',
                     content: '放下对生活的成见，做一个不动声色的人，因为不是所有的鱼都生活在同一片海里。在躁动的青春年纪，那些总以为是迷茫的，不过是某一刻突然安静下来的不知所措而罢，面对复杂，保持欢喜，漫漫余生，满怀期盼。'
                 },
                 {

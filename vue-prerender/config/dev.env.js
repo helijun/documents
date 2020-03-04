@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  resourceUrl: '"https://www.twobike.cn/"'
+  resourceUrl: '"https://www.helijun.com.cn/"'
 })
