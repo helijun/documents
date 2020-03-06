@@ -13,36 +13,39 @@
           <a href="//www.helijun.com.cn/wiki" target="_blank">wiki</a>
         </el-menu-item>
         <el-menu-item index="3">
-          <a href="./blogs/index.html" target="_blank">博客</a>
+          <a href="https://www.cnblogs.com/liliangel" target="_blank">博客</a>
         </el-menu-item>
         <el-menu-item index="4">
-          <a href="./life/index.html" target="_blank">感悟</a>
+          <a href="https://www.helijun.com.cn/wiki/#/life/guide" target="_blank">感悟</a>
         </el-menu-item>
         <el-menu-item index="5">
           <a href="http://www.xiami.com/collect/162245539" target="_blank">民谣</a>
         </el-menu-item>
         <el-menu-item index="6">
-          <a href="./book/index.html" target="_blank">书单</a>
+          <a href="https://www.helijun.com.cn/wiki/#/book/README" target="_blank">书单</a>
         </el-menu-item>
         <el-menu-item index="7">
           <a
-            href="http://tieba.baidu.com/p/3279735352?pid=57042307869&cid=0#57042307869"
+            href="http://tieba.baidu.com/p/3279735352?pid=57042307869"
             target="_blank"
           >骑行</a>
         </el-menu-item>
         <el-submenu index="7">
           <template slot="title">其他</template>
+          <el-menu-item index="7-1">
+            <a href="https://www.helijun.com.cn/wiki/#/README" target="_blank">1. 关于微人类</a>
+          </el-menu-item>
           <el-menu-item index="7-2">
-            <a href="./video/index.html" target="_blank">1. 电影&电视剧</a>
+            <a href="https://www.helijun.com.cn/wiki/#/video/README" target="_blank">2. 电影&电视剧</a>
           </el-menu-item>
           <!-- <el-menu-item index="2-3">
                         <a href="https://github.com/helijun/react-learn" target="_blank">3. React学习</a>
           </el-menu-item>-->
           <el-menu-item index="7-4">
-            <a href="https://www.cnblogs.com/liliangel/p/10191690.html" target="_blank">2. 最新文章</a>
+            <a href="https://www.cnblogs.com/liliangel/p/10598442.html" target="_blank">3. 最新文章</a>
           </el-menu-item>
           <el-menu-item index="7-5">
-            <a href="./life/穷忙的2018.html" target="_blank">3. 穷忙的2018</a>
+            <a href="https://www.helijun.com.cn/wiki/#/life/2019/跌宕的2019" target="_blank">4. 跌宕的2019</a>
           </el-menu-item>
         </el-submenu>
       </el-menu>
@@ -52,12 +55,12 @@
       </div>
       <div class="mobile-menu-content" @click="handleMobileMenuClick" v-show="mobileMenuShow"></div>
       <div class="main" ref="mobileMenuMain">
-        <a href="https://www.helijun.com.cn/wiki/#/README">2. 个人书单</a>
+        <a href="https://www.helijun.com.cn/wiki/#/README">1. 关于微人类</a>
         <a href="https://www.helijun.com.cn/wiki/#/book/README">2. 个人书单</a>
         <a href="https://www.helijun.com.cn/wiki/#/video/README">3. 电影&电视剧</a>
         <!-- <a href="https://github.com/helijun/react-learn">3. React学习</a> -->
         <a href="https://www.cnblogs.com/liliangel/p/10598442.html">4. 最新文章</a>
-        <a href="https://www.helijun.com.cn/wiki/#/life/2018/跌宕的2019">5. 跌宕的2019</a>
+        <a href="https://www.helijun.com.cn/wiki/#/life/2019/跌宕的2019">5. 跌宕的2019</a>
       </div>
     </header>
   </div>
