@@ -1,4 +1,10 @@
 <!--index.wxml-->
 <view class="container">
   深圳地铁厕所小助手
+  <van-search
+    value="{{ value }}"
+    shape="round"
+    background="#4fc08d"
+    placeholder="请输入搜索关键词"
+  />
 </view>

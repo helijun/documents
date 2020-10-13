@@ -1,5 +1,17 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.5.0"
-  }
+    "@vant/weapp": "^1.5.1",
+    "miniprogram-sm-crypto": "^0.2.1",
+    "vant-weapp": "^0.5.28"
+  },
+  "name": "miniprogram",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
