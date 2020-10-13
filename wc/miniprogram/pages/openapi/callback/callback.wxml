@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="list">
+    <button open-type="contact" bindcontact="onCustomerServiceButtonClick">
+      进入客服消息
+    </button>
+  </view>
+
+  <view class="guide">
+    <text class="headline">测试须知</text>
+    <text class="p">1. 进入云开发控制台“设置-全局设置”，选择添加消息推送配置</text>
+    <text class="p">2. 消息类型选择 text（文本客户消息）</text>
+    <text class="p">3. 事件类型选择空</text>
+    <text class="p">4. 选择需要推送到哪个环境的哪个云函数</text>
+    <text class="p">5. 在手机上测试</text>
+  </view>
+</view>
