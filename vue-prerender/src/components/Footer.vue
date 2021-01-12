@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>&copy; 2016 - 2020 粤ICP备19145585号</p>
+        <p>&copy; 2016 - 2021 <a href="https://beian.miit.gov.cn">粤ICP备19145585号</a></p>
     </footer>
 </template>
 
@@ -41,6 +41,9 @@ export default {
             @media #{$media} and ($media-max-width: $max-width-768) {
                 width: 100vw !important;
             }
+        }
+        a {
+            color: #1f75af;
         }
     }
 </style>
