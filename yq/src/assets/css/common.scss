@@ -1,0 +1,197 @@
+@charset "utf-8";
+
+@import "variables";
+@import "function";
+@import "mixins";
+* {
+	box-sizing: border-box;
+}
+em {
+	font-style: normal;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	cursor: pointer;
+}
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #f8fafb inset;
+	-webkit-text-fill-color: #000;
+}
+
+/* input placeholder 文字样式 */
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ccc;
+    font-size: 14px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ccc;
+    font-size: 14px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ccc;
+    font-size: 14px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ccc;
+    font-size: 14px;
+}
+/* input placeholder 文字样式 */
+
+
+/* 常用属性开始 */
+.li-point {
+	cursor: pointer;
+}
+.m-hover-href {
+	color: $base-color;
+	/*&:hover {
+		color: $base-color;
+	}*/
+}
+.li-none {
+	display: none !important;
+}
+.li-all-img {
+	width: 100%;
+	height: 100%;
+}
+.li-full-img {
+	max-width: 100%;
+	height: auto;
+}
+.li-float-left {
+	float: left;
+}
+.li-float-right {
+	float: right;
+}
+.li-align-left {
+	text-align: left;
+}
+.li-align-center {
+	text-align: center;
+}
+.li-align-right {
+	text-align: right;
+}
+.li-pl-10 {
+	padding-left: 10px;
+}
+.li-pl-20 {
+	padding-left: 20px;
+}
+.li-pl-30 {
+	padding-left: 30px;
+}
+.li-pl-40 {
+	padding-left: 40px;
+}
+.li-pl-50 {
+	padding-left: 50px;
+}
+.li-pl-60 {
+	padding-left: 60px;
+}
+.li-pr-10 {
+	padding-right: 10px;
+}
+.li-pr-20 {
+	padding-right: 20px;
+}
+.li-pr-30 {
+	padding-right: 30px;
+}
+
+/* 常用属性结束 */
+
+/** 常用布局 **/
+.li-flex {
+	display: flex;
+}
+.li-flex-left-center {
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.li-display-inline {
+	display: inline-block;
+}
+.li-display-block {
+	display: block;
+}
+/** 常用布局 end **/
+
+/** 常用颜色**/
+.li-color-base {
+	color: $base-color;
+
+	&:hover {
+		color: $base-color;
+	}
+}
+.li-color-disable {
+	color: $base-disable-color;
+	cursor: not-allowed;
+	&:hover {
+		color: $base-disable-color;
+	}
+}
+.li-color-del {//删除、离线、离职
+	color: $del-color;
+}
+.li-color-online {//在线
+	color: $online-color;
+}
+.li-color-error {//故障
+	color: $error-color;
+}
+/** 常用颜色 end**/
+
+/** 表格不同颜色的文字控制 **/
+.m-status-txt {
+	i {
+		font-style: normal;
+		@extend .li-color-online;
+	}
+	em {
+		font-style: normal;
+		@extend .li-color-del;
+	}
+	//error
+	span {
+		@extend .li-color-error;
+	}
+}
+/** 蒙层 **/
+.li-mask {
+	z-index: 99999;
+	background-color: rgb(0, 0, 0);
+	background:transparent;
+	background-color: rgba(0, 0, 0, 0.8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);    /*IE8支持*/
+    zoom: 1;
+	top: 0;
+    left: 0;
+    width: 100%;
+	height: 100%;
+	position: fixed;
+	pointer-events: auto;
+    .close {
+		position: absolute;
+		top: 4%;
+    	right: 4%;
+		background: url('/dist/static/img/icon/x.png') no-repeat 0 0;
+		height: 37px;
+		width: 37px;
+		cursor: pointer;
+	}
+	.close:hover {
+		transform: rotate(270deg);
+    	transition: all 0.5s;
+    }
+}
+/** 表单相关**/

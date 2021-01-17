@@ -1,0 +1,71 @@
+<template>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+import axios from '@/services/axios';
+import api from '@/services/api';
+export default {
+    name: "rootApp",
+    data() {
+        return {
+            msg: '这是父组件1的信息'
+        }
+    },
+    created() {
+
+    },
+    methods: {
+        //导出体检报告
+        exportcheck(uid) {
+            var self = this;
+            
+            return new Promise((resolve, reject) => {
+                axios.get({
+                    url: api.commn.exportFile,
+                    data: {
+                        uid: uid
+                    }
+                }).then(res => {
+                    console.log(api.commn.exportFile, ' success', res)
+                    if(res.code == 0){
+                        resolve(res)
+                        this.$message.success("导出成功");
+
+                        /**
+                         * 状态 1：初始  2：进行中 3：异常  4：成功 5：无数据
+                         */
+                        if(res.data.status){
+                            if(res.data.status == 4){
+                                console.log('页面地址', res.data.filepath);
+                                if(res.data.filepath){
+                                    window.open(res.data.filepath, "_blank");
+                                }
+                            }else if(res.data.status == 5){
+                                this.$message.success("无数据");
+                            }else{
+                                setTimeout(() => {
+                                    self.exportcheck(uid);
+                                }, 1000)
+                            }
+                        }else{
+                            this.$message.success("导出异常");
+                        }
+                    }else{
+                        setTimeout(() => {
+                            self.exportcheck(uid);
+                        }, 1000)
+                    }
+                })
+            })
+        }
+    }
+}
+</script>
+<style>
+    @import "../static/css/main.css";
+    /*@import "../static/css/color-dark.css";     /*深色主题*/
+    @import "../static/css/theme-green/color-green.css";   /*浅绿色主题*/
+</style>

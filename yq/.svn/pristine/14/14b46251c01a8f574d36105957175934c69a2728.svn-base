@@ -1,0 +1,58 @@
+// 企业端蓝色主题
+$baseColor:#07c4a8;
+$secBtnColor:#07c4a8;
+$dangerColor:#F56C6C;
+$infoColor:#909399;
+$borderColor:#ebeef5;
+$bgColor:#f8fafb;
+
+// 自定义按钮
+.el-button {
+    &.admin-btn {
+        border: 1px solid $baseColor;
+        background-color: $baseColor;
+        color: #fff;
+
+        &:hover {
+            background: $secBtnColor;
+            border-color: $secBtnColor;
+            color: #fff;
+        }
+    }
+
+    &.border-btn {
+        border: 1px solid $secBtnColor;
+        background: #fff;
+        color: $secBtnColor;
+
+        &:hover {
+            border: 1px solid $baseColor;
+            background: $baseColor;
+            color: #fff;
+        }
+    }
+
+    &.delete-btn {
+        padding: 5px;
+        background: $dangerColor;
+        color: #fff;
+        display: none;
+
+        &:hover {
+            padding: 5px;
+            background: $dangerColor;
+            color: #fff;
+            display: none;
+        }
+    }
+
+    &.switch-btn{
+        border: 0;
+        color: $baseColor;
+        font-size: 18px;
+        position: absolute;
+        left: 168px;
+        top: 1px;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,222 @@
+<template>
+    <div class="table">
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 资金预拨管理/卫生院奖励资金管理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div class="container">
+            <div class="handle-box">
+                    <!-- <div class="select-tip">年度</div>				
+                    <el-select v-model="year" placeholder="计划年度" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                        <el-option key="" label="全部" value=""></el-option>
+                        <el-option key="2019" label="2019年" value="2019"></el-option>
+                        <el-option key="2020" label="2020年" value="2020"></el-option>
+                        <el-option key="2021" label="2021年" value="2021"></el-option>
+                        <el-option key="2022" label="2022年" value="2022"></el-option>
+                        <el-option key="2023" label="2023年" value="2023"></el-option>
+                        <el-option key="2024" label="2024年" value="2024"></el-option>
+                        <el-option key="2025" label="2025年" value="2025"></el-option>
+                    </el-select>		
+                        
+                <div class="select-tip">季度</div>
+                    <el-select v-model="quarter" placeholder="计划季度" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                        <el-option key="" label="全部" value=""></el-option>
+                        <el-option key="1" label="一季度" value="1"></el-option>
+                        <el-option key="2" label="二季度" value="2"></el-option>
+                        <el-option key="3" label="三季度" value="3"></el-option>
+                        <el-option key="4" label="四季度" value="4"></el-option>
+                    </el-select>
+                <div class="select-tip">卫生院</div>
+                    <el-select v-model="quarter" placeholder="卫生院" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                        <el-option key="" label="全部" value=""></el-option>
+                    </el-select> -->
+                <el-input v-model="mapkeyword" placeholder="请输入您需要查找的关键字" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
+                <el-button type="primary" icon="delete" class="handle-del mr10">导出</el-button>
+            </div>
+            <el-table :data="data" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="firstorgnumber" label="年度" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="奖金计划" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="管辖人口" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="服务人口" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="考核指标奖励" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="排名奖励" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="奖励金总量" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="审核时间" ></el-table-column>
+                <el-table-column prop="firstorgnumber" label="审核人员" ></el-table-column>
+                <el-table-column label="审核状态" width="200" fixed="right">
+                    <el-button v-if="firstorgname == '1'" type="text" size="mini">
+                        已审核
+                    </el-button>
+                    <el-button v-if="firstorgname != '1'" type="text" size="mini">
+                        未审核
+                    </el-button>
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination 
+                    @current-change="handleCurrentChange" 
+                    :current-page.sync="currentPage"
+                    layout="total, prev, pager, next"
+                    :page-size="pageSize"
+                    :total="sumsize">
+                </el-pagination>
+            </div>
+        </div>
+
+    </div>
+</template>
+
+<script>
+import axios from '@/services/axios';
+import api from '@/services/api';
+import bus from "@/components/common/bus";
+
+export default {
+    name: "wsy",
+    data() {
+        return {
+            currentPage: 1,
+            pageSize: 10,
+            sumsize: 1,
+            keyword: '',
+            tableData: [],
+            cur_page: 1,
+            wsyData: [],
+            mapkeyword: '',
+            addVisible: false,
+            delVisible: false,
+            mapVisible: false,
+            areaList: [],
+            areaProps: {
+                value: "code",
+                label: "name",
+                children: "child"
+            },
+            mapStyle: {
+                width: "550px",
+                height: "300px"
+            },
+            center: { lng: 115.47146, lat: 38.879989 },
+            zoom: 15,
+            dialogTitle: '',
+            ruleForm: {
+                
+            },
+            rules: {
+                   
+                },
+            idx: -1
+        };
+    },
+    created() {
+        this.getData();
+        this.getWsyData();
+        
+        bus.$on('tags' + this.$router.history.current.fullPath.split('/').join('-'), this.getData);
+    },
+    computed: {
+        data() {
+            return this.tableData;
+        }
+    },
+    methods: {
+        // 分页导航
+        handleCurrentChange(val) {
+            this.cur_page = val;
+            this.getData();
+        },
+        // 获取最大的id
+        getMaxnumber() {
+            axios.get({
+                url: api.secondorg.getMaxnumber, 
+                data: {
+                    firstorgnumber: this.ruleForm.firstorgnumber
+                }
+            }).then((res) => {
+                this.ruleForm.orgnumber = res.data;
+            })
+        },
+        //获取表格数据
+        getData() {
+            axios.get({
+                url: api.secondorg.query,
+                data: {
+                    start: this.cur_page,
+                    limit: this.pageSize,
+                    keyword: this.keyword || ''
+                }
+            }).then(res => {
+                console.log(api.secondorg.query, ' success', res)
+                if(res.code == 0){
+                    this.tableData = res.data;
+                    this.sumsize = res.sumsize;
+                }
+            })
+        },
+        //获取所有卫生院
+        getWsyData() {
+            axios.get({
+                url: api.firstorg.query
+            }).then(res => {
+                if(res.code == 0){
+                    this.wsyData = res.data;
+                }
+            })
+        },
+        //查询
+        handleSearch() {
+            this.getData()
+        },
+        validate(formName) {
+            return new Promise((resolve, reject) => {
+                this.$refs[formName].validate((valid) => {
+                    if(valid){
+                        resolve()
+                    }
+                });
+            })
+        },
+        getMap() {
+            this.mapVisible = true;
+        },
+        doMap: function() {
+            this.ruleForm.location = this.center.lng + "," + this.center.lat;
+            this.mapVisible = false;
+        },
+        /***
+         * 地图点击事件。
+         */
+        getClickInfo(e) {
+            this.center.lng = e.point.lng;
+            this.center.lat = e.point.lat;
+        },
+        syncCenterAndZoom(e) {
+            const { lng, lat } = e.target.getCenter();
+            this.center.lng = lng;
+            this.center.lat = lat;
+            this.zoom = e.target.getZoom();
+        },
+    }
+};
+</script>
+
+<style scoped>
+.handle-box {
+  margin-bottom: 20px;
+}
+
+.handle-select {
+  width: 120px;
+}
+
+.handle-input {
+  width: 300px;
+  display: inline-block;
+}
+.del-dialog-cnt {
+  font-size: 16px;
+  text-align: center;
+}
+</style>

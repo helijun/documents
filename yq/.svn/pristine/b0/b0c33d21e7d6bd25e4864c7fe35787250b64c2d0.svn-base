@@ -1,0 +1,333 @@
+<template>
+    <div class="sidebar">
+        <!-- background-color="#324157" text-color="#bfcbd9" active-text-color="#20a0ff" -->
+        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse"  unique-opened router>
+            <template v-for="item in items">
+                <template v-if="item.subs">
+                    <el-submenu :index="item.index" :key="item.index">
+                        <template slot="title">
+                            <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
+                        </template>
+                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+                            {{ subItem.title }}
+                        </el-menu-item>
+                    </el-submenu>
+                </template>
+
+                
+                <template v-else>
+                    <el-menu-item :index="item.index" :key="item.index">
+                        <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
+                    </el-menu-item>
+                </template>
+            </template>
+        </el-menu>
+    </div>
+</template>
+
+<script>
+    import bus from '../common/bus';
+    export default {
+        data() {
+            return {
+                collapse: false,
+                items: [
+                    
+                ]
+            }
+        },
+        computed:{
+            onRoutes(){
+                return this.$route.path.replace('/','');
+            }
+        },
+        created() {
+            let item = [
+
+                //====================开始救护系统服务机构端===================    
+                {
+                    icon: 'el-icon-setting',
+                    index: '71',
+                    usertype: 7,
+                    title: '基础数据管理',
+                    subs: [                      
+                        {
+                            icon: 'el-icon-info',
+                            index: '711',
+                            usertype: 7,
+                            title: '卫生院信息管理',
+                            index: '/gov/wsy'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '712',
+                            usertype: 7,
+                            title: '卫生室信息管理',
+                            index: '/gov/wss'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '713',
+                            usertype: 7,
+                            title: '卫生院人口管理',
+                            index: '/gov/wsypop'
+                        },                       
+                         {
+                            icon: 'el-icon-info',
+                            index: '714',
+                            usertype: 7,
+                            title: '卫生室人口管理',
+                            index: '/gov/wsspop'
+                        },   
+                    ]
+                },   
+                {
+                    icon: 'el-icon-setting',
+                    index: '72',
+                    usertype: 7,
+                    title: '考核指标管理',
+                    subs: [                      
+                        {
+                            icon: 'el-icon-info',
+                            index: '721',
+                            usertype: 7,
+                            title: '考核模版管理',
+                            index: '/gov/kpitemplate'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '723',
+                            usertype: 7,
+                            title: '考核项目管理',
+                            index: '/gov/kpiitem'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '723',
+                            usertype: 7,
+                            title: '考核指标管理',
+                            index: '/gov/kpiindex'
+                        },                         
+                    ]
+                },  
+                {
+                    icon: 'el-icon-setting',
+                    index: '73',
+                    usertype: 7,
+                    title: '补助计划管理',
+                    subs: [                      
+                         {
+                            icon: 'el-icon-info',
+                            index: '715',
+                            usertype: 7,
+                            title: '卫生院预拨发放计划',
+                            index: '/gov/wsyprepayplan'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '715',
+                            usertype: 7,
+                            title: '卫生院奖金发放计划',
+                            index: '/gov/wsyrewardsplan'
+                        },     
+                          {
+                            icon: 'el-icon-info',
+                            index: '715',
+                            usertype: 7,
+                            title: '卫生院补助发放计划',
+                            index: '/gov/wsysubsidyplan'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '715',
+                            usertype: 7,
+                            title: '卫生室补助发放计划',
+                            index: '/gov/wsssubsidyplan'
+                        },                                               
+                    ]
+                },  
+                {
+                    icon: 'el-icon-setting',
+                    index: '74',
+                    usertype: 7,
+                    title: '绩效考核管理',
+                    subs: [                 
+                        {
+                            icon: 'el-icon-info',
+                            index: '741',
+                            usertype: 7,
+                            title: '卫生院考核管理',
+                            index: '/gov/wsykpi'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '742',
+                            usertype: 7,
+                            title: '卫生室考核管理',
+                            index: '/gov/wsskpi'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '741',
+                            usertype: 7,
+                            title: '卫生院考核汇总统计',
+                            index: '/gov/wsykpistat'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '742',
+                            usertype: 7,
+                            title: '卫生室考核汇总统计',
+                            index: '/gov/wsskpistat'
+                        },                                             
+                    ]
+                },
+                 {
+                    icon: 'el-icon-setting',
+                    index: '75',
+                    usertype: 7,
+                    title: '资金拨付管理',
+                    subs: [                      
+                        {
+                            icon: 'el-icon-info',
+                            index: '751',
+                            usertype: 7,
+                            title: '卫生院预拨资金管理',
+                            index: '/gov/wsyprepay'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '752',
+                            usertype: 7,
+                            title: '卫生院奖励资金管理',
+                            index: '/gov/wsyreward'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '753',
+                            usertype: 7,
+                            title: '卫生院补助资金管理',
+                            index: '/gov/wsysubsidy'
+                        },   
+                        {
+                            icon: 'el-icon-info',
+                            index: '753',
+                            usertype: 7,
+                            title: '卫生室补助资金管理',
+                            index: '/gov/wsssubsidy'
+                        },     
+                         {
+                            icon: 'el-icon-info',
+                            index: '754',
+                            usertype: 7,
+                            title: '卫生室补助资金汇总统计',
+                            index: '/gov/wsssubsidytotal'
+                        },                        
+                        
+                        
+                    ]
+                },      
+                //====================结束救护系统服务机构端===================
+                
+                //====================开始救护系统政府端=======================              
+                {
+                    icon: 'el-icon-setting',
+                    index: '21',
+                    usertype: 2,
+                    title: '绩效考核管理',
+                    subs: [                      
+                        {
+                            icon: 'el-icon-info',
+                            index: '211',
+                            usertype: 2,
+                            title: '卫生室考核管理',
+                            index: '/wsy/wsskpi'
+                        },
+                        {
+                            icon: 'el-icon-info',
+                            index: '211',
+                            usertype: 2,
+                            title: '卫生室考核汇总统计',
+                            index: '/wsy/wsskpistat'
+                        },           
+                    ]
+                },   
+                {
+                    icon: 'el-icon-setting',
+                    index: '22',
+                    usertype: 2,
+                    title: '资金拨付管理',
+                    subs: [                      
+                        // {
+                        //     icon: 'el-icon-info',
+                        //     index: '221',
+                        //     usertype: 8,
+                        //     title: '卫生院预拨资金管理',
+                        //     index: '/wsy/wsyprepay'
+                        // },
+                        {
+                            icon: 'el-icon-info',
+                            index: '223',
+                            usertype: 8,
+                            title: '卫生院补助资金管理',
+                            index: '/wsy/wsysubsidy'
+                        },   
+                        {
+                            icon: 'el-icon-info',
+                            index: '224',
+                            usertype: 8,
+                            title: '卫生室补助资金管理',
+                            index: '/wsy/wsssubsidy'
+                        }, 
+                        {
+                            icon: 'el-icon-info',
+                            index: '211',
+                            usertype: 2,
+                            title: '卫生室补助资金汇总统计',
+                            index: '/wsy/wsssubsidytotal'
+                        },                             
+                    ]
+                },
+                 //====================开始救护系统政府端=======================              
+            ];
+
+            let userInfo = localStorage.getItem('userinfo');
+            userInfo = JSON.parse(userInfo);
+
+            this.items = item.filter((v) => {
+                if(typeof v.usertype == 'object'){
+                    return v.usertype.includes(userInfo.usertype)
+                }else{
+                    return v.usertype == userInfo.usertype
+                }
+                
+            })
+        },
+        mounted(){
+            // 通过 Event Bus 进行组件间通信，来折叠侧边栏
+            bus.$on('collapse', msg => {
+                this.collapse = msg;
+            })
+        }
+    }
+</script>
+
+<style scoped>
+    .sidebar{
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 70px;
+        bottom:0;
+        overflow-y: scroll;
+    }
+    .sidebar::-webkit-scrollbar{
+        width: 0;
+    }
+    .sidebar-el-menu:not(.el-menu--collapse){
+        width: 250px;
+    }
+    .sidebar > ul {
+        height:100%;
+    }
+</style>

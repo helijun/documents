@@ -1,0 +1,36 @@
+export default {
+    login: "system/login", // 管理员登录接口，usertype '1管理员,2预防支付用户,3其它用户', 根据该参数显示不同菜单
+    logout: "system/logout",
+    systemparameter: {//系统参数管理
+        area:'system/systemparameter/area',
+    },
+    user: {//业务管理
+        userQuery: 'system/user/query', //业务查询 包括查询下拉数据
+        userAdd: 'system/user/add', //业务新增
+        userUpdate: 'system/user/update',  //业务修改
+        userDelete: 'system/user/delete', //业务删除 userids多个逗号分开
+        queryBusiness: 'system/user/queryBusiness' ,//业务查询 包括查询下拉数据
+        deleteuser: 'system/user/deleteuser',
+        adduser: 'system/user/adduser',
+        updateuser:'system/user/updateUser',
+        queryuser:'system/user/queryUser',
+    },
+    commn:{
+        action:'system/commn/action',
+        actionapi:'system/api/actionapi',
+        getNumber:'system/commn/getNumber',
+        updatePayConfig:'system/commn/updatePayConfig',
+        getAppid:'system/commn/getAppid',
+        getuuid:'system/commn/getUUID',
+    },
+    api: {
+        addBusinessPay: 'api/addBusinessPay', //挂号支付下订单  name 名字 serialnumber 流水号 businessid 业务id sum 金额 paydesc 支付说明
+        h5BusinessPay: 'api/h5BusinessPay',  //挂号支付 paynumber openid
+        microPay:'api/microPay',
+        getpayordernumber:'api/getpayordernumber',
+        getAddress:'api/getaddress',
+        putSiteCache:'api/putSiteCache',
+        getsignature:'api/getsignature'  
+
+    }
+};

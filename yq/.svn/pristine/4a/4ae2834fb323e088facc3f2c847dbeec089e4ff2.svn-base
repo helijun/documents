@@ -1,0 +1,173 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                    <el-breadcrumb-item><i class="el-icon-tickets"></i> 卫生室补助明细</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+			<!-- 开始查询条件 -->
+			<!-- 开始数据列表 -->
+
+		
+        <h3 style="text-align:center;">{{testTitle}}</h3>  
+		<br>
+		<el-table  v-if="!is_loading" :data="tableData" border style="width: 100%;margin-top:14px" ref="multipleTable">
+				<el-table-column label="序号" type="index" show-overflow-tooltip width="50"/>
+				<el-table-column prop="kpiItemName" label="基本公卫服务内容"/>
+				<el-table-column prop="proportion" label="权重比例"/>
+				<el-table-column prop="payAmount" label="标准"/>				
+				<el-table-column prop="unitsubsidyAmount" label="项目标准金额"/>
+                <el-table-column prop="servicePopCount" label="服务人口"/>
+                <el-table-column prop="score100" label="资金发放比例"/>
+                <el-table-column prop="subsidyAmount" label="资金发放金额"/>
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+			<br>
+			<div  style="text-align: center">	
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="handleExport()">导 出</el-button>
+				<el-button type="primary" class="admin-btn" @click="handleReturn">返 回</el-button>
+			</span>
+			</div>
+			<!-- 结束分页控件 -->
+			<!-- 结束数据列表 -->
+		</div>
+
+		<!-- 结束删除提示框 -->
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import bus from '../../../components/common/bus';
+import moment from 'moment'
+export default {
+	 name: "wsssubsidyItem",//页面名称
+	 data() {
+		 return {
+             is_loading:false,
+             addVisible:false,
+			 quarterName:"",
+			 subsidyNumber:'',
+			 testTitle:"",
+             titleDetail:{
+                 quarterName:"",
+                 YEAR:"",
+                 secondOrgName:""
+             },
+             tableData: [],//列表数据
+             subscribeDetail:{},
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+
+	
+		this.subsidyNumber =  this.$route.query.subsidyNumber;
+		this.testTitle=this.$route.query.tesTitle
+		this.getData();
+		bus.$on('wsssubsidyItem', this.getEmit);
+		
+	 },
+	 methods: {
+
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'PlanNumber'} }).then(res => {
+				 if (res.code == 0) {
+                     this.addForm.planNumber = res.data;
+                     this.select_stauts();
+				 } else {
+					this.addForm.planNumber ='1';
+				 }
+			 });
+		 },
+		 getEmit(){
+			this.subsidyNumber =  this.$route.query.subsidyNumber;
+			this.testTitle=this.$route.query.tesTitle
+			this.getData();
+		 },
+		 
+		 //查询列表数据方法
+		 getData() {
+			 console.log("--------------------->");
+		
+			
+            //  this.titleDetail.quarterName=this.$route.query.subsidyNumber;
+            //  this.titleDetail.YEAR=this.$route.params.query;
+            //  this.titleDetail.secondOrgName=this.$route.query.subsidyNumber;
+			//  this.quarterName=this.$route.query.subsidyNumber
+			 
+			 
+
+			// this.testTitle=this.$route.query.tesTitle
+             var param={
+                 action:"select",
+				 model:"tb_secondorg_subsidy_item",
+				 subsidyNumber:this.subsidyNumber
+                //  planNumber:"",
+             }
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.tableData = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+	//导出
+    handleExport(){
+
+        let params = {
+            title: this.testTitle,
+			excelType: '4',
+			udpclass:'ExcelService',
+			subsidyNumber: this.subsidyNumber,
+        };
+        
+       this.is_loading = true;
+        axios.get({
+            url: api.commn.udpAction,
+            data:params
+        }).then(res => {
+            console.log(api.commn.exportFile, ' success', res)
+            if(res.code == 0){
+                this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
+            }else{
+               this.is_loading = false;
+            }
+        })
+        },
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+		 },
+		 handleReturn(){
+			 	this.$router.push({
+        			path: "/gov/wsssubsidy",
+        			query: {         //参数携带方式
+			
+        			}
+      			});
+		 }
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>

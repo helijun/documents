@@ -1,0 +1,122 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                    <el-breadcrumb-item><i class="el-icon-tickets"></i> 卫生院补助明细</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+        <h3 style="text-align:center;">{{testTitle}}</h3>
+		<el-table  v-if="!is_loading" :data="tableData" border style="width: 100%" ref="multipleTable">
+				<el-table-column prop="kpiItemName" label="考核项目"/>
+				<el-table-column prop="proportion" label="考核项目权重"/>
+				<el-table-column prop="finishRatio" label="标准"/>				
+				<el-table-column prop="subsidyAmount" label="项目标准金额"/>
+                <el-table-column prop="servicePopCount" label="服务人口"/>
+                <el-table-column prop="payRatio" label="资金发放比例"/>
+                <el-table-column prop="payAmount" label="资金应发金额"/>
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+			<div  style="text-align: center">	
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="addVisible = false">导 出</el-button>
+				<el-button type="primary" class="admin-btn" @click="handleReturn">返 回</el-button>
+			</span>
+			</div>
+			<!-- 结束分页控件 -->
+			<!-- 结束数据列表 -->
+		</div>
+
+		<!-- 结束删除提示框 -->
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import moment from 'moment'
+export default {
+	 name: "wsysubsidyItem",//页面名称
+	 data() {
+		 return {
+             is_loading:false,
+             addVisible:false,
+			 quarterName:"",
+			 rewardsNumber :"",
+			 testTitle:"",
+             titleDetail:{
+                 quarterName:"",
+                 YEAR:"",
+                 secondOrgName:""
+             },
+             tableData: [],//列表数据
+             subscribeDetail:{},
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+		 this.getData();
+		//  this.testTitle=localStorage.getItem('wsysubsidyItemTitle');
+	 },
+	 methods: {
+
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'PlanNumber'} }).then(res => {
+				 if (res.code == 0) {
+                     this.addForm.planNumber = res.data;
+                     this.select_stauts();
+				 } else {
+					this.addForm.planNumber ='1';
+				 }
+			 });
+		 },
+		 
+		 //查询列表数据方法
+		 getData() {
+			 this.testTitle=this.$route.query.tesTitle
+             var param={
+				action:"select",
+				model:"tb_fristorg_subsidy_item",
+				subsidyNumber:localStorage.getItem('subsidyNumber'),
+             }
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.tableData = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+		 },
+		 handleReturn(){
+			 	this.$router.push({
+        			path: "/gov/wsysubsidy",
+        			query: {         //参数携带方式
+			
+        			}
+      		});
+		 }
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>

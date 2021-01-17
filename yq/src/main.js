@@ -1,0 +1,83 @@
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import axios from 'axios';
+import ElementUI from 'element-ui';
+import MintUI from 'mint-ui'
+import VideoPlayer from 'vue-video-player';
+import 'mint-ui/lib/style.css'
+
+// import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
+import '../static/css/theme-green/index.css';       // 浅绿色主题
+import "babel-polyfill";
+
+const PRODENV = require('../config/prod.env');
+
+import utils from '@/utils/index';
+
+Vue.use(ElementUI, { size: 'small' });
+Vue.use(MintUI)
+
+import moment from 'moment'//导入文件
+Vue.prototype.$moment = moment;//赋值
+
+import Print from 'vue-print-nb'
+Vue.use(Print); 
+
+// import BaiduMap from 'vue-baidu-map'
+// Vue.use(BaiduMap, {ak: '7HzRWKqlj0QnO5M51DrXbqMmsyloM3AB'})
+Vue.use(VideoPlayer);
+axios.defaults.timeout = 10000;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.baseURL = PRODENV.API_PREFIX.replace(/\"/g,"");
+Vue.prototype.$axios = axios;
+
+
+Array.prototype.remove = function(dx){
+    if(isNaN(dx)||dx>this.length){return false;}
+    for(var i=0,n=0;i<this.length;i++){
+        if(this[i]!=this[dx]){
+            this[n++]=this[i]
+        }
+    }
+    this.length -= 1
+}
+
+//使用钩子函数对路由进行权限跳转
+router.beforeEach((to, from, next) => {
+    if(window.location.href.indexOf('from=pay1') > -1){
+        let code = utils.getParams('code');
+        let url = PRODENV.BASE_URL.replace(/\"/g,"") + '/#/wechat/index1?code=' + code;
+        window.location.href = url;
+        return;
+    }
+    else if(window.location.href.indexOf('from=h5login') > -1){
+        let code = utils.getParams('code');
+       
+        let url = PRODENV.BASE_URL.replace(/\"/g,"") + '/#/h5login?code=' + code;
+        window.location.href = url;
+        return;
+    }
+    
+    /*const role = localStorage.getItem('userinfo');
+    if(!role && to.path !== '/login'){
+        next('/login');
+    }else */if(to.meta.permission){
+        // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
+        role === 'admin' ? next() : next('/403');
+    }else{
+        // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
+        if(navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor'){
+            Vue.prototype.$alert('vue-quill-editor组件不兼容IE10及以下浏览器，请使用更高版本的浏览器查看', '浏览器不兼容通知', {
+                confirmButtonText: '确定'
+            });
+        }else{
+            next();
+        }
+    }
+})
+
+new Vue({
+    router,
+    render: h => h(App)
+}).$mount('#app');

@@ -1,0 +1,517 @@
+// 蓝色主题
+$baseColor:#409EFF;
+$secBtnColor:#3a8ee6;
+// 绿色主题
+// $baseColor:#00d1b2;
+// $secBtnColor:#07c4a8;
+
+$dangerColor:#F56C6C;
+$infoColor:#909399;
+$borderColor:#ebeef5;
+$bgColor:#f8fafb;
+
+// 颜色标记
+.danger {
+    color: $dangerColor;
+}
+.blue{
+    color: $baseColor;
+}
+
+// 文字标识
+.ipt-text {
+    font-size: 12px;
+    color: $infoColor;
+}
+
+.select-tip {
+    font-size: 14px;
+    color: $infoColor;
+    display: inline-block;
+}
+
+.text-info-title {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-size: 14px;
+    color: #000;
+}
+.border{
+    font-size: 12px;
+    border-radius: 3px;
+    background: #ecf5ff;
+    padding: 5px;
+    padding-left: 16px;
+}
+// 分割线
+.table-cuoff-line {
+    padding-bottom: 30px;
+    border-bottom: 2px solid $borderColor;
+}
+.outline{
+    text-decoration:underline;
+    outline: $infoColor;
+    cursor: pointer;
+}
+
+// 常见边距、行高
+.mgr--3{
+    margin-right: 3px;
+}
+.mgr--5 {
+    margin-right: 5px;
+}
+
+.mgr--12 {
+    margin-right: 12px;
+}
+
+.mgr--20 {
+    margin-right: 20px;
+}
+.mgt--10 {
+    margin-top: 10px;
+}
+.mgt--30 {
+    margin-top: 30px;
+}
+
+.mgt--40 {
+    margin-top: 40px;
+}
+
+.mgt--60 {
+    margin-top: 60px;
+}
+
+.mgb--12 {
+    margin-bottom: 12px;
+}
+
+.mgb--0 {
+    margin-bottom: 0px !important;
+}
+
+.mgb--30 {
+    margin-bottom: 30px;
+}
+
+.mgb--40 {
+    margin-bottom: 40px;
+}
+
+.pdt--0{
+    padding-top: 0px;
+}
+
+.line-height--20 {
+    line-height: 20px;
+}
+
+// 常用效果
+.nowrap{
+    white-space: nowrap;
+}
+.ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text--center{
+    text-align: center;
+}
+
+// 常用宽度
+.handle-select {
+    width: 120px;
+}
+
+.handle-input {
+    width: 200px !important;
+    display: inline-block;
+}
+.handle-input--160 {
+    width: 160px !important;
+    display: inline-block;
+}
+.handle-input--300 {
+    width: 300px !important;
+}
+
+.handle-input--500 {
+    width: 500px !important;
+}
+
+.width--120{
+    width: 120px !important;
+}
+// 自定义按钮
+.el-button {
+    &.border-btn {
+        border: 1px solid $secBtnColor;
+        background: #fff;
+        color: $secBtnColor;
+
+        &:hover {
+            border: 1px solid $baseColor;
+            background: $baseColor;
+            color: #fff;
+        }
+    }
+
+    &.delete-btn {
+        padding: 5px;
+        background: $dangerColor;
+        color: #fff;
+        display: none;
+
+        &:hover {
+            padding: 5px;
+            background: $dangerColor;
+            color: #fff;
+            display: none;
+        }
+    }
+
+    &.copy-btn {
+        padding-left: 22px;
+        background: url('/static/img/copy-icon.png') no-repeat left center / 14px 14px; 
+    }
+  
+}
+// 特效
+.hover--bigger{
+    cursor: pointer;
+    position: absolute;
+    z-index: 999;
+    height: 70px;
+    width: 110px;
+    top: 0px;
+    .hover--bigger__con{
+        position: relative;
+        cursor: pointer;
+        height: 60px;
+        width: 110px;
+        opacity: 0;
+        top: 0px;
+    }
+    &:hover .hover--bigger__con{
+        opacity: 1;
+        background: transparent;
+        padding: 5px;
+        transform: scale(5);
+        transform-origin: -25.5px 30px;
+        transition: all .3s;
+        position: absolute;
+        top: 0px;
+        z-index: 99;
+        
+        .background--fff{
+            height: 58px;
+            width: 111px;
+            background: #fff;
+            position: absolute;
+            top: 1px;
+            left: 3.5px;
+            border-radius: .6px;
+            box-shadow: 0px 0px .5px rgba(0, 0, 0, 0.1);
+        }
+        .flex{
+            position: absolute;
+            left: 7.5px;
+        }
+        &::before{
+            content: "";
+            display: block;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            position: absolute;
+            top: 30px;
+            left: 2.7px;
+            z-index: 999;
+            transform: rotate(45deg);
+            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+        }
+        &::after{
+            content: "";
+            display: block;
+            width: 3px;
+            height: 7px;
+            background: #fff;
+            position: absolute;
+            top: 28px;
+            left: 3.7px;
+            z-index: 999;
+        }
+    }
+}
+.hover-stay{
+    position: absolute;
+}
+
+// 快速布局
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-direction {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fixed-right-top {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+}
+
+.relative{
+    position: relative;
+}
+// 公用样式
+.record-detail {
+    .el-form-item {
+        margin-bottom: 5px;
+    }
+}
+
+.record-con {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.record-item {
+    margin-top: 20px;
+}
+
+.record-img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background: $bgColor;
+    margin-right: 10px;
+}
+
+.record-text {
+    flex: 1;
+}
+
+.device-tags {
+    box-sizing: border-box;
+    border-color: transparent;
+    margin: 2px 5px 2px 0px;
+    border-radius: 3px;
+    padding: 2px 4px 2px 4px;
+    background-color: #f0f2f5;
+  }
+
+// 组织树
+.my-tree {
+    margin-right: 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100vh - 165px);
+
+    .el-tree-node {
+        .el-tree-node__content {
+            height: 40px;
+
+            .custom-tree-node {
+                display: flex;
+                width: 100%;
+                height: 40px;
+                justify-content: space-between;
+
+                span {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .el-dropdown-link {
+                    display: inline-block;
+                    height: 40px;
+                }
+
+                .show {
+                    position: absolute;
+                    right: -10px;
+                    display: none;
+                    width: 80px;
+                    height: 45px;
+                    padding-right: 16px;
+                    padding-left: 30px;
+
+                    &::before {
+                        content: "";
+                        width: 30px;
+                        height: 45px;
+                        position: absolute;
+                        left: 0;
+                        display: inline-block;
+                    }
+
+                    .el-dropdown {
+                        background: #fff;
+                        padding-right: 20px;
+                        height: 40px;
+
+                    }
+                }
+
+                &:hover {
+                    .show {
+                        display: block;
+
+                        .el-dropdown-link {
+                            color: #606266;
+                            padding-right: 20px;
+
+                            &:hover {
+                                color: $baseColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .el-tree-node__children {
+            overflow: visible;
+        }
+    }
+
+}
+
+// element 默认样式在scope下无法被覆盖，解决方法：去掉scope，在最外部套一个div
+.personAdd {
+    .face-con {
+        .face-pic {
+            position: relative;
+            display: inline-block;
+
+            img {
+                display: block;
+                height: 100px;
+                width: 100px;
+                cursor: pointer;
+                background: url("/static/img/upload-icon.png") no-repeat center center / 30px 30px,
+                    rgba(0, 0, 0, 0.3);
+
+                &:hover {
+                    background: url("/static/img/upload-icon.png") no-repeat center center / 30px 30px,
+                        rgba(0, 0, 0, 0.4);
+                }
+            }
+
+            &:hover {
+                .delete-btn {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .el-dialog__header {
+        background: #f8fafb !important;
+
+        .flex-between {
+            padding-right: 50px;
+        }
+    }
+
+    .el-dialog__footer {
+        button {
+            width: 160px;
+            height: 40px;
+            margin-top: -18px;
+            margin-bottom: 8px;
+        }
+    }
+
+    .takephoto {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            display: block;
+            height: 400px;
+            width: 100px;
+            top: 0px;
+            left: 0;
+            background: #fff;
+            position: absolute;
+            z-index: 999;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            height: 400px;
+            width: 100px;
+            top: 0px;
+            right: 0;
+            background: #fff;
+            position: absolute;
+            z-index: 999;
+        }
+
+        canvas {
+            top: 0;
+            left: -54px;
+        }
+
+        video {
+            margin-top: 0px;
+            margin-left: -54px;
+        }
+
+        img {
+            margin-left: 100px;
+            height: 400px;
+            width: 400px;
+        }
+    }
+
+    .upload-pic {
+        height: 400px;
+        width: 400px;
+        margin-left: 100px;
+        margin-top: 0;
+        background: #f8fafb;
+
+        .el-upload--picture {
+            top: 0;
+            height: 400px;
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .tips {}
+        }
+    }
+}

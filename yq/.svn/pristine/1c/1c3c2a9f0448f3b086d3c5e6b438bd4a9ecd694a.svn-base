@@ -1,0 +1,862 @@
+<template>
+  <div class="table">
+
+
+            <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 考核指标管理/考核指标管理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+
+<div class="mapcontainer">
+    <el-row >
+      <el-col class="bg-purple-light" :span="6">
+
+         <div class="content-title" style="width:16vw">考核项目</div>
+          <div style="margin-right:8px;width:16vw;height:100%">
+          <el-tree
+            :data="templateList"
+            :props="defaultProps"
+            :load="loadNode"
+            @node-click="handleNodeClick">
+            <span class="custom-tree-node" slot-scope="{ node, data }">
+              <span v-if="node.data.kpiItemName!=null" size="mini">{{ node.data.kpiItemName| ellipsis }}</span>
+              <span v-if="node.data.templateName!=null"  size="mini">{{ node.data.templateName| ellipsis }}</span>
+              <span>
+                <el-dropdown>
+                  <span class="el-dropdown-link">管理<i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item  @click.native="() => handleAdd(node, data)">增加考核指标</el-dropdown-item>
+                    <el-dropdown-item  @click.native="() => handleEdit(node, data)">修改考核指标</el-dropdown-item>
+                    <el-dropdown-item  @click.native="() => del(node, data)">删除考核指标</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+              </span>
+            </span>
+          </el-tree>
+        </div>
+      </el-col>
+      <el-col :span="18">
+        <div class="grid-content bg-purple-light">
+          <el-table :data="tableData" border style="width: 100%" ref="multipleTable">
+            <el-table-column prop="kpiItemName" label="考核项目"/>
+            <el-table-column prop="kpiItemName" label="考核项目权重"/>
+            <el-table-column prop="kpiItemName" label="考核项目应得分"/>
+            <el-table-column prop="indexName" label="考核指标"/>
+            <el-table-column label="操作" width="180" fixed="right">
+            <template slot-scope="scope">
+                <el-button size="mini"  type="text" @click="delStandard(scope.$index, scope.row)">删除标准</el-button>
+                <el-button size="mini"  type="text" @click="handleCount(scope.$index, scope.row)">计算标准</el-button>
+            </template>
+            </el-table-column>
+            <div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+          </el-table>
+			<!-- 开始分页控件 -->
+			<div v-show="!is_loading" v-if="total>cur_size" class="pagination">
+				<el-pagination  @current-change="handleCurrentChange"  layout="prev, pager, next, jumper, ->, total" :total="total" :current-page="cur_page"/>
+			</div>
+          </div>
+        </el-col>
+    </el-row>
+</div>
+
+
+		<!-- 开始增加弹出框 -->
+		<el-dialog title="新增绩效考核项目" :visible.sync="addVisible" width="500px">
+			<el-form ref="countForm" :model="countForm" :rules="rules" label-width="150px">
+				<el-form-item label="考核模板" prop="templateNumber">
+            <el-select v-model="countForm.templateNumber" placeholder="考核模版" :change="getKeipItemdata"  @change="getKeipItemdata" class="handle-input">
+                  <el-option v-for="item in keiptemplatedata" :key="item.templateNumber" :label="item.templateName" :value="item.templateNumber"></el-option>
+            </el-select>
+				</el-form-item>
+				<el-form-item label="考核项目" prop="kpiItemNumber">
+            <el-select v-model="countForm.kpiItemNumber" placeholder="考核项目" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                  <el-option v-for="item in keipItemdata" :key="item.kpiItemNumber" :label="item.kpiItemName" :value="item.kpiItemNumber"></el-option>
+            </el-select>
+				</el-form-item>
+				<el-form-item label="业务类型" prop="kpiIndexType">
+				    <el-select v-model="countForm.kpiIndexType" placeholder="业务类型" :change="select_stauts"  @change="select_stauts"  class="handle-input">
+                        <el-option key="01" label="任务完成率" value="01"></el-option>
+                        <el-option key="02" label="健康管理率" value="02"></el-option>
+                        <el-option key="03" label="规范管理率" value="03"></el-option>
+                        <el-option key="04" label="早孕建册率" value="04"></el-option>
+                        <el-option key="05" label="考核分值" value="05"></el-option>
+                        <el-option key="06" label="其他指标" value="06"></el-option>
+                        					
+                    </el-select>
+				</el-form-item>
+				<el-form-item label="指标名称" prop="indexName">
+					<el-input v-model="countForm.indexName" class="handle-input"></el-input>
+				</el-form-item>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="addVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveAdd('countForm')">确 定</el-button>
+			</span>
+		</el-dialog>
+		<!-- 结束增加弹出框 -->
+		<!-- 开始修改弹出框 -->
+		<el-dialog title="修改绩效考核项目" :visible.sync="editVisible" width="500px">
+			<el-form ref="countForm" :model="countForm" :rules="rules" label-width="150px">
+				<el-form-item label="考核模板" prop="templateNumber">
+            <el-select v-model="countForm.templateNumber" placeholder="考核模版" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                  <el-option v-for="item in keiptemplatedata" :key="item.templateNumber" :label="item.templateName" :value="item.templateNumber"></el-option>
+            </el-select>
+				</el-form-item>
+				<el-form-item label="考核项目" prop="kpiItemNumber">
+            <el-select v-model="countForm.kpiItemNumber" placeholder="考核项目" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                  <el-option v-for="item in keipItemdata" :key="item.kpiItemNumber" :label="item.kpiItemName" :value="item.kpiItemNumber"></el-option>
+            </el-select>
+				</el-form-item>
+				<el-form-item label="指标名称" prop="indexName">
+					<el-input v-model="countForm.indexName" class="handle-input"></el-input>
+				</el-form-item>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="editVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveEdit('countForm')">确 定</el-button>
+			</span>
+		</el-dialog>
+
+    	<el-dialog title="计算标准" :visible.sync="countVisible" width="800px">
+			<el-form ref="expressionForm" :model="expressionForm" :rules="expressionrules" label-width="70px">
+      <el-row :gutter="20">
+        <el-col :span="24">
+				  <el-form-item label="表达式" prop="indexName">
+					<el-input v-model="expressionForm.b1"  style="width: 33%" class="handle-input"></el-input>
+                      <el-select  v-model="expressionForm.b2"  style="width: 30%" placeholder="表达式" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                          <el-option key="0" label=">=" value=">="></el-option>
+                          <el-option key="1" label="<=" value="<="></el-option>
+                          <el-option key="2" label="=" value="="></el-option>
+                          <el-option key="3" label=">" value=">"></el-option>
+                          <el-option key="4" label="<" value="<"></el-option>
+                      </el-select>
+                      <el-input v-model="expressionForm.b3"  style="width: 33%" class="handle-input"></el-input>
+                  </el-form-item>
+        </el-col>
+        <el-col :span="12">
+				<el-form-item label="得分" prop="score">
+					<el-input v-model="expressionForm.score" style="width: 95%" class="handle-input"></el-input>
+				</el-form-item>
+        </el-col>
+          <el-col :span="12">
+              <el-form-item label="" >
+                  <el-button size="mini"  type="text" @click="handleAddExpression()">增加表达式</el-button>
+              </el-form-item>
+          </el-col>
+        <el-col :span="24">
+			<el-table v-if="!is_loading" :data="expressionTableData" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="id" label="序号"/>
+                <el-table-column prop="condition" label="表达式"/>
+				<el-table-column prop="formula" label="得分"/>
+				<el-table-column label="删除" width="180" fixed="right">
+				<template slot-scope="scope">
+					<el-button size="mini"  type="text" @click="handleDeleteExpressionRule(scope.$index, scope.row)">删除</el-button>
+				</template>
+				</el-table-column>
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+        </el-col>
+      </el-row>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="addVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveAddExpression()">确 定</el-button>
+			</span>
+		</el-dialog>
+  </div>
+</template>
+
+<script>
+import axios from "@/services/axios";
+import api from "@/services/api";
+import bus from "@/components/common/bus";
+
+export default {
+  name: "kpi",
+  filters: {
+    ellipsis (value) {
+      if (!value) return ''
+      if (value.length > 10) {
+        return value.slice(0,10) + '...'
+      }
+      return value
+    }
+  },
+  data() {
+    return {
+      currentPage: 1,
+      pageSize: 10,
+      sumsize: 1,
+      keyword: "",
+      tableData: [],
+      cur_page: 1,
+      cur_size: 10,//列表数据之每页条数
+      total: 0,//列表数据之总条数
+      idx:null,
+      kpiData: [],
+      mapkeyword: "",
+      managementVisible: false,
+      addVisible: false,
+      editVisible: false,
+      delVisible: false,
+      countVisible: false,
+      mapVisible: false,
+      keiptemplatedata:[],//模板名称
+      keipItemdata:[],//项目名称你
+      testData: [{
+        id: 1,
+        label: '一级 1',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }],
+      mapStyle: {
+        width: "550px",
+        height: "300px"
+      },
+      center: { lng: 115.47146, lat: 38.879989 },
+      zoom: 15,
+      dialogTitle: "",
+      ruledata:[],//计算标准表格的值
+      rule:"",
+      templateList:[],//模板列表item
+      itemList:[],//模板列表
+      defaultProps: {
+          children: 'children',
+          label: 'label'
+      },
+      countForm:{
+        kpiIndex: "",
+        indexName: "",
+        templateNumber: "",
+        kpiItemNumber: "",
+        kpiIndexType:"",
+        rule:"",
+        score:"",
+      },
+      // countForm: {
+      //   kpiIndex: "",
+      //   indexName: "",
+      //   templateNumber: "",
+      //   kpiItemNumber: "",
+      // },
+      rules: {
+        indexName: [
+        { required: true, message: "请输入指标名称", trigger: "blur" }
+        ],
+        templateNumber: [
+          { required: true, message: "请输入考核模板", trigger: "blur" }
+        ],
+        kpiItemNumber : [
+          { required: true, message: "请输入考核项目", trigger: "blur" }
+        ],
+        kpiIndexType : [
+          { required: true, message: "请选择业务类型", trigger: "blur" }
+        ],
+      },
+       expressionForm:{
+          b1:"",
+          b2:"",
+          b3:"",
+          score:""
+       },
+        expressionTableData:[],
+        expressionrules:{
+            b1: [
+                { required: true, message: "请输入表达式", trigger: "blur" }
+            ],
+            b2: [
+                { required: true, message: "请选择运算规则", trigger: "blur" }
+            ],
+            b3 : [
+                { required: true, message: "请输入表达式", trigger: "blur" }
+            ],
+        },
+        dealRowData:{
+
+        },
+      // idx: -1
+    };
+  },
+  created() {
+    this.getData();
+    this.getTreeData();
+    this.getkpiData();
+    this.getTemplate();
+    console.log(this.templateList);
+
+    bus.$on(
+      "tags" + this.$router.history.current.fullPath.split("/").join("-"),
+      this.getData
+    );
+  },
+  computed: {
+    data() {
+      return this.tableData;
+    }
+  },
+  methods: {
+    // 分页导航
+    handleCurrentChange(val) {
+      this.cur_page = val;
+      this.getData();
+    },
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'PlanNumber'} }).then(res => {
+				 if (res.code == 0) {
+          this.countForm.kpiIndex = res.data;
+				 } else {
+					this.countForm.kpiIndex ='1';
+				 }
+			 });
+     },
+     getkeiptemplatedata(){
+      var parameter = { action:'select',model:'tb_kpi_template'};
+			 axios.post({
+				 url: api.cwweb.action,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+           this.keiptemplatedata = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+			 });
+
+     },
+     getKeipItemdata(){
+             var parameter = {
+                 action:'select',
+                 model:'tb_kpi_item',
+                 keyword:'',
+                 templateNumber:this.countForm.templateNumber
+
+                 };
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.keipItemdata = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+     },
+    //添加卫生室弹框
+    showAddWssAlert() {
+      this.dialogTitle = "新增考核绩效考核指标";
+      this.addVisible = true;
+      Object.assign(this.$data.countForm, this.$options.data().countForm);
+      // this.getMaxnumber();
+    },
+    showEditWssAlert() {
+      this.dialogTitle = "修改考核绩效考核指标";
+      this.editVisible = true;
+      Object.assign(this.$data.countForm, this.$options.data().countForm);
+    },
+    //树的点击事件
+    handleNodeClick(data,Node) {
+      console.log("树--------->");
+      console.log(data);
+      var parameter = {
+                 action:'select',
+                 model:'tb_kpi_index',
+                 templateNumber:data.templateNumber,
+                 kpiItemNumber:data.kpiItemNumber,
+                 };
+
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+           console.log(res.data)
+					 this.tableData = res.data;
+					 this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+    },
+    manaegementView(data) {
+      //   this.managementVisible = true;
+      console.log(data);
+    },
+    // 获取最大的id
+    //考核制表
+    calculationStandard(data){
+      this.$router.push({
+        path:'/gov/kpiindex/calculationstandard',
+        query: {
+            id: "1"
+          }
+        })
+    },
+    //修改
+    handleUpdate(index, row) {
+      this.dialogTitle = "修改卫生室";
+      this.addVisible = true;
+      this.idx = row.orgnumber;
+      this.countForm = Object.assign(this.countForm, row);
+    },
+    handleDel(index, row) {
+      this.delVisible = true;
+      this.idx = row.orgnumber;
+    },
+    //得到树的值
+    getTreeData() {
+      var parameter = { action:'select',model:'tb_kpi_index',templateNumber:'',kpiItemNumber:''};
+			 axios.post({
+				 url: api.cwweb.action,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+            this.testData = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+			 });
+
+
+     },
+    //删除
+    doDelete() {
+      axios
+        .post({
+          url: api.secondorg.delete,
+          data: {
+            orgnumber: this.idx
+          }
+        })
+        .then(res => {
+          console.log(api.secondorg.delete, " success", res);
+          if (res.code == 0) {
+            this.idx = -1;
+            this.getData();
+            this.$message.success("删除成功");
+            this.delVisible = false;
+          }
+        });
+    },
+    //获取表格数据
+		 //查询列表数据方法
+		 getData() {
+             var parameter = {
+                 action:'select',
+                 model:'tb_kpi_index',
+                 templateNumber:'',
+                 kpiItemNumber:'',
+                 };
+
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+           console.log(res.data)
+					 this.tableData = res.data;
+					 this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+     },
+     //获取模板列表
+    getTemplate() {
+      var item=[];
+      var templateListdata=[];
+      var parameter = {
+          action:'select',
+          model:'tb_kpi_template',
+          keyword:'',
+          };
+
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+           console.log(res.data)
+           templateListdata=res.data;
+           for(let k=0;k<templateListdata.length;k++){
+             templateListdata[k].children=[];
+           }
+           this.templateList = templateListdata;
+
+          for(let i=0;i<this.templateList.length;i++){
+           setTimeout(() => {
+             console.log("最终结果");
+             console.log(this.templateList);
+            }, 500);
+                var parameter2 = {
+                 action:'select',
+                 model:'tb_kpi_item',
+                 templateNumber:this.templateList[i].templateNumber,
+                 keyword:'',
+                 };
+			        this.is_loading = true;
+			        axios.post({url: api.commn.action,
+				        data: parameter2
+			          }).then(res => {
+				        this.is_loading = false;
+				        if (res.code == 0) {
+                  console.log("这是项目")
+                  console.log(res.data)
+                  item = res.data;
+                  for(let j=0;j<item.length;j++){
+                    item[j].children=[];
+                    this.templateList[i].children.push(item[j])
+                  }
+				        } else {
+					          this.$message.error(res.message);
+				        }
+				    });
+
+          }
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+     },
+     //根据模板获取项目列表
+    getItem(data) {
+             var parameter = {
+                 action:'select',
+                 model:'tb_kpi_item',
+                 templateNumber:data,
+                 keyword:'',
+                 };
+
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+           console.log(res.data)
+					 this.itemList = res.data;
+					//  this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+     },
+    getTestDate(){
+       this.templateList=[{
+          testlabel: '一级 1',
+          children: [{
+            testlabel: '二级 1-2',
+            test: '一级 1',
+          }]
+           }]
+           console.log(this.templateList);
+
+    },
+    //获取所有卫生院
+    getkpiData() {
+      axios
+        .get({
+          url: api.firstorg.query
+        })
+        .then(res => {
+          if (res.code == 0) {
+            this.kpiData = res.data;
+          }
+        });
+    },
+    //查询
+    handleSearch() {
+      this.getData();
+    },
+    validate(formName) {
+      return new Promise((resolve, reject) => {
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            resolve();
+          }
+        });
+      });
+    },
+		saveAdd(formName) {
+      console.log("执行增加方法");
+			 if (this.$refs[formName]) {
+				 this.$refs[formName].validate(valid => {
+           console.log("进入方法");
+				        var parameter = {
+                 action:'insert',
+                 model:'tb_kpi_index',
+                 kpiIndex:this.countForm.kpiIndex,
+                 indexName: this.countForm.indexName,
+				         templateNumber: this.countForm.templateNumber,
+				         kpiItemNumber: this.countForm.kpiItemNumber,
+                 rule: this.countForm.rule,
+                 kpiIndexType: this.countForm.kpiIndexType
+                 };
+
+					 if (valid) {axios.post({ url: api.commn.action, data: parameter }).then(res => {
+						 if (res.code == 0) {
+							 this.addVisible = false;
+							 this.$message.success("增加成功");
+							 this.getData();
+						 } else {
+							 this.$message.error(restrue.message);
+						 }
+						 });
+					 } else {
+               this.$message.error("验证未通过");
+                this.addVisible = true;
+							 return;
+					 }
+				 });
+			 }
+		 },
+    getMap() {
+      this.mapVisible = true;
+    },
+    doMap: function() {
+      this.countForm.location = this.center.lng + "," + this.center.lat;
+      this.mapVisible = false;
+    },
+    /***
+     * 地图点击事件。
+     */
+    getClickInfo(e) {
+      this.center.lng = e.point.lng;
+      this.center.lat = e.point.lat;
+    },
+
+       //强制刷新
+    select_stauts(val){
+			 this.$forceUpdate();
+		 },
+    handleAdd(data) {
+      this.dialogTitle = "新增考核绩效考核指标";
+      this.addVisible = true;
+      this.getkeiptemplatedata();
+      this.getKeipItemdata();
+      this.getNumber();
+      Object.assign(this.$data.countForm, this.$options.data().countForm);
+    },
+      //弹出修改界面方法
+		handleEdit(data) {
+      console.log(data);
+			this.dialogTitle = "修改考核绩效考核指标";
+      this.editVisible = true;
+      this.getkeiptemplatedata();
+      this.getKeipItemdata();
+			this.countForm = Object.assign({}, data);
+      // Object.assign(this.$data.countForm, this.$options.data().countForm);
+     },
+     handleDelIndicators(index, row){
+        console.log(index,row);
+          console.log("jjjj");
+     },
+     	handleCount(index, row){
+        this.dealRowData=row
+        let rule=row.rule;
+        console.log(rule);
+        // JSON.parse(rule);
+        this.expressionTableData=eval('(' + rule + ')');
+        for(let i=0;i<this.expressionTableData.length;i++){
+            this.expressionTableData[i].id=i+1;
+
+        }
+       console.log(row);
+       this.countVisible=true;
+     },
+     	handleCountDelete(index, row){
+       console.log(row);
+
+     },
+      handleCheckChange(data, checked, indeterminate) {
+        console.log(data, checked, indeterminate);
+      },
+      handleAddExpression(){
+        if(this.expressionForm.b1==null||this.expressionForm.b2==null||this.expressionForm.b3==null||this.expressionForm.score==null){
+          alert("请检查表达式");
+          return
+        }
+
+        if(this.expressionForm.b1==""||this.expressionForm.b2==""||this.expressionForm.b3==""||this.expressionForm.score==""){
+          alert("请检查表达式");
+          return
+        }
+
+        let list=this.expressionTableData;
+        this.expressionTableData.push(
+            {
+                id:list.length+1,
+                condition:"["+this.expressionForm.b1+"]"+this.expressionForm.b2+this.expressionForm.b3+"",
+                formula:this.expressionForm.score
+            }
+
+        );
+          this.expressionForm.b1="";
+          this.expressionForm.b2="";
+          this.expressionForm.b3="";
+          this.expressionForm.score="";
+        console.log(this.expressionTableData)
+      },
+      handleDeleteExpressionRule(index,row){
+        let list=[];
+        console.log(row)
+          for(let i=0;i<this.expressionTableData.length;i++){
+              if(row.id!=this.expressionTableData[i].id){
+                  list.push(this.expressionTableData[i])
+              }
+          }
+          for(let i=0;i<list.length;i++){
+              list[i].id=i+1;
+          }
+          console.log(list)
+          this.expressionTableData=list
+      },
+      //保存标准
+      saveAddExpression(){
+        let list=[];
+        for(let  i=0;i<this.expressionTableData.length;i++){
+          list.push({
+            condition:this.expressionTableData[i].condition,
+            formula:this.expressionTableData[i].formula,
+          });
+        }
+          this.dealRowData;
+          var parameter = {
+                  action:'update',
+                  model:'tb_kpi_index',
+                  kpiIndex:this.dealRowData.kpiIndex,
+                  indexName: this.dealRowData.indexName,
+                  templateNumber: this.dealRowData.templateNumber,
+                  kpiItemNumber: this.dealRowData.kpiItemNumber,
+                  rule: JSON.stringify(list)}
+          axios.post({
+              url: api.commn.action,
+              data: parameter
+          }).then(res => {
+              if (res.code == 0) {
+                  this.is_loading = false,
+                  this.countVisible=false;
+                      // alert('审核成功');
+                  this.getData();
+              } else {
+                  this.$message.error(res.message);
+              }
+          });
+      },
+      //删除指标
+      delStandard(index, row){
+          console.log(row);
+          var parameter = {
+              action:'deleteById',
+              model:'tb_kpi_index',
+              kpiIndex:row.kpiIndex,
+              }
+          
+          axios.post({
+              url: api.commn.action,
+              data: parameter
+          }).then(res => {
+              if (res.code == 0) {
+                  this.is_loading = false,
+                      // alert('审核成功');
+                      this.getData();
+              } else {
+                  this.$message.error(res.message);
+              }
+          });
+
+      },
+
+      loadNode(node, resolve) {
+        this.getTemplate();
+        resolve(this.templateList);
+      },
+  }
+};
+</script>
+
+<style scoped>
+.mapcontainer {
+     padding-right: 2px;
+      padding-left: 2px;
+       padding-top: 2px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.handle-box {
+  margin-bottom: 20px;
+}
+
+.handle-select {
+  width: 120px;
+}
+
+.handle-input {
+  width: 300px;
+  display: inline-block;
+}
+.del-dialog-cnt {
+  font-size: 16px;
+  text-align: center;
+}
+
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #ffffff;
+}
+.bg-purple {
+  background: #ffffff;
+}
+.bg-purple-light {
+  background: #ffffff;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 800px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
+}
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+.content-title{
+  font-size: 14px;
+   color: #606266;
+   height: 30px;
+   padding-top:8px;
+   padding-left:2px;
+}
+</style>

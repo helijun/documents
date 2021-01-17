@@ -1,0 +1,211 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                    <el-breadcrumb-item><i class="el-icon-tickets"></i> 卫生室补助明细</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+			<!-- 开始查询条件 -->
+			<!-- 开始数据列表 -->
+        
+          
+            <el-table :data="tableDatas.tableData" border  style="width: 100%" class="box-table">
+                <el-table-column type="index" width="50"></el-table-column>
+                <el-table-column
+                    v-for="(item,index) in tableDatas.fields"
+                    :key="index"
+                    :label="item.name"
+                    :prop="item.id"
+                    >
+                    <template slot-scope="scope">
+                    <div>{{scope.row[item.id]}}</div>
+                    </template>
+                </el-table-column>
+            </el-table>
+			<!-- 结束分页控件 -->
+			<!-- 结束数据列表 -->
+		</div>
+
+		<!-- 结束删除提示框 -->
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import moment from 'moment'
+export default {
+	 name: "wsyrewarditem",//页面名称
+	 data() {
+		 return {
+             is_loading:false,
+             addVisible:false,
+			 quarterName:"",
+			 rewardsNumber:"",
+             titleDetail:{
+                 quarterName:"",
+                 YEAR:"",
+                 secondOrgName:""
+			 },
+			 tableDatas: {//动态表格列
+                 fields:[],
+                 tableData:[]
+             },
+             tableData: [],//列表数据
+             subscribeDetail:{},
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+		 this.getData();
+	 },
+	 methods: {
+
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'rewardsNumber'} }).then(res => {
+				 if (res.code == 0) {
+                     this.addForm.rewardsNumber = res.data;
+                     this.select_stauts();
+				 } else {
+					this.addForm.rewardsNumber ='1';
+				 }
+			 });
+		 },
+		 
+		 //查询列表数据方法
+		//  getData() {
+		// 	 let rewardsNumber=this.$route.params.rewardsNumber
+        //      console.log("--------------------->");
+        //      this.quarterName=this.$route.params.subsidyNumber
+        //      var param={
+        //         action:"select",
+		// 		model:"tb_fristorg_prepay_item",
+		// 		prepayNumber:data
+        //         //  rewardsNumber:"",
+        //      }
+		// 	 this.is_loading = true;
+		// 	 axios.post({url: api.commn.action,
+		// 		 data: param
+		// 	 }).then(res => {
+		// 		 this.is_loading = false;
+		// 		 if (res.code == 0) {
+		// 			 this.tableData = res.data;
+		// 		 } else {
+		// 			 this.$message.error(res.message);
+		// 		 }
+		// 		 });
+		//  },
+
+		getData() {
+			let rewardsNumber = localStorage.getItem('rewardsNumber');
+			// this.rewardsNumber=this.$route.params.rewardsNumber
+            let listUp=[];
+            let listRow=[];
+
+            setTimeout(() => {
+			let fieldsData=[];
+			fieldsData.push({
+                id: "kpiItemName",
+                name: "单位名称"
+            });
+            //构建表头
+            for(let i=0;i<listRow.length;i++){
+                fieldsData.push(
+                    {
+                        name:listRow[i].kpiItemName,
+                        id:listRow[i].kpiItemNumber,
+                    }
+                   
+                )
+            }
+            let listFlag=true;
+            //考核列 kpiItemNumber 值与 list[i][]对应
+            let dealListData=[];
+            let count =0;
+            let dealCount=0;
+             for(let row=0;row<listRow.length;row++){
+                 for(let k1=0;k1<listUp.length;k1++){
+                    if(listUp[k1][listRow[row].kpiItemNumber]){//对应起来了
+                        count++
+                    }
+                }
+                if(listFlag){
+                    for(let f=0;f<count;f++){
+                         dealListData.push({});
+                    }
+                    listFlag=false;
+                    break;
+                }
+            }
+
+            for(let row=0;row<listRow.length;row++){
+                 for(let k2=0;k2<listUp.length;k2++){
+                    if(listUp[k2][listRow[row].kpiItemNumber]){//对应起来了
+                    //将比分赋值
+                      dealListData[dealCount][listRow[row].kpiItemNumber]=listUp[k2][listRow[row].kpiItemNumber]
+                      dealListData[dealCount].fristOrgName=listUp[k2].fristOrgName
+                      dealListData[dealCount].indexName=listUp[k2].indexName
+                      dealCount++
+                    }
+                }
+                 dealCount=0
+            }
+
+            console.log(dealListData);
+            console.log(fieldsData);
+            this.tableDatas.tableData=dealListData;
+            this.tableDatas.fields=fieldsData
+         
+        }, 1000)
+
+            //考核打分
+            axios.post({
+                url: api.commn.udpAction,
+                data: {
+                    udpclass: "RewardsCommService",
+                    rewardsNumber: rewardsNumber
+                }
+            }).then(res => {
+                console.log(api.secondorg.query, ' success', res)
+                if(res.code == 0){
+                   listUp=res.data;
+                }
+			})
+			
+            //打分的机构
+             axios.post({
+                url: api.commn.action,
+                data: {
+                    action: "select",
+                    model: "tb_rewardskpiindex",
+                    rewardsNumber: rewardsNumber
+                }
+            }).then(res => {
+                console.log(api.secondorg.query, ' success', res)
+                if(res.code == 0){
+                    listRow=res.data;
+                }
+            })
+        },
+
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+		 },
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>

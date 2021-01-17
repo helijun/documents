@@ -1,0 +1,253 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                    <el-breadcrumb-item><i class="el-icon-tickets"></i> 资金预拨管理/卫生室补助资金汇总统计</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+			<div class="handle-box table-cuoff-line">
+				<el-row type="flex" justify="space-between" align="center">
+					<el-col>
+
+                        <div class="select-tip">年度</div>				
+                        <el-select v-model="year" placeholder="计划年度" :change="getPlan"  @change="getPlan" class="handle-input">
+                            <el-option key="" label="全部" value=""></el-option>
+                            <el-option key="2019" label="2019年" value="2019"></el-option>
+                            <el-option key="2020" label="2020年" value="2020"></el-option>
+                            <el-option key="2021" label="2021年" value="2021"></el-option>
+                            <el-option key="2022" label="2022年" value="2022"></el-option>
+                            <el-option key="2023" label="2023年" value="2023"></el-option>
+                            <el-option key="2024" label="2024年" value="2024"></el-option>
+                            <el-option key="2025" label="2025年" value="2025"></el-option>
+                        </el-select>
+
+                        <div class="select-tip">季度</div>
+                        <el-select v-model="quarter" placeholder="计划季度" :change="getPlan"  @change="getPlan" class="handle-input">
+                            <el-option key="" label="全部" value=""></el-option>
+                             <el-option key="1" label="一季度" value="1"></el-option>
+                            <el-option key="2" label="二季度" value="2"></el-option>
+                            <el-option key="3" label="三季度" value="3"></el-option>
+                            <el-option key="4" label="四季度" value="4"></el-option>
+                        </el-select>		
+                        <div class="select-tip">补助计划</div>
+                        <el-select v-model="planNumber" placeholder="补助计划" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                                <el-option v-for="(item, i) in wssSubsidyDate" :key="i" :label="item.planName" :value="item.planNumber"></el-option>
+                        </el-select>
+						<div class="select-tip">卫生院</div>
+						<el-select v-model="wsyValue" placeholder="卫生院" :change="select_stauts"  @change="changeWsy"  class="handle-input">
+                            <el-option v-for="(item, i) in wsyData" :key="i" :label="item.orgname" :value="item.firstorgnumber"></el-option>
+                        </el-select>
+
+						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
+						<el-button @click="handleExport()">导 出</el-button>
+					</el-col>
+				</el-row>
+			</div>
+			<!-- 开始查询条件 -->
+			<!-- 开始数据列表 -->
+			<br>
+			<h3 style="text-align:center;">{{totalTitle}}</h3>  
+			<br>
+			<el-table v-if="!is_loading" :data="tableData" border style="width: 100%" ref="multipleTable">
+				<el-table-column label="序号" type="index" show-overflow-tooltip width="50"/>
+				<el-table-column prop="secondOrgName" label="村卫生室名称"/>
+				<el-table-column prop="servicePopCount" label="服务人口数"/>
+                <el-table-column prop="subsidyAmount" label="年度考核发放金额"/>
+				<el-table-column prop="addSubsidyAmount" label="特殊补助金额"/>
+				<el-table-column prop="totalSubsidyAmount" label="本年应拨合计"/>
+				<el-table-column prop="minusAmount" label="已预拨资金"/>
+				<el-table-column prop="finalAmount" label="实拨资金"/>
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+		</div>
+
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import bus from '../../../components/common/bus';
+import moment from 'moment'
+export default {
+	 name: "tb_subsidy_plan",//页面名称
+	 data() {
+		 return {
+			 tableData: [],//列表数据
+			 batchAddFileList: [],//批量导入所选文件列表
+			 cur_page: 1,//列表数据之当前页数
+			 cur_size: 10,//列表数据之每页条数
+			 total: 0,//列表数据之总条数
+             select_word: "",//查询关键字
+             year:'',//年度
+			 quarter:'',//季度
+			 totalTitle:'',
+			 is_loading: false,//加载数据框显示标识
+			 addVisible: false,//增加框显示标识 
+			 editVisible: false,//修改框显示标识 
+			 delVisible:false,//删除框显示标识 
+			 addForm: {},//增加表单
+			 editForm: {},//修改表单
+			 ids: "",// 待删除的后台编号
+			 idx: -1,// 待删除的界面列表索
+			 tableDetail:[],
+			 planValue: "",
+			 orgValue: "",
+			 wssSubsidyDate: [],
+			 wssSubsidyValue:"",
+			 planNumber:"",
+			 wsyData:[],
+			 wsyValue:"",
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+
+         let userinfo = localStorage.getItem('userinfo');
+         userinfo = JSON.parse(userinfo);
+		
+		 this.getWsyData();
+		 this.getPlan();
+	 },
+	 methods: {
+		 //搜索查询方法
+		 search() {
+			 this.getData();
+			 
+			
+		 },
+		 //表单提交前处理数据方法
+		 handleData(action,_data) {
+			 if(null != _data)
+			 {
+				 _data.model = 'tb_subsidy_plan';
+				 _data.action = action;
+			 }
+			 return _data;
+		 },
+		changeWsy(params)
+		{
+			let selectName=this.wsyData.find(val=>val.firstorgnumber==this.wsyValue).orgname;
+			this.totalTitle = selectName+'各村卫生室2020年基本公共卫生拨付项目明细表';
+
+			if(this.planNumber != '')
+			 {
+				 this.getData();
+			 }
+		},
+		 //查询列表数据方法
+		 getData() {
+
+			 if(this.planNumber == '')
+			 {
+				 alert('请选择筛查计划');
+				 return;
+			 }
+			 if(this.wsyValue == '')
+			 {
+				 alert('请选择筛查计划');
+				 return;
+			 }
+             var param={
+                 action:"select",
+				 model:"tb_secondorg_subsidytotal",
+				 planNumber:this.planNumber,
+				 firstOrgNumber:this.wsyValue
+             }
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.tableData = res.data;
+					 this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+		 	//导出
+    	handleExport(){
+
+			 if(this.planNumber == '')
+			 {
+				 alert('请选择筛查计划');
+				 return;
+			 }
+			 if(this.wsyValue == '')
+			 {
+				 alert('请选择筛查计划');
+				 return;
+			 }
+
+        var params={
+			title: this.totalTitle,
+			excelType: '5',
+			udpclass:'ExcelService',
+			subsidyNumber: this.subsidyNumber,
+			planNumber:this.planNumber,
+			firstOrgNumber:this.wsyValue,
+			 }
+		
+       this.is_loading = true;
+        axios.get({
+            url: api.commn.udpAction,
+            data:params
+        }).then(res => {
+            console.log(api.commn.exportFile, ' success', res)
+            if(res.code == 0){
+                this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
+            }else{
+               this.is_loading = false;
+            }
+        })
+        },
+		//获取所有卫生院
+        getWsyData() {
+            axios.get({
+                url: api.firstorg.query
+            }).then(res => {
+                if(res.code == 0){
+                    this.wsyData = res.data;
+                }
+            })
+		},
+		getPlan() {
+			axios.post({url: api.commn.action,
+				 data: this.handleData('select',{
+					planType:'4',
+					year:this.year,
+				    quarter:this.quarter,
+					 })
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.wssSubsidyDate = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+        },
+
+        //强制刷新
+        select_stauts(val){
+			// this.getData();
+			 this.$forceUpdate();
+		 },
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>

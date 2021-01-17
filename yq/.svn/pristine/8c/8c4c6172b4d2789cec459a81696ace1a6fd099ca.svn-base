@@ -1,0 +1,84 @@
+// 过滤浏览器默认样式
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: #f0f4f7;
+}
+
+body {
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, "microsoft yahei",
+        arial, STHeiTi, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+// 设计图640px，设置自缩放vw单位
+@function vw($a) {
+    @return $a * 100vw / 640;
+}
+
+// 变量
+
+// 快速布局
+.flex{
+    display: flex;
+}
+.flex-around{
+    display: flex;
+    justify-content: space-around;
+}
+
+// 标准样式
+.main-h5-title {
+    font-family: PingFangSC;
+    font-size: vw(24);
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.main-h5-photo {
+    display: block;
+    width: vw(200);
+    height: vw(200);
+    background-color: #ffffff;
+    box-shadow: 0px vw(5) vw(10) 0px rgba(53, 122, 237, 0.05);
+    border-radius: vw(20);
+    border: 0;
+}
+
+.main-h5-subtitle{
+    width: 100%;
+	font-family: PingFangSC;
+	font-size: vw(28);
+	font-weight: normal;
+	font-stretch: normal;
+    letter-spacing: 0px;
+    text-align: center;
+	color: #576780;
+}
+
+.main-h5-info{
+    font-family: PingFangSC;
+	font-size: vw(22);
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #000000;
+}

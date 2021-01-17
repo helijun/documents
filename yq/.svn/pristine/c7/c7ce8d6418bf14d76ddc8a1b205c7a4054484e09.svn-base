@@ -1,0 +1,189 @@
+import Vue from 'vue';
+import Router from 'vue-router';
+
+Vue.use(Router);
+
+let defaultRouter = '/login';
+
+export default new Router({
+    routes: [
+        {
+            path: '/',
+            redirect: defaultRouter
+        },     
+        {
+            path: '/manage',
+            component: resolve => require(['../components/common/Home.vue'], resolve),
+            meta: { title: '后台管理' },
+            children: [
+                //=============开始卫生局端系统============
+                {
+                    path: '/gov/wsy',
+                    component: resolve => require(['../modules/gov/base/wsy.vue'], resolve),
+                    meta: { title: '卫生院管理' }
+                },
+                {
+                    path: '/gov/wss',
+                    component: resolve => require(['../modules/gov/base/wss.vue'], resolve),
+                    meta: { title: '卫生室管理' }
+                },
+                {
+                    path: '/gov/wsypop',
+                    component: resolve => require(['../modules/gov/base/wsypop.vue'], resolve),
+                    meta: { title: '卫生院人口管理' }
+                },
+                {
+                    path: '/gov/wsspop',
+                    component: resolve => require(['../modules/gov/base/wsspop.vue'], resolve),
+                    meta: { title: '卫生院人口管理' }
+                },
+
+                {
+                    path: '/gov/kpitemplate',
+                    component: resolve => require(['../modules/gov/kpi/kpitemplate.vue'], resolve),
+                    meta: { title: 'KPI模版管理' }
+                },
+                {
+                    path: '/gov/kpiitem',
+                    component: resolve => require(['../modules/gov/kpi/kpiitem.vue'], resolve),
+                    meta: { title: 'KPI项目管理' }
+                },
+                {
+                    path: '/gov/kpiindex',
+                    component: resolve => require(['../modules/gov/kpi/kpiindex.vue'], resolve),
+                    meta: { title: 'KPI指标管理' }
+                },
+                {
+                    path: '/gov/kpiindex/calculationstandard',
+                    component: resolve => require(['../modules/gov/kpi/calculationstandard.vue'], resolve),
+                    meta: { title: '考核制表'}
+                },
+                {
+                    path: '/gov/wsyprepayplan',
+                    component: resolve => require(['../modules/gov/plan/wsyprepayplan.vue'], resolve),
+                    meta: { title: '卫生院预拨计划' }
+                },
+                {
+                    path: '/gov/wsyrewardsplan',
+                    component: resolve => require(['../modules/gov/plan/wsyrewardsplan.vue'], resolve),
+                    meta: { title: '卫生院奖励计划' }
+                },
+                {
+                    path: '/gov/wsysubsidyplan',
+                    component: resolve => require(['../modules/gov/plan/wsysubsidyplan.vue'], resolve),
+                    meta: { title: '卫生院补助计划' }
+                },
+                {
+                    path: '/gov/wsssubsidyplan',
+                    component: resolve => require(['../modules/gov/plan/wsssubsidyplan.vue'], resolve),
+                    meta: { title: '卫生室补助计划' }
+                },
+                {
+                    path: '/gov/wsskpi',
+                    component: resolve => require(['../modules/gov/kpirecord/wsskpi.vue'], resolve),
+                    meta: { title: '卫生室KPI' }
+                },
+                {
+                    path: '/gov/wsskpistat',
+                    component: resolve => require(['../modules/gov/kpirecord/wsskpistat.vue'], resolve),
+                    meta: { title: '卫生室KPI汇总' }
+                },
+                {
+                    path: '/gov/wsykpi',
+                    component: resolve => require(['../modules/gov/kpirecord/wsykpi.vue'], resolve),
+                    meta: { title: '卫生院KPI' }
+                },
+                {
+                    path: '/gov/wsykpistat',
+                    component: resolve => require(['../modules/gov/kpirecord/wsykpistat.vue'], resolve),
+                    meta: { title: '卫生院KPI统计' }
+                },
+                {
+                    path: '/gov/kpirecorditem',
+                    component: resolve => require(['../modules/gov/kpirecord/kpirecorditem.vue'], resolve),
+                    meta: { title: 'KPI记录明细' }
+                },
+                
+                {
+                    path: '/gov/wsyprepay',
+                    component: resolve => require(['../modules/gov/subsidy/wsyprepay.vue'], resolve),
+                    meta: { title: '卫生院预拨' }
+                },
+                {
+                    path: '/gov/wsyreward',
+                    component: resolve => require(['../modules/gov/subsidy/wsyreward.vue'], resolve),
+                    meta: { title: '卫生院奖励' }
+                },
+                {
+                    path: '/gov/wsyprepayitem',
+                    component: resolve => require(['../modules/gov/subsidy/wsyprepayitem.vue'], resolve),
+                    meta: { title: '卫生院预拨明细' }
+                },
+                {
+                    path: '/gov/wsyrewarditem',
+                    component: resolve => require(['../modules/gov/subsidy/wsyrewarditem.vue'], resolve),
+                    meta: { title: '卫生院奖励明细' }
+                },
+                {
+                    path: '/gov/wsysubsidy',
+                    component: resolve => require(['../modules/gov/subsidy/wsysubsidy.vue'], resolve),
+                    meta: { title: '卫生院补助' }
+                },
+                {
+                    path: '/gov/wsssubsidy',
+                    component: resolve => require(['../modules/gov/subsidy/wsssubsidy.vue'], resolve),
+                    meta: { title: '卫生室补助' }
+                },
+               //=============结束卫生局端系统============
+               //=============开始卫生院端系统============
+               {
+                    path: '/wsy/wsskpi',
+                    component: resolve => require(['../modules/wsy/kpirecord/wsskpi.vue'], resolve),
+                    meta: { title: '卫生室KPI' }
+                },
+                {
+                    path: '/wsy/wsskpistat',
+                    component: resolve => require(['../modules/wsy/kpirecord/wsskpistat.vue'], resolve),
+                    meta: { title: '卫生室KPI汇总' }
+                },
+                {
+                    path: '/wsy/wsyprepay',
+                    component: resolve => require(['../modules/wsy/subsidy/wsyprepay.vue'], resolve),
+                    meta: { title: '卫生院预拨' }
+                },
+                {
+                    path: '/wsy/wsysubsidy',
+                    component: resolve => require(['../modules/wsy/subsidy/wsysubsidy.vue'], resolve),
+                    meta: { title: '卫生院补助' }
+                },
+                {
+                    path: '/wsy/wsssubsidy',
+                    component: resolve => require(['../modules/wsy/subsidy/wsssubsidy.vue'], resolve),
+                    meta: { title: '卫生室补助' }
+                },
+           //=============结束卫生院端系统============
+                
+            ]
+        },
+        {
+            path: '/404',
+            component: resolve => require(['../components/page/404.vue'], resolve)
+        },
+        {
+            path: '/403',
+            component: resolve => require(['../components/page/403.vue'], resolve)
+        },
+        {                  
+            path: '/login',
+            component: resolve => require(['../components/page/Login.vue'], resolve)
+        },
+        {                  
+            path: '/govLogin',
+            component: resolve => require(['../components/page/govLogin.vue'], resolve)
+        },
+        {
+            path: '*',
+            redirect: '/404'
+        }
+    ]
+})

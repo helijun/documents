@@ -1,0 +1,270 @@
+<template>
+    <div class="table">
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 基础数据管理/卫生室人口管理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div class="container">
+
+            	<div class="handle-box table-cuoff-line">
+				<el-row type="flex" justify="space-between" align="center">
+					<el-col>
+                        <div class="select-tip">卫生院</div>
+                        <el-select v-model="firstorgnumber" placeholder="卫生院"  :change="select_stauts"  @change="select_stauts">
+                            <el-option key="" label="全部" value=""></el-option>
+                            <el-option v-for="item in firstorgdata" :key="item.firstOrgNumber" :label="item.orgName" :value="item.firstOrgNumber"></el-option>
+                        </el-select>
+                        <div class="select-tip">关键字</div>
+                        <el-input v-model="mapkeyword" placeholder="请输入您需要查找的关键字" class="handle-input mr10"></el-input>
+                         <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
+					</el-col>
+				</el-row>
+            	</div>
+
+            <el-table :data="data" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="firstorgnumber" label="编号" ></el-table-column>
+                <el-table-column prop="orgname" width="240" label="名称" ></el-table-column>
+                <el-table-column prop="firstorgname" label="所属卫生院" ></el-table-column>
+                <el-table-column prop="servicepopcount" label="服务人口" ></el-table-column>
+                <el-table-column prop="updatepoptime" label="修改时间" ></el-table-column>
+                <el-table-column label="操作" width="200">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="handleUpdate(scope.$index, scope.row)">修改人口</el-button>
+                        <el-button type="text" size="small" @click="handleRecord(scope.$index, scope.row)">人口修改记录</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination 
+                    @current-change="handleCurrentChange" 
+                    :current-page.sync="currentPage"
+                    layout="total, prev, pager, next"
+                    :page-size="pageSize"
+                    :total="sumsize">
+                </el-pagination>
+            </div>
+        </div>
+
+
+
+        <!-- 修改人口弹出框 -->
+        <el-dialog :title="dialogTitle" :visible.sync="addVisible" width="640px">
+            <el-form ref="ruleForm" :rules="rules" :model="ruleForm" label-width="110px">
+
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-form-item label="服务人口数" prop="servicepopcount">
+                            <el-input v-model="ruleForm.servicepopcount"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-form-item label="备注" prop="remark">
+                            <el-input type="textarea" v-model="ruleForm.remark"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addVisible = false">取 消</el-button>
+                <el-button type="primary" @click="doSaveAdd('ruleForm')">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <!-- 修改记录弹出框 -->
+        <el-dialog title="人口修改记录" :visible.sync="recordVisible" width="840px">
+            <el-table :data="popdata" border style="width: 100%" ref="multipleTable2">
+                <el-table-column prop="adjustTime" label="调整时间" ></el-table-column>
+                <el-table-column prop="beforeServiceCount" label="调整前服务人口" ></el-table-column>
+                <el-table-column prop="afterServiceCount" label="调整后服务人口" ></el-table-column>
+                <el-table-column prop="addServiceCount" label="增设人口服务" ></el-table-column>
+                <el-table-column prop="ceateBy" label="调整人员" ></el-table-column>
+                <el-table-column prop="remark" label="备注信息" ></el-table-column>
+            </el-table>
+        </el-dialog>
+
+    </div>
+</template>
+
+<script>
+import axios from '@/services/axios';
+import api from '@/services/api';
+import bus from "@/components/common/bus";
+
+export default {
+    name: "wsy",
+    data() {
+        return {
+            currentPage: 1,
+            pageSize: 10,
+            sumsize: 1,
+            keyword: '',
+            tableData: [],
+            cur_page: 1,
+            firstorgdata:[],
+            popdata:[],
+            mapkeyword: '',
+            addVisible: false,
+            recordVisible:false,
+            firstorgnumber:'',
+            dialogTitle: '',
+            ruleForm: {
+                firstorgnumber: '',
+                servicepopcount: '',
+                remark: '',
+            },
+            rules: {
+                 servicepopcount: [
+                        { required: true, message: '请输入服务人口数', trigger: 'blur' }
+                    ],
+                },
+            idx: -1
+        };
+    },
+    created() {
+        this.getData();
+        this.getfirstorgdata();
+        bus.$on('tags' + this.$router.history.current.fullPath.split('/').join('-'), this.getData);
+    },
+    computed: {
+        data() {
+            return this.tableData;
+        }
+    },
+    methods: {
+        // 分页导航
+        handleCurrentChange(val) {
+            this.cur_page = val;
+            this.getData();
+        },
+
+        //修改人口
+        handleUpdate(index, row){
+            this.dialogTitle = '修改卫生室人口';
+            this.addVisible = true;
+            this.idx = row.orgnumber;
+            this.ruleForm = Object.assign(this.ruleForm, row);
+        },
+        handleRecord(index, row){
+           
+            this.recordVisible = true;
+            this.getpopdata(row.orgnumber);
+           
+        },
+        //获得人口修改数据
+        getpopdata(secondOrgNumber) { 
+			 var parameter = { action:'select',model:'tb_second_org_pop',secondOrgNumber:secondOrgNumber};
+			 axios.post({
+				 url: api.commn.action,
+                 data: parameter,
+                 
+			 }).then(res => {
+				 if (res.code == 0) {
+					 this.popdata = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+        //查询人口数据
+        getData() {
+            axios.get({
+                url: api.secondorg.query,
+                data: {
+                    start: this.cur_page,
+                    limit: this.pageSize,
+                    firstorgnumber:this.firstorgnumber,
+                    keyword: this.keyword || ''
+                }
+            }).then(res => {
+                console.log(api.secondorg.query, ' success', res)
+                if(res.code == 0){
+                    this.tableData = res.data;
+                    this.sumsize = res.sumsize;
+                }
+            })
+        },
+
+        //查询人口
+        handleSearch() {
+            this.getData()
+        },
+        validate(formName) {
+            return new Promise((resolve, reject) => {
+                this.$refs[formName].validate((valid) => {
+                    if(valid){
+                        resolve()
+                    }
+                });
+            })
+        },
+        //保存修改人口
+        doSaveAdd(formName) {
+            this.ruleForm.udpclass = "UpdatePopCommService";
+            this.ruleForm.orgType = '2';
+            this.ruleForm.createBy = 'zf';
+            this.ruleForm.orgNumber = this.ruleForm.orgnumber;
+            this.validate(formName).then(() => {
+                axios.post({
+                    url: api.commn.udpAction,
+                    data: this.ruleForm
+                }).then(res => {
+                   // console.log(url, ' success', res)
+                    if(res.code == 0){
+                        this.$message.success('修改成功');
+                        this.addVisible = false;
+                        this.getData();
+                    }else{
+                        this.$message.error(res.message);
+                    }
+                })
+            })
+        },
+         //获得卫生院
+        getfirstorgdata() { 
+			 var parameter = { action:'select',model:'tb_first_org'};
+			 axios.post({
+				 url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+					 this.firstorgdata = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+         },
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+		 },
+    }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.handle-box {
+  margin-bottom: 20px;
+}
+
+.handle-select {
+  width: 120px;
+}
+
+.handle-input {
+  width: 300px;
+  display: inline-block;
+}
+.del-dialog-cnt {
+  font-size: 16px;
+  text-align: center;
+}
+.select-tip {
+    font-size: 14px;
+}
+</style>

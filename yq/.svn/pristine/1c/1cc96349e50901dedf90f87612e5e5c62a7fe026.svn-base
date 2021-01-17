@@ -1,0 +1,486 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 补助计划管理/卫生院奖金发放计划</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+			<div class="handle-box table-cuoff-line">
+				<el-row type="flex" justify="space-between" align="center">
+					<el-col>
+
+                        <div class="select-tip">年度</div>				
+                        <el-select v-model="year" placeholder="计划年度" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                            <el-option key="" label="全部" value=""></el-option>
+                            <el-option key="2019" label="2019年" value="2019"></el-option>
+                            <el-option key="2020" label="2020年" value="2020"></el-option>
+                            <el-option key="2021" label="2021年" value="2021"></el-option>
+                            <el-option key="2022" label="2022年" value="2022"></el-option>
+                            <el-option key="2023" label="2023年" value="2023"></el-option>
+                            <el-option key="2024" label="2024年" value="2024"></el-option>
+                            <el-option key="2025" label="2025年" value="2025"></el-option>
+                        </el-select>		
+						<div class="select-tip">关键字</div>
+						<el-input v-model="select_word" placeholder="要查询关键字" class="handle-input" ></el-input>
+						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
+					</el-col>
+					<el-button type="primary" class="admin-btn" @click="handleAdd">增加补助计划</el-button>
+				</el-row>
+			</div>
+			<!-- 开始查询条件 -->
+			<!-- 开始数据列表 -->
+			<el-table v-if="!is_loading" :data="tableData" border style="width: 100%" ref="multipleTable">
+				<el-table-column prop="planNumber" label="计划编号"/>
+				<el-table-column prop="planName" label="计划名称"/>
+				<el-table-column prop="periodName" label="补助周期"/>				
+				<el-table-column prop="year" label="计划年度"/>
+				<el-table-column prop="subsidyTargetName" label="补助对象"/>
+                <el-table-column prop="kpitemplateName" label="考核模版"/>
+                <el-table-column prop="sumAmount" label="总奖金资金"/>
+                <el-table-column prop="topRewardsRatio" label="考核排名奖比例"/>
+                <el-table-column prop="indexRewardsRatio" label="任务指标奖比例"/>
+				<el-table-column prop="createBy" label="制表人员"/>
+				<el-table-column prop="createTime" label="制表时间"/>
+
+				<el-table-column prop="state" label="审核状态" align="center">
+					<template slot-scope="scope">
+						<span v-if="scope.row.state == 0" @click="handleCheck(scope.$index, scope.row)" style="text-decoration:underline;cursor:hand；color:red">未审核</span>
+                        <span v-if="scope.row.state == 1">已审核</span>   
+						<span v-if="scope.row.state == 2">已拨付</span>                    
+					</template>
+                </el-table-column>
+				<el-table-column label="操作" width="120" align="center">
+				<template slot-scope="scope">
+					<el-button size="text" v-if="scope.row.state == 0" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+					<el-button size="text" v-if="scope.row.state == 0" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+					<el-button size="text" v-if="scope.row.state == 1" @click="handlReward(scope.$index, scope.row)">生成奖金</el-button>
+				    <span v-if="scope.row.state != 0" style="color:grey">修改&nbsp;&nbsp;</span>   
+					<span v-if="scope.row.state != 0" style="color:grey">&nbsp;&nbsp;删除</span>     
+				</template>
+				</el-table-column>
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+			<!-- 开始分页控件 -->
+			<div v-show="!is_loading" v-if="total>cur_size" class="pagination">
+				<el-pagination  @current-change="handleCurrentChange"  layout="prev, pager, next, jumper, ->, total" :total="total" :current-page="cur_page"/>
+			</div>
+			<!-- 结束分页控件 -->
+			<!-- 结束数据列表 -->
+		</div>
+		<!-- 结束列表 -->
+		<!-- 开始增加弹出框 -->
+		<el-dialog title="增加卫生院奖金发放计划" :visible.sync="addVisible" width="500px">
+			<el-form ref="addForm" :model="addForm" :rules="rules" label-width="150px">
+				<el-form-item label="计划编号" prop="planNumber">
+					<el-input v-model="addForm.planNumber" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="计划名称" prop="planName">
+					<el-input v-model="addForm.planName" class="handle-input"></el-input>
+				</el-form-item>	
+				<el-form-item label="补助周期" prop="period">
+                    <el-select v-model="addForm.period" placeholder="补助周期" class="handle-input">
+                        <el-option key="1" label="年度" value="1"></el-option>
+                    </el-select>
+				</el-form-item>
+
+				<el-form-item label="计划年度" prop="year">
+                    <el-select v-model="addForm.year" placeholder="计划年度" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                        <el-option key="2019" label="2019年" value="2019"></el-option>
+                        <el-option key="2020" label="2020年" value="2020"></el-option>
+                        <el-option key="2021" label="2021年" value="2021"></el-option>
+                        <el-option key="2022" label="2022年" value="2022"></el-option>
+                        <el-option key="2023" label="2023年" value="2023"></el-option>
+                        <el-option key="2024" label="2024年" value="2024"></el-option>
+                        <el-option key="2025" label="2025年" value="2025"></el-option>
+                    </el-select>
+				</el-form-item>
+
+				<el-form-item label="考核模版" prop="kpiTemplateNumber">
+                    <el-select v-model="addForm.kpiTemplateNumber" placeholder="考核模版" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                         <el-option v-for="item in keiptemplatedata" :key="item.templateNumber" :label="item.templateName" :value="item.templateNumber"></el-option>
+                    </el-select>
+				</el-form-item>
+
+				<el-form-item label="总奖金资金" prop="sumAmount">
+					<el-input v-model="addForm.sumAmount" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="考核排名奖金额" prop="topRewardsRatio">
+					
+					<el-input v-model="addForm.topRewardsRatio" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="任务指标奖金额" prop="indexRewardsRatio">
+					
+					<el-input v-model="addForm.indexRewardsRatio" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="备注" prop="remark">
+					<el-input v-model="addForm.remark" class="handle-input"></el-input>
+				</el-form-item>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="addVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveAdd('addForm')">确 定</el-button>
+			</span>
+		</el-dialog>
+		<!-- 结束增加弹出框 -->
+		<!-- 开始修改弹出框 -->
+		<el-dialog title="修改卫生院奖金发放计划" :visible.sync="editVisible" width="500px">
+			<el-form ref="editForm" :model="editForm" :rules="rules" label-width="150px">
+				<el-form-item label="计划编号" prop="planNumber">
+					<el-input v-model="editForm.planNumber" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="计划名称" prop="planName">
+					<el-input v-model="editForm.planName" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="补助周期" prop="period">
+                    <el-select v-model="editForm.period" placeholder="补助周期" class="handle-input">
+                        <el-option key="1" label="年度" value="1"></el-option>
+                    </el-select>
+				</el-form-item>
+				<el-form-item label="计划年度" prop="year">
+                    <el-select v-model="editForm.year" placeholder="计划年度" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                        <el-option key="2019" label="2019年" value="2019"></el-option>
+                        <el-option key="2020" label="2020年" value="2020"></el-option>
+                        <el-option key="2021" label="2021年" value="2021"></el-option>
+                        <el-option key="2022" label="2022年" value="2022"></el-option>
+                        <el-option key="2023" label="2023年" value="2023"></el-option>
+                        <el-option key="2024" label="2024年" value="2024"></el-option>
+                        <el-option key="2025" label="2025年" value="2025"></el-option>
+                    </el-select>
+				</el-form-item>
+                <el-form-item label="考核模版" prop="kpiTemplateNumber">
+                    <el-select v-model="editForm.kpiTemplateNumber" placeholder="考核模版" :change="select_stauts"  @change="select_stauts" class="handle-input">
+                         <el-option v-for="item in keiptemplatedata" :key="item.templateNumber" :label="item.templateName" :value="item.templateNumber"></el-option>
+                    </el-select>
+				</el-form-item>
+				<el-form-item label="总奖金资金" prop="sumAmount">
+					<el-input v-model="editForm.sumAmount" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="考核排名奖金额" prop="topRewardsRatio">
+					<el-input v-model="editForm.topRewardsRatio" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="任务指标奖金额" prop="indexRewardsRatio">
+					<el-input v-model="editForm.indexRewardsRatio" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="备注" prop="remark">
+					<el-input v-model="editForm.remark" class="handle-input"></el-input>
+				</el-form-item>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="editVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveEdit('editForm')">确 定</el-button>
+			</span>
+		</el-dialog>
+		<!-- 结束修改弹出框 -->
+		<!-- 开始删除提示框 -->
+		<el-dialog title="提示" :visible.sync="delVisible" width="400px" center>
+			<div class="del-dialog-cnt">是否确定删除？</div>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="delVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="deleteRow">确 定</el-button>
+			</span>
+		</el-dialog>
+		<!-- 结束删除提示框 -->
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import moment from 'moment'
+export default {
+	 name: "tb_subsidy_plan",//页面名称
+	 data() {
+		 return {
+			 tableData: [],//列表数据
+			 batchAddFileList: [],//批量导入所选文件列表
+			 cur_page: 1,//列表数据之当前页数
+			 cur_size: 10,//列表数据之每页条数
+			 total: 0,//列表数据之总条数
+             select_word: "",//查询关键字
+             year:'',//年度
+             keiptemplatedata:[],//模版数据
+			 is_loading: false,//加载数据框显示标识
+			 addVisible: false,//增加框显示标识 
+			 editVisible: false,//修改框显示标识 
+			 delVisible:false,//删除框显示标识 
+			 addForm: {},//增加表单
+			 editForm: {},//修改表单
+			 ids: "",// 待删除的后台编号
+			 idx: -1,// 待删除的界面列表索
+			 //表单字段
+			 form: {
+				 planNumber: "",
+				 planName: "",
+				 planType: "",
+				 period: "",
+				 amount: "",
+				 year: "",
+				 quarter: "",
+				 kpiTemplateNumber: "",
+				 payRatio: "",
+				 prePayRatio: "",
+				 subsidyTarget: "",
+				 prePayRatio2: "",
+				 sumAmount: "",
+				 topRewardsRatio: "",
+				 indexRewardsRatio: "",
+				 createBy: "",
+				 createTime: "",
+				 remark: ""
+			 },
+			 //表单验证规则，需绑定到对应表单中
+			 rules: {
+				 planNumber: [{ required: true, message: "请填写计划编号" }],
+				 planName: [{ required: true, message: "请填写计划名称" }],
+				 period: [{ required: true, message: "请填写补助周期" }],
+				 amount: [{ required: true, message: "请填写单位补助金额" }],
+                 year: [{ required: true, message: "请填写计划年度" }],
+                 kpiTemplateNumber: [{ required: true, message: "请填写模版编号" }],
+				 sumAmount: [{ required: true, message: "请填写总奖金资金" }],
+				 topRewardsRatio: [{ required: true, message: "请填写考核排名奖比例" }],
+				 indexRewardsRatio: [{ required: true, message: "请填写任务指标奖比例" }],
+				 subsidyTarget: [{ required: true, message: "请填写补助对象" }],
+				 prePayRatio2: [{ required: true, message: "请填写特殊比例" }],
+				 remark: [{ required: true, message: "请填写备注" }]
+			 },
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+
+         let userinfo = localStorage.getItem('userinfo');
+         userinfo = JSON.parse(userinfo);
+         this.addForm.createBy = userinfo.username;
+         this.getKeiptemplatedata();
+		 this.getData();
+	 },
+	 methods: {
+		 //搜索查询方法
+		 search() {
+			 this.cur_page = 1;
+			 this.getData();
+		 },
+		 //表单提交前处理数据方法
+		 handleData(action,_data) {
+			 if(null != _data)
+			 {
+				 _data.model = 'tb_subsidy_plan';
+				 _data.action = action;
+			 }
+			 return _data;
+		 },
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'PlanNumber'} }).then(res => {
+				 if (res.code == 0) {
+                     this.addForm.planNumber = res.data;
+                     this.select_stauts();
+				 } else {
+					this.addForm.planNumber ='1';
+				 }
+			 });
+		 },
+		 //分页导航方法
+		 handleCurrentChange(val) {
+			 this.cur_page = val;
+			 this.getData();
+		 },
+		 //弹出增加界面方法
+		 handleAdd() {
+			 this.getNumber();
+			 this.addForm.planName = '';
+			 this.addForm.planType = '2';
+			 this.addForm.period = '';
+			 this.addForm.amount = '';
+			 this.addForm.year = '';
+			 this.addForm.quarter = '';
+			 this.addForm.kpiTemplateNumber = '';
+			 this.addForm.payRatio = '';
+             this.addForm.subsidyTarget = '1';
+             this.addForm.period = '1';
+			 this.addForm.sumAmount = '';
+			 this.addForm.topRewardsRatio = '';
+			 this.addForm.indexRewardsRatio = '';
+			 this.addForm.remark = '';
+             this.addVisible = true;
+             
+		 },
+		 //弹出修改界面方法
+		 handleEdit(index, row) {
+			 this.idx = index;
+			 this.editForm = Object.assign({}, row);
+			 this.editVisible = true;
+		 },
+		 //弹出删除界面框方法
+		 handleDelete(index, row) {
+			 this.idx = index;
+			 this.ids = row.planNumber;
+			 this.delVisible = true;
+		 },
+		 //查询列表数据方法
+		 getData() {
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: this.handleData('select',{
+					 start: (this.cur_page - 1) * this.cur_size,
+                     limit: this.cur_size,
+                     planType:'2',
+                     year:this.year,
+					 keyWord: this.select_word
+					 })
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.tableData = res.data;
+					 this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+		 // 新增数据方法
+		 saveAdd(formName) {
+			 if (this.$refs[formName]) {
+				 this.$refs[formName].validate(valid => {
+					 if (valid) {axios.post({ url: api.commn.action, data: this.handleData('insert',this.addForm) }).then(res => {
+						 if (res.code == 0) {
+							 this.addVisible = false;
+							 this.$message.success("增加成功");
+							 this.getData();
+						 } else {
+							 this.$message.error(res.message);
+						 }
+						 });
+					 } else {
+							 this.$message.error("验证未通过");
+							 return;
+					 }
+				 });
+			 }
+		 },
+		 // 编辑数据方法
+		 saveEdit(formName) {
+			 if (this.$refs[formName]) {
+				 this.$refs[formName].validate(valid => {
+					 if (valid) {axios.post({ url: api.commn.action, data: this.handleData('update',this.editForm) }).then(res => {
+						 if (res.code == 0) {
+							 this.editVisible = false;
+							 this.$message.success("修改成功");
+							 this.getData();
+						 } else {
+							 this.$message.error(res.message);
+						 }
+						 });
+					 } else {
+							 this.$message.error("验证未通过");
+							 return;
+					 }
+				 });
+			 }
+		 },
+		//审核
+		 handleCheck(index, row) {
+
+		this.$confirm('此操作为审核动作 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+			 this.idx = index;
+			 this.ids = row.planNumber;
+ 			this.is_loading = true;
+			 var parameter = { udpclass:'PlanCheckCommService',createBy:this.addForm.createBy,planNumber:row.planNumber};
+			 axios.post({
+				 url: api.commn.udpAction,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+					  this.is_loading = false;
+					this.getData();
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });			  
+		    }).catch(() => {
+            //几点取消的提示
+		  });
+
+
+		
+		 },
+		//生成奖金
+		handlReward(index, row) {
+
+			this.$confirm('此操作为生成奖金明细 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+			 this.idx = index;
+			 this.ids = row.planNumber;
+ 				this.is_loading = true;
+			 var parameter = { udpclass:'RewardsGenService',createBy:this.addForm.createBy,planNumber:row.planNumber};
+			 axios.post({
+				 url: api.commn.udpAction,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+					  this.is_loading = false;
+					this.getData();
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });			  
+		    }).catch(() => {
+            //几点取消的提示
+		  });
+
+
+		
+		 },
+		 //删除数据方法
+		 deleteRow(){
+			 axios.post({ url: api.commn.action, data: this.handleData('deleteById',{ planNumber: this.ids }) }).then(res => {
+				 if (res.code == 0) {
+					 this.delVisible = false;
+					 this.tableData.splice(this.idx, 1);
+					 this.$message.success("删除成功");
+				 } else {
+					 this.$message.error(res.message);
+				 }
+			 });
+         },
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+         },
+        //获得考核模版数据
+        getKeiptemplatedata() { 
+			 var parameter = { action:'select',model:'tb_kpi_template'};
+			 axios.post({
+				 url: api.commn.action,
+				 data: parameter
+			 }).then(res => {
+				 if (res.code == 0) {
+					 this.keiptemplatedata = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>

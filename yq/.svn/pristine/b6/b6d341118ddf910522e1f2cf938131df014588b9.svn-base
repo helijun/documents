@@ -1,0 +1,320 @@
+<template>
+	<div class="table">
+        <!-- 标题 -->
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                    <el-breadcrumb-item><i class="el-icon-tickets"></i> 考核制表</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+		<!-- 开始列表 -->
+		<div class="container"  v-loading="is_loading" element-loading-text="资源加载中，请稍候..." element-loading-spinner="el-icon-loading">
+			<!-- 开始查询条件 -->
+			<div class="handle-box table-cuoff-line">
+			<el-form ref="itemFrom" :model="itemFrom" :rules="rules" label-width="150px">
+                <el-row :gutter="20">
+                <el-col :span="12">
+                <el-form-item label="卫生院" prop="orgName">
+                  <span>{{itemFrom.orgName}}</span>
+				</el-form-item>
+                </el-col>
+                <el-col :span="12">
+				<el-form-item label="制表时间" prop="amount">
+					 <span>{{itemFrom.createTime}}</span>
+				</el-form-item>
+                </el-col>
+                <el-col :span="12">
+                <el-form-item label="补助计划" prop="kpiTemplateNumber">
+                    <span>{{itemFrom.planName}}</span>
+				</el-form-item>
+                </el-col>
+                <el-col :span="12">
+                <el-form-item label="制表人员" prop="amount">
+					 <span>{{itemFrom.createBy}}</span>
+				</el-form-item>
+                </el-col>
+                </el-row>
+			</el-form>
+
+			<!-- 开始数据列表 -->
+			<el-table v-if="!is_loading" :data="itemTableData" border style="width: 100%" ref="multipleTable">
+				<el-table-column prop="kpiItemName" label="考核项目"/>
+				<el-table-column prop="proportion" label="考核项目权重"/>
+				<el-table-column prop="indexScore" label="考核项目应该完成比例"/>				
+				<el-table-column prop="finishRatio" label="考核项目完成比例"/>
+                <el-table-column prop="kpiIndexName" label="考核指标"/>
+ 				<el-table-column prop="score" label="考核得分" width="180" >       
+				<template slot-scope="scope" >
+                   <span v-if="creTabFlag">
+                            <el-input size="mini" placeholder="请输入内容" v-model="scope.row.score">
+                            </el-input>
+                    </span>
+                            <span v-else>{{scope.row.score}}</span>
+		
+				</template>
+				</el-table-column>               
+				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
+			</el-table>
+
+            <template slot-scope="scope">	
+					<el-button size="mini"  type="text" @click="showDetail(scope.$index, scope.row)">{{scope.row.checkStateName}}</el-button>
+				</template>
+			<span slot="footer" clasas="dialog-footer">
+		    <el-button v-if="creTabFlag"  type="primary" @click="handleCreTab()">确 定</el-button>
+             <el-button v-if="auditFlag"  type="primary" @click="handleAudit()">审 核</el-button>
+            <el-button  class="admin-btn" @click="handleAddrEditCancel()">取 消</el-button>
+			</span>
+			</div>
+			<!-- 开始查询条件 -->
+			<!-- 结束数据列表 -->
+		</div>
+
+	</div>
+</template>
+<script> 
+import axios from "@/services/axios";
+import api from "@/services/api";
+import moment from 'moment'
+export default {
+	 name: "tb_subsidy_plan",//页面名称
+	 data() {
+		 return {
+			 tableData: [],//列表数据
+			 batchAddFileList: [],//批量导入所选文件列表
+			 cur_page: 1,//列表数据之当前页数
+			 cur_size: 10,//列表数据之每页条数
+			 total: 0,//列表数据之总条数
+             select_word: "",//查询关键字
+             year:'',//年度
+             quarter:'',//季度
+			 is_loading: false,//加载数据框显示标识
+			 addVisible: false,//增加框显示标识 
+			 editVisible: false,//修改框显示标识 
+			 delVisible:false,//删除框显示标识 
+             editFlag:true,
+             creTabFlag:false,
+             auditFlag:false,
+			 addForm: {},//增加表单
+			 itemFrom: {
+				 orgName: "",
+				 createTime: "",
+				 planName: "",
+				 createBy: "",
+			 },//修改表单
+			 ids: "",// 待删除的后台编号
+			 idx: -1,// 待删除的界面列表索
+			 itemTableData: [],
+			 //表单字段
+			 form: {
+				 planNumber: "",
+				 planName: "",
+				 planType: "",
+				 period: "",
+				 amount: "",
+				 year: "",
+				 quarter: "",
+				 kpiTemplateNumber: "",
+				 payRatio: "",
+				 prePayRatio: "",
+				 subsidyTarget: "",
+				 prePayRatio2: "",
+				 sumAmount: "",
+				 topRewardsRatio: "",
+				 indexRewardsRatio: "",
+				 createBy: "",
+				 createTime: "",
+				 remark: ""
+			 },
+			 //表单验证规则，需绑定到对应表单中
+			 rules: {
+				 planNumber: [{ required: true, message: "请填写计划编号" }],
+				 planName: [{ required: true, message: "请填写计划名称" }],
+				 period: [{ required: true, message: "请填写补助周期" }],
+				 amount: [{ required: true, message: "请填写单位补助金额" }],
+				 year: [{ required: true, message: "请填写计划年度" }],
+				 quarter: [{ required: true, message: "请填写计划季度" }],
+				 payRatio: [{ required: true, message: "请填写拨款比例" }],
+				 prePayRatio: [{ required: true, message: "请填写预拨比例" }],
+				 subsidyTarget: [{ required: true, message: "请填写补助对象" }],
+				 prePayRatio2: [{ required: true, message: "请填写特殊比例" }],
+				 remark: [{ required: true, message: "请填写备注" }]
+			 },
+		 };
+	 },
+	 mounted() {
+	 },
+	 created() {
+
+		 this.getDetail();
+	 },
+	 methods: {
+		 //搜索查询方法
+		 search() {
+			 this.cur_page = 1;
+			 this.getData();
+		 },
+		 //表单提交前处理数据方法
+		 handleData(action,_data) {
+			 if(null != _data)
+			 {
+				 _data.model = 'tb_subsidy_plan';
+				 _data.action = action;
+			 }
+			 return _data;
+		 },
+		 //获得编号方法
+		 getNumber(){
+			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'PlanNumber'} }).then(res => {
+				 if (res.code == 0) {
+                     this.addForm.planNumber = res.data;
+                     this.select_stauts();
+				 } else {
+					this.addForm.planNumber ='1';
+				 }
+			 });
+		 },
+		 //分页导航方法
+		 handleCurrentChange(val) {
+			 this.cur_page = val;
+			 this.getData();
+		 },
+		 //弹出增加界面方法
+		 handleAdd() {
+			 this.getNumber();
+			 this.addForm.planName = '';
+			 this.addForm.planType = '1';
+			 this.addForm.period = '';
+			 this.addForm.amount = '';
+			 this.addForm.year = '';
+			 this.addForm.quarter = '';
+			 this.addForm.kpiTemplateNumber = '';
+			 this.addForm.payRatio = '';
+			 this.addForm.prePayRatio = '';
+             this.addForm.subsidyTarget = '1';
+             this.addForm.period = '2';
+			 this.addForm.prePayRatio2 = '';
+			 this.addForm.sumAmount = '';
+			 this.addForm.remark = '';
+             this.addVisible = true;
+             
+		 },
+		 //弹出修改界面方法
+		 handleEdit(index, row) {
+			 this.idx = index;
+			 this.itemFrom = Object.assign({}, row);
+			 this.editVisible = true;
+		 },
+		 //弹出删除界面框方法
+		 showDetail(index, row) {
+			this.getDetail()
+		 },
+		 getDetail() {
+             let checkState;
+             console.log(this.$route.params.itemFrom);
+             this.itemFrom =JSON.parse(localStorage.getItem('itemFrom'));
+             checkState=localStorage.getItem("checkState");
+             if(checkState=='-1'){
+                 this.creTabFlag=true;
+             }
+            if(checkState=='0'){
+                 this.auditFlag=true;
+             }
+             console.log(checkState);
+             var param={
+                 action:"select",
+                 model:"tb_kpi_record_index",
+                 kpiNumber:localStorage.getItem('kpiNumber'),
+             }
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.itemTableData = res.data;
+					//  this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+		 // 考核明细录入
+		 handleCreTab() {
+			 let scoreList=[];
+			 let kpiNumber="";
+
+
+            for(let i=0;i< this.itemTableData.length;i++){
+				scoreList.push({
+					indexdataNumber:this.itemTableData[i].dataNumber,
+					score:this.itemTableData[i].score
+				});
+				if(i == 0){
+					kpiNumber=this.itemTableData[i].kpiNumber;
+				}
+			}
+			this.dealCreTab(scoreList,kpiNumber);
+            this.creTabFlag=false;
+            this.auditFlag=true;
+         },
+         dealCreTab(scoreList,kpiNumber){
+            var param={
+				 udpclass:"KPIRecordInputService",
+				 kpiNumber:kpiNumber,
+				 scoreList:JSON.stringify(scoreList),
+                 createBy:this.itemFrom.createBy,
+			 }
+			 console.log("======");
+			 console.log(param);
+			 this.is_loading = true;
+			 axios.post({url: api.commn.udpAction,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					//  this.itemTableData = res.data;
+					//  this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+         },
+		 // 审核
+		 handleAudit() {
+            var param={
+                 udpclass:"KIPRecordCommService",
+                 kpiNumber:localStorage.getItem("kpiNumber"),
+                createBy:this.itemFrom.createBy,
+             }
+			 this.is_loading = true;
+			 axios.post({url: api.commn.action,
+				 data: param
+			 }).then(res => {
+				 this.is_loading = false;
+				 if (res.code == 0) {
+					 this.itemTableData = res.data;
+					//  this.total = res.sumsize;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		 },
+		 //删除数据方法
+		 handleAddrEditCancel(){
+
+         },
+        //强制刷新
+        select_stauts(val){
+			 this.$forceUpdate();
+		 },
+	 },
+};
+</script>
+<style lang="scss" scoped>
+@import "static/css/base.scss";
+@import "static/css/base-company.scss";
+.upload-con {
+height: 32px;
+line-height: 32px;
+overflow: hidden;
+}
+</style>
