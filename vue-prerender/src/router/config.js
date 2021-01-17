@@ -8,8 +8,8 @@ module.exports = {
         {
             path: '/20190710/index', //20190710首页
         },
-        {
-            path: '/home/perceived', //视觉差备份
-        }
+        // {
+        //     path: '/home/Perceived', //视觉差备份
+        // }
     ]
 }
