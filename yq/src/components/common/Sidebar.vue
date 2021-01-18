@@ -68,12 +68,12 @@
                             index: '812',
                             usertype: 8,
                             title: '账号管理',
-                            index: '/apply/checkorglist2'
+                            index: '/apply/user'
                         },                                                                                                   
                     ]
                 },  
                 {
-                    icon: 'el-icon-setting',
+                    icon: 'el-icon-check',
                     index: '82',
                     usertype: 8,
                     title: '采样送检管理',
@@ -88,7 +88,7 @@
                     ]
                 },  
                 {
-                    icon: 'el-icon-setting',
+                    icon: 'el-icon-tickets',
                     index: '83',
                     usertype: 8,
                     title: '检测报告管理',
@@ -109,7 +109,7 @@
                         },                                                                                                   
                     ]
                 }, 
-                //====================预约机构端（）END =======================   
+                //====================预约平台端（）END =======================   
 
                 //====================采集网点（9）START =======================   
                 {
@@ -198,6 +198,21 @@
                 //====================镇级管理员（10）END =======================  
                 
                 //====================县级管理员（11）START =======================  
+                {
+                    icon: 'el-icon-setting',
+                    index: '101',
+                    usertype: 11,
+                    title: '预约管理平台',
+                    subs: [                      
+                         {
+                            icon: 'el-icon-info',
+                            index: '912',
+                            usertype: 11,
+                            title: '核酸采样管理',
+                            index: '/apply/applylist_town'
+                        }, 
+                    ]
+                }   
                 //====================县级管理员（11）END =======================
 
                 //====================检测机构管理员（12）START =======================  

@@ -108,7 +108,13 @@ export default {
 				
 				 if (res.code == 0) {
 
-                      if(this.ruleForm.checkOrgNumber == '3000')
+                      if(
+                        this.ruleForm.checkOrgNumber == '1000' 
+                      || this.ruleForm.checkOrgNumber == '2000' 
+                      || this.ruleForm.checkOrgNumber == '3000' 
+                      || this.ruleForm.checkOrgNumber == '4000' 
+                      || this.ruleForm.checkOrgNumber == '5000' 
+                      || this.ruleForm.checkOrgNumber == '6000')
                       {
                           this.isNotgk = false;
                       }else

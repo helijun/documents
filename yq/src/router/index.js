@@ -47,7 +47,7 @@ export default new Router({
             {
                 path: '/apply/applylist_town',
                 component: resolve => require(['../modules/apply/applylist_town.vue'], resolve),
-                meta: { title: '采样送检管理' }
+                meta: { title: '核酸采样管理' }
             },	
             {
                 path: '/apply/applylist_town2',
@@ -69,6 +69,11 @@ export default new Router({
                 path: '/apply/checkorglist2',
                 component: resolve => require(['../modules/apply/checkorglist2.vue'], resolve),
                 meta: { title: '检测机构管理' }
+            },	
+            {
+                path: '/apply/user',
+                component: resolve => require(['../modules/apply/user.vue'], resolve),
+                meta: { title: '账号管理' }
             },	
             {
                 path: '/apply/checkhandle',
@@ -111,6 +116,7 @@ export default new Router({
             meta: { title: '审批' },
             component: resolve => require(['../modules/h5/checkinfo.vue'], resolve),
         },
+
         {                  
             path: '/apply',
             meta: { title: '自助核酸检测申请' },

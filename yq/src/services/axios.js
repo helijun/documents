@@ -58,16 +58,7 @@ function commonResponse(data, resolve){
       message: "登录过期，请重新登录！",
       type: 'error',
       onClose: () => {
-        let url = '/unpayLogin';       
-
-        let userinfo = localStorage.getItem('userinfo');
-        userinfo = JSON.parse(userinfo);
-
-        if(null != userinfo && userinfo.usertype == 3)
-        {
-            url = '/login';
-        }
-
+        let url = '/login';       
         window.location.href = window.location.href.split('#')[0] + '#' + url
       }
     });
