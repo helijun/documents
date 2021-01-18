@@ -629,9 +629,4 @@ export default {
 <style lang="scss" scoped>
 @import "static/css/base.scss";
 @import "static/css/base-company.scss";
-.upload-con {
-height: 32px;
-line-height: 32px;
-overflow: hidden;
-}
 </style>

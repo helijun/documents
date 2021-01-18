@@ -64,7 +64,7 @@
 					 ref="upload"
 					 v-model="form.filename"
 					 :data="uploadData"
-					 class="el-input__inner upload-con handle-input"
+					 class="upload-demo"
 					 accept="application/msexcel"
 					 name="excelfile"
 					 :file-list="batchAddFileList"
@@ -399,9 +399,12 @@ export default {
 <style lang="scss" scoped>
 @import "static/css/base.scss";
 @import "static/css/base-company.scss";
-.upload-con {
-height: 32px;
-line-height: 32px;
-overflow: hidden;
+.upload-demo {
+	/deep/ .el-upload {
+    	width: 221px;
+	}
+	/deep/ .el-upload-list {
+    	width: 400px;
+	}
 }
 </style>
