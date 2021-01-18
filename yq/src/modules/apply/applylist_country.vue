@@ -48,7 +48,7 @@
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字"  style="width:200px;"></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
-		<el-button type="primary" class="admin-btn" @click="handleExport3">导出</el-button>-->
+		<el-button type="primary" class="admin-btn" @click="handleExport3">导出</el-button>
 						<el-button type="primary" class="admin-btn" @click="handleExport">导出统计表</el-button>
 						<el-button type="primary" class="admin-btn" @click="handleExport2">导出检验科报表</el-button>
 						
