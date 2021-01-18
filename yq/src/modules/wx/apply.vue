@@ -25,29 +25,26 @@
 
     </div>
 
-     <article>
-                <section class="module-list module-base-info">
-                <mt-field label="姓名:" type="text" placeholder="请输入姓名" v-model="addForm.applyName"></mt-field>
-                <div  @click="selectSex()">
-                <mt-field label="性别:" type="text" placeholder="请选择性别"  readonly="true" v-model="addForm.sex"></mt-field>
-                </div>
-                <mt-field label="身份证号:" type="text" placeholder="请输入身份证号" v-model="addForm.idcard"></mt-field>
-               <mt-field label="家庭住址:" type="text" placeholder="地址需精确到省市县(区)门牌号"  v-model="addForm.address"></mt-field>   
-               <mt-field label="单位名称:" type="text" placeholder="请输入单位名称"  v-model="addForm.unitName"></mt-field>   
+    <article>
+        <section class="module-list module-base-info">
+        <mt-field label="姓名:" type="text" placeholder="请输入姓名" v-model="addForm.applyName"></mt-field>
+        <div  @click="selectSex()">
+        <mt-field label="性别:" type="text" placeholder="请选择性别"  readonly="true" v-model="addForm.sex"></mt-field>
+        </div>
+        <mt-field label="身份证号:" type="text" placeholder="请输入身份证号" v-model="addForm.idcard"></mt-field>
+        <mt-field label="家庭住址:" type="text" placeholder="地址需精确到省市县(区)门牌号"  v-model="addForm.address"></mt-field>   
+        <mt-field label="单位名称:" type="text" placeholder="请输入单位名称"  v-model="addForm.unitName"></mt-field>   
+        <mt-field label="联系电话:" type="tel" placeholder="请输入联系电话" v-model="addForm.tel"></mt-field>
+        <!--<div @click="openPicker('datatimePicker')" >
+            <mt-field label="预约时间:" type="text" placeholder="请输入预约时间"  readonly="true" v-model="addForm.applyTime"></mt-field>    
+        </div>-->
 
-                <mt-field label="联系电话:" type="text" placeholder="请输入联系电话" v-model="addForm.tel"></mt-field>
-                <!--<div @click="openPicker('datatimePicker')" >
-                 <mt-field label="预约时间:" type="text" placeholder="请输入预约时间"  readonly="true" v-model="addForm.applyTime"></mt-field>    
-                </div>-->
+        <!-- <div  @click="selectRelation()"> -->
+        <mt-field label="采集网点:" type="text" placeholder="请选择采集网点" readonly="true" v-model="addForm.checkOrgName"></mt-field>
+        <!-- </div> -->
 
-                <div  @click="selectRelation()">
-                <mt-field label="采集网点:" type="text" placeholder="请选择采集网点"   readonly="true" v-model="addForm.checkOrgName"></mt-field>
-                </div>
-
-
-                
-                </section>
-     </article>
+        </section>
+    </article>
 
 
         <article>
@@ -228,11 +225,12 @@ export default {
     },
     async created(){
 
-        if(null != this.$route.query.checkOrgNumber)
-        {
-                this.checkOrgNumber= this.$route.query.checkOrgNumber;
+        if(null != this.$route.query.checkOrgNumber) {
+            this.checkOrgNumber= this.$route.query.checkOrgNumber;
         }
-       
+        if(null != this.$route.query.checkOrgName) {
+            this.addForm.checkOrgName= this.$route.query.checkOrgName;
+        }
         this.getcheckOrgData();
         this.init();    
          this.addForm.applyTime = moment(newDate).format('YYYY-MM-DD')

@@ -27,23 +27,17 @@
         </tr>
      
          <tr>
-            <td>
-             <div class="wrapper-item3">
-               <!--<mt-button id="wxsys" type="primary" v-on:click="sys_click()">扫一扫</mt-button>-->
-                    <table class="table-style">
-                        <tr>
-                            <td style="text-align:center"><span class="title-title2" style="text-decoration: underline" @click="goapplyQuery"> 核酸检测预约凭证查询</span></td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
+          <td>
+            <div class="wrapper-item3">
+              <table class="table-style">
+                  <tr>
+                      <td style="text-align:center"><span class="title-title2" style="text-decoration: underline" @click="goapplyQuery"> 核酸检测预约凭证查询</span></td>
+                  </tr>
+              </table>
+              </div>
+          </td>
         </tr>
     </table>
-
-     <mt-actionsheet  
-        :actions= "data"  
-        v-model="sheetVisible">  
-    </mt-actionsheet> 
   </div>
 </template>
 
@@ -51,54 +45,52 @@
 import axios from "@/services/axios";
 import api from "@/services/api"; 
 import { Toast, Button,Actionsheet  } from "mint-ui";
-import utils from '@/utils/index';
-import wx from 'weixin-js-sdk'
 
 document.title = "保定市新冠核酸检测信息管理平台";
 export default {
   components: { Button },
   data() {
     return {
-      companyname:"",
-      checkOrgNumber:'',
+      companyname: "",
+      checkOrgNumber: '',
       form: {},
-      orginfo:{},
-      orgnumber:'',
+      orginfo: {},
+      orgnumber: '',
       photoTip: true,
     };
   },
   created() {
-            if(null != this.$route.query.checkOrgNumber)
-        {
-                this.checkOrgNumber= this.$route.query.checkOrgNumber;
-        }
+    if (null != this.$route.query.checkOrgNumber) {
+      this.checkOrgNumber = this.$route.query.checkOrgNumber;
+    }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
-
     gohelpapply() {
-
-     window.location = location.href.split('#')[0]+"#/applyIndex?checkOrgNumber="+this.checkOrgNumber;
-     
-
-   
-        
+      this.$router.push({
+        path: "/applyIndex",
+        query: {
+          ...this.$route.query
+        }
+      });
     },
 
     goquery() {
-
-       
-        window.location = location.href.split('#')[0]+"#/query"
-    
-        
+      this.$router.push({
+        path: "/query",
+        query: {
+          ...this.$route.query
+        }
+      });
     },
     goapplyQuery() {
-        this.$router.push({
-          path: "/applyQuery",
-        });
-        },
-
+      this.$router.push({
+        path: "/applyQuery",
+        query: {
+          ...this.$route.query
+        }
+      });
+    }
   }
 };
 </script>

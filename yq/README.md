@@ -104,3 +104,8 @@ spring.datasource.password = lava@123
 1. https://blog.csdn.net/zsnpromsie/article/details/79100377   使用nginx
 2. https://www.jianshu.com/p/c3294887c6b6 搭建nginx
 3. https://www.cnblogs.com/malcolmfeng/p/6816119.html host修改
+
+### 20210118
+> 登录
+9:
+ys：123456

@@ -1,6 +1,5 @@
 <template>
     <div class="sidebar">
-        <!-- background-color="#324157" text-color="#bfcbd9" active-text-color="#20a0ff" -->
         <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse"  unique-opened router>
             <template v-for="item in items">
                 <template v-if="item.subs">
@@ -43,161 +42,7 @@
         },
         created() {
             let item = [
-                //====================系统管理端（一）===================    
-                {
-                    icon: 'el-icon-setting',
-                    index: '11',
-                    usertype: 1,
-                    title: '基础数据管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '111',
-                            usertype: 1,
-                            title: '卫生机构管理',
-                            index: '/system/orglist'
-                        },
-                        {
-                            icon: 'el-icon-info',
-                            index: '112',
-                            usertype: 1,
-                            title: '用户账户管理',
-                            index: '/system/userlist'
-                        },
-                        {
-                            icon: 'el-icon-info',
-                            index: '113',
-                            usertype: 1,
-                            title: '采购汇总统计',
-                            index: '/system/purchasetotal'
-                        },                       
-                    ]
-                },       
-                 //====================卫生院财务科端（二）===================    
-                {
-                    icon: 'el-icon-setting',
-                    index: '21',
-                    usertype: 2,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '211',
-                            usertype: 2,
-                            title: '采购申请管理（1）',
-                            index: '/sp/purchaselist1'
-                        },     
-                         {
-                            icon: 'el-icon-info',
-                            index: '211',
-                            usertype: 2,
-                            title: '采购备案管理（3）',
-                            index: '/sp/purchaselist3'
-                        },   
-                         {
-                            icon: 'el-icon-info',
-                            index: '211',
-                            usertype: 2,
-                            title: '采购备案盖单（9）',
-                            index: '/sp/purchaselist9'
-                        },                                                    
-                    ]
-                },                  
-                 //====================卫生院长端（三）=======================   
-                {
-                    icon: 'el-icon-setting',
-                    index: '31',
-                    usertype: 3,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '311',
-                            usertype: 3,
-                            title: '采购备案审批（5）',
-                            index: '/sp/purchaselist5'
-                        },                              
-                    ]
-                },     
-                //====================卫生局财务科端（四）=====================    
-                {
-                    icon: 'el-icon-setting',
-                    index: '41',
-                    usertype: 4,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '411',
-                            usertype: 4,
-                            title: '采购申请管理（2）',
-                            index: '/sp/purchaselist2'
-                        },
-                        {
-                            icon: 'el-icon-info',
-                            index: '411',
-                            usertype: 4,
-                            title: '采购备案管理（4）',
-                            index: '/sp/purchaselist4'
-                        },     
-                         {
-                            icon: 'el-icon-info',
-                            index: '411',
-                            usertype: 4,
-                            title: '采购备案完结（10）',
-                            index: '/sp/purchaselist10'
-                        },                                
-                    ]
-                }, 
-                //====================卫生局办公室主任端（五）=======================   
-                {
-                    icon: 'el-icon-setting',
-                    index: '51',
-                    usertype: 5,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '311',
-                            usertype: 3,
-                            title: '采购备案审批（8）',
-                            index: '/sp/purchaselist8'
-                        },                              
-                    ]
-                },   
-                //====================卫生局副局长端（六）=======================   
-                {
-                    icon: 'el-icon-setting',
-                    index: '61',
-                    usertype: 6,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '611',
-                            usertype: 6,
-                            title: '采购备案审批（6）',
-                            index: '/sp/purchaselist6'
-                        },                              
-                    ]
-                },
-                //====================卫生局长端（七）=======================   
-                {
-                    icon: 'el-icon-setting',
-                    index: '71',
-                    usertype: 7,
-                    title: '审核流程管理',
-                    subs: [                      
-                        {
-                            icon: 'el-icon-info',
-                            index: '711',
-                            usertype: 7,
-                            title: '采购备案审批（7）',
-                            index: '/sp/purchaselist7'
-                        },                              
-                    ]
-                },    
-                 //====================预约平台端（八）=======================   
+                //====================预约平台端（8）START =======================   
                 {
                     icon: 'el-icon-setting',
                     index: '81',
@@ -217,10 +62,17 @@
                             usertype: 8,
                             title: '检测网点管理',
                             index: '/apply/checkorglist2'
-                        },                                                                                                     
+                        },    
+                        {
+                            icon: 'el-icon-info',
+                            index: '812',
+                            usertype: 8,
+                            title: '账号管理',
+                            index: '/apply/checkorglist2'
+                        },                                                                                                   
                     ]
                 },  
-                 {
+                {
                     icon: 'el-icon-setting',
                     index: '82',
                     usertype: 8,
@@ -235,7 +87,7 @@
                         },                                                                                                   
                     ]
                 },  
-                 {
+                {
                     icon: 'el-icon-setting',
                     index: '83',
                     usertype: 8,
@@ -257,7 +109,9 @@
                         },                                                                                                   
                     ]
                 }, 
-                 //====================预约机构端（八）=======================   
+                //====================预约机构端（）END =======================   
+
+                //====================采集网点（9）START =======================   
                 {
                     icon: 'el-icon-setting',
                     index: '91',
@@ -294,7 +148,11 @@
                         },                                                                                                                            
                     ]
                 },     
-                                {
+                //====================采集网点（9）END =======================  
+                
+                
+                //====================镇级管理员（10）START =======================  
+                {
                     icon: 'el-icon-setting',
                     index: '101',
                     usertype: 10,
@@ -303,40 +161,47 @@
                          {
                             icon: 'el-icon-info',
                             index: '912',
-                            usertype: 9,
+                            usertype: 10,
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
                         },   
                         {
                             icon: 'el-icon-info',
-                            index: '913',
-                            usertype: 9,
+                            index: '1013',
+                            usertype: 10,
                             title: '核酸送样管理',
                             index: '/apply/applylist_town2'
                         },   
                          {
                             icon: 'el-icon-info',
-                            index: '914',
-                            usertype: 9,
+                            index: '1014',
+                            usertype: 10,
                             title: '抗体检测报告管理',
                             index: '/apply/resultlist2'
                         },         
                         {
                             icon: 'el-icon-info',
-                            index: '916',
-                            usertype: 9,
+                            index: '1016',
+                            usertype: 10,
                             title: '采样报告管理',
                             index: '/apply/query'
                         },    
                          {
                             icon: 'el-icon-info',
-                            index: '915',
-                            usertype: 9,
+                            index: '1015',
+                            usertype: 10,
                             title: '预约采集订单处理',
                             index: '/apply/checkhandle'
                         },                                                                                                                            
                     ]
-                },                                                                                                               
+                },   
+                //====================镇级管理员（10）END =======================  
+                
+                //====================县级管理员（11）START =======================  
+                //====================县级管理员（11）END =======================
+
+                //====================检测机构管理员（12）START =======================  
+                //====================检测机构管理员（12）END =======================  
             ];
 
             let userInfo = localStorage.getItem('userinfo');

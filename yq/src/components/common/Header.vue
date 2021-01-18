@@ -40,12 +40,7 @@
         },
         computed:{
             title() {
-                let userinfo = localStorage.getItem('userinfo');
-                userinfo = JSON.parse(userinfo);
-                //usertype '1管理员,2预防支付用户,3其它用户', 根据该参数显示不同菜单
-           
                 return '保定市新冠核酸检测信息管理平台'
-               
             },
             username(){
                 let userinfo = localStorage.getItem('userinfo');

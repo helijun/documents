@@ -2,9 +2,7 @@
   <div class="admin-login login-wrap">
     <div class="login-con">
       <div class="ms-login">
-        <!--<div class="ms-logo"></div>-->
         <div class="ms-title">
-          <!--<span>保定市莲池区医疗机构从业人员执业监督管理系统</span>-->
           <span>保定市</span><br>
           <span>核酸检测预约平台</span>
         </div>
@@ -72,71 +70,52 @@ export default {
     }
   },
   methods: {
-              validate(formName) {
-            return new Promise((resolve, reject) => {
-                this.$refs[formName].validate((valid) => {
-                    if(valid){
-                        resolve()
-                    }
-                });
-            })
-
-        },
+    validate(formName) {
+      return new Promise((resolve, reject) => {
+        this.$refs[formName].validate((valid) => {
+          if(valid){
+            resolve()
+          }
+        });
+      })
+    },
     submitForm(formName) {
-            this.validate(formName).then(() => {
+      this.validate(formName).then(() => {
+        if(this.ruleForm.username == 'gk') {
+          return;
+        }
 
-              if(this.ruleForm.username == 'gk')
-              {
-                return;
-              }
+        axios.post({
+          url: api.login,
+          data: {
+            username: this.ruleForm.username,
+            password: this.ruleForm.password
+          }
+        }).then(res => {
+          if(res.code == 0){
+            localStorage.setItem('userinfo', JSON.stringify(res.data));
+            localStorage.setItem('userid', res.data.userid );
+            localStorage.setItem('userremark', this.ruleForm.username );
+            localStorage.setItem('signPic', res.data.signPic );
+            localStorage.setItem('orgnumber', res.data.business );
+            localStorage.setItem('usertype', res.data.usertype );
 
-                axios.post({
-                    url: api.login,
-                    data: {
-                        username: this.ruleForm.username,
-                        password: this.ruleForm.password
-                }
-                }).then(res => {
-                    if(res.code == 0){
-
-                        localStorage.setItem('userinfo', JSON.stringify(res.data));
-                        localStorage.setItem('userid', res.data.userid );
-                        localStorage.setItem('userremark', this.ruleForm.username );
-                         localStorage.setItem('signPic', res.data.signPic );
-                        localStorage.setItem('orgnumber', res.data.business );
-                        localStorage.setItem('usertype', res.data.usertype );
-
-                        //usertype 1:统一支付平台,2:统一支付卫生院端,3:救护管理员,8
-                        if(res.data.usertype == 1) {
-                            this.$router.push('/system/purchasetotal');
-                        }else if(res.data.usertype == 2) {
-                            this.$router.push('/sp/purchaselist1');
-                        }else if(res.data.usertype == 3) {
-                            this.$router.push('/sp/purchaselist5');
-                        }else if(res.data.usertype == 4) {
-                            this.$router.push('/sp/purchaselist2');
-                        }else if(res.data.usertype == 5) {
-                            this.$router.push('/sp/purchaselist8');
-                        }else if(res.data.usertype == 6) {
-                            this.$router.push('/sp/purchaselist6');
-                        }else if(res.data.usertype == 7) {
-                            this.$router.push('/sp/purchaselist7');
-                        }else if(res.data.usertype == 8) {
-                            this.$router.push('/apply/checkorglist');
-                        }else if(res.data.usertype == 9) {
-                            this.$router.push('/apply/applylist');
-                        }else if(res.data.usertype == 10) {
-                            this.$router.push('/apply/applylist_town');
-                        }
-
-                    }else{
-                        this.$notify.error({
-                            title: '错误',
-                            message: res.message
-                        });
-                    }
-                })
-            })
+            //usertype 1:统一支付平台,2:统一支付卫生院端,3:救护管理员,8
+            if(res.data.usertype == 8) {
+              this.$router.push('/apply/checkorglist');
+            }else if(res.data.usertype == 9) {
+              this.$router.push('/apply/applylist');
+            }else if(res.data.usertype == 10) {
+              this.$router.push('/apply/applylist_town');
+            }
+          }else{
+            this.$notify.error({
+              title: '错误',
+              message: res.message
+            });
+          }
+        })
+      })
     }
   },
   directives: {
@@ -158,7 +137,7 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
-  background: #f0f0f0;
+  background: #34c4a8;
   .login-con {
     width: 100%;
     height: 510px;

@@ -1,7 +1,4 @@
 'use strict'
-// Template version: 1.2.7
-// see http://vuejs-templates.github.io/webpack for documentation.
-
 const path = require('path')
 const PRODENV = require('./prod.env')
 const domain = PRODENV.BASE_URL.replace(/\"/g,"");
@@ -19,14 +16,14 @@ proxyTable[prefix] = {
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/spweb': {
           // target: 'http://localhost:8120/spweb/',
-          target: 'http://ssp22.gk0312.cn:8012/spweb/',
+          // target: 'http://ssp22.gk0312.cn:8012/spweb/',
+          target: 'http://sp.gk0312.cn/spweb/',
           // target: 'http://ssp.gk0312.cn:8010/spweb/',
           // target: 'http://cyry.gk0312.cn/spweb/',//process.env.BASE_URL,
           // target: 'http://ssp2.gk0312.cn/spweb/',//process.env.BASE_URL,

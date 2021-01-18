@@ -61,19 +61,16 @@ export default {
     };
   },
   created() {
-           if(null != this.$route.query.checkOrgNumber)
-        {
-                this.checkOrgNumber= this.$route.query.checkOrgNumber;
-        }
-  },
-  mounted() {
+    if(null != this.$route.query.checkOrgNumber) {
+      this.checkOrgNumber= this.$route.query.checkOrgNumber;
+    }
   },
   methods: {
     goapply() {
       this.$router.push({
         path: "/apply",
         query: {
-          checkOrgNumber: this.checkOrgNumber
+          ...this.$route.query
         }
       });
     },
@@ -81,15 +78,10 @@ export default {
       this.$router.push({
         path: "/helpapply",
         query: {
-          checkOrgNumber: this.checkOrgNumber
+          ...this.$route.query
         }
       });
     },
-    goquery() {
-        alert('正在建设中....');
-    },
-
-
   }
 };
 </script>

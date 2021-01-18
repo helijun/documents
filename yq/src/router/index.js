@@ -34,70 +34,6 @@ export default new Router({
                 },
 
                //=============结束卫生局端系统============
-               //=============开始卫生院端系统============
-               {
-                    path: '/sp/purchaselist1',
-                    component: resolve => require(['../modules/sp/purchaselist1.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist2',
-                    component: resolve => require(['../modules/sp/purchaselist2.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist3',
-                    component: resolve => require(['../modules/sp/purchaselist3.vue'], resolve),
-                    meta: { title: '审批' }
-                },		
-               {
-                    path: '/sp/purchaselist4',
-                    component: resolve => require(['../modules/sp/purchaselist4.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist5',
-                    component: resolve => require(['../modules/sp/purchaselist5.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist6',
-                    component: resolve => require(['../modules/sp/purchaselist6.vue'], resolve),
-                    meta: { title: '审批' }
-                },	
-               {
-                    path: '/sp/purchaselist7',
-                    component: resolve => require(['../modules/sp/purchaselist7.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist8',
-                    component: resolve => require(['../modules/sp/purchaselist8.vue'], resolve),
-                    meta: { title: '审批' }
-                },
-               {
-                    path: '/sp/purchaselist9',
-                    component: resolve => require(['../modules/sp/purchaselist9.vue'], resolve),
-                    meta: { title: '审批' }
-                },	
-               {
-                    path: '/sp/purchaselist10',
-                    component: resolve => require(['../modules/sp/purchaselist10.vue'], resolve),
-                    meta: { title: '审批' }
-                },	
-                {
-                    path: '/sp/purchaserecord',
-                    component: resolve => require(['../modules/sp/purchaserecord.vue'], resolve),
-                    meta: { title: '审批' }
-                },	
-                {
-                    path: '/sp/purchaserecordcheck',
-                    component: resolve => require(['../modules/sp/purchaserecordcheck.vue'], resolve),
-                    meta: { title: '审批' }
-                },	               
-                
-           //=============结束卫生院端系统============
-
             {
                 path: '/apply/applylist',
                 component: resolve => require(['../modules/apply/applylist.vue'], resolve),
@@ -148,9 +84,7 @@ export default new Router({
                 path: '/apply/resultlist2',
                 component: resolve => require(['../modules/apply/resultlist2.vue'], resolve),
                 meta: { title: '检测结果' }
-            }
-                
-            ]
+            }]
         },
         {
             path: '/404',
@@ -177,8 +111,6 @@ export default new Router({
             meta: { title: '审批' },
             component: resolve => require(['../modules/h5/checkinfo.vue'], resolve),
         },
-
-        //--------------
         {                  
             path: '/apply',
             meta: { title: '自助核酸检测申请' },
@@ -245,11 +177,6 @@ export default new Router({
             component: resolve => require(['../modules/wx/applyIndex.vue'], resolve),
         },
         {                  
-            path: '/applyIndex2',
-            meta: { title: '保定市新冠核酸检测预约系统' },
-            component: resolve => require(['../modules/wx/applyIndex2.vue'], resolve),
-        },
-        {                  
             path: '/query',
             meta: { title: '核酸检测结果查询' },
             component: resolve => require(['../modules/wx/query.vue'], resolve),
@@ -265,7 +192,6 @@ export default new Router({
             component: resolve => require(['../modules/wx/checkresult.vue'], resolve),
         },
         
-
         {                  
             path: '/applyhandle',
             meta: { title: '核酸检测处理' },
@@ -296,8 +222,6 @@ export default new Router({
             meta: { title: '核酸检测处理' },
             component: resolve => require(['../modules/wx/checkhandle3.vue'], resolve),
         }, 
-        
-        //----------------
         {
             path: '*',
             redirect: '/404'

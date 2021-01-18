@@ -125,13 +125,10 @@ export default {
       }
     },
 		getcountryData() {
-
-          this.checkOrgNumber = '';
-          this.town = '';
-          this.townData = [];
-          this.orgData = [];
-
-
+      this.checkOrgNumber = '';
+      this.town = '';
+      this.townData = [];
+      this.orgData = [];
 			axios.post({url: api.commn.action,
 				 data: {model:'tb_cityscountry',action:'select',isCache: 1}
 			 }).then(res => {
@@ -146,9 +143,9 @@ export default {
 		},
 		getcountryTown() {
 
-        this.checkOrgNumber = '';
-         this.orgData = [];
-        this.townData = [];
+      this.checkOrgNumber = '';
+      this.orgData = [];
+      this.townData = [];
 			axios.post({url: api.commn.action,
 				 data: {model:'citybyparent',action:'select',code:this.orgArea,isCache: 1}
 			 }).then(res => {
@@ -162,95 +159,68 @@ export default {
           this.$forceUpdate();
     }, 
 		 getData() {
-
-
         this.orgData = [];
-			 axios.post({url: api.commn.action,
-				 data: this.handleData('select',{
-            orgType:'1',
-            payType:this.payType,
-					  town:this.town,
-            orgArea:this.orgArea,
-            isCache: 1
-					 })
-			 }).then(res => {
-				 if (res.code == 0) {
-					 this.orgData = res.data;
-				 } else {
-					 this.$message.error(res.message);
-				 }
+          axios.post({url: api.commn.action,
+            data: this.handleData('select',{
+                orgType:'1',
+                payType:this.payType,
+                town:this.town,
+                orgArea:this.orgArea,
+                isCache: 1
+              })
+          }).then(res => {
+            if (res.code == 0) {
+              this.orgData = res.data;
+            } else {
+              this.$message.error(res.message);
+            }
          });
-          this.$forceUpdate();
+        this.$forceUpdate();
      },
-     	getcheckOrgData() {
-
-      if(null == this.checkOrgNumber || this.checkOrgNumber == '')
-      {
-          alert('请选择采集网点后前住预约');
-          return ;
+    getcheckOrgData() {
+      if(null == this.checkOrgNumber || this.checkOrgNumber == '') {
+        alert('请选择采集网点后前住预约');
+        return ;
       }
- this.goPayPage();
-			// var parm = {};
-			// parm.udpclass = 'OrgInfoSercie';
-      // parm.checkOrgNumber = this.checkOrgNumber;
-			// axios.post({ 
-			// 	url: api.commn.udpAction, 
-			// 	data: parm
-			// 	}).then(res => {
-			// 		if (res.code == 0) {
-      //           var info =  res.data;
-      //           //收费
-      //           if(null != info.payType && info.payType == '1')
-      //           {
-      //             this.goPayPage();
-      //           }else
-      //           {
-      //             this.goFreePage();
-      //           }
-			// 		} else {
-                        
-			// 			this.$message.error(res.message);
-			// 		}
-			// });
+      this.goPayPage();
     },
     goPayPage() {
       this.$router.push({
-        path: "/freeIndex?checkOrgNumber="+this.checkOrgNumber
+        path: "/freeIndex?checkOrgNumber="+this.checkOrgNumber,
+        query: {
+          checkOrgNumber: this.checkOrgNumber,
+          checkOrgName: this.orgData.filter((item) => item.checkOrgNumber == this.checkOrgNumber)[0].orgName
+        }
       });
     },
   }
 };
 </script>
 
-
 <style lang="scss" scoped>
 @import "@/assets/css/common.scss";
-
 .title {
-    &:before {
-        content: ' ';
-
-        margin-right: pxrem(15px);
-    }
-    text-align: center;
-    font-size: pxrem(38px);
-    margin-left: pxrem(10px);
-    padding: pxrem(10px);
-
-
+  &:before {
+      content: ' ';
+      margin-right: pxrem(15px);
+  }
+  text-align: center;
+  font-size: pxrem(38px);
+  margin-left: pxrem(10px);
+  padding: pxrem(10px);
 }
 .title1 {
-    &:before {
-        content: ' ';
+  &:before {
+      content: ' ';
 
-        margin-right: pxrem(15px);
-    }
-    color: #303133;
-    text-align: left;
-    font-size: pxrem(28px);
-    margin-left: pxrem(10px);
-    padding-bottom: pxrem(10px);
-     padding-left: pxrem(-10px);
+      margin-right: pxrem(15px);
+  }
+  color: #303133;
+  text-align: left;
+  font-size: pxrem(28px);
+  margin-left: pxrem(10px);
+  padding-bottom: pxrem(10px);
+  padding-left: pxrem(-10px);
 
 }
 .title2 {
