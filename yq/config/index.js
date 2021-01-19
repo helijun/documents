@@ -16,36 +16,24 @@ proxyTable[prefix] = {
 
 module.exports = {
   dev: {
-    // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/spweb': {
-          target: 'http://hj.gk0312.cn:8011/spweb/',
-          // target: 'http://sp.gk0312.cn/spweb/',
+          // target: 'http://hj.gk0312.cn:8011/spweb/',
+          target: 'http://sp.gk0312.cn/spweb/',
           changeOrigin:true,
           pathRewrite:{
-              '/spweb': ''
+            '/spweb': ''
           }
       }
     },
-    // // Various Dev Server settings
-    // host: 'http://ssp22.gk0312.cn', // can be overwritten by process.env.HOST
-    // port: 8012, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-
-    // host: 'http://ssp2.gk0312.cn', // can be overwritten by process.env.HOST
-    // port: 8010, // 
-
-    // host: 'https://cyry.gk0312.cn', // can be overwritten by process.env.HOST
-    // port: 80, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-
     host:'localhost',
     port:8084,
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
 
     /**
      * Source Maps

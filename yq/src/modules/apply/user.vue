@@ -24,6 +24,7 @@
 						</el-select>
 						<el-input v-model="keyword2" placeholder="请输入关键字查询" @keyup.enter.native="handleSearch" class="handle-input mr10"></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
+						<el-button type="primary" class="admin-btn" @click="handleAdd">增加账户</el-button>
 					</el-col>
 				</el-row>
 			</div>
@@ -68,36 +69,43 @@
 			</span>
 		</el-dialog>
 
-		<el-dialog title="批量导入" :visible.sync="importVisible" width="400px">
-			<el-form ref="importForm" :model="form" label-width="100px">
-				<el-form-item label="选择文件">
-					<el-upload
-					 ref="upload"
-					 v-model="form.filename"
-					 :data="uploadData"
-					 class="upload-demo"
-					 accept="application/msexcel"
-					 name="excelfile"
-					 :file-list="batchAddFileList"
-					 :on-change="handleChange"
-					 :before-remove="beforeRemove"
-					 :on-remove="onRemove"
-					 :on-success="uploadSuccess"
-					 :on-error="uploadError"
-					 :limit="1"
-					 :auto-upload="false"
-					 action="spweb/system/commn/import"
-					 multiple
-					>
-					<div style="text-align:left;" v-show="isOffUpload">点击上传</div>
-					</el-upload>
+		<el-dialog title="增加账户" :visible.sync="addVisible" width="400px">
+			<el-form ref="addForm" :model="addForm" :rules="rules" label-width="117px">
+				<el-form-item label="姓名" prop="applyNumber">
+					<el-input v-model="addForm.applyNumber" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="电话" prop="checkOrgNumber">
+					<el-input v-model="addForm.checkOrgNumber" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="用户类型" prop="checkOrgNumber">
+					<el-select v-model="addForm.usertype" placeholder="请选择账户类型" style="width:200px;">
+						<el-option key="8" label="平台管理员" value="8"></el-option>
+						<el-option key="9" label="采集网点管理员" value="9"></el-option>
+						<el-option key="10" label="镇级管理员" value="10"></el-option>
+						<el-option key="11" label="县级管理员" value="11"></el-option>
+						<el-option key="12" label="检测机构管理员" value="12"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="县级" prop="applyName">
+					<el-select v-model="addForm.orgArea" placeholder="所属县区" @change="getcountryTown" >
+						<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="城镇" prop="applyName">
+					<el-select v-model="addForm.town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
+						<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="登录账号" prop="birthDay">
+					<el-input v-model="addForm.birthDay" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="登录密码" prop="sex">
+					<el-input v-model="addForm.sex" class="handle-input"></el-input>
 				</el-form-item>
 			</el-form>
-			<p class="ipt-text" style="margin-left:2em">*系统已为您下载导入模板，请按要求填写后上传</p>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="importVisible = false">取 消</el-button>
-				<el-button @click="downLoadExcelTemplate">下载模板</el-button>
-				<el-button type="primary" class="admin-btn" @click="saveBatchAdd('importForm')">确 认</el-button>
+				<el-button @click="addVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="saveAdd('addForm')">确 定</el-button>
 			</span>
 		</el-dialog>
 	</div>
@@ -136,11 +144,14 @@ export default {
 			countryData:[],
 			townData:[],
 			checkOrgData:[],
+			newPwd: '',
 			//表单字段
 			form: {
-				checkOrgNumber: "",
-				createTime: "",
-				idcard: "",
+				name: "",
+				tel: "",
+				usertype: "",
+				orgArea: "",
+				town: "",
 				checkTime: "",
 				result: ""
 			},
@@ -461,7 +472,7 @@ export default {
     	width: 221px;
 	}
 	/deep/ .el-upload-list {
-    	width: 400px;
+    	width: 100%;
 	}
 }
 .handle-box {

@@ -67,7 +67,7 @@
                             icon: 'el-icon-info',
                             index: '812',
                             usertype: 8,
-                            title: '账号管理',
+                            title: '系统账号管理',
                             index: '/apply/user'
                         },                                                                                                   
                     ]
@@ -84,6 +84,13 @@
                             usertype: 8,
                             title: '核酸采样管理',
                             index: '/apply/applylist_admin'
+                        },         
+                        {
+                            icon: 'el-icon-info',
+                            index: '1016',
+                            usertype: 10,
+                            title: '采样报告管理',
+                            index: '/apply/query'
                         },                                                                                                   
                     ]
                 },  
@@ -125,20 +132,20 @@
                             title: '预约检测订单管理',
                             index: '/apply/applylist'
                         },   
-                        {
-                            icon: 'el-icon-info',
-                            index: '913',
-                            usertype: 9,
-                            title: '核酸检测报告管理',
-                            index: '/apply/resultlist1'
-                        },   
-                         {
-                            icon: 'el-icon-info',
-                            index: '914',
-                            usertype: 9,
-                            title: '抗体检测报告管理',
-                            index: '/apply/resultlist2'
-                        }, 
+                        // {
+                        //     icon: 'el-icon-info',
+                        //     index: '913',
+                        //     usertype: 9,
+                        //     title: '核酸检测报告管理',
+                        //     index: '/apply/resultlist1'
+                        // },   
+                        //  {
+                        //     icon: 'el-icon-info',
+                        //     index: '914',
+                        //     usertype: 9,
+                        //     title: '抗体检测报告管理',
+                        //     index: '/apply/resultlist2'
+                        // }, 
                          {
                             icon: 'el-icon-info',
                             index: '915',
@@ -172,20 +179,13 @@
                             title: '核酸送样管理',
                             index: '/apply/applylist_town2'
                         },   
-                         {
-                            icon: 'el-icon-info',
-                            index: '1014',
-                            usertype: 10,
-                            title: '抗体检测报告管理',
-                            index: '/apply/resultlist2'
-                        },         
-                        {
-                            icon: 'el-icon-info',
-                            index: '1016',
-                            usertype: 10,
-                            title: '采样报告管理',
-                            index: '/apply/query'
-                        },    
+                        //  {
+                        //     icon: 'el-icon-info',
+                        //     index: '1014',
+                        //     usertype: 10,
+                        //     title: '抗体检测报告管理',
+                        //     index: '/apply/resultlist2'
+                        // },    
                          {
                             icon: 'el-icon-info',
                             index: '1015',

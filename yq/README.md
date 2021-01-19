@@ -107,9 +107,13 @@ spring.datasource.password = lava@123
 
 ### 20210118
 > 登录
+// 平台用户8，采集网点9，镇管理员10，县管理员11，检测网点12
 8:
 yy: 100001001
 9:
 ys：100001001
 10:
 dynzh：100001001
+
+> 服务器目录
+cd /usr/local/nginx/html_sp

@@ -407,7 +407,7 @@ export default {
     	width: 221px;
 	}
 	/deep/ .el-upload-list {
-    	width: 400px;
+    	width: 100%;
 	}
 }
 </style>

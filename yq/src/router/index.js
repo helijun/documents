@@ -73,7 +73,7 @@ export default new Router({
             {
                 path: '/apply/user',
                 component: resolve => require(['../modules/apply/user.vue'], resolve),
-                meta: { title: '账号管理' }
+                meta: { title: '系统账号管理' }
             },	
             {
                 path: '/apply/checkhandle',

@@ -6,6 +6,17 @@
 			<div class="handle-box table-cuoff-line">
 				<el-row type="flex" justify="space-between" align="center">
 					<el-col>
+						<span class="select-tip">县</span>
+						<el-select v-model="orgArea" placeholder="所属县区" @change="getcountryTown" >
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
+						</el-select>
+
+						<span class="select-tip">镇</span>
+						<el-select v-model="town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+						</el-select>
 						<div class="select-tip">检测时间</div>
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
@@ -111,6 +122,10 @@ export default {
 			 ids: "",// 待删除的后台编号
 			 idx: -1,// 待删除的界面列表索
 			 checkOrgData:[],
+			countryData:[],
+			townData:[],
+			orgArea: '',
+			town: '',
 			 //表单字段
 			 form: {
 				 checkOrgNumber: "",
@@ -169,8 +184,9 @@ export default {
 	 mounted() {
 	 },
 	 created() {
-		 this.getData();
-		 this.getcheckOrgData();
+		this.getData();
+		this.getcheckOrgData();
+		this.getcountryData();
 	 },
 	 methods: {
 		 //搜索查询方法
@@ -187,6 +203,28 @@ export default {
 			 }
 			 return _data;
 		 },
+		getcountryData() {
+			axios.post({url: api.commn.action,
+				 data: {model:'tb_cityscountry',action:'select'}
+			 }).then(res => {
+				 if (res.code == 0) {
+					 this.countryData = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		},
+		getcountryTown() {
+			axios.post({url: api.commn.action,
+				 data: {model:'citybyparent',action:'select',code:this.orgArea}
+			 }).then(res => {
+				 if (res.code == 0) {
+					 this.townData = res.data;
+				 } else {
+					 this.$message.error(res.message);
+				 }
+				 });
+		},
 		 //获得编号方法
 		 getNumber(){
 			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'comnNumber'} }).then(res => {
@@ -238,7 +276,8 @@ export default {
 					 limit: this.cur_size,
 					 startTime: moment(this.recordDate[0]).format("YYYY-MM-DD"),
 					 endTime: moment(this.recordDate[1]).format("YYYY-MM-DD"),
-					 town:localStorage.getItem('userremark'),
+					 town:this.town,
+					 orgArea:this.orgArea,
 					 })
 			 }).then(res => {
 				 this.is_loading = false;
@@ -395,7 +434,7 @@ export default {
     	width: 221px;
 	}
 	/deep/ .el-upload-list {
-    	width: 400px;
+    	width: 100%;
 	}
 }
 </style>

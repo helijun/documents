@@ -330,7 +330,7 @@ export default {
 							 this.addVisible = false;
 							 this.$message.success("增加成功");
 							 this.getData();
-							 this.doSaveAddPayOrgUser(1);
+							 // this.doSaveAddPayOrgUser(1);
 							 this.updateorgdata();
 						 } else {
 							 this.$message.error(res.message);

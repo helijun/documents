@@ -8,7 +8,9 @@
 					<el-col>
 						<div class="select-tip">预约时间</div>
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
-						
+						<div class="select-tip">检测时间</div>
+						<el-date-picker class="mgr--12" v-model="checkDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+
 						<div v-if="usertype != 9" class="select-tip">采集网点</div>
                         <el-select v-if="usertype != 9" v-model="checkOrgNumber" placeholder="采集网点" :change="select_stauts"  @change="select_stauts"  style="width:100px;">
 							<el-option key="" label="全部" value=""></el-option>
@@ -55,6 +57,7 @@
 				<el-table-column prop="tel" label="电话"/>
 				<el-table-column prop="idcard" label="身份证号"/>
 				<el-table-column prop="helpPersonName" label="代理申请人 "/>
+				<el-table-column prop="checkTime" label="检测时间 "/>
 				<el-table-column prop="stateName" label="采集状态"/>
 				<el-table-column prop="noNumber" label="试管编号"/>
 				<el-table-column prop="payTypeName" label="订单类型"/>
@@ -259,6 +262,10 @@ export default {
 		 		moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
 				moment(new Date().getTime() + 3600 * 1000 * 24 * 2).format("YYYY-MM-DD"),
 			 ],
+			 checkDate: [
+		 		moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
+				moment(new Date().getTime() + 3600 * 1000 * 24 * 2).format("YYYY-MM-DD"),
+			 ],
 			 //时间控件
 			 pickerOptions: {
 				 shortcuts: [
@@ -370,29 +377,29 @@ export default {
 		 },
 		 //查询列表数据方法
 		 getData() {
-			 this.is_loading = true;
-
-		
-			 axios.post({url: api.commn.action,
-				 data: this.handleData('select',{
-					 start: (this.cur_page - 1) * this.cur_size,
-					 limit: this.cur_size,
-					 state:this.state,
-					 payType:this.payType,
-					 checkOrgNumber:this.checkOrgNumber,
-					 startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-					 endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-					 keyWord: this.select_word
-					 })
-			 }).then(res => {
-				 this.is_loading = false;
-				 if (res.code == 0) {
-					 this.tableData = res.data;
-					 this.total = res.sumsize;
-				 } else {
-					 this.$message.error(res.message);
-				 }
-				 });
+			this.is_loading = true;
+			axios.post({url: api.commn.action,
+				data: this.handleData('select',{
+					start: (this.cur_page - 1) * this.cur_size,
+					limit: this.cur_size,
+					state:this.state,
+					payType:this.payType,
+					checkOrgNumber:this.checkOrgNumber,
+					startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
+					endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+					startCheckTime: moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss"),
+					endCheckTime: moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss"), 
+					keyWord: this.select_word
+					})
+			}).then(res => {
+				this.is_loading = false;
+				if (res.code == 0) {
+					this.tableData = res.data;
+					this.total = res.sumsize;
+				} else {
+					this.$message.error(res.message);
+				}
+			});
 		 },
 		 // 新增数据方法
 		 saveAdd(formName) {
@@ -550,8 +557,11 @@ export default {
 @import "static/css/base.scss";
 @import "static/css/base-company.scss";
 .upload-con {
-height: 32px;
-line-height: 32px;
-overflow: hidden;
+	height: 32px;
+	line-height: 32px;
+	overflow: hidden;
+}
+.select-tip {
+    margin-bottom: 20px;
 }
 </style>
