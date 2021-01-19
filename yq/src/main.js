@@ -27,7 +27,7 @@ Vue.use(Print);
 // import BaiduMap from 'vue-baidu-map'
 // Vue.use(BaiduMap, {ak: '7HzRWKqlj0QnO5M51DrXbqMmsyloM3AB'})
 Vue.use(VideoPlayer);
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 100000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = PRODENV.API_PREFIX.replace(/\"/g,"");
 Vue.prototype.$axios = axios;

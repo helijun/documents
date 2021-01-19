@@ -34,7 +34,7 @@
 						{{['','','','','','','','','平台管理员','采集网点管理员','镇级管理员','县级管理员','检测机构管理员'][Number(scope.row.usertype)]}}
 					</template>
 				</el-table-column>
-				<el-table-column prop="orgNumber" label="关系机构"/>
+				<el-table-column prop="orgName" label="关系机构"/>
 				<el-table-column prop="name" label="用户姓名"/>
 				<el-table-column prop="tel" label="联系电话"/>
 				<el-table-column prop="username" label="用户名"/>

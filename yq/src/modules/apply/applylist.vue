@@ -36,9 +36,9 @@
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字"  style="width:120px;"></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
-						<el-button type="primary" class="admin-btn" @click="handleExport3">导出</el-button>
-						<el-button type="primary" class="admin-btn" @click="handleExport">导出统计表</el-button>
-						<el-button type="primary" class="admin-btn" @click="handleExport2">导出检验科报表</el-button>
+						<el-button type="primary" v-show="total < 10000" class="admin-btn" @click="handleExport3">导出</el-button>
+						<el-button type="primary" v-show="total < 10000" class="admin-btn" @click="handleExport">导出统计表</el-button>
+						<el-button type="primary" v-show="total < 10000" class="admin-btn" @click="handleExport2">导出检验科报表</el-button>
 						
 					</el-col>
 					<!--<el-button type="primary" class="admin-btn" @click="handleAdd">增加预约检测订单</el-button>-->
@@ -305,13 +305,17 @@ export default {
 	 created() {
 
 		let userid = localStorage.getItem('orgnumber');
-		 this.usertype = localStorage.getItem('usertype');
-		
+		this.usertype = localStorage.getItem('usertype');
 		if(null != userid && 'null' != userid)
 		{
 			this.checkOrgNumber = userid;
 		}
-
+		
+		let userinfo = localStorage.getItem('userinfo');
+			userinfo = JSON.parse(userinfo);
+		if (userinfo.orgNumber && userinfo.usertype == 9) {
+			this.checkOrgNumber = userinfo.orgNumber;
+		}
 		 this.getData();
 		 this.getcheckOrgData();
 	 },
