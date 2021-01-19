@@ -6,13 +6,13 @@
 			<div class="handle-box table-cuoff-line">
 				<el-row type="flex" justify="space-between" align="center">
 					<el-col>
-						<span class="select-tip">县</span>
+						<span class="select-tip">县区</span>
 						<el-select v-model="orgArea" placeholder="所属县区" @change="getcountryTown" >
 							<el-option key="" label="全部" value=""></el-option>
 							<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
 						</el-select>
 
-						<span class="select-tip">镇</span>
+						<span class="select-tip">镇街</span>
 						<el-select v-model="town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
 							<el-option key="" label="全部" value=""></el-option>
 							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>

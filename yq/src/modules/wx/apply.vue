@@ -88,7 +88,7 @@
             </mt-popup>
 
             
-        <mt-popup
+        <!-- <mt-popup
                 v-model="popupRelationVisible"
                 position="bottom"
                 popup-transition="popup-fade">
@@ -100,7 +100,7 @@
                         :slots="relations"
                         @change="onValuesChangeRelation"
                     ></mt-picker>
-            </mt-popup>
+            </mt-popup> -->
 
             <mt-popup
                 v-model="popupDepVisible"
@@ -226,6 +226,7 @@ export default {
 
         if(null != this.$route.query.checkOrgNumber) {
             this.checkOrgNumber= this.$route.query.checkOrgNumber;
+            this.addForm.checkOrgNumber= this.$route.query.checkOrgNumber;
         }
         if(null != this.$route.query.checkOrgName) {
             this.addForm.checkOrgName= this.$route.query.checkOrgName;
@@ -246,7 +247,6 @@ export default {
 
         init(){
 			 this.getNumber();
-			 this.addForm.checkOrgNumber = '';
 			 this.addForm.applyName = '';
 			 this.addForm.birthDay = '';
 			 this.addForm.sex = '';
@@ -318,15 +318,14 @@ export default {
             },
 
         selectSex() {
- 
             this.popupSexVisible = !this.popupSexVisible;
             this.addForm.sex = this.currentpopupSexValue.text;
         },
-        selectRelation() {
-            this.popupRelationVisible = !this.popupRelationVisible;
-            this.addForm.checkOrgNumber = this.popupRelationVisible.value;
-            this.addForm.checkOrgName = this.popupRelationVisible.text;
-        },
+        // selectRelation() {
+        //     this.popupRelationVisible = !this.popupRelationVisible;
+        //     this.addForm.checkOrgNumber = this.popupRelationVisible.value;
+        //     this.addForm.checkOrgName = this.popupRelationVisible.text;
+        // },
         
         onValuesChange(picker, values) {
             console.log('onValuesChange', values)
@@ -405,8 +404,6 @@ export default {
             },
         //验证
         validate() {
-
-        
             if(!this.addForm.applyNumber){
                 Toast('请填写预约编号');
                 return false;

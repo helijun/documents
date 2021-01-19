@@ -107,6 +107,8 @@ export default {
               this.$router.push('/apply/applylist');
             }else if(res.data.usertype == 10) {
               this.$router.push('/apply/applylist_town');
+            }else if(res.data.usertype == 11) {
+              this.$router.push('/apply/applylist_town');
             }
           }else{
             this.$notify.error({

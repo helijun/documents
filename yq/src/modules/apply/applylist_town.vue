@@ -7,7 +7,9 @@
 				<el-row type="flex" justify="space-between" align="center">
 					<el-col>
 						<div class="select-tip">预约时间</div>
-						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="true" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<div class="select-tip">检测时间</div>
+						<el-date-picker class="mgr--12" v-model="checkDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="true" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 
 						<div  class="select-tip">采集网点</div>
                         <el-select v-model="checkOrgNumber" placeholder="采集网点" :change="select_stauts"  @change="select_stauts" style="width:150px;">
@@ -57,6 +59,7 @@
 				<el-table-column prop="tel" label="电话"/>
 				<el-table-column prop="idcard" label="身份证号"/>
 				<el-table-column prop="helpPersonName" label="代理申请人 "/>
+				<el-table-column prop="checkTime" label="检测时间 "/>
 				<el-table-column prop="stateName" label="采集状态"/>
 				<el-table-column prop="noNumber" label="试管编号"/>
 				<el-table-column prop="payTypeName" label="订单类型"/>
@@ -236,6 +239,11 @@ export default {
 		 		moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
 				moment(new Date().getTime() + 3600 * 1000 * 24 * 2).format("YYYY-MM-DD"),
 			 ],
+			 //时间控件 
+			 checkDate: [
+		 		moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
+				moment(new Date().getTime() + 3600 * 1000 * 24 * 2).format("YYYY-MM-DD"),
+			 ],
 			 //时间控件
 			 pickerOptions: {
 				 shortcuts: [
@@ -282,7 +290,6 @@ export default {
 			this.town = userid;
 		}
 		
-		//alert(this.town);
 
 		this.getorgData();
 		this.getSendOrgData();
@@ -290,6 +297,18 @@ export default {
 		
 	
 	 },
+	computed: {
+		currentTown(){
+			let userinfo = localStorage.getItem('userinfo');
+			userinfo = JSON.parse(userinfo);
+			return userinfo ? userinfo.town : '';
+		},
+		currentOrgArea(){
+			let userinfo = localStorage.getItem('userinfo');
+			userinfo = JSON.parse(userinfo);
+			return userinfo ? userinfo.orgArea : '';
+		},
+	},
 	 methods: {
 		 //搜索查询方法
 		 search() {
@@ -427,15 +446,18 @@ export default {
 		 getData() {
 			 this.is_loading = true;
 			var parm = {
-					 start: (this.cur_page - 1) * this.cur_size,
-					 limit: this.cur_size,
-					 state:this.state,
-					 payType:this.payType,
-					 townareacode:this.town,
-					 checkOrgNumber:this.checkOrgNumber,
-					 startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-					 endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-					 keyWord: this.select_word
+						start: (this.cur_page - 1) * this.cur_size,
+						limit: this.cur_size,
+						state:this.state,
+						payType:this.payType,
+						countryareacode: this.currentOrgArea,
+						townareacode: this.currentTown,
+						checkOrgNumber:this.checkOrgNumber,
+						startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+						endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
+						startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+						endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
+						keyWord: this.select_word
 					 }
 
 	
@@ -650,5 +672,7 @@ export default {
 height: 32px;
 line-height: 32px;
 overflow: hidden;
+}.select-tip {
+    margin-bottom: 20px;
 }
 </style>

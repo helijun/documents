@@ -13,12 +13,12 @@
 							<el-option key="11" label="县级管理员" value="11"></el-option>
 							<el-option key="12" label="检测机构管理员" value="12"></el-option>
 						</el-select>
-						<span class="select-tip">县</span>
+						<span class="select-tip">县区</span>
 						<el-select v-model="orgArea" placeholder="所属县区" @change="getcountryTown" >
 							<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
 						</el-select>
 
-						<span class="select-tip">镇</span>
+						<span class="select-tip">镇街</span>
 						<el-select v-model="town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
 							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
 						</el-select>
@@ -38,10 +38,10 @@
 				<el-table-column prop="name" label="用户姓名"/>
 				<el-table-column prop="tel" label="联系电话"/>
 				<el-table-column prop="username" label="用户名"/>
-                <el-table-column label="操作" width="280">
+                <el-table-column label="操作" width="180">
                     <template slot-scope="scope">
-                        <!-- <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+                        <!-- <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
+                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 						<el-button size="small" type="warning" @click="handleReset(scope.$index, scope.row)">重置密码</el-button>
                     </template>
                 </el-table-column>
@@ -71,13 +71,13 @@
 
 		<el-dialog title="增加账户" :visible.sync="addVisible" width="400px">
 			<el-form ref="addForm" :model="addForm" :rules="rules" label-width="117px">
-				<el-form-item label="姓名" prop="applyNumber">
-					<el-input v-model="addForm.applyNumber" class="handle-input"></el-input>
+				<el-form-item label="姓名" prop="name">
+					<el-input v-model="addForm.name" class="handle-input"></el-input>
 				</el-form-item>
-				<el-form-item label="电话" prop="checkOrgNumber">
-					<el-input v-model="addForm.checkOrgNumber" class="handle-input"></el-input>
+				<el-form-item label="电话" prop="tel">
+					<el-input v-model="addForm.tel" class="handle-input"></el-input>
 				</el-form-item>
-				<el-form-item label="用户类型" prop="checkOrgNumber">
+				<el-form-item label="用户类型" prop="usertype">
 					<el-select v-model="addForm.usertype" placeholder="请选择账户类型" style="width:200px;">
 						<el-option key="8" label="平台管理员" value="8"></el-option>
 						<el-option key="9" label="采集网点管理员" value="9"></el-option>
@@ -86,21 +86,26 @@
 						<el-option key="12" label="检测机构管理员" value="12"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="县级" prop="applyName">
-					<el-select v-model="addForm.orgArea" placeholder="所属县区" @change="getcountryTown" >
+				<el-form-item label="所属县区" v-show="addForm.usertype != 8">
+					<el-select v-model="addForm.orgArea" placeholder="所属县区" @change="getcountryTown(addForm.orgArea)" >
 						<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="城镇" prop="applyName">
+				<el-form-item label="所属镇街" v-show="addForm.usertype == 9 || addForm.usertype == 10 || addForm.usertype == 12">
 					<el-select v-model="addForm.town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
 						<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="登录账号" prop="birthDay">
-					<el-input v-model="addForm.birthDay" class="handle-input"></el-input>
+				<el-form-item label="检测机构" v-show="addForm.usertype == 9 || addForm.usertype == 12">
+					<el-select v-model="addForm.town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
+						<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+					</el-select>
 				</el-form-item>
-				<el-form-item label="登录密码" prop="sex">
-					<el-input v-model="addForm.sex" class="handle-input"></el-input>
+				<el-form-item label="登录账号" prop="username">
+					<el-input v-model="addForm.username" class="handle-input"></el-input>
+				</el-form-item>
+				<el-form-item label="登录密码" prop="password">
+					<el-input v-model="addForm.password" class="handle-input"></el-input>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
@@ -133,7 +138,16 @@ export default {
 			resetVisible: false,//重置密码
 			isOffUpload: true,//批量导入上传完成与否标识
 			uploadData: {model:'tb_check_result2',fields:'name,idcard,result,checkTime,checkOrgNumber'},//批量导入带的参数
-			addForm: {},//增加表单
+			// 增加表单
+			addForm: {
+				name: "",
+				tel: "",
+				usertype: "",
+				orgArea: "",
+				town: "",
+				username: "",
+				password: ""
+			},
 			editForm: {},//修改表单
 			ids: "",// 待删除的后台编号
 			idx: -1,// 待删除的界面列表索
@@ -152,16 +166,18 @@ export default {
 				usertype: "",
 				orgArea: "",
 				town: "",
-				checkTime: "",
-				result: ""
+				username: "",
+				password: ""
 			},
 			//表单验证规则，需绑定到对应表单中
 			rules: {
-				checkOrgNumber: [{ required: true, message: "请填写申请机构" }],
-				createTime: [{ required: true, message: "请填写创建时间" }],
-				idcard: [{ required: true, message: "请填写身份证号" }],
-				checkTime: [{ required: true, message: "请填写检查时间" }],
-				result: [{ required: true, message: "请填写结果" }]
+				name: [{ required: true, message: "请填写姓名" }],
+				tel: [{ required: true, message: "请填写电话" }],
+				usertype: [{ required: true, message: "请选择用户类型" }],
+				orgArea: [{ required: true, message: "请填写县区" }],
+				town: [{ required: true, message: "请填写镇街" }],
+				username: [{ required: true, message: "请填写账号" }],
+				password: [{ required: true, message: "请填写密码" }]
 			},
 			//时间控件 
 			recordDate: [
@@ -232,9 +248,9 @@ export default {
 				 }
 				 });
 		},
-		getcountryTown() {
+		getcountryTown(code) {
 			axios.post({url: api.commn.action,
-				 data: {model:'citybyparent',action:'select',code:this.orgArea}
+				 data: {model: 'citybyparent', action:'select',code: code || this.orgArea}
 			 }).then(res => {
 				 if (res.code == 0) {
 					 this.townData = res.data;
@@ -260,11 +276,7 @@ export default {
 		},
 		//弹出增加界面方法
 		handleAdd() {
-			this.addForm.checkOrgNumber = '';
-			this.addForm.createTime = '';
-			this.addForm.idcard = '';
-			this.addForm.checkTime = '';
-			this.addForm.result = '';
+			this.$data.addForm = Object.assign({}, this.$data.addForm, this.$options.data().addForm);
 			this.addVisible = true;
 		},
 		//弹出修改界面方法
@@ -276,7 +288,7 @@ export default {
 		//弹出删除界面框方法
 		handleDelete(index, row) {
 			this.idx = index;
-			this.ids = row.idcard;
+			this.ids = row.userid;
 			this.delVisible = true;
 		},
 		// 重置密码		
@@ -342,7 +354,7 @@ export default {
 		saveAdd(formName) {
 			if (this.$refs[formName]) {
 				this.$refs[formName].validate(valid => {
-					if (valid) {axios.post({ url: api.commn.action, data: this.handleData('insert',this.addForm) }).then(res => {
+					if (valid) {axios.post({ url: 'system/user/add', data: this.addForm }).then(res => {
 						if (res.code == 0) {
 							this.addVisible = false;
 							this.$message.success("增加成功");
@@ -381,7 +393,7 @@ export default {
 		},
 		//删除数据方法
 		deleteRow(){
-			axios.post({ url: api.commn.action, data: this.handleData('deleteById',{ idcard: this.ids }) }).then(res => {
+			axios.post({ url: 'system/user/delete', data: { userids: this.ids }}).then(res => {
 				if (res.code == 0) {
 					this.delVisible = false;
 					this.tableData.splice(this.idx, 1);

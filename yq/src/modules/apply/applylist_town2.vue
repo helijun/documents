@@ -7,9 +7,9 @@
 				<el-row type="flex" justify="space-between" align="center">
 					<el-col>
 						<div class="select-tip">送检时间</div>
-						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="true" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<div class="select-tip">检测时间</div>
-						<el-date-picker class="mgr--12" v-model="checkDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<el-date-picker class="mgr--12" v-model="checkDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="true" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						
 						<div class="select-tip">采集网点</div>
                         <el-select v-model="checkOrgNumber" placeholder="采集网点" :change="select_stauts"  @change="select_stauts" style="width:200px;">
@@ -426,10 +426,10 @@ export default {
 				payType:this.payType,
 				townareacode:this.town,
 				checkOrgNumber:this.checkOrgNumber,
-				sstartTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-				sendTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-				startCheckTime: moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-				endCheckTime: moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss"), 
+				startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+				endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
+				startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+				endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
 				keyWord: this.select_word
 			}
 		

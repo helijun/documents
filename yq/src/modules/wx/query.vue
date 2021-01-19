@@ -103,25 +103,29 @@ export default {
 
         getResult1() {
 
-			 axios.post({url: api.commn.action,
-				 data: {idcard:this.keyWord2,model:'tb_check_result1',action:'selectDetail'}
-			 }).then(res => {
-				
-				 if (res.code == 0) {
-                this.result1 = res.data;
+          axios.post({url: api.commn.action,
+            data: {
+              idcard: this.keyWord2,
+              // model: 'tb_check_result1',
+              model: 'Newtb_check_result1',
+              action:'selectDetail'
+              // action:'selectNew'
+            }
+          }).then(res => {
+            if (res.code == 0) {
+              this.result1 = res.data;
 
-                if(null != this.result1)
-                {
-                   this.goVehicleInfo(this.result1.idcard);
-                }else
-                {
-                  alert('未查到您的检测结果');
-                }
-               
-				 } else {
-					 this.$message.error(res.message);
-				 }
-				 });
+              if(null != this.result1)
+              {
+                  this.goVehicleInfo(this.result1.idcard);
+              }else
+              {
+                alert('未查到您的检测结果');
+              }
+            } else {
+              this.$message.error(res.message);
+            }
+          });
         },
 
     goVehicleInfo(idcard) {

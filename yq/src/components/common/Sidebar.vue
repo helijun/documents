@@ -89,7 +89,7 @@
                             icon: 'el-icon-info',
                             index: '1016',
                             usertype: 10,
-                            title: '采样报告管理',
+                            title: '采集统计管理',
                             index: '/apply/query'
                         },                                                                                                   
                     ]
@@ -165,20 +165,20 @@
                     usertype: 10,
                     title: '预约管理平台',
                     subs: [                      
-                         {
+                        {
                             icon: 'el-icon-info',
                             index: '912',
                             usertype: 10,
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
                         },   
-                        {
-                            icon: 'el-icon-info',
-                            index: '1013',
-                            usertype: 10,
-                            title: '核酸送样管理',
-                            index: '/apply/applylist_town2'
-                        },   
+                        // {
+                        //     icon: 'el-icon-info',
+                        //     index: '1013',
+                        //     usertype: 10,
+                        //     title: '核酸送样管理',
+                        //     index: '/apply/applylist_town2'
+                        // },   
                         //  {
                         //     icon: 'el-icon-info',
                         //     index: '1014',
@@ -190,7 +190,7 @@
                             icon: 'el-icon-info',
                             index: '1015',
                             usertype: 10,
-                            title: '预约采集订单处理',
+                            title: '预约采集统计',
                             index: '/apply/checkhandle'
                         },                                                                                                                            
                     ]
@@ -203,14 +203,21 @@
                     index: '101',
                     usertype: 11,
                     title: '预约管理平台',
-                    subs: [                      
-                         {
+                    subs: [            
+                        {
                             icon: 'el-icon-info',
                             index: '912',
                             usertype: 11,
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
-                        }, 
+                        },      
+                        {
+                            icon: 'el-icon-info',
+                            index: '1015',
+                            usertype: 11,
+                            title: '预约采集统计',
+                            index: '/apply/checkhandle'
+                        },  
                     ]
                 }   
                 //====================县级管理员（11）END =======================
