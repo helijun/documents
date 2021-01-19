@@ -65,8 +65,6 @@ import api from "@/services/api";
 import { Toast, Button } from "mint-ui";
 import lrz from "lrz";
 
-
-document.title = "保定市新冠核酸检测信息管理平台";
 export default {
   components: { Button
    },

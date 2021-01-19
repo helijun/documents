@@ -11,6 +11,10 @@
     <div id="app"></div>
 </body>
 <script>
-    document.title = '保定市新冠核酸检测信息管理平台'
+    var title = '保定市新冠核酸检测信息管理平台';
+    if(window.location.hostname == 'localhost'){
+        title = 'VUE 3.0 测试 DEMO'
+    }
+    document.title = title;
 </script>
 </html>

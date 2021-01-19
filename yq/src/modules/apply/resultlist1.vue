@@ -136,9 +136,12 @@ export default {
 				 result: [{ required: true, message: "请填写结果" }]
 			 },
 			 //时间控件 
+			//  recordDate: [
+			// 	 moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
+			// 	 moment(new Date()).format("YYYY-MM-DD")
+			//  ],
 			 recordDate: [
-				 moment(new Date().getTime() - 3600 * 1000 * 24 * 30).format("YYYY-MM-DD"),
-				 moment(new Date()).format("YYYY-MM-DD")
+				'', ''
 			 ],
 			 //时间控件
 			 pickerOptions: {
@@ -244,8 +247,8 @@ export default {
 				 data: this.handleData('select',{
 					 start: (this.cur_page - 1) * this.cur_size,
 					 limit: this.cur_size,
-					 startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-					 endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+					 startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+					 endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 checkOrgNumber:this.checkOrgNumber,
 					 keyWord: this.select_word
 					 })

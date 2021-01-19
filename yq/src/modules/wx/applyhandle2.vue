@@ -62,7 +62,6 @@ import { Toast, Button,Actionsheet  } from "mint-ui";
 import wx from 'weixin-js-sdk'
 import $ from 'jquery'
 
-document.title = "保定市新冠核酸检测信息管理平台";
 export default {
   components: { Button },
   data() {

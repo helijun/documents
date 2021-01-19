@@ -110,6 +110,6 @@ spring.datasource.password = lava@123
 8:
 yy: 100001001
 9:
-ys：123456
+ys：100001001
 10:
 dynzh：100001001

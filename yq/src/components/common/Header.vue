@@ -40,7 +40,7 @@
         },
         computed:{
             title() {
-                return '保定市新冠核酸检测信息管理平台'
+                return process.env.NODE_ENV == 'production'? '保定市新冠核酸检测信息管理平台': 'VUE 3.0 测试'
             },
             username(){
                 let userinfo = localStorage.getItem('userinfo');

@@ -72,7 +72,6 @@ let ruleForm = {
     checkstate: "",
     qrcode:""
 };
-document.title = "保定市新冠核酸检测信息管理平台";
 export default {
     data() {
         return {

@@ -21,14 +21,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/spweb': {
-          // target: 'http://localhost:8120/spweb/',
-          // target: 'http://ssp22.gk0312.cn:8012/spweb/',
-          target: 'http://sp.gk0312.cn/spweb/',
-          // target: 'http://ssp.gk0312.cn:8010/spweb/',
-          // target: 'http://cyry.gk0312.cn/spweb/',//process.env.BASE_URL,
-          // target: 'http://ssp2.gk0312.cn/spweb/',//process.env.BASE_URL,
-          //target: 'http://ssp22.gk0312.cn/spweb/',//process.env.BASE_URL,
-          //target: 'http://ssp2.gk0312.cn/spweb/',//process.env.BASE_URL,
+          target: 'http://hj.gk0312.cn:8011/spweb/',
+          // target: 'http://sp.gk0312.cn/spweb/',
           changeOrigin:true,
           pathRewrite:{
               '/spweb': ''
