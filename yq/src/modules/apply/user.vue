@@ -78,7 +78,7 @@
 					<el-input v-model="addForm.tel" class="handle-input"></el-input>
 				</el-form-item>
 				<el-form-item label="用户类型" prop="usertype">
-					<el-select v-model="addForm.usertype" placeholder="请选择账户类型" style="width:200px;">
+					<el-select v-model="addForm.usertype" placeholder="请选择账户类型" style="width:200px;" @change="getcheckOrgData">
 						<el-option key="8" label="平台管理员" value="8"></el-option>
 						<el-option key="9" label="采集网点管理员" value="9"></el-option>
 						<el-option key="10" label="镇级管理员" value="10"></el-option>
@@ -91,14 +91,14 @@
 						<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="所属镇街" v-show="addForm.usertype == 9 || addForm.usertype == 10 || addForm.usertype == 12">
-					<el-select v-model="addForm.town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
+				<el-form-item label="所属镇街" v-show="addForm.usertype == 9 || addForm.usertype == 10">
+					<el-select v-model="addForm.town" placeholder="所属镇街" :change="getcheckOrgData"  @change="getcheckOrgData" >
 						<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="检测机构" v-show="addForm.usertype == 9 || addForm.usertype == 12">
-					<el-select v-model="addForm.town" placeholder="所属镇街" :change="select_stauts"  @change="select_stauts" >
-						<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+					<el-select v-model="addForm.orgNumber" placeholder="检测机构" class="handle-input">
+						<el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.checkOrgNumber"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="登录账号" prop="username">
@@ -166,6 +166,7 @@ export default {
 				usertype: "",
 				orgArea: "",
 				town: "",
+				orgNumber: "",
 				username: "",
 				password: ""
 			},
@@ -252,12 +253,39 @@ export default {
 			axios.post({url: api.commn.action,
 				 data: {model: 'citybyparent', action:'select',code: code || this.orgArea}
 			 }).then(res => {
-				 if (res.code == 0) {
-					 this.townData = res.data;
-				 } else {
-					 this.$message.error(res.message);
-				 }
-				 });
+				if (res.code == 0) {
+					this.townData = res.data;
+				} else {
+					this.$message.error(res.message);
+				}
+			});
+			this.getcheckOrgData();
+		},
+		getcheckOrgData() {
+			let orgType = '';
+			if (this.addForm.usertype == '9') {
+				orgType = '1';
+			} else if (this.addForm.usertype == '12') {
+				orgType = '2';
+			} 
+			axios.post({url: api.commn.action,
+            data: {
+				model: 'tb_check_org',
+				action: 'select',
+				orgType: orgType,
+                town: orgType == 2 ? '' : this.addForm.town,
+                orgArea: this.addForm.orgArea,
+              }
+          }).then(res => {
+            if (res.code == 0) {
+			  this.checkOrgData = res.data;
+			  if (this.checkOrgData.length == 0) {
+				this.addForm.orgName = '';
+			  }
+            } else {
+              this.$message.error(res.message);
+            }
+         });
 		},
 		//获得编号方法
 		getNumber(){

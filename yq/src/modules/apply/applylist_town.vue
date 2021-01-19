@@ -11,6 +11,12 @@
 						<div class="select-tip">检测时间</div>
 						<el-date-picker class="mgr--12" v-model="checkDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd HH:mm" :clearable="true" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 
+						<div class="select-tip" v-show="currentUsertype == 11">镇街</div>
+						<el-select v-model="town" placeholder="所属镇街" @change="getorgData" v-show="currentUsertype == 11" >
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+						</el-select>
+
 						<div  class="select-tip">采集网点</div>
                         <el-select v-model="checkOrgNumber" placeholder="采集网点" :change="select_stauts"  @change="select_stauts" style="width:150px;">
 							<el-option key="" label="全部" value=""></el-option>
@@ -18,7 +24,7 @@
                         </el-select>
 
 						<div class="select-tip">状态</div>
-                        <el-select v-model="state" placeholder="采集网点" :change="select_stauts"  @change="select_stauts"  style="width:150px;">
+                        <el-select v-model="state" placeholder="采集网点" :change="select_stauts"  @change="select_stauts" >
                             <el-option key="" label="全部" value=""></el-option>
                             <el-option key="0" label="未采集" value="0"></el-option>
                             <el-option key="1" label="已采集" value="1"></el-option>
@@ -26,7 +32,7 @@
                         </el-select>
 
 						<div class="select-tip">订单类型</div>
-                        <el-select v-model="payType" placeholder="订单类型" :change="select_stauts"  @change="select_stauts"  style="width:150px;">
+                        <el-select v-model="payType" placeholder="订单类型" :change="select_stauts"  @change="select_stauts">
                             <el-option key="" label="全部" value=""></el-option>
                             <el-option key="1" label="免费" value="1"></el-option>
                             <el-option key="2" label="自费" value="2"></el-option>
@@ -37,7 +43,7 @@
 						<el-input v-model="select_word" placeholder="要查询关键字"  style="width:150px;"></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
 
-						<el-button type="primary" class="admin-btn" @click="handlesendsimple">检测送样</el-button>
+						<!-- <el-button type="primary" class="admin-btn" @click="handlesendsimple">检测送样</el-button> -->
 						<el-button type="primary" class="admin-btn" @click="handleExport3">导出</el-button>
 						<!--<el-button type="primary" class="admin-btn" @click="handleExport">导出统计表</el-button>
 						<el-button type="primary" class="admin-btn" @click="handleExport2">导出检验科报表</el-button>-->
@@ -289,15 +295,20 @@ export default {
 		{
 			this.town = userid;
 		}
-		
-
+		if (this.currentUsertype == 11) {
+			this.getcountryTown();
+		}
 		this.getorgData();
 		this.getSendOrgData();
 		this.getData();
-		
 	
 	 },
 	computed: {
+		currentUsertype(){
+			let userinfo = localStorage.getItem('userinfo');
+			userinfo = JSON.parse(userinfo);
+			return userinfo ? userinfo.usertype : '';
+		},
 		currentTown(){
 			let userinfo = localStorage.getItem('userinfo');
 			userinfo = JSON.parse(userinfo);
@@ -338,7 +349,7 @@ export default {
 		},
 		getcountryTown() {
 			axios.post({url: api.commn.action,
-				 data: {model:'citybyparent',action:'select',code:this.orgArea}
+				 data: {model:'citybyparent',action:'select',code:this.currentOrgArea}
 			 }).then(res => {
 				 if (res.code == 0) {
 					 this.townData = res.data;
@@ -361,7 +372,7 @@ export default {
 			 axios.post({url: api.commn.action,
 				 data: this.handleData2('select',{
 					 orgType:'1',
-					 town:this.town,
+					 town:this.town || this.currentTown,
 					 })
 			 }).then(res => {
 				 if (res.code == 0) {
@@ -451,7 +462,7 @@ export default {
 						state:this.state,
 						payType:this.payType,
 						countryareacode: this.currentOrgArea,
-						townareacode: this.currentTown,
+						townareacode: this.town || this.currentTown,
 						checkOrgNumber:this.checkOrgNumber,
 						startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 						endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',

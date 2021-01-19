@@ -32,7 +32,8 @@
             </section>
           </article>
         <div class="content">
-            <img :src="ruleForm.applyNumberqc" style="width:50vw;height:50vw;" alt="缴费凭证二维码">
+            <!-- <img :src="ruleForm.applyNumberqc" style="width:50vw;height:50vw;" alt="缴费凭证二维码"> -->
+            <div class="qrcode" id="qrcode" ref="qrcode"></div>
             
             <div v-if="isNotgk">
             <h4 style="color:red">请及时截屏并保存好此检查凭证二维码</h4>
@@ -51,6 +52,7 @@ import axios from '@/services/axios';
 import api from '@/services/api';
 import utils from '@/utils/index';
 import HomeWechat from '@/components/common/HeaderWechat.vue';
+import QRCode from 'qrcodejs2';
 let ruleForm = {
     ordernumber: "",
     orgnumber: "",
@@ -120,6 +122,11 @@ export default {
                       {
                            this.isNotgk = true;
                       }
+                      this.$nextTick(() => {
+                        setTimeout(() => {
+                            this.qrcode();
+                        }, 100)
+                        })
                       this.updatepaystate();
 				 } else {
 					 this.$message.error(res.message);
@@ -138,6 +145,14 @@ export default {
 				 }
                  });
         },
+        qrcode() {  
+            let qrcodenew = new QRCode('qrcode', {
+                width: 150,
+                height: 150,
+                render: 'table',
+                text: this.ruleForm.applyNumber
+            })
+        }
     }
 }
 </script>
@@ -311,6 +326,12 @@ article {
             width: 100%;
             background-color: $base-color;
         }
+    }
+}
+/deep/.qrcode {
+    img {
+
+        margin: 10px auto;
     }
 }
 </style>

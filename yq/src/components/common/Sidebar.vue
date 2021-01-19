@@ -85,13 +85,13 @@
                             title: '核酸采样管理',
                             index: '/apply/applylist_admin'
                         },         
-                        {
-                            icon: 'el-icon-info',
-                            index: '1016',
-                            usertype: 10,
-                            title: '采集统计管理',
-                            index: '/apply/query'
-                        },                                                                                                   
+                        // {
+                        //     icon: 'el-icon-info',
+                        //     index: '1016',
+                        //     usertype: 10,
+                        //     title: '采集统计管理',
+                        //     index: '/apply/query'
+                        // },                                                                                                   
                     ]
                 },  
                 {
@@ -186,13 +186,13 @@
                         //     title: '抗体检测报告管理',
                         //     index: '/apply/resultlist2'
                         // },    
-                         {
-                            icon: 'el-icon-info',
-                            index: '1015',
-                            usertype: 10,
-                            title: '预约采集统计',
-                            index: '/apply/checkhandle'
-                        },                                                                                                                            
+                        //  {
+                        //     icon: 'el-icon-info',
+                        //     index: '1015',
+                        //     usertype: 10,
+                        //     title: '预约采集统计',
+                        //     index: '/apply/checkhandle'
+                        // },                                                                                                                            
                     ]
                 },   
                 //====================镇级管理员（10）END =======================  
@@ -211,15 +211,38 @@
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
                         },      
+                        // {
+                        //     icon: 'el-icon-info',
+                        //     index: '1015',
+                        //     usertype: 11,
+                        //     title: '预约采集统计',
+                        //     index: '/apply/checkhandle'
+                        // },  
+                    ]
+                },
+                {
+                    icon: 'el-icon-tickets',
+                    index: '183',
+                    usertype: 12,
+                    title: '检测报告管理',
+                    subs: [                          
                         {
                             icon: 'el-icon-info',
-                            index: '1015',
-                            usertype: 11,
-                            title: '预约采集统计',
-                            index: '/apply/checkhandle'
-                        },  
+                            index: '1833',
+                            usertype: 12,
+                            title: '核酸检测报告管理',
+                            index: '/apply/resultlist1'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '1834',
+                            usertype: 12,
+                            title: '抗体检测报告管理',
+                            index: '/apply/resultlist2'
+                        },                                                                                                   
                     ]
-                }   
+                },   
+
                 //====================县级管理员（11）END =======================
 
                 //====================检测机构管理员（12）START =======================  

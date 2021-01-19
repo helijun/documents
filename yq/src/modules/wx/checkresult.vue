@@ -30,8 +30,8 @@
       <div class="title">采集信息</div>
       <div style="background-color:#EBF0F6;padding:4px">
         <table style="98%">
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">姓名：</div><div class="div-info-item-value">{{applyInfo.applyName}}</div></div></td></tr>
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">身份证号：</div><div class="div-info-item-value">{{applyInfo.idcard}}</div></div></td></tr>
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">姓名：</div><div class="div-info-item-value">{{applyInfo.applyName || result1.name}}</div></div></td></tr>
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">身份证号：</div><div class="div-info-item-value">{{applyInfo.idcard || result1.idcard}}</div></div></td></tr>
           <tr><td><div class="div-info-row"><div class="div-info-cell-title">采集网点：</div><div class="div-info-item-value">{{applyInfo.checkOrgName}}</div></div></td></tr>
           <tr><td><div class="div-info-row"><div class="div-info-cell-title">采集时间：</div><div class="div-info-item-value">{{applyInfo.applyTime}}</div></div></td></tr>
         </table> 
@@ -117,7 +117,7 @@ export default {
         getResult1() {
     
 			 axios.post({url: api.commn.action,
-				 data: {idcard:this.idcard,model:'tb_check_result1',action:'selectDetail'}
+				 data: {idcard:this.idcard,model:'Newtb_check_result1',action:'selectDetail'}
 			 }).then(res => {
 				
 				 if (res.code == 0) {

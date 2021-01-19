@@ -19,6 +19,7 @@
     "mint-ui": "^2.2.13",
     "moment": "^2.27.0",
     "node-sass": "^4.9.2",
+    "qrcodejs2": "^0.0.2",
     "vue": "^2.5.16",
     "vue-baidu-map": "^0.21.22",
     "vue-cropperjs": "^2.2.0",
