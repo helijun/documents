@@ -82,7 +82,7 @@
 					</el-upload>
 				</el-form-item>
 			</el-form>
-			<p class="ipt-text" style="margin-left:2em">*系统已为您下载导入模板，请按要求填写后上传</p>
+			<p class="ipt-text" style="margin-left:2em">*特别提示：请严格按照模板来填写数据，特别是时间格式，请认真检测。上传的数据文件只支持Excel2003格式，若数据较多，请拆分成多个文件，单个文件不能超过10M。</p>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="importVisible = false">取 消</el-button>
 				<el-button @click="downLoadExcelTemplate">下载模板</el-button>

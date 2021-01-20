@@ -223,6 +223,31 @@
                 {
                     icon: 'el-icon-tickets',
                     index: '183',
+                    usertype: 11,
+                    title: '检测报告管理',
+                    subs: [                          
+                        {
+                            icon: 'el-icon-info',
+                            index: '11833',
+                            usertype: 11,
+                            title: '核酸检测报告管理',
+                            index: '/apply/resultlist1'
+                        },   
+                         {
+                            icon: 'el-icon-info',
+                            index: '11834',
+                            usertype: 11,
+                            title: '抗体检测报告管理',
+                            index: '/apply/resultlist2'
+                        },                                                                                                   
+                    ]
+                },   
+                //====================县级管理员（11）END =======================
+
+                //====================检测机构管理员（12）START =======================
+                {
+                    icon: 'el-icon-tickets',
+                    index: '183',
                     usertype: 12,
                     title: '检测报告管理',
                     subs: [                          
@@ -241,11 +266,7 @@
                             index: '/apply/resultlist2'
                         },                                                                                                   
                     ]
-                },   
-
-                //====================县级管理员（11）END =======================
-
-                //====================检测机构管理员（12）START =======================  
+                },     
                 //====================检测机构管理员（12）END =======================  
             ];
 
