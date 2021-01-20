@@ -45,6 +45,11 @@ export default new Router({
                 meta: { title: '采样送检管理' }
             },	
             {
+                path: '/apply/applylist_record',
+                component: resolve => require(['../modules/apply/applylist_record.vue'], resolve),
+                meta: { title: '人员档案管理' }
+            },	
+            {
                 path: '/apply/applylist_town',
                 component: resolve => require(['../modules/apply/applylist_town.vue'], resolve),
                 meta: { title: '核酸采样管理' }
@@ -222,6 +227,11 @@ export default new Router({
             path: '/checkhandle2',
             meta: { title: '核酸检测处理' },
             component: resolve => require(['../modules/wx/checkhandle2.vue'], resolve),
+        }, 
+        {                  
+            path: '/checkhandle3',
+            meta: { title: '核酸检测处理' },
+            component: resolve => require(['../modules/wx/checkhandle3.vue'], resolve),
         }, 
         {                  
             path: '/checkhandle3',

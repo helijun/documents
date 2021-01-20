@@ -21,78 +21,20 @@
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
 					</el-col>
-					<!-- <el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
-					<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button> -->
 				</el-row>
 			</div>
-			<!-- 开始查询条件 -->
-			<!-- 开始数据列表 -->
 			<el-table v-if="!is_loading" :data="tableData" border style="width: 100%" ref="multipleTable">
 				<el-table-column prop="orgName" label="县区"/>
 				<el-table-column prop="checked" label="已检数"/>
 				<el-table-column prop="total" label="总计数"/>
 				<el-table-column prop="testOrgNumber" label="检测机构编号"/>
-				
-				<!--<el-table-column label="操作" width="180" fixed="right">
-				<template slot-scope="scope">
-					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-					<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-				</template>
-				</el-table-column>-->
 				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
 			</el-table>
-			<!-- 开始分页控件 -->
 			<div v-show="!is_loading" v-if="total>cur_size" class="pagination">
 				<el-pagination  @current-change="handleCurrentChange"  layout="prev, pager, next, jumper, ->, total" :total="total" :current-page="cur_page"/>
 			</div>
-			<!-- 结束分页控件 -->
-			<!-- 结束数据列表 -->
 		</div>
-		<!-- 结束列表 -->
 
-		<!-- 开始删除提示框 -->
-		<el-dialog title="提示" :visible.sync="delVisible" width="400px" center>
-			<div class="del-dialog-cnt">是否确定删除？</div>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="delVisible = false">取 消</el-button>
-				<el-button type="primary" class="admin-btn" @click="deleteRow">确 定</el-button>
-			</span>
-		</el-dialog>
-		<!-- 结束删除提示框 -->
-		<!-- 开始批量导入弹出框 -->
-		<el-dialog title="批量导入" :visible.sync="importVisible" width="400px">
-			<el-form ref="importForm" :model="form" label-width="100px">
-				<el-form-item label="选择文件">
-					<el-upload
-					 ref="upload"
-					 v-model="form.filename"
-					 :data="uploadData"
-					 class="upload-demo"
-					 accept="application/msexcel"
-					 name="excelfile"
-					 :file-list="batchAddFileList"
-					 :on-change="handleChange"
-					 :before-remove="beforeRemove"
-					 :on-remove="onRemove"
-					 :on-success="uploadSuccess"
-					 :on-error="uploadError"
-					 :limit="1"
-					 :auto-upload="false"
-					 action="spweb/system/commn/import"
-					 multiple
-					>
-					<div style="text-align:left;" v-show="isOffUpload">点击上传</div>
-					</el-upload>
-				</el-form-item>
-			</el-form>
-			<p class="ipt-text" style="margin-left:2em">*特别提示：请严格按照模板来填写数据，特别是时间格式，请认真检测。上传的数据文件只支持Excel2003格式，若数据较多，请拆分成多个文件，单个文件不能超过10M。</p>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="importVisible = false">取 消</el-button>
-				<el-button @click="downLoadExcelTemplate">下载模板</el-button>
-				<el-button type="primary" class="admin-btn" @click="saveBatchAdd('importForm')">确 认</el-button>
-			</span>
-		</el-dialog>
-		<!-- 结束批量导入弹出框 -->
 	</div>
 </template>
 <script> 
@@ -100,7 +42,7 @@ import axios from "@/services/axios";
 import api from "@/services/api";
 import moment from 'moment'
 export default {
-	 name: "tb_check_result2",//页面名称
+	 name: "tb_check_query",//页面名称
 	 data() {
 		 return {
 			 tableData: [],//列表数据

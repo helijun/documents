@@ -15,9 +15,9 @@
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字" class="handle-input" ></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
+						<el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
+						<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button>
 					</el-col>
-					<el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
-					<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button>
 				</el-row>
 			</div>
 			<!-- 开始查询条件 -->
@@ -61,22 +61,23 @@
 			<el-form ref="importForm" :model="form" label-width="100px">
 				<el-form-item label="选择文件">
 					<el-upload
-					 ref="upload"
-					 v-model="form.filename"
-					 :data="uploadData"
-					 class="upload-demo"
-					 accept="application/msexcel"
-					 name="excelfile"
-					 :file-list="batchAddFileList"
-					 :on-change="handleChange"
-					 :before-remove="beforeRemove"
-					 :on-remove="onRemove"
-					 :on-success="uploadSuccess"
-					 :on-error="uploadError"
-					 :limit="1"
-					 :auto-upload="false"
-					 action="spweb/system/commn/import"
-					 multiple
+						ref="upload"
+						v-model="form.filename"
+						:data="uploadData"
+						class="upload-demo"
+						accept="application/msexcel"
+						name="excelfile"
+						:file-list="batchAddFileList"
+						:on-change="handleChange"
+						:before-remove="beforeRemove"
+						:before-upload="beforeUpload"
+						:on-remove="onRemove"
+						:on-success="uploadSuccess"
+						:on-error="uploadError"
+						:limit="1"
+						:auto-upload="false"
+						action="spweb/system/commn/import"
+						multiple
 					>
 					<div style="text-align:left;" v-show="isOffUpload">点击上传</div>
 					</el-upload>
@@ -186,72 +187,71 @@ export default {
 	 methods: {
 		 //搜索查询方法
 		 search() {
-			 this.cur_page = 1;
-			 this.getData();
+			this.cur_page = 1;
+			this.getData();
 		 },
 		 //表单提交前处理数据方法
 		 handleData(action,_data) {
-			 if(null != _data)
-			 {
-				 _data.model = 'tb_check_result2';
-				 _data.action = action;
-			 }
-			 return _data;
+			if(null != _data) {
+				_data.model = 'tb_check_result2';
+				_data.action = action;
+			}
+			return _data;
 		 },
 		 //获得编号方法
 		 getNumber(){
-			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'comnNumber'} }).then(res => {
-				 if (res.code == 0) {
-					 return res.data;
-				 } else {
-					 return null;
-				 }
-			 });
+			axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'comnNumber'} }).then(res => {
+				if (res.code == 0) {
+					return res.data;
+				} else {
+					return null;
+				}
+			});
 		 },
 		 //分页导航方法
 		 handleCurrentChange(val) {
-			 this.cur_page = val;
-			 this.getData();
+			this.cur_page = val;
+			this.getData();
 		 },
 		 //弹出增加界面方法
 		 handleAdd() {
-			 this.addForm.checkOrgNumber = '';
-			 this.addForm.createTime = '';
-			 this.addForm.idcard = '';
-			 this.addForm.checkTime = '';
-			 this.addForm.result = '';
-			 this.addVisible = true;
+			this.addForm.checkOrgNumber = '';
+			this.addForm.createTime = '';
+			this.addForm.idcard = '';
+			this.addForm.checkTime = '';
+			this.addForm.result = '';
+			this.addVisible = true;
 		 },
 		 //弹出修改界面方法
 		 handleEdit(index, row) {
-			 this.idx = index;
-			 this.editForm = Object.assign({}, row);
-			 this.editVisible = true;
+			this.idx = index;
+			this.editForm = Object.assign({}, row);
+			this.editVisible = true;
 		 },
 		 //弹出删除界面框方法
 		 handleDelete(index, row) {
-			 this.idx = index;
-			 this.ids = row.idcard;
-			 this.delVisible = true;
+			this.idx = index;
+			this.ids = row.idcard;
+			this.delVisible = true;
 		 },
 		 //弹出批量导入界面框方法
 		 batchAddDevice() {
-			 this.batchAddFileList = [];
-			 this.isOffUpload = true;
-			 this.importVisible = true;
+			this.batchAddFileList = [];
+			this.isOffUpload = true;
+			this.importVisible = true;
 		 },
 		 //查询列表数据方法
 		 getData() {
 			 this.is_loading = true;
 			 axios.post({url: api.commn.action,
 				 data: this.handleData('select',{
-					 start: (this.cur_page - 1) * this.cur_size,
-					 limit: this.cur_size,
-					 startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
-					 endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
-					 checkOrgNumber:this.checkOrgNumber,
-					 keyWord: this.select_word
-					 })
+						start: (this.cur_page - 1) * this.cur_size,
+						limit: this.cur_size,
+						startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+						endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
+						checkOrgNumber:this.checkOrgNumber,
+						keyWord: this.select_word
+					})
 			 }).then(res => {
 				 this.is_loading = false;
 				 if (res.code == 0) {
@@ -335,6 +335,13 @@ export default {
 		 //批量导入之移除文件前处理方法
 		 beforeRemove(file, fileList) {
 			 return this.$confirm(`确定移除 ${file.name}？`);
+		 },
+		 beforeUpload(file) {
+			const isLt2M = file.size / 1024 / 1024 < 10;
+			if (!isLt2M) {
+				this.$message.error('上传文件大小不能超过 10MB!');
+			}
+			return isLt2M;
 		 },
 		 //批量导入之移除文件后处理方法
 		 onRemove(file, fileList) {

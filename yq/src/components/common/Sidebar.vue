@@ -171,7 +171,14 @@
                             usertype: 10,
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
-                        },   
+                        },                   
+                        {
+                            icon: 'el-icon-info',
+                            index: '9122',
+                            usertype: 10,
+                            title: '人员档案管理',
+                            index: '/apply/applylist_record'
+                        },     
                         // {
                         //     icon: 'el-icon-info',
                         //     index: '1013',

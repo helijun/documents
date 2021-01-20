@@ -10,14 +10,14 @@
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<div class="select-tip">检测机构</div>
                         <el-select v-model="checkOrgNumber" placeholder="检测机构" :change="select_stauts"  @change="select_stauts" class="handle-input">
-                                <el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
+                            <el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
                         </el-select>
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字" class="handle-input" ></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
+						<el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
+						<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button>
 					</el-col>
-					<el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
-					<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button>
 				</el-row>
 			</div>
 			<!-- 开始查询条件 -->
@@ -60,23 +60,25 @@
 		<el-dialog title="批量导入" :visible.sync="importVisible" width="400px">
 			<el-form ref="importForm" :model="form" label-width="100px">
 				<el-form-item label="选择文件">
+					
+						<!-- accept="application/msexcel" -->
 					<el-upload
-					 ref="upload"
-					 v-model="form.filename"
-					 :data="uploadData"
-					 class="upload-demo"
-					 accept="application/msexcel"
-					 name="excelfile"
-					 :file-list="batchAddFileList"
-					 :on-change="handleChange"
-					 :before-remove="beforeRemove"
-					 :on-remove="onRemove"
-					 :on-success="uploadSuccess"
-					 :on-error="uploadError"
-					 :limit="1"
-					 :auto-upload="false"
-					 action="spweb/system/commn/import"
-					 multiple
+						ref="upload"
+						v-model="form.filename"
+						:data="uploadData"
+						class="upload-demo"
+						name="excelfile"
+						:file-list="batchAddFileList"
+						:on-change="handleChange"
+						:before-upload="beforeUpload"
+						:before-remove="beforeRemove"
+						:on-remove="onRemove"
+						:on-success="uploadSuccess"
+						:on-error="uploadError"
+						:limit="1"
+						:auto-upload="false"
+						action="spweb/system/commn/import"
+						multiple
 					>
 					<div style="text-align:left;" v-show="isOffUpload">点击上传</div>
 					</el-upload>
@@ -239,6 +241,13 @@ export default {
 			 this.batchAddFileList = [];
 			 this.isOffUpload = true;
 			 this.importVisible = true;
+		 },
+		 beforeUpload(file) {
+			const isLt2M = file.size / 1024 / 1024 < 10;
+			if (!isLt2M) {
+				this.$message.error('上传文件大小不能超过 10MB!');
+			}
+			return isLt2M;
 		 },
 		 //查询列表数据方法
 		 getData() {
