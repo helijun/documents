@@ -217,7 +217,14 @@
                             usertype: 11,
                             title: '核酸采样管理',
                             index: '/apply/applylist_town'
-                        },      
+                        },     
+                        {
+                            icon: 'el-icon-info',
+                            index: '9812',
+                            usertype: 11,
+                            title: '系统账号管理',
+                            index: '/apply/userx'
+                        },     
                         // {
                         //     icon: 'el-icon-info',
                         //     index: '1015',

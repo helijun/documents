@@ -46,7 +46,7 @@
                 fullscreen: false,
                 name: 'linxin',
                 message: 2,
-                resetVisible: '',
+                resetVisible: false,
                 newPwd: '',
             }
         },
@@ -64,24 +64,10 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if (command == 'updatePwd') {
-
+                    this.resetVisible = true;
                 }
                 if(command == 'loginout'){
-                    axios.post({
-                        url: api.logout
-                    }).then(res => {
-                        let userinfo = localStorage.getItem('userinfo');
-                        userinfo = JSON.parse(userinfo);
-
-                        let url = '/login';
-   
-                        localStorage.removeItem('userinfo');
-                        localStorage.removeItem('userid');
-                        localStorage.removeItem('userremark');
-                        localStorage.removeItem('userbusiness');
-
-                        this.$router.push(url);
-                    })
+                    this.logout();
                 }
             },
             // 侧边栏折叠
@@ -115,7 +101,47 @@
                     }
                 }
                 this.fullscreen = !this.fullscreen;
-            }
+            },
+            logout() {
+                axios.post({
+                    url: api.logout
+                }).then(res => {
+                    let userinfo = localStorage.getItem('userinfo');
+                    userinfo = JSON.parse(userinfo);
+
+                    let url = '/login';
+
+                    localStorage.removeItem('userinfo');
+                    localStorage.removeItem('userid');
+                    localStorage.removeItem('userremark');
+                    localStorage.removeItem('userbusiness');
+
+                    this.$router.push(url);
+                })
+            },
+            handledoReset() {
+                if (!this.newPwd) {
+                    this.$message.error('请输入新密码');
+                    return;
+                }
+                
+                axios.post({
+                    url: 'system/user/resetpwd',
+                    data: {
+                        password: this.newPwd,
+                        userid: localStorage.getItem('userid')
+                    }
+                }).then(res => {
+                    this.is_loading = false;
+                    if (res.code == 0) {
+                        this.$message.success('密码修改成功！');
+                        this.resetVisible = false;
+                        this.logout();
+                    } else {
+                        this.$message.error(res.message);
+                    }
+                });
+            },
         },
         mounted(){
             if(document.body.clientWidth < 980){

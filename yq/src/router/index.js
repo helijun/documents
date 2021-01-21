@@ -81,6 +81,11 @@ export default new Router({
                 meta: { title: '系统账号管理' }
             },	
             {
+                path: '/apply/userx',
+                component: resolve => require(['../modules/apply/userx.vue'], resolve),
+                meta: { title: '系统账号管理' }
+            },	
+            {
                 path: '/apply/checkhandle',
                 component: resolve => require(['../modules/apply/checkhandle.vue'], resolve),
                 meta: { title: '检测采集处理' }
