@@ -18,11 +18,21 @@
                         {{username}} <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item divided  command="updatePwd">修改密码</el-dropdown-item>
                         <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </div>
         </div>
+
+        <el-dialog title="重置密码" :visible.sync="resetVisible" width="320px" center>
+			<span class="select-tip">新密码：</span>
+			<el-input v-model="newPwd" placeholder="请输入新密码" class="handle-input mr10" width="100%"></el-input>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="resetVisible = false">取 消</el-button>
+				<el-button type="primary" class="admin-btn" @click="handledoReset">确 定</el-button>
+			</span>
+		</el-dialog>
     </div>
 </template>
 <script>
@@ -35,7 +45,9 @@
                 collapse: false,
                 fullscreen: false,
                 name: 'linxin',
-                message: 2
+                message: 2,
+                resetVisible: '',
+                newPwd: '',
             }
         },
         computed:{
@@ -51,6 +63,9 @@
         methods:{
             // 用户名下拉菜单选择事件
             handleCommand(command) {
+                if (command == 'updatePwd') {
+
+                }
                 if(command == 'loginout'){
                     axios.post({
                         url: api.logout
