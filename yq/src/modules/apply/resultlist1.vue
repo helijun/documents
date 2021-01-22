@@ -8,6 +8,11 @@
 					<el-col>
 						<div class="select-tip">检测时间</div>
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<div class="select-tip" v-if="usertype == 11">所属镇街</div>
+						<el-select v-if="usertype == 11" v-model="town" placeholder="所属镇街" :change="getData"  @change="getorgData"  style="width:200px;">
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+						</el-select>
 						<div class="select-tip">检测机构</div>
                         <el-select v-model="checkOrgNumber" placeholder="检测机构" :change="select_stauts"  @change="select_stauts" class="handle-input">
                             <el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
@@ -102,6 +107,7 @@ export default {
 	 name: "tb_check_result1",//页面名称
 	 data() {
 		 return {
+			 usertype: localStorage.getItem('usertype') || '',
 			 tableData: [],//列表数据
 			 checkOrgNumber:'',
 			 batchAddFileList: [],//批量导入所选文件列表
@@ -118,6 +124,7 @@ export default {
 			 uploadData:{model:'tb_check_result1',fields:'name,idcard,result,checkTime,checkOrgNumber'},//批量导入带的参数
 			 addForm: {},//增加表单
 			 editForm: {},//修改表单
+			 town: '',
 			 ids: "",// 待删除的后台编号
 			 idx: -1,// 待删除的界面列表索
 			 checkOrgData:[],
@@ -179,10 +186,18 @@ export default {
 			 }
 		 };
 	 },
+		computed: {
+			currentOrgArea(){
+				let userinfo = localStorage.getItem('userinfo');
+				userinfo = JSON.parse(userinfo);
+				return userinfo ? userinfo.orgArea : '';
+			},
+		},
 	 mounted() {
 	 },
 	 created() {
 		 this.getData();
+		 this.getcountryTown();
 		 this.getcheckOrgData();
 	 },
 	 methods: {
@@ -258,7 +273,9 @@ export default {
 					 limit: this.cur_size,
 					 startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
-					 checkOrgNumber:this.checkOrgNumber,
+					 checkOrgNumber: this.checkOrgNumber,
+					 town: this.usertype == '11' ? this.town: '',
+					 orgArea: this.usertype == '11' ? this.currentOrgArea: '',
 					 keyWord: this.select_word
 					 })
 			 }).then(res => {
@@ -385,26 +402,38 @@ export default {
 				 });
 		},
 		handleExport(){
-
-        let params = {
-            title: '',
-			excelType: '1',
-			udpclass:'ExcelService',
-        };
-        
-       this.is_loading = true;
-        axios.get({
-            url: api.commn.udpAction,
-            data:params
-        }).then(res => {
-            console.log(api.commn.exportFile, ' success', res)
-            if(res.code == 0){
-                this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
-            }else{
-               this.is_loading = false;
-            }
-        })
-        },
+			let params = {
+				title: '',
+				excelType: '1',
+				udpclass:'ExcelService',
+				town: this.usertype == '11' ? this.town: '',
+				orgArea: this.usertype == '11' ? this.currentOrgArea: '',
+			};
+			
+			this.is_loading = true;
+				axios.get({
+					url: api.commn.udpAction,
+					data:params
+				}).then(res => {
+					console.log(api.commn.exportFile, ' success', res)
+					if(res.code == 0){
+						this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
+					}else{
+					this.is_loading = false;
+					}
+				})
+		},
+		getcountryTown() {
+			axios.post({url: api.commn.action,
+				 	data: {model:'citybyparent',action:'select',code:this.currentOrgArea}
+			 	}).then(res => {
+					if (res.code == 0) {
+						this.townData = res.data;
+					} else {
+						this.$message.error(res.message);
+					}
+         	});
+		},
 	 },
 };
 </script>
