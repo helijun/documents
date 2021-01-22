@@ -15,7 +15,8 @@
 						</el-select>
 						<div class="select-tip">检测机构</div>
                         <el-select v-model="checkOrgNumber" placeholder="检测机构" :change="select_stauts"  @change="select_stauts" class="handle-input">
-                            <el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
+                            <el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
                         </el-select>
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字" class="handle-input" ></el-input>
@@ -194,6 +195,7 @@ export default {
 			},
 		},
 	 mounted() {
+		this.uploadData.orgArea = this.usertype == '11' ? this.currentOrgArea: '';
 	 },
 	 created() {
 		 this.getData();
