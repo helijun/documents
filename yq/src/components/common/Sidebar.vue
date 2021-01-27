@@ -282,6 +282,24 @@
                     ]
                 },     
                 //====================检测机构管理员（12）END =======================  
+
+                //====================公安局（13）START =======================
+                {
+                    icon: 'el-icon-tickets',
+                    index: '283',
+                    usertype: 13,
+                    title: '报告管理',
+                    subs: [                          
+                        {
+                            icon: 'el-icon-info',
+                            index: '1833',
+                            usertype: 13,
+                            title: '报告管理',
+                            index: '/apply/gnj'
+                        }                                                                                               
+                    ]
+                },     
+                //====================公安局（13）END =======================  
             ];
 
             let userInfo = localStorage.getItem('userinfo');

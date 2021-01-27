@@ -543,8 +543,8 @@ export default {
 			countryareacode:this.orgArea,
 			checkOrgNumber:this.checkOrgNumber,
 			payType:this.payType,
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 			keyWord: this.select_word
         };
         	if(params.townareacode !='' && params.countryareacode != '')
@@ -577,8 +577,8 @@ export default {
 			countryareacode:this.orgArea,
 			checkOrgNumber:this.checkOrgNumber,
 			payType:this.payType,
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 			keyWord: this.select_word
         };
             if(params.townareacode !='' && params.countryareacode != '')
@@ -609,8 +609,8 @@ export default {
 			payType:this.payType,
 			townareacode:this.town,
 			countryareacode:this.orgArea,
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 			keyWord: this.select_word
         };
             if(params.townareacode !='' && params.countryareacode != '')
