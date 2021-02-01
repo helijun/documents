@@ -78,13 +78,22 @@ export default {
     };
   },
   created() {
-    if(null != localStorage.getItem("currentIndex"))
-    {
-      this.currentIndex = localStorage.getItem("currentIndex");
-    }
     if(null != localStorage.getItem("checkcount"))
     {
        this.checkcount = localStorage.getItem("checkcount");
+    }
+    if(null != localStorage.getItem("currentIndex"))
+    {
+      let currentIndex = localStorage.getItem("currentIndex");
+      if (Number(currentIndex) != 1 && Number(currentIndex) > Number(this.checkcount)) {
+        Toast('本次核验已完成，请输入新的试管编号');
+        this.noNumber = '';
+        this.currentIndex = 1;
+        this.isScan = false;
+      } else {
+        this.currentIndex = currentIndex;
+        this.isScan = true;
+      }
     }
     if(null != localStorage.getItem("noNumber"))
     {

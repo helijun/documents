@@ -457,5 +457,7 @@ export default {
 height: 32px;
 line-height: 32px;
 overflow: hidden;
+}.select-tip {
+    margin-bottom: 20px;
 }
 </style>

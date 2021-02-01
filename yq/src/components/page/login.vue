@@ -111,6 +111,8 @@ export default {
               this.$router.push('/apply/applylist_town');
             }else if(res.data.usertype == 12) {
               this.$router.push('/apply/resultlist1');
+            }else if(res.data.usertype == 13) {
+              this.$router.push('/apply/gnj');
             }
           }else{
             this.$notify.error({

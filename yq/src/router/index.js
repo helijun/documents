@@ -81,6 +81,11 @@ export default new Router({
                 meta: { title: '系统账号管理' }
             },	
             {
+                path: '/apply/gnj',
+                component: resolve => require(['../modules/apply/gnj.vue'], resolve),
+                meta: { title: '报告管理' }
+            },	
+            {
                 path: '/apply/userx',
                 component: resolve => require(['../modules/apply/userx.vue'], resolve),
                 meta: { title: '系统账号管理' }

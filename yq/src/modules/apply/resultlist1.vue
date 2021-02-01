@@ -8,14 +8,25 @@
 					<el-col>
 						<div class="select-tip">检测时间</div>
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
+						<div class="select-tip">所属县区</div>
+						<el-select v-model="orgArea" v-if="usertype == 8" placeholder="所属县区" :change="getcountryTown"  @change="getcountryTown" style="width:200px;">
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in countryData" :key="i" :label="item.name" :value="item.code"></el-option>
+						</el-select>
+						<div class="select-tip" v-if="usertype == 8 || usertype == 11">所属镇街</div>
+						<el-select v-if="usertype == 8 || usertype == 11" v-model="town" placeholder="所属镇街" :change="getData"  @change="getcheckOrgData"  style="width:200px;">
+							<el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in townData" :key="i" :label="item.text" :value="item.value"></el-option>
+						</el-select>
 						<div class="select-tip">检测机构</div>
                         <el-select v-model="checkOrgNumber" placeholder="检测机构" :change="select_stauts"  @change="select_stauts" class="handle-input">
-                            <el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
+                            <el-option key="" label="全部" value=""></el-option>
+							<el-option v-for="(item, i) in checkOrgData" :key="i" :label="item.orgName" :value="item.orgName"></el-option>
                         </el-select>
 						<div class="select-tip">关键字</div>
 						<el-input v-model="select_word" placeholder="要查询关键字" class="handle-input" ></el-input>
 						<el-button type="primary" class="admin-btn" @click="search">搜索</el-button>
-						<el-button type="primary" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
+						<el-button type="primary" v-show="usertype != 8" class="admin-btn" @click="batchAddDevice">检查数据导入</el-button>
 						<el-button type="primary" class="admin-btn" @click="handleExport">检查数据导出</el-button>
 					</el-col>
 				</el-row>
@@ -84,7 +95,7 @@
 					</el-upload>
 				</el-form-item>
 			</el-form>
-			<p class="ipt-text" style="margin-left:2em">*特别提示：请严格按照模板来填写数据，特别是时间格式，请认真检测。上传的数据文件只支持Excel2003格式，若数据较多，请拆分成多个文件，单个文件不能超过10M。</p>
+			<p class="ipt-text" style="margin-left:2em;color:red;">*特别提示：请严格按照模板来填写数据，特别是时间格式，请认真检测。上传的数据文件只支持Excel2003格式，若数据较多，请拆分成多个文件，单个文件大小不能超过10M。记录数量不能超过50000条记录</p>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="importVisible = false">取 消</el-button>
 				<el-button @click="downLoadExcelTemplate">下载模板</el-button>
@@ -102,6 +113,7 @@ export default {
 	 name: "tb_check_result1",//页面名称
 	 data() {
 		 return {
+			 usertype: localStorage.getItem('usertype') || '',
 			 tableData: [],//列表数据
 			 checkOrgNumber:'',
 			 batchAddFileList: [],//批量导入所选文件列表
@@ -118,6 +130,10 @@ export default {
 			 uploadData:{model:'tb_check_result1',fields:'name,idcard,result,checkTime,checkOrgNumber'},//批量导入带的参数
 			 addForm: {},//增加表单
 			 editForm: {},//修改表单
+			 town: '',
+			 orgArea: '',
+			 townData: [],
+			 countryData: [],
 			 ids: "",// 待删除的后台编号
 			 idx: -1,// 待删除的界面列表索
 			 checkOrgData:[],
@@ -179,10 +195,27 @@ export default {
 			 }
 		 };
 	 },
+		computed: {
+			currentOrgArea(){
+				let userinfo = localStorage.getItem('userinfo');
+				userinfo = JSON.parse(userinfo);
+				return userinfo ? userinfo.orgArea : '';
+			},
+		},
 	 mounted() {
+		let orgArea =  this.currentOrgArea || '';
+		if (this.usertype == 8) {
+			orgArea = this.orgArea;
+		}
+		this.uploadData.orgArea = orgArea;
 	 },
 	 created() {
 		 this.getData();
+		 if (this.usertype == 8) {
+			 this.getcountryData();
+		 } else {
+			 this.getcountryTown();
+		 }
 		 this.getcheckOrgData();
 	 },
 	 methods: {
@@ -200,6 +233,17 @@ export default {
 			 }
 			 return _data;
 		 },
+		getcountryData() {
+			axios.post({url: api.commn.action,
+				data: {model:'tb_cityscountry',action:'select'}
+			}).then(res => {
+				if (res.code == 0) {
+					this.countryData = res.data;
+				} else {
+					this.$message.error(res.message);
+				}
+         	});
+		},
 		 //获得编号方法
 		 getNumber(){
 			 axios.post({ url: api.commn.getNumber, data:{numberRuleCode:'comnNumber'} }).then(res => {
@@ -251,14 +295,20 @@ export default {
 		 },
 		 //查询列表数据方法
 		 getData() {
-			 this.is_loading = true;
+			this.is_loading = true;
+			let orgArea =  this.currentOrgArea || '';
+			if (this.usertype == 8) {
+				orgArea = this.orgArea;
+			}
 			 axios.post({url: api.commn.action,
 				 data: this.handleData('select',{
 					 start: (this.cur_page - 1) * this.cur_size,
 					 limit: this.cur_size,
 					 startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
-					 checkOrgNumber:this.checkOrgNumber,
+					 checkOrgNumber: this.checkOrgNumber,
+					 town: this.usertype == '11' ? this.town: '',
+					 orgArea: orgArea,
 					 keyWord: this.select_word
 					 })
 			 }).then(res => {
@@ -353,12 +403,17 @@ export default {
 		 uploadSuccess(response, file, fileList) {
 			 this.batchAddFileList = [];
 			 if (response.code == 0) {
-				 this.importVisible = false;
-				 this.$refs["importForm"].resetFields();
-				 this.$message.success("导入成功");
-				 this.getData();
+				this.importVisible = false;
+				let url = process.env.BASE_URL+process.env.API_PREFIX;
+				this.$refs["importForm"].resetFields();
+				this.$alert(`由于批量导入操作可能耗时过长，且文件中可能存在不符合要求的数据，请在点击完成大约3~10分钟后,下载导入反馈文件(<a href="${url}${response.data}" target="_blank">${url}${response.data}</a>),以便核对查询导入结果`, '提示', {
+					confirmButtonText: '知道了',
+					dangerouslyUseHTMLString: true
+				});
+				this.$message.success("导入成功");
+				this.getData();
 			 } else {
-				 this.$message.error(response.message);
+				this.$message.error(response.message);
 			 }
 		 },
 		 //批量导入失败方法
@@ -374,8 +429,12 @@ export default {
 			 this.$forceUpdate();
          },
 		getcheckOrgData() {
+			let orgArea =  this.currentOrgArea || '';
+			if (this.usertype == 8) {
+				orgArea = this.orgArea;
+			}
 			axios.post({url: api.commn.action,
-				 data: {model:'tb_check_org',action:'select',orgType:'2'}
+				 data: {model:'tb_check_org',action:'select',orgType:'2',orgArea: orgArea}
 			 }).then(res => {
 				 if (res.code == 0) {
 					 this.checkOrgData = res.data;
@@ -385,26 +444,46 @@ export default {
 				 });
 		},
 		handleExport(){
-
-        let params = {
-            title: '',
-			excelType: '1',
-			udpclass:'ExcelService',
-        };
-        
-       this.is_loading = true;
-        axios.get({
-            url: api.commn.udpAction,
-            data:params
-        }).then(res => {
-            console.log(api.commn.exportFile, ' success', res)
-            if(res.code == 0){
-                this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
-            }else{
-               this.is_loading = false;
-            }
-        })
-        },
+			let orgArea =  this.currentOrgArea || '';
+			if (this.usertype == 8) {
+				orgArea = this.orgArea;
+			}
+			let params = {
+				title: '',
+				excelType: '1',
+				udpclass:'ExcelService',
+				town: this.usertype == '11' ? this.town: '',
+				orgArea: orgArea,
+			};
+			
+			this.is_loading = true;
+				axios.get({
+					url: api.commn.udpAction,
+					data:params
+				}).then(res => {
+					console.log(api.commn.exportFile, ' success', res)
+					if(res.code == 0){
+						this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
+					}else{
+					this.is_loading = false;
+					}
+				})
+		},
+		getcountryTown() {
+			let orgArea =  this.currentOrgArea || '';
+			if (this.usertype == 8) {
+				orgArea = this.orgArea;
+			}
+			axios.post({url: api.commn.action,
+				 	data: {model:'citybyparent',action:'select',code:orgArea}
+			 	}).then(res => {
+					if (res.code == 0) {
+						this.townData = res.data;
+					} else {
+						this.$message.error(res.message);
+					}
+         	});
+		},
 	 },
 };
 </script>
@@ -418,5 +497,7 @@ export default {
 	/deep/ .el-upload-list {
     	width: 100%;
 	}
+}.select-tip {
+    margin-bottom: 20px;
 }
 </style>
