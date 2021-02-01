@@ -226,7 +226,7 @@ export default {
 
     goback()
     {
-      window.location = location.href.split('#')[0]+"#/applyhandle2";
+      window.location = location.href.split('#')[0]+"#/applyhandle2?ing=1";
           // this.$router.push({
           //   path: "/applyhandle2"
           // });
