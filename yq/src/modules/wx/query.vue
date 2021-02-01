@@ -108,7 +108,8 @@ export default {
               idcard: this.keyWord2,
               // model: 'tb_check_result1',
               model: 'Newtb_check_result1',
-              action:'selectDetail'
+              // action:'selectDetail'
+              action:'select'
               // action:'selectNew'
             }
           }).then(res => {
@@ -117,7 +118,7 @@ export default {
 
               if(null != this.result1)
               {
-                  this.goVehicleInfo(this.result1.idcard);
+                  this.goVehicleInfo(this.result1[0].idcard);
               }else
               {
                 alert('未查到您的检测结果');

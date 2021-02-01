@@ -30,26 +30,26 @@
       <div class="title">采集信息</div>
       <div style="background-color:#EBF0F6;padding:4px">
         <table style="98%">
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">姓名：</div><div class="div-info-item-value">{{applyInfo.applyName || result1.name}}</div></div></td></tr>
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">身份证号：</div><div class="div-info-item-value">{{applyInfo.idcard || result1.idcard}}</div></div></td></tr>
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">采集网点：</div><div class="div-info-item-value">{{applyInfo.checkOrgName}}</div></div></td></tr>
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">姓名：</div><div class="div-info-item-value">{{result1[0].name}}</div></div></td></tr>
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">身份证号：</div><div class="div-info-item-value">{{result1[0].idcard}}</div></div></td></tr>
+          <!-- <tr><td><div class="div-info-row"><div class="div-info-cell-title">采集网点：</div><div class="div-info-item-value">{{result1[0].checkOrgName || result1[0].checkOrgNumber}}</div></div></td></tr> -->
           <!-- <tr><td><div class="div-info-row"><div class="div-info-cell-title">采集时间：</div><div class="div-info-item-value">{{applyInfo.applyTime}}</div></div></td></tr> -->
         </table> 
       </div>    
     </div>
-     <!---->
     
     <div class="doctor-detail">
       <div class="title">核酸检测结果</div>
-      <div style="background-color:#EBF0F6;padding:4px">
+      <div style="background-color:#EBF0F6;padding:4px;margin-bottom:10px;" v-for="(item, i) in result1" :key="i">
         <table style="98%">
-          <tr><td><div class="div-info-row" style="text-align:center;font-size:20px">{{result1.result}}</div></td></tr>          
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">检测机构：</div><div class="div-info-item-value">{{result1.checkOrgNumber}}</div></div></td></tr>
-          <tr><td><div class="div-info-row"><div class="div-info-cell-title">检测时间：</div><div class="div-info-item-value">{{result1.checkTime}}</div></div></td></tr>
+          <tr><td><div class="div-info-row" style="text-align:center;font-size:20px">{{item.result}}</div></td></tr>          
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">检测机构：</div><div class="div-info-item-value">{{item.checkOrgNumber}}</div></div></td></tr>
+          <tr><td><div class="div-info-row"><div class="div-info-cell-title">检测时间：</div><div class="div-info-item-value">{{item.checkTime}}</div></div></td></tr>
        </table>     
       </div>
     </div>
 
+     <!--
    
     <div class="doctor-detail">
        <div class="title">抗体检测结果</div>
@@ -61,7 +61,7 @@
        </table>   
        </div>  
     </div>
- 
+ -->
 </div>
 
   </div>
@@ -117,7 +117,7 @@ export default {
         getResult1() {
     
 			 axios.post({url: api.commn.action,
-				 data: {idcard:this.idcard,model:'Newtb_check_result1',action:'selectDetail'}
+				 data: {idcard:this.idcard,model:'Newtb_check_result1',action:'select'}
 			 }).then(res => {
 				
 				 if (res.code == 0) {

@@ -77,8 +77,14 @@ export default {
   methods: {
 
     gohelpapply() {
-
-       window.location = location.href.split('#')[0]+"#/applyIndex2?checkOrgNumber="+this.checkOrgNumber;   
+      this.$router.push({
+        path: "/applyIndex",
+        query: {
+          ...this.$route.query,
+          gk: 1
+        }
+      });
+      // window.location = location.href.split('#')[0]+"#/applyIndex2?checkOrgNumber="+this.checkOrgNumber;   
         
     },
 

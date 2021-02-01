@@ -67,7 +67,7 @@ export default {
   methods: {
     goapply() {
       this.$router.push({
-        path: "/apply",
+        path: "/apply" + (this.$route.query.gk === '1' ? '2' : ''),
         query: {
           ...this.$route.query
         }
