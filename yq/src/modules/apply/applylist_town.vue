@@ -550,15 +550,10 @@ export default {
 			townareacode: this.town || this.currentTown,
 			checkOrgNumber:this.checkOrgNumber,
 			payType:this.payType,
-<<<<<<< HEAD
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
-			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
-=======
 			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
->>>>>>> 1197142eaf10b447aa79788cf4ccf1326be55879
+			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
 			keyWord: this.select_word
         };
         	if(params.townareacode !='' && params.countryareacode != '')
@@ -590,15 +585,10 @@ export default {
 			townareacode: this.town || this.currentTown,
 			checkOrgNumber:this.checkOrgNumber,
 			payType:this.payType,
-<<<<<<< HEAD
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
-			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
-=======
 			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
->>>>>>> 1197142eaf10b447aa79788cf4ccf1326be55879
+			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
 			keyWord: this.select_word
         };
             if(params.townareacode !='' && params.countryareacode != '')
@@ -620,7 +610,6 @@ export default {
 		},
 		handleExport3(){
 
-<<<<<<< HEAD
         let params = {
             title: '',
 			excelType: '5',
@@ -629,8 +618,8 @@ export default {
 			checkOrgNumber:this.checkOrgNumber,
 			payType:this.payType,
 			townareacode: this.town || this.currentTown,
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
+			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
 			keyWord: this.select_word
@@ -651,53 +640,6 @@ export default {
                this.is_loading = false;
             }
         })
-=======
-			let params = {
-				title: '',
-				excelType: '5',
-				udpclass:'ExcelService',
-				state:this.state,
-				checkOrgNumber:this.checkOrgNumber,
-				payType:this.payType,
-				townareacode: this.town || this.currentTown,
-				countryareacode: this.currentOrgArea,
-				startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
-				endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
-				keyWord: this.select_word
-			};
-				// if(params.townareacode !='' && params.countryareacode != '')
-				// {
-				// 	params.countryareacode = '';
-				// }
-			this.is_loading = true;
-				axios.get({
-					url: api.commn.udpAction,
-					data:params
-				}).then(res => {
-					console.log(api.commn.exportFile, ' success', res)
-					if(res.code == 0){
-						this.$root.$children[0].exportcheck(res.data).then(() => this.is_loading=false)
-						// if(res.data.status){
-                        //     if(res.data.status == 4){
-                        //         console.log('页面地址', res.data.filepath);
-                        //         if(res.data.filepath){
-                        //             window.open(res.data.filepath, "_blank");
-                        //         }
-                        //     }else if(res.data.status == 5){
-                        //         this.$message.success("无数据");
-                        //     }else{
-                        //         setTimeout(() => {
-                        //             self.exportcheck(uid);
-                        //         }, 1000)
-                        //     }
-                        // }else{
-                        //     this.$message.success("导出异常");
-                        // }
-					}else{
-					this.is_loading = false;
-					}
-				})
->>>>>>> 1197142eaf10b447aa79788cf4ccf1326be55879
 		},
 		handleExport6(){
 			if(this.sendOrgNumber == '')
@@ -715,15 +657,10 @@ export default {
 			sendOrgNumber:this.sendOrgNumber,
 			payType:this.payType,
 			townareacode:this.town,
-<<<<<<< HEAD
-			startTime: moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss"),
-			endTime: moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss"),
-			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
-			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
-=======
 			startTime: this.recordDate ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 			endTime: this.recordDate ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
->>>>>>> 1197142eaf10b447aa79788cf4ccf1326be55879
+			startCheckTime: this.checkDate ? moment(this.checkDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+			endCheckTime: this.checkDate ? moment(this.checkDate[1]).format("YYYY-MM-DD HH:mm:ss") : '', 
 			keyWord: this.select_word
         };
             if(params.townareacode !='' && params.countryareacode != '')
