@@ -91,6 +91,11 @@ export default new Router({
                 meta: { title: '系统账号管理' }
             },	
             {
+                path: '/apply/usery',
+                component: resolve => require(['../modules/apply/usery.vue'], resolve),
+                meta: { title: '人员档案管理' }
+            },	
+            {
                 path: '/apply/checkhandle',
                 component: resolve => require(['../modules/apply/checkhandle.vue'], resolve),
                 meta: { title: '检测采集处理' }

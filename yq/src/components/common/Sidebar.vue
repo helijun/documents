@@ -69,7 +69,14 @@
                             usertype: 8,
                             title: '系统账号管理',
                             index: '/apply/user'
-                        },                                                                                                   
+                        },                  
+                        {
+                            icon: 'el-icon-info',
+                            index: '8122',
+                            usertype: 8,
+                            title: '人员档案管理',
+                            index: '/apply/usery'
+                        },                                                                                                    
                     ]
                 },  
                 {
