@@ -29,7 +29,7 @@
         <section class="module-list module-base-info">
         <mt-field label="姓名:" type="text" placeholder="请输入姓名" v-model="addForm.applyName"></mt-field>
         <div  @click="selectSex()">
-        <mt-field label="性别:" type="text" placeholder="请选择性别"  readonly="true" v-model="addForm.sex"></mt-field>
+        <mt-field label="性别:" type="text" placeholder="请选择性别"  :readonly="true" v-model="addForm.sex"></mt-field>
         </div>
         <mt-field label="身份证号:" type="text" placeholder="请输入身份证号" v-model="addForm.idcard"></mt-field>
         <mt-field label="家庭住址:" type="text" placeholder="地址需精确到省市县(区)门牌号"  v-model="addForm.address"></mt-field>   
@@ -40,7 +40,7 @@
         </div>-->
 
         <!-- <div  @click="selectRelation()"> -->
-        <mt-field label="采集网点:" type="text" placeholder="请选择采集网点" readonly="true" v-model="addForm.checkOrgName"></mt-field>
+        <mt-field label="采集网点:" type="text" placeholder="请选择采集网点" :readonly="true" v-model="addForm.checkOrgName"></mt-field>
         <!-- </div> -->
 
         </section>
@@ -233,7 +233,7 @@ export default {
         }
         this.getcheckOrgData();
         this.init();    
-         this.addForm.applyTime = moment(newDate).format('YYYY-MM-DD')
+        //  this.addForm.applyTime = moment(newDate).format('YYYY-MM-DD')
     },
     mounted() {
         let newDate = new Date();
@@ -451,10 +451,16 @@ export default {
 
             if(this.validate())
             {
-        
+                let data = this.addForm;
+                
+                //去左右空格;
+                function trim(s){
+                    return s.replace(/(^\s*)|(\s*$)/g, "");
+                }
+                data.idcard = trim(data.idcard);
                 axios.post({ 
                     url: api.commn.action, 
-                    data: this.handleData('insert',this.addForm) }).then(res => {
+                    data: this.handleData('insert',data) }).then(res => {
                                 if (res.code == 0) {
                                     this.$message.success("预约成功");
                                      this.$router.push({ path: "/applysuccess?applyNumber="+this.addForm.applyNumber});

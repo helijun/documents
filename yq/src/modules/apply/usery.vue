@@ -28,7 +28,7 @@
 				<el-table-column prop="townName" label="镇街"/>
 				<el-table-column prop="callbackaddress" label="地址"/>
 				<el-table-column prop="tel" label="电话"/>
-				<el-table-column prop="orgNumber" label="管理机构"/>
+				<el-table-column prop="orgName" label="管理机构"/>
 				<el-table-column prop="username" label="检测记录（次）">
 					<template slot-scope="scope">
                         <a class="user-href" @click="handleOne(scope.row.idcard)">{{scope.row.applyCount}}</a>
@@ -36,7 +36,7 @@
 				</el-table-column>
 				<el-table-column prop="username" label="检测报告（次）">
 					<template slot-scope="scope">
-                        <a class="user-href" @click="handleTwo(scope.row.idcard)">{{scope.row.applyCount}}</a>
+                        <a class="user-href" @click="handleTwo(scope.row.idcard)">{{scope.row.resultCount}}</a>
                     </template>
 				</el-table-column>
 				<div slot="empty" class="default-empty"><span>暂时没有内容哦！</span></div>
@@ -46,25 +46,25 @@
 			</div>
 		</div>
 		
-		<el-dialog title="检测记录详情" :visible="oneVisible" width="400px" center>
-			<el-table :data="oneData" border style="width: 100%" ref="multipleTable">
-				<el-table-column prop="checkOrgName" label="检测机构"/>
+		<el-dialog title="检测报告详情" :visible="twoVisible" width="600px" center>
+			<el-table :data="twoData" border style="width: 100%" ref="multipleTable">
+				<el-table-column prop="checkOrgNumber" label="检测机构"/>
 				<el-table-column prop="createTime" label="检测时间"/>
 				<el-table-column prop="result" label="检测结果"/>
 			</el-table>
 			<span slot="footer" class="dialog-footer">
-				<el-button type="primary" class="admin-btn" @click="oneVisible = false;oneData = [];">我知道了</el-button>
+				<el-button type="primary" class="admin-btn" @click="twoVisible = false;twoData = [];">关闭</el-button>
 			</span>
 		</el-dialog>
 		
-		<el-dialog title="检测报告详情" :visible="twoVisible" width="400px" center>
-			<el-table :data="twoData" border style="width: 100%" ref="multipleTable">
-				<el-table-column prop="checkOrgNumber" label="采集点"/>
+		<el-dialog title="检测记录详情" :visible="oneVisible" width="600px" center>
+			<el-table :data="oneData" border style="width: 100%" ref="multipleTable">
+				<el-table-column prop="checkOrgName" label="采集点"/>
 				<el-table-column prop="createTime" label="采集时间"/>
 				<el-table-column prop="payTypeName" label="订单类型"/>
 			</el-table>
 			<span slot="footer" class="dialog-footer">
-				<el-button type="primary" class="admin-btn" @click="twoVisible = false;twoData = []">我知道了</el-button>
+				<el-button type="primary" class="admin-btn" @click="oneVisible = false;oneData = []">关闭</el-button>
 			</span>
 		</el-dialog>
 	</div>
