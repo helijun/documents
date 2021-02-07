@@ -128,11 +128,34 @@ export default {
                         setTimeout(() => {
                             this.qrcode();
                         }, 100)
-                        })
+                    })
+                    this.apply4NewStart();
 				 } else {
 					 this.$message.error(res.message);
 				 }
                  });
+        },
+        apply4NewStart() {
+            axios.post({ 
+                url: '/api/apply4NewStart', 
+                data: {
+                    WechatCode: this.$route.query.wechatCode,
+                    Name: this.ruleForm.applyName,
+                    Gender: this.ruleForm.sex,
+                    IdNumber: this.ruleForm.idcard,
+                    Nation: '汉族',
+                    IdType: '01',
+                    Address: this.ruleForm.address,
+                    Phone: this.ruleForm.tel,
+                    RequestSource: 1,
+                    Relation: '1',
+                    ChannelNum: 0,
+                    QueryCode: this.ruleForm.applyNumber,
+                    AppointmentDate: this.ruleForm.applyTime,
+                    AppointmentOrg: this.ruleForm.checkOrgName,
+                    OpenId: this.$route.query.openid,
+                }
+            })
         },
         
         qrcode() {  

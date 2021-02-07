@@ -446,7 +446,6 @@ export default {
             return true;
      
         },
-
         doSaveAdd() {
 
             if(this.validate())
@@ -463,7 +462,8 @@ export default {
                     data: this.handleData('insert',data) }).then(res => {
                                 if (res.code == 0) {
                                     this.$message.success("预约成功");
-                                     this.$router.push({ path: "/applysuccess?applyNumber="+this.addForm.applyNumber});
+                                    // this.apply4NewStart();
+                                     this.$router.push({ path: "/applysuccess?applyNumber="+this.addForm.applyNumber, query: {...this.$route.query}});
                                 } else {
                                     this.$message.error(res.message);
                                 }

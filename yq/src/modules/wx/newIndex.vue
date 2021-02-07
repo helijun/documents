@@ -188,7 +188,8 @@ export default {
         path: "/freeIndex?checkOrgNumber="+this.checkOrgNumber,
         query: {
           checkOrgNumber: this.checkOrgNumber,
-          checkOrgName: this.orgData.filter((item) => item.checkOrgNumber == this.checkOrgNumber)[0].orgName
+          checkOrgName: this.orgData.filter((item) => item.checkOrgNumber == this.checkOrgNumber)[0].orgName,
+          ...this.$route.query
         }
       });
     },
