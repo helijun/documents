@@ -6,6 +6,8 @@
 			<div class="handle-box table-cuoff-line">
 				<el-row type="flex" justify="space-between" align="center">
 					<el-col>
+						<div class="select-tip">创建时间</div>
+						<el-date-picker class="mgr--12" v-model="createDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<div class="select-tip">检测时间</div>
 						<el-date-picker class="mgr--12" v-model="recordDate"  type="daterange" align="left"  range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy-MM-dd" :clearable="false" :default-time="['00:00:00', '23:59:59']" :picker-options="pickerOptions"  @change="search"/>
 						<div class="select-tip">所属县区</div>
@@ -161,6 +163,9 @@ export default {
 			 recordDate: [
 				'', ''
 			 ],
+			 createDate: [
+				'', ''
+			 ],
 			 //时间控件
 			 pickerOptions: {
 				 shortcuts: [
@@ -304,6 +309,8 @@ export default {
 				 data: this.handleData('select',{
 					 start: (this.cur_page - 1) * this.cur_size,
 					 limit: this.cur_size,
+					checkStartTime: this.createDate[0] ? moment(this.createDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',    
+					checkEndTime: this.createDate[1] ? moment(this.createDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 					 checkOrgNumber: this.checkOrgNumber,
@@ -454,6 +461,10 @@ export default {
 				udpclass:'ExcelService',
 				town: this.usertype == '11' ? this.town: '',
 				orgArea: orgArea,
+				checkStartTime: this.createDate[0] ? moment(this.createDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',    
+				checkEndTime: this.createDate[1] ? moment(this.createDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
+				startTime: this.recordDate[0] ? moment(this.recordDate[0]).format("YYYY-MM-DD HH:mm:ss") : '',
+				endTime: this.recordDate[1] ? moment(this.recordDate[1]).format("YYYY-MM-DD HH:mm:ss") : '',
 			};
 			
 			this.is_loading = true;
