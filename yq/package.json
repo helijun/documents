@@ -15,7 +15,7 @@
     "element-ui": "2.3.3",
     "jquery": "^3.5.1",
     "lrz": "^4.9.40",
-    "mavon-editor": "^2.5.4",
+    "mavon-editor": "^2.8.2",
     "mint-ui": "^2.2.13",
     "moment": "^2.27.0",
     "node-sass": "^4.9.2",
