@@ -8,7 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var PrerenderSpaPlugin = require('prerender-spa-plugin')
+// var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var routerConfig = require('../src/router/config')
 
 var env = config.build.env
@@ -37,12 +37,12 @@ var webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
     //配置 prerender-spa-plugin
-    new PrerenderSpaPlugin(
-      // 生成文件的路径，此处与webpack打包地址一致
-      path.join(config.build.assetsRoot),
-      // 配置要做预渲染的路由，只支持h5 history方式
-      ['/', ...routerArray]
-    ),
+    // new PrerenderSpaPlugin(
+    //   // 生成文件的路径，此处与webpack打包地址一致
+    //   path.join(config.build.assetsRoot),
+    //   // 配置要做预渲染的路由，只支持h5 history方式
+    //   ['/', ...routerArray]
+    // ),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>&copy; 2016 - 2021 <a href="https://beian.miit.gov.cn">粤ICP备19145585号</a></p>
+        <p>&copy; 2016 - 2022 <a href="https://beian.miit.gov.cn" target="_blank">粤ICP备19145585号</a></p>
     </footer>
 </template>
 
