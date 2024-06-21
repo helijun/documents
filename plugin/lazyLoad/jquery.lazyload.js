@@ -20,7 +20,10 @@
             event           : "scroll",
             effect          : "show",
             container       : window,
-            skip_invisible  : true
+            skip_invisible  : true,
+            attr_dest       : "src",        /*define which attribute should be updated*/
+            attr_src        : "original",   /*define which attribute/data should be updating source*/
+            use_data        : true          /*use data or attribute as attr_src switch*/
         };
                 
         if(options) {
@@ -69,15 +72,15 @@
             /* When appear is triggered load original image. */
             $(self).one("appear", function() {
                 if (!this.loaded) {
-                    $("<img />")
+                    $(this)
                         .bind("load", function() {
                             $(self)
                                 .hide()
-                                .attr("src", $(self).data("original"))
+                                .attr(settings.attr_dest, settings.use_data?$(self).data(settings.attr_src):$(self).attr(settings.attr_src))
                                 [settings.effect](settings.effectspeed);
                             self.loaded = true;
                         })
-                        .attr("src", $(self).data("original"));
+                        .attr(settings.attr_dest, settings.use_data?$(self).data(settings.attr_src):$(self).attr(settings.attr_src));
                 };
             });
 
